@@ -1,0 +1,104 @@
+@import "./fonts.css";
+@import "./tailwind.css";
+@import "./theme.css";
+
+.font-hand {
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+  font-weight: 700;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.scroll-scale {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-reveal {
+  transform: translateY(70px);
+}
+
+.scroll-reveal-left {
+  transform: translateX(-70px);
+}
+
+.scroll-reveal-right {
+  transform: translateX(70px);
+}
+
+.scroll-scale {
+  transform: scale(0.94) translateY(35px);
+}
+
+.scroll-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal-left,
+  .scroll-reveal-right,
+  .scroll-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(6deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+@keyframes hero-word-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes hero-image-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.01);
+  }
+}
+
+.scroll-visible.hero-word-float {
+  animation: hero-word-float 7s ease-in-out infinite;
+}
+
+.scroll-visible.hero-image-float {
+  animation: hero-image-float 8s ease-in-out infinite;
+}

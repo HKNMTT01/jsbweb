@@ -197,21 +197,54 @@ export default function JointVentureDetails() {
               />
             )}
             {selected === "jetama-babagon-floating-solar" && (
-              <SolarJointVentureDetail
-                title="Jetama Babagon Floating Solar Sdn. Bhd."
-                accent="#35b24a"
-                description="A solar project company under JETAMA Energy focusing on floating solar development at Babagon Dam, Penampang."
-                highlights={[
-                  ["Project Type", "Floating Solar PV"],
-                  ["Proposed Capacity", "13.21 MWac"],
-                  ["Location", "Babagon Dam, Penampang"],
-                ]}
+              <ComingSoonJV
+                title="Jetama Batu Sapi Solar Sdn. Bhd."
+                accent="#f9a51a"
               />
             )}
           </main>
         </div>
       </section>
     </main>
+  );
+}
+
+function ComingSoonJV({
+  title,
+  accent,
+}: {
+  title: string;
+  accent: string;
+}) {
+  return (
+    <section className="rounded-[2.3rem] border border-[#dcebf3] bg-white p-10 shadow-[0_24px_70px_rgba(0,90,170,0.08)]">
+      <div className="mx-auto max-w-3xl text-center">
+        <img
+          src={jetamaEnergyLogo}
+          alt={title}
+          className="mx-auto h-auto max-h-52 w-auto object-contain"
+        />
+
+        <div
+          className="mt-8 inline-flex rounded-full px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-white"
+          style={{ backgroundColor: accent }}
+        >
+          Joint Venture Company
+        </div>
+
+        <h2 className="mt-6 text-4xl font-black text-[#102f83]">
+          {title}
+        </h2>
+
+        <p className="mt-8 text-lg font-semibold text-slate-600">
+          Information and project details will be announced in the future.
+        </p>
+
+        <div className="mt-8 inline-flex items-center rounded-full bg-[#eef8ff] px-6 py-3 text-sm font-black text-[#102f83]">
+          Coming Soon
+        </div>
+      </div>
+    </section>
   );
 }
 

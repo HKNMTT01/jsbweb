@@ -185,21 +185,22 @@ export default function JointVentureDetails() {
 
             {selected === "jetama-alpine-pipe" && <JetamaAlpinePipeDetail />}
             {selected === "jetama-batu-sapi-solar" && (
-              <SolarJointVentureDetail
-                title="Jetama Batu Sapi Solar Sdn. Bhd."
-                accent="#f9a51a"
-                description="A solar project company under JETAMA Energy focusing on ground-mounted solar development at Batu Sapi, Sandakan."
-                highlights={[
-                  ["Project Type", "Ground-Mounted Solar PV"],
-                  ["Proposed Capacity", "15 MWac"],
-                  ["Location", "Batu Sapi, Sandakan"],
-                ]}
-              />
-            )}
-            {selected === "jetama-babagon-floating-solar" && (
               <ComingSoonJV
                 title="Jetama Batu Sapi Solar Sdn. Bhd."
                 accent="#f9a51a"
+              />
+            )}
+
+            {selected === "jetama-babagon-floating-solar" && (
+              <SolarJointVentureDetail
+                title="Jetama Babagon Floating Solar Sdn. Bhd."
+                accent="#35b24a"
+                description="A solar project company under JETAMA Energy focusing on floating solar development at Babagon Dam, Penampang."
+                highlights={[
+                  ["Project Type", "Floating Solar PV"],
+                  ["Proposed Capacity", "13.21 MWac"],
+                  ["Location", "Babagon Dam, Penampang"],
+                ]}
               />
             )}
           </main>

@@ -95,6 +95,17 @@ const documents = [
   "Industrial Training Placement Letter for internship applicants",
 ];
 
+const applicationEmail = "hr@jetama.com.my";
+
+function getApplicationMailto(job: Job) {
+  const subject = encodeURIComponent(`Application for ${job.title}`);
+  const body = encodeURIComponent(
+    `Dear JETAMA HR Team,\n\nI would like to apply for the ${job.title} position.\n\nPlease find my application documents attached.\n\nThank you.\n\nRegards,`,
+  );
+
+  return `mailto:${applicationEmail}?subject=${subject}&body=${body}`;
+}
+
 function OceanWaveDivider() {
   return (
     <div className="pointer-events-none relative -mt-20 h-44 overflow-hidden bg-transparent">
@@ -319,6 +330,137 @@ export default function Careers() {
           </div>
         </div>
       </section>
+
+
+      {selectedJob && (
+        <div
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-[#021727]/80 px-4 py-8 backdrop-blur-md"
+          onClick={() => setSelectedJob(null)}
+        >
+          <div
+            className="relative max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[2.2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedJob(null)}
+              className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#052b4f] shadow-lg transition hover:bg-[#fbf234]"
+              aria-label="Close job details"
+            >
+              <X size={22} />
+            </button>
+
+            <div className="relative overflow-hidden bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#35B24A] px-7 py-8 text-white sm:px-10">
+              <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+              <div className="absolute -bottom-20 left-12 h-52 w-52 rounded-full bg-[#F5A623]/20 blur-3xl" />
+
+              <div className="relative">
+                <p className="inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#fbf234] backdrop-blur">
+                  {selectedJob.type}
+                </p>
+
+                <h2 className="mt-5 max-w-3xl text-3xl font-black leading-tight sm:text-4xl">
+                  {selectedJob.title}
+                </h2>
+
+                <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold text-white/90">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 backdrop-blur">
+                    <Building2 size={16} />
+                    {selectedJob.department}
+                  </span>
+
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-2 backdrop-blur">
+                    <MapPin size={16} />
+                    {selectedJob.location}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="p-7 sm:p-10">
+                <p className="rounded-[1.4rem] border border-[#dcebf3] bg-[#f8fbff] p-5 text-base leading-8 text-slate-700">
+                  {selectedJob.description}
+                </p>
+
+                <div className="mt-8">
+                  <h3 className="text-xl font-black text-[#062f4e]">
+                    Key Responsibilities
+                  </h3>
+
+                  <div className="mt-4 space-y-3">
+                    {selectedJob.responsibilities.map((item) => (
+                      <div key={item} className="flex gap-3 rounded-2xl bg-white p-3 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+                        <CheckCircle2 className="mt-1 shrink-0 text-[#35B24A]" size={18} />
+                        <p className="text-sm leading-7 text-slate-700">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <h3 className="text-xl font-black text-[#062f4e]">
+                    Requirements
+                  </h3>
+
+                  <div className="mt-4 space-y-3">
+                    {selectedJob.requirements.map((item) => (
+                      <div key={item} className="flex gap-3 rounded-2xl bg-[#f8fbff] p-3">
+                        <Sparkles className="mt-1 shrink-0 text-[#F5A623]" size={18} />
+                        <p className="text-sm leading-7 text-slate-700">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <aside className="border-t border-slate-200 bg-[#f8fbfd] p-7 sm:p-10 lg:border-l lg:border-t-0">
+                <div className="rounded-[2rem] border border-[#dcebf3] bg-white p-6 shadow-[0_18px_55px_rgba(0,90,170,0.10)]">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#eef8f1] text-[#12813b]">
+                    <Mail size={31} />
+                  </div>
+
+                  <h3 className="text-2xl font-black text-[#062f4e]">
+                    Submit Application
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
+                    Click the email button below. Your email app will open with the application subject prepared.
+                  </p>
+
+                  <a
+                    href={getApplicationMailto(selectedJob)}
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#005AAA] to-[#35B24A] px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-lg shadow-[#005AAA]/20 transition hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <Send size={18} />
+                    Apply via Email
+                  </a>
+
+                  <p className="mt-4 text-center text-xs font-bold text-slate-500">
+                    Send to: {applicationEmail}
+                  </p>
+                </div>
+
+                <div className="mt-6 rounded-[2rem] border border-[#dcebf3] bg-white p-6">
+                  <h4 className="text-lg font-black text-[#062f4e]">
+                    Required Documents
+                  </h4>
+
+                  <div className="mt-4 space-y-3">
+                    {documents.map((item) => (
+                      <div key={item} className="flex gap-3 text-sm leading-6 text-slate-600">
+                        <CheckCircle2 className="mt-1 shrink-0 text-[#35B24A]" size={16} />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      )}
+
 
       <style>{`
         @keyframes fadeInUp {

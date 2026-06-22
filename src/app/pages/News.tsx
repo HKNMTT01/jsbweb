@@ -8,6 +8,7 @@ import {
   Play,
   Search,
   Sparkles,
+  TrendingUp,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
@@ -188,29 +189,14 @@ function getTypeIcon(type: NewsType) {
 
 function OceanWaveDivider() {
   return (
-    <div className="pointer-events-none relative -mt-20 h-44 overflow-hidden bg-transparent">
-      <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-transparent via-white/25 to-white/70" />
-      <div className="absolute left-[-5%] top-8 h-10 w-[110%] rounded-[50%] bg-white/55 blur-2xl" />
-      <div className="absolute left-[-10%] top-14 h-12 w-[120%] rounded-[50%] bg-white/60 blur-xl" />
-
-      <svg className="absolute -bottom-4 left-0 h-44 w-full" viewBox="0 0 1440 260" preserveAspectRatio="none">
-        <path d="M0,45 C180,10 320,90 520,55 C720,20 900,95 1100,45 C1280,10 1360,25 1440,20 L1440,260 L0,260 Z" fill="rgba(255,255,255,1)" />
-        <path d="M0,70 C220,30 420,105 620,65 C820,30 1020,100 1220,60 C1320,40 1390,48 1440,42 L1440,260 L0,260 Z" fill="rgba(248,255,250,.98)" />
-        <path d="M0,105 C220,65 420,130 650,95 C870,60 1060,130 1260,95 C1360,78 1410,85 1440,82 L1440,260 L0,260 Z" fill="rgba(103,214,111,.50)" />
-        <path d="M0,130 C240,90 460,155 690,120 C910,90 1120,155 1320,118 C1390,105 1420,108 1440,105 L1440,260 L0,260 Z" fill="rgba(65,182,80,.72)" />
-        <path d="M0,160 C250,115 500,175 740,145 C950,120 1160,175 1360,145 C1400,140 1425,138 1440,136 L1440,260 L0,260 Z" fill="rgba(0,84,166,.80)" />
-        <path d="M0,190 C260,140 530,205 770,175 C990,145 1190,205 1380,175 C1410,170 1430,168 1440,166 L1440,260 L0,260 Z" fill="rgba(0,70,145,.90)" />
-        <path d="M0,215 C300,170 560,225 820,200 C1080,175 1260,220 1440,195 L1440,260 L0,260 Z" fill="rgba(0,59,122,.96)" />
+    <div className="pointer-events-none relative -mt-16 h-40 overflow-hidden bg-transparent">
+      <svg className="absolute bottom-0 left-0 h-40 w-full" viewBox="0 0 1440 260" preserveAspectRatio="none">
+        <path d="M0,70 C220,30 420,105 620,65 C820,30 1020,100 1220,60 C1320,40 1390,48 1440,42 L1440,260 L0,260 Z" fill="rgba(255,255,255,1)" />
+        <path d="M0,125 C240,80 480,155 720,120 C960,85 1170,155 1440,115 L1440,260 L0,260 Z" fill="rgba(65,182,80,.35)" />
+        <path d="M0,160 C250,115 500,175 740,145 C950,120 1160,175 1360,145 C1400,140 1425,138 1440,136 L1440,260 L0,260 Z" fill="rgba(0,84,166,.72)" />
+        <path d="M0,205 C300,160 560,220 820,195 C1080,170 1260,215 1440,190 L1440,260 L0,260 Z" fill="rgba(0,59,122,.94)" />
       </svg>
-
-      <div className="absolute bottom-24 left-[8%] h-8 w-5 animate-bounce rounded-full bg-white/80 blur-[1px]" />
-      <div className="absolute bottom-36 left-[10%] h-4 w-4 animate-ping rounded-full bg-[#67D66F]/90" />
-      <div className="absolute bottom-28 left-[48%] h-10 w-6 animate-bounce rounded-full bg-white/80 shadow-[0_0_15px_rgba(255,255,255,.8)]" />
-      <div className="absolute bottom-40 left-[50%] h-4 w-4 animate-ping rounded-full bg-[#41B650]" />
-      <div className="absolute bottom-26 right-[12%] h-9 w-5 animate-bounce rounded-full bg-white/80" />
-      <div className="absolute bottom-38 right-[10%] h-5 w-5 animate-ping rounded-full bg-[#67D66F]/90" />
-      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white via-white/45 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-r from-[#41B650]/20 via-white/50 to-[#0054A6]/20 blur-xl" />
+      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#f7fbfd] via-[#f7fbfd]/45 to-transparent" />
     </div>
   );
 }
@@ -227,7 +213,7 @@ export default function News() {
       setActiveSlide((current) =>
         current === featuredNews.length - 1 ? 0 : current + 1,
       );
-    }, 4800);
+    }, 5200);
 
     return () => window.clearInterval(timer);
   }, [featuredNews.length]);
@@ -256,21 +242,22 @@ export default function News() {
 
   return (
     <main className="overflow-hidden bg-[#f7fbfd] text-[#062f4e]">
-      {/* HERO */}
-      <section className="relative min-h-[660px] overflow-hidden bg-[#061f33] pt-28 text-white">
+      <section className="relative min-h-[650px] overflow-hidden bg-[#061f33] pt-28 text-white">
         <div className="absolute inset-0">
           <img
             key={currentSlide.title}
             src={currentSlide.image}
             alt={currentSlide.title}
-            className="h-full w-full object-cover opacity-60 transition duration-700"
+            className="h-full w-full scale-105 object-cover opacity-65 transition duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#031c30] via-[#052b4f]/88 to-[#005aaa]/35" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f7fbfd] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#031c30] via-[#052b4f]/90 to-[#005aaa]/35" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#f7fbfd] to-transparent" />
+          <div className="absolute -right-20 top-28 h-72 w-72 rounded-full bg-[#41b650]/20 blur-3xl" />
+          <div className="absolute left-[-80px] bottom-24 h-72 w-72 rounded-full bg-[#f5a623]/15 blur-3xl" />
         </div>
 
-        <div className="relative mx-auto flex min-h-[520px] max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
+        <div className="relative mx-auto grid min-h-[520px] max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_440px] lg:px-8">
+          <div>
             <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-white/75">
               <Link to="/" className="hover:text-white">Home</Link>
               <ChevronRight size={16} />
@@ -278,7 +265,7 @@ export default function News() {
             </div>
 
             <h1 className="mt-7 text-5xl font-black leading-tight md:text-7xl">
-              News & Activities
+              News & Events
             </h1>
 
             <div className="mt-7 h-1.5 w-24 rounded-full bg-[#f5a623]" />
@@ -298,6 +285,22 @@ export default function News() {
               <span className="rounded-full bg-white/15 px-5 py-2 text-xs font-black uppercase tracking-[0.18em] text-white backdrop-blur">
                 {currentSlide.date}
               </span>
+            </div>
+          </div>
+
+          <div className="hidden lg:block">
+            <div className="relative rounded-[2rem] border border-white/20 bg-white/10 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.28)] backdrop-blur-md">
+              <div className="absolute -left-4 top-10 h-24 w-2 rounded-full bg-[#41b650]" />
+              <div className="overflow-hidden rounded-[1.5rem]">
+                <img src={currentSlide.image} alt={currentSlide.title} className="h-[330px] w-full object-cover" />
+              </div>
+              <div className="p-5">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-black uppercase text-[#005aaa]">
+                  {getTypeIcon(currentSlide.type)}
+                  Latest Highlight
+                </div>
+                <h2 className="line-clamp-2 text-2xl font-black leading-tight text-white">{currentSlide.title}</h2>
+              </div>
             </div>
           </div>
         </div>
@@ -320,16 +323,11 @@ export default function News() {
 
       <OceanWaveDivider />
 
-      {/* CONTENT */}
-      <section className="relative -mt-32 z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-        {/* FILTER BAR */}
+      <section className="relative -mt-28 z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="rounded-[2rem] border border-white bg-white/95 p-5 shadow-[0_25px_80px_rgba(0,70,145,0.14)] backdrop-blur">
           <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
             <label className="relative block">
-              <Search
-                size={18}
-                className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"
-              />
+              <Search size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
@@ -356,7 +354,20 @@ export default function News() {
           </div>
         </div>
 
-        {/* TITLE */}
+        <section className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            ["Latest Events", newsItems.filter((item) => item.type === "gallery").length],
+            ["Media Updates", newsItems.filter((item) => item.type === "press-releases").length],
+            ["Video Highlights", newsItems.filter((item) => item.type === "videos").length],
+          ].map(([label, value]) => (
+            <div key={label as string} className="group rounded-[2rem] border border-[#dcebf3] bg-white p-6 shadow-[0_18px_55px_rgba(0,70,145,0.08)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_25px_75px_rgba(0,70,145,0.14)]">
+              <TrendingUp className="mb-5 text-[#41b650]" size={30} />
+              <p className="text-4xl font-black text-[#005aaa]">{value as number}</p>
+              <p className="mt-2 text-xs font-black uppercase tracking-[0.2em] text-slate-500">{label as string}</p>
+            </div>
+          ))}
+        </section>
+
         <div className="mb-10 mt-16 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.28em] text-[#41b650]">
@@ -368,43 +379,27 @@ export default function News() {
           </div>
 
           <p className="font-bold text-slate-500">
-            Showing {visibleItems.length} update
-            {visibleItems.length === 1 ? "" : "s"}
+            Showing {visibleItems.length} update{visibleItems.length === 1 ? "" : "s"}
           </p>
         </div>
 
         {visibleItems.length === 0 ? (
           <div className="rounded-[2rem] border border-dashed border-[#cddde6] bg-white p-12 text-center">
-            <p className="text-xl font-black text-[#062f4e]">
-              No update found.
-            </p>
-            <p className="mt-2 text-slate-500">
-              Try another keyword or category.
-            </p>
+            <p className="text-xl font-black text-[#062f4e]">No update found.</p>
+            <p className="mt-2 text-slate-500">Try another keyword or category.</p>
           </div>
         ) : (
           <>
-            {/* FEATURED CARD */}
             {mainFeature && (
               <article className="group grid overflow-hidden rounded-[2.4rem] border border-white bg-white shadow-[0_25px_90px_rgba(0,70,145,0.12)] lg:grid-cols-[1.05fr_.95fr]">
                 <div className="relative min-h-[380px] overflow-hidden">
-                  <img
-                    src={mainFeature.image}
-                    alt={mainFeature.title}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
+                  <img src={mainFeature.image} alt={mainFeature.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#031c30]/65 via-transparent to-transparent" />
 
                   <div className="absolute left-7 top-7 rounded-2xl bg-white px-5 py-4 text-center shadow-xl">
-                    <p className="text-4xl font-black leading-none text-[#005aaa]">
-                      {mainFeature.day}
-                    </p>
-                    <p className="mt-1 text-xs font-black uppercase tracking-wider text-[#41b650]">
-                      {mainFeature.month}
-                    </p>
-                    <p className="mt-1 text-xs font-black text-slate-400">
-                      {mainFeature.year}
-                    </p>
+                    <p className="text-4xl font-black leading-none text-[#005aaa]">{mainFeature.day}</p>
+                    <p className="mt-1 text-xs font-black uppercase tracking-wider text-[#41b650]">{mainFeature.month}</p>
+                    <p className="mt-1 text-xs font-black text-slate-400">{mainFeature.year}</p>
                   </div>
                 </div>
 
@@ -418,9 +413,7 @@ export default function News() {
                     {mainFeature.title}
                   </h3>
 
-                  <p className="mt-5 leading-8 text-slate-600">
-                    {mainFeature.description}
-                  </p>
+                  <p className="mt-5 leading-8 text-slate-600">{mainFeature.description}</p>
 
                   <div className="mt-7 flex flex-wrap items-center gap-4 text-sm font-bold text-slate-500">
                     <span className="inline-flex items-center gap-2">
@@ -444,29 +437,20 @@ export default function News() {
               </article>
             )}
 
-            {/* ARCHIVE GRID */}
             <div className="mt-12 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-              {archiveItems.map((item) => (
+              {archiveItems.map((item, index) => (
                 <article
                   key={`${item.title}-${item.date}`}
-                  className="group overflow-hidden rounded-[2rem] border border-[#e3eef3] bg-white shadow-[0_18px_60px_rgba(0,70,145,0.08)] transition hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(0,70,145,0.15)]"
+                  className="group overflow-hidden rounded-[2rem] border border-[#e3eef3] bg-white shadow-[0_18px_60px_rgba(0,70,145,0.08)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_25px_80px_rgba(0,70,145,0.15)]"
+                  style={{ transitionDelay: `${index * 35}ms` }}
                 >
                   <div className="relative h-60 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#031c30]/65 via-transparent to-transparent" />
+                    <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#031c30]/68 via-transparent to-transparent" />
 
                     <div className="absolute left-5 top-5 rounded-xl bg-white px-4 py-3 text-center shadow-lg">
-                      <p className="text-3xl font-black leading-none text-[#005aaa]">
-                        {item.day}
-                      </p>
-                      <p className="mt-1 text-[11px] font-black uppercase text-[#41b650]">
-                        {item.month}
-                      </p>
+                      <p className="text-3xl font-black leading-none text-[#005aaa]">{item.day}</p>
+                      <p className="mt-1 text-[11px] font-black uppercase text-[#41b650]">{item.month}</p>
                     </div>
 
                     <div className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-[#005aaa] shadow">

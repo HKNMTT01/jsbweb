@@ -306,14 +306,7 @@ function SubsidiaryOverview() {
                     <p className="mt-4 min-h-[72px] leading-7 text-slate-600">
                       {item.text}
                     </p>
-
-                    <div className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-[#35b24a]">
-                      View Details
-                      <ArrowRight
-                        size={16}
-                        className="transition group-hover:translate-x-1"
-                      />
-                    </div>
+                    
                   </Link>
                 );
               })}

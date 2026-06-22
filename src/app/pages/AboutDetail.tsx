@@ -27,6 +27,13 @@ import heroImageDefault from "@/assets/jetama-dam-hero.jpg";
 
 import aiConcessionMap from "@/assets/concession.png";
 import concessionArea2 from "@/assets/concession-area2.jpg";
+import pipelineReservoirMap from "@/assets/concessionArea.png";
+import moyogLocationImage from "@/assets/MOYOG.jpg";
+import tuaranLocationImage from "@/assets/TUARAN.jpg";
+import telibongLocationImage from "@/assets/TELIBONG.jpg";
+import kasiguiLocationImage from "@/assets/KASIGUI.jpg";
+import paparLocationImage from "@/assets/PAPAR.jpg";
+import tamparuliLocationImage from "@/assets/TAMPARULI.jpg";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 import bodChairman from "@/assets/Datuk Faisyal.png";
 import bodAbidin from "@/assets/Datuk Abidin.png";
@@ -353,15 +360,6 @@ function VisionMissionContent() {
 }
 
 function BoardDirectorsContent() {
-  const [selectedDirector, setSelectedDirector] = useState<null | {
-    name: string;
-    position: string;
-    label: string;
-    image: string;
-    quote: string;
-    info: string[];
-  }>(null);
-
   const directors = [
     {
       name: "Datuk Hj. Faisyal Bin Datuk Yusof Hamdain Diego",
@@ -370,11 +368,6 @@ function BoardDirectorsContent() {
       image: bodChairman,
       quote:
         "Providing strategic governance and leadership direction for sustainable corporate growth.",
-      info: [
-        "Leads board-level oversight and corporate direction.",
-        "Supports strategic planning, accountability and governance excellence.",
-        "Guides JETAMA’s long-term role in strengthening water service delivery for Sabah.",
-      ],
     },
     {
       name: "Datuk Abidin Bin Madingkir",
@@ -383,11 +376,6 @@ function BoardDirectorsContent() {
       image: bodAbidin,
       quote:
         "Supporting responsible governance, strategic oversight and institutional direction.",
-      info: [
-        "Provides board oversight and governance support.",
-        "Contributes to strategic decision-making and corporate direction.",
-        "Supports accountability, sustainability and stakeholder confidence.",
-      ],
     },
     {
       name: "Datuk Jino @ Peter Bin Allion @ Alliun, J.P",
@@ -396,11 +384,6 @@ function BoardDirectorsContent() {
       image: bodPeter,
       quote:
         "Contributing experience and leadership insight to JETAMA’s corporate direction.",
-      info: [
-        "Supports strategic review and organisational accountability.",
-        "Provides guidance in governance and operational direction.",
-        "Contributes to the Board’s collective leadership responsibilities.",
-      ],
     },
     {
       name: "Datuk Kassim Bin Razali",
@@ -409,11 +392,6 @@ function BoardDirectorsContent() {
       image: bodKassim,
       quote:
         "Strengthening board oversight through responsible and experienced leadership.",
-      info: [
-        "Supports corporate governance and policy-level decision-making.",
-        "Contributes to strategic planning and organisational direction.",
-        "Assists in ensuring transparent and sustainable corporate development.",
-      ],
     },
     {
       name: "Emerson Simon",
@@ -422,11 +400,6 @@ function BoardDirectorsContent() {
       image: bodEmerson,
       quote:
         "Providing governance support and professional insight for JETAMA’s continued growth.",
-      info: [
-        "Supports board-level planning and corporate governance.",
-        "Contributes to business continuity and strategic alignment.",
-        "Assists in strengthening organisational performance and accountability.",
-      ],
     },
     {
       name: "Dr. Akian Bin Ahkiew",
@@ -435,11 +408,6 @@ function BoardDirectorsContent() {
       image: bodAkian,
       quote:
         "Strengthening board oversight through professional insight and responsible leadership.",
-      info: [
-        "Supports corporate governance and policy-level decision-making.",
-        "Contributes professional perspective to strategic planning discussions.",
-        "Assists in ensuring responsible, transparent and sustainable corporate direction.",
-      ],
     },
   ];
 
@@ -464,11 +432,7 @@ function BoardDirectorsContent() {
         </p>
       </div>
 
-      <button
-        type="button"
-        onClick={() => setSelectedDirector(chairman)}
-        className="group relative mt-10 w-full overflow-hidden rounded-[2.3rem] border border-[#dcebf3] bg-white text-left shadow-[0_25px_85px_rgba(0,90,170,0.14)] transition duration-500 hover:-translate-y-1 hover:border-[#41B650]/70 hover:shadow-[0_35px_100px_rgba(0,90,170,0.20)]"
-      >
+      <div className="group relative mt-10 w-full overflow-hidden rounded-[2.3rem] border border-[#dcebf3] bg-white text-left shadow-[0_25px_85px_rgba(0,90,170,0.14)] transition duration-500 hover:-translate-y-1 hover:border-[#41B650]/70 hover:shadow-[0_35px_100px_rgba(0,90,170,0.20)]">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8fbff] via-white to-[#eefbf3]" />
         <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#005AAA]/10 blur-3xl" />
 
@@ -502,13 +466,13 @@ function BoardDirectorsContent() {
               {chairman.quote}
             </p>
 
-            <div className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#052b4f] px-5 py-3 text-sm font-bold text-white transition group-hover:bg-[#41B650] group-hover:text-[#052b4f]">
-              View Chairman Profile
-              <ArrowRight size={15} />
+            <div className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#052b4f] px-5 py-3 text-sm font-bold text-white">
+              Chairman Profile
+              <ShieldCheck size={15} />
             </div>
           </div>
         </div>
-      </button>
+      </div>
 
       <div className="mt-12">
         <div className="mb-6 flex items-center gap-3">
@@ -520,10 +484,8 @@ function BoardDirectorsContent() {
 
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {boardMembers.map((director, index) => (
-            <button
+            <div
               key={director.name}
-              type="button"
-              onClick={() => setSelectedDirector(director)}
               className="group relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white text-left shadow-[0_18px_50px_rgba(15,23,42,0.08)] transition duration-500 hover:-translate-y-2 hover:border-[#41B650]/60 hover:shadow-[0_28px_70px_rgba(0,90,170,0.18)]"
               style={{ transitionDelay: `${index * 70}ms` }}
             >
@@ -553,89 +515,14 @@ function BoardDirectorsContent() {
                 </p>
 
                 <div className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#41B650]">
-                  View Profile
-                  <ArrowRight size={15} />
+                  Board Member
+                  <ShieldCheck size={15} />
                 </div>
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
-
-      {selectedDirector && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#021727]/75 px-4 py-8 backdrop-blur-md">
-          <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.35)]">
-            <button
-              type="button"
-              onClick={() => setSelectedDirector(null)}
-              className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#052b4f] shadow-lg transition hover:bg-[#fbf234]"
-            >
-              <X size={20} />
-            </button>
-
-            <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
-              <div className="relative bg-gradient-to-br from-[#052b4f] via-[#005AAA] to-[#41B650] p-6">
-                <img
-                  src={jetamaLogo}
-                  alt="JETAMA"
-                  className="h-20 w-auto object-contain drop-shadow-xl"
-                />
-
-                <div className="mt-6 overflow-hidden rounded-[1.5rem] bg-white/15 p-3">
-                  <img
-                    src={selectedDirector.image}
-                    alt={selectedDirector.name}
-                    className="h-[370px] w-full rounded-[1.2rem] object-cover object-top"
-                  />
-                </div>
-              </div>
-
-              <div className="p-7 sm:p-10">
-                <p className="mb-4 text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">
-                  Board Leadership
-                </p>
-
-                <h3 className="text-3xl font-black leading-tight text-[#052b4f]">
-                  {selectedDirector.name}
-                </h3>
-
-                <div className="mt-4 flex flex-wrap gap-3">
-                  <span className="rounded-full bg-[#052b4f] px-4 py-2 text-sm font-bold text-white">
-                    {selectedDirector.position}
-                  </span>
-
-                  <span className="rounded-full bg-[#41B650]/15 px-4 py-2 text-sm font-bold text-[#087629]">
-                    {selectedDirector.label}
-                  </span>
-                </div>
-
-                <p className="mt-7 rounded-[1.3rem] border border-[#005AAA]/10 bg-[#f8fbff] p-5 text-[15px] italic leading-8 text-slate-700">
-                  “{selectedDirector.quote}”
-                </p>
-
-                <div className="mt-7 space-y-3">
-                  {selectedDirector.info.map((item) => (
-                    <div key={item} className="flex gap-3 border-b border-slate-200 pb-3">
-                      <CheckCircle2 className="mt-1 text-[#41B650]" size={18} />
-                      <p className="text-sm leading-7 text-slate-700">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setSelectedDirector(null)}
-                  className="mt-8 rounded-full bg-[#052b4f] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#41B650] hover:text-[#052b4f]"
-                >
-                  Close Profile
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </article>
   );
 }
@@ -923,23 +810,70 @@ function ShareholdersContent() {
 }
 
 function ConcessionAreaContent() {
-  const [selectedMap, setSelectedMap] = useState(false);
+  const [activeViewer, setActiveViewer] = useState<"coverage" | "pipeline" | null>(null);
   const [activePlace, setActivePlace] = useState("Kota Kinabalu");
 
   const locations = [
-    { name: "Kota Kinabalu", lat: 5.9804, lng: 116.0735 },
-    { name: "Tuaran", lat: 6.177, lng: 116.231 },
-    { name: "Telibong", lat: 6.186, lng: 116.258 },
-    { name: "Tamparuli", lat: 6.133, lng: 116.273 },
-    { name: "Moyog", lat: 5.9, lng: 116.15 },
-    { name: "Kasigui", lat: 5.92, lng: 116.12 },
-    { name: "Papar", lat: 5.733, lng: 115.933 },
+    {
+      name: "Kota Kinabalu",
+      short: "Main demand centre within JETAMA's concession coverage area.",
+      image: concessionArea2,
+      x: 42,
+      y: 42,
+      color: "bg-[#0077ff]",
+    },
+    {
+      name: "Tuaran",
+      short: "Northern district coverage supporting surrounding communities.",
+      image: tuaranLocationImage,
+      x: 58,
+      y: 17,
+      color: "bg-[#54b948]",
+    },
+    {
+      name: "Telibong",
+      short: "Important water supply area near the northern network corridor.",
+      image: telibongLocationImage,
+      x: 65,
+      y: 28,
+      color: "bg-[#8cc63f]",
+    },
+    {
+      name: "Tamparuli",
+      short: "Service area linked to upstream water supply and distribution routes.",
+      image: tamparuliLocationImage,
+      x: 75,
+      y: 45,
+      color: "bg-[#ffd200]",
+    },
+    {
+      name: "Moyog",
+      short: "Strategic water treatment area and major production location.",
+      image: moyogLocationImage,
+      x: 53,
+      y: 53,
+      color: "bg-[#00aeef]",
+    },
+    {
+      name: "Kasigui",
+      short: "Key treatment and operational support area within the network.",
+      image: kasiguiLocationImage,
+      x: 59,
+      y: 66,
+      color: "bg-[#92278f]",
+    },
+    {
+      name: "Papar",
+      short: "Southern concession coverage area supporting water service continuity.",
+      image: paparLocationImage,
+      x: 47,
+      y: 79,
+      color: "bg-[#ec4f9a]",
+    },
   ];
 
   const activeLocation =
     locations.find((item) => item.name === activePlace) ?? locations[0];
-
-  const bingMapUrl = `https://www.bing.com/maps/embed?h=500&w=900&cp=${activeLocation.lat}~${activeLocation.lng}&lvl=13&typ=d&sty=r&src=SHELL&FORM=MBEDV8`;
 
   const stats = [
     {
@@ -962,8 +896,104 @@ function ConcessionAreaContent() {
     },
   ];
 
+  const imageCards = [
+    {
+      id: "coverage" as const,
+      title: "Concession Area Map",
+      subtitle: "Interactive coverage map with animated pins",
+      image: aiConcessionMap,
+      action: "Open Interactive Map",
+    },
+    {
+      id: "pipeline" as const,
+      title: "Pipeline & Reservoir Network",
+      subtitle: "Route and water supply network overview",
+      image: pipelineReservoirMap,
+      action: "View Network Map",
+    },
+  ];
+
+  const renderPins = (zoomed = false) => (
+    <>
+      {locations.map((place, index) => {
+        const active = activePlace === place.name;
+
+        return (
+          <button
+            key={place.name}
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActivePlace(place.name);
+            }}
+            className="group absolute z-30 -translate-x-1/2 -translate-y-full focus:outline-none"
+            style={{
+              left: `${place.x}%`,
+              top: `${place.y}%`,
+              animationDelay: `${index * 0.12}s`,
+            }}
+            aria-label={`Select ${place.name}`}
+          >
+            <span
+              className={`absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full ${
+                active ? "bg-[#fbf234]/80" : "bg-white/70"
+              }`}
+            />
+
+            <span
+              className={`relative flex h-10 w-10 animate-[mapPinFloat_2.3s_ease-in-out_infinite] items-center justify-center rounded-full border-[4px] border-white text-white shadow-[0_14px_35px_rgba(0,0,0,0.38)] transition duration-300 group-hover:scale-125 ${
+                active ? "bg-[#fbf234] text-[#052b4f]" : place.color
+              }`}
+            >
+              <MapPinned size={19} />
+            </span>
+
+            <span
+              className={`absolute left-1/2 top-12 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] shadow-xl transition duration-300 ${
+                active
+                  ? "scale-100 bg-[#052b4f] text-[#fbf234] opacity-100"
+                  : "scale-90 bg-white text-[#005AAA] opacity-0 group-hover:scale-100 group-hover:opacity-100"
+              }`}
+            >
+              {place.name}
+            </span>
+
+            {active && (
+              <div
+                className={`absolute left-1/2 z-40 w-[230px] -translate-x-1/2 rounded-[1.25rem] border border-white/80 bg-white p-3 text-left shadow-[0_20px_55px_rgba(0,0,0,0.28)] ${
+                  zoomed ? "top-20" : "top-16 hidden md:block"
+                }`}
+              >
+                <img
+                  src={place.image}
+                  alt={place.name}
+                  className="h-24 w-full rounded-xl object-cover"
+                />
+                <h4 className="mt-3 text-sm font-black text-[#052b4f]">
+                  {place.name}
+                </h4>
+                <p className="mt-1 text-xs leading-5 text-slate-600">
+                  {place.short}
+                </p>
+              </div>
+            )}
+          </button>
+        );
+      })}
+    </>
+  );
+
   return (
     <article className="scroll-reveal">
+      <style>
+        {`
+          @keyframes mapPinFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+          }
+        `}
+      </style>
+
       <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
         Concession Area
       </h2>
@@ -978,24 +1008,7 @@ function ConcessionAreaContent() {
             including Tuaran, Telibong, Tamparuli, Moyog, Kasigui and Papar.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {locations.map((area, index) => (
-              <button
-                key={area.name}
-                type="button"
-                onClick={() => {
-                  setActivePlace(area.name);
-                  setSelectedMap(true);
-                }}
-                className="animate-[float_4s_ease-in-out_infinite] rounded-full border border-[#dcebf3] bg-white/90 px-5 py-3 text-sm font-bold text-[#005AAA] shadow-sm backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-[#005AAA] hover:text-white"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                {area.name}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
             {stats.map((item) => {
               const Icon = item.icon;
 
@@ -1023,127 +1036,143 @@ function ConcessionAreaContent() {
             })}
           </div>
 
-          <div className="mt-12">
-            <button
-              type="button"
-              onClick={() => setSelectedMap(true)}
-              className="group relative w-full overflow-hidden rounded-[2.5rem] border border-white bg-white text-left shadow-[0_35px_110px_rgba(0,90,170,0.18)] transition duration-700 hover:-translate-y-2 hover:shadow-[0_45px_130px_rgba(0,90,170,0.25)]"
-            >
-              <img
-                src={aiConcessionMap}
-                alt="JETAMA concession area map"
-                className="h-[420px] w-full object-cover object-left transition duration-[1200ms] group-hover:scale-105 sm:h-[560px] lg:h-[650px]"
-              />
+          <div className="mt-12 grid gap-7 xl:grid-cols-2">
+            {imageCards.map((card, index) => (
+              <button
+                key={card.id}
+                type="button"
+                onClick={() => setActiveViewer(card.id)}
+                className="group relative overflow-hidden rounded-[2.3rem] border border-white bg-white text-left shadow-[0_28px_90px_rgba(0,90,170,0.16)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_38px_120px_rgba(0,90,170,0.24)]"
+                style={{ transitionDelay: `${index * 80}ms` }}
+              >
+                <div className="relative h-[460px] overflow-hidden sm:h-[560px] xl:h-[620px]">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="h-full w-full object-cover transition duration-[1200ms] group-hover:scale-105"
+                  />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/75 via-transparent to-white/5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/80 via-[#052b4f]/10 to-transparent" />
 
-              <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-4 rounded-[1.7rem] border border-white/25 bg-white/15 p-5 text-white shadow-2xl backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#fbf234]">
-                    Interactive Map
-                  </p>
-                  <p className="mt-1 text-sm text-white/80">
-                    Click to zoom and view each location on Bing Maps.
-                  </p>
+                  {card.id === "coverage" && renderPins(false)}
+
+                  <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[1.7rem] border border-white/25 bg-white/18 p-5 text-white shadow-2xl backdrop-blur-md">
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
+                      Clickable Image
+                    </p>
+                    <h3 className="mt-2 text-2xl font-black leading-tight">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-white/85">
+                      {card.subtitle}
+                    </p>
+
+                    <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#fbf234] px-5 py-3 text-sm font-black text-[#052b4f] transition group-hover:bg-[#41B650]">
+                      {card.action}
+                      <ArrowRight size={16} />
+                    </div>
+                  </div>
                 </div>
-
-                <div className="inline-flex w-fit items-center gap-2 rounded-full bg-[#fbf234] px-5 py-3 text-sm font-black text-[#052b4f]">
-                  Click to View Full
-                  <ArrowRight size={16} />
-                </div>
-              </div>
-            </button>
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {selectedMap && (
+      {activeViewer && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#021727]/90 p-4 backdrop-blur-md"
-          onClick={() => setSelectedMap(false)}
+          onClick={() => setActiveViewer(null)}
         >
           <button
             type="button"
-            onClick={() => setSelectedMap(false)}
-            className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#052b4f] shadow-lg transition hover:bg-[#fbf234]"
-            aria-label="Close map preview"
+            onClick={() => setActiveViewer(null)}
+            className="absolute right-5 top-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#052b4f] shadow-lg transition hover:bg-[#fbf234]"
+            aria-label="Close image preview"
           >
             <X size={22} />
           </button>
 
           <div
-            className="max-h-[94vh] w-full max-w-6xl overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
+            className="max-h-[94vh] w-full max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-white">
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#fbf234]">
-                Concession Area Location Viewer
+                Concession Area Viewer
               </p>
               <h3 className="mt-2 text-2xl font-black">
-                View {activePlace} on Map
+                {activeViewer === "coverage"
+                  ? `${activePlace} Coverage Pin`
+                  : "Pipeline & Reservoir Network"}
               </h3>
             </div>
 
-            <div className="grid max-h-[78vh] overflow-y-auto lg:grid-cols-[260px_1fr]">
-              <div className="border-r border-slate-200 bg-[#f8fbff] p-4">
-                <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-slate-500">
-                  Select Location
-                </p>
-
-                <div className="space-y-2">
-                  {locations.map((place) => (
-                    <button
-                      key={place.name}
-                      type="button"
-                      onClick={() => setActivePlace(place.name)}
-                      className={`w-full rounded-2xl px-4 py-3 text-left text-sm font-black transition ${
-                        activePlace === place.name
-                          ? "bg-[#005AAA] text-white shadow-lg"
-                          : "bg-white text-[#052b4f] hover:bg-[#eaf8ef] hover:text-[#087629]"
-                      }`}
-                    >
-                      {place.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-4">
-                <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-inner">
-                  <iframe
-                    title={`${activePlace} Bing Map`}
-                    src={bingMapUrl}
-                    width="100%"
-                    height="520"
-                    loading="lazy"
-                    allowFullScreen
-                    className="block border-0"
-                  />
+            {activeViewer === "coverage" ? (
+              <div className="grid max-h-[78vh] overflow-y-auto xl:grid-cols-[1fr_330px]">
+                <div className="overflow-auto bg-[#eef6fb] p-4">
+                  <div className="relative mx-auto h-[820px] min-w-[980px] overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-inner">
+                    <img
+                      src={aiConcessionMap}
+                      alt="Zoomed JETAMA concession area map"
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/35 via-transparent to-transparent" />
+                    {renderPins(true)}
+                  </div>
                 </div>
 
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-[#f8fbff] p-4">
-                  <div>
-                    <p className="text-sm font-black text-[#052b4f]">
-                      {activePlace}
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      Lat: {activeLocation.lat}, Lng: {activeLocation.lng}
-                    </p>
+                <div className="border-l border-slate-200 bg-white p-5">
+                  <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-slate-500">
+                    Select Location
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2 xl:grid-cols-1">
+                    {locations.map((place) => (
+                      <button
+                        key={place.name}
+                        type="button"
+                        onClick={() => setActivePlace(place.name)}
+                        className={`rounded-2xl px-4 py-3 text-left text-sm font-black transition ${
+                          activePlace === place.name
+                            ? "bg-[#005AAA] text-white shadow-lg"
+                            : "bg-[#f8fbff] text-[#052b4f] hover:bg-[#eaf8ef] hover:text-[#087629]"
+                        }`}
+                      >
+                        {place.name}
+                      </button>
+                    ))}
                   </div>
 
-                  <a
-                    href={`https://www.bing.com/maps?q=${encodeURIComponent(
-                      activePlace + " Sabah",
-                    )}&cp=${activeLocation.lat}~${activeLocation.lng}&lvl=13`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full bg-[#fbf234] px-5 py-3 text-sm font-black text-[#052b4f] transition hover:bg-[#41B650]"
-                  >
-                    Open in Bing Maps
-                  </a>
+                  <div className="mt-5 rounded-[1.5rem] border border-[#dcebf3] bg-[#f8fbff] p-4 shadow-sm">
+                    <img
+                      src={activeLocation.image}
+                      alt={activeLocation.name}
+                      className="h-44 w-full rounded-[1.2rem] object-cover"
+                    />
+                    <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-[#41B650]">
+                      Selected Pin
+                    </p>
+                    <h4 className="mt-2 text-2xl font-black text-[#052b4f]">
+                      {activeLocation.name}
+                    </h4>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {activeLocation.short}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="max-h-[78vh] overflow-auto bg-[#eef6fb] p-4">
+                <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-inner">
+                  <img
+                    src={pipelineReservoirMap}
+                    alt="Pipeline and reservoir network"
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

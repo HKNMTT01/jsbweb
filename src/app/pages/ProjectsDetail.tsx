@@ -20,6 +20,7 @@ import tuaranImage from "@/assets/TUARAN.jpg";
 import kasiguiImage from "@/assets/KASIGUI.jpg";
 
 type ProjectCategory = "Water Project" | "Renewable Energy";
+type ProjectSegment = "industrial-project" | "commercial-project" | "concession-project";
 
 type ProjectPage = {
   title: string;
@@ -61,6 +62,35 @@ const projectPages: Record<string, ProjectPage> = {
     accent: "#f9a51a",
   },
 };
+
+const waterProjectSegments: Record<
+  ProjectSegment,
+  { label: string; shortLabel: string; subtitle: string; status: "ready" | "soon" }
+> = {
+  "industrial-project": {
+    label: "Industrial Project",
+    shortLabel: "Industrial",
+    subtitle: "Industrial water infrastructure projects will be added soon.",
+    status: "soon",
+  },
+  "commercial-project": {
+    label: "Commercial Project",
+    shortLabel: "Commercial",
+    subtitle: "Commercial water project records will be added soon.",
+    status: "soon",
+  },
+  "concession-project": {
+    label: "Concession Project",
+    shortLabel: "Concession",
+    subtitle: "Existing concession-related water infrastructure timeline and project portfolio.",
+    status: "ready",
+  },
+};
+
+const isWaterSegment = (value?: string): value is ProjectSegment =>
+  value === "industrial-project" ||
+  value === "commercial-project" ||
+  value === "concession-project";
 
 const timelineProjects: TimelineProject[] = [
   {
@@ -194,7 +224,13 @@ const timelineProjects: TimelineProject[] = [
   },
 ];
 
-function Breadcrumb({ page }: { page: ProjectPage }) {
+function Breadcrumb({
+  page,
+  activeSegment,
+}: {
+  page: ProjectPage;
+  activeSegment?: ProjectSegment;
+}) {
   return (
     <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
       <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
@@ -207,20 +243,37 @@ function Breadcrumb({ page }: { page: ProjectPage }) {
         </Link>
         <ChevronRight size={15} />
         <span className="font-bold text-[#005AAA]">{page.title}</span>
+        {activeSegment && (
+          <>
+            <ChevronRight size={15} />
+            <span className="font-bold text-[#35b24a]">
+              {waterProjectSegments[activeSegment].label}
+            </span>
+          </>
+        )}
       </div>
     </div>
   );
 }
 
-function ProjectHero({ page }: { page: ProjectPage }) {
+function ProjectHero({
+  page,
+  activeSegment,
+}: {
+  page: ProjectPage;
+  activeSegment?: ProjectSegment;
+}) {
   const Icon = page.icon;
+  const segment = activeSegment ? waterProjectSegments[activeSegment] : null;
+  const title = segment ? `${page.title}: ${segment.label}` : page.title;
+  const subtitle = segment ? segment.subtitle : page.subtitle;
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
       <div className="absolute inset-x-0 top-0 h-[350px] overflow-hidden">
         <img
           src={heroImage}
-          alt={page.title}
+          alt={title}
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#061b46]/85 via-[#0b2f7f]/60 to-white" />
@@ -240,12 +293,55 @@ function ProjectHero({ page }: { page: ProjectPage }) {
           </p>
 
           <h1 className="mt-8 text-4xl font-black text-[#102f83] sm:text-5xl lg:text-6xl">
-            {page.title}
+            {title}
           </h1>
 
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
-            {page.subtitle}
+            {subtitle}
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ComingSoonProjects({
+  activeSegment,
+}: {
+  activeSegment: ProjectSegment;
+}) {
+  const item = waterProjectSegments[activeSegment];
+
+  return (
+    <section className="bg-white py-20">
+      <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3] p-8 shadow-[0_28px_90px_rgba(0,44,85,0.12)] sm:p-12">
+          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#35b24a]/12 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#102f83]/10 blur-3xl" />
+
+          <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[1.6rem] bg-[#eef8ff] text-[#102f83] shadow-inner">
+            <ClipboardList size={38} />
+          </div>
+
+          <p className="relative mt-8 text-sm font-black uppercase tracking-[0.25em] text-[#35b24a]">
+            Project Timeline
+          </p>
+
+          <h2 className="relative mt-4 text-3xl font-black text-[#102f83] sm:text-4xl">
+            {item.label} Timeline Coming Soon
+          </h2>
+
+          <p className="relative mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600">
+            This section has been prepared for future project records. Once the {item.shortLabel.toLowerCase()} project information is ready, the timeline cards can be added here without changing the page structure.
+          </p>
+
+          <Link
+            to="/projects/water-project/concession-project"
+            className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-[#102f83] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#35b24a] hover:text-[#102f83]"
+          >
+            View Concession Timeline
+            <ChevronRight size={17} />
+          </Link>
         </div>
       </div>
     </section>
@@ -756,35 +852,66 @@ function ProjectModal({
 }
 
 export default function ProjectsDetail() {
-  const { slug = "water-project" } = useParams();
+  const { slug = "water-project", segment } = useParams();
   const page = projectPages[slug];
   const [selectedProject, setSelectedProject] =
     useState<TimelineProject | null>(null);
 
+  const isWaterProject = slug === "water-project";
+  const activeSegment: ProjectSegment | undefined = isWaterProject
+    ? isWaterSegment(segment)
+      ? segment
+      : undefined
+    : undefined;
+
   useEffect(() => {
     setSelectedProject(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [slug]);
+  }, [slug, segment]);
 
   if (!page) {
-    return <Navigate to="/projects/water-project" replace />;
+    return <Navigate to="/projects/water-project/concession-project" replace />;
   }
 
-  const filteredProjects = timelineProjects.filter(
-    (item) => item.category === page.category,
-  );
+  if (isWaterProject && !segment) {
+    return <Navigate to="/projects/water-project/concession-project" replace />;
+  }
+
+  if (isWaterProject && segment && !isWaterSegment(segment)) {
+    return <Navigate to="/projects/water-project/concession-project" replace />;
+  }
+
+  if (!isWaterProject && segment) {
+    return <Navigate to={`/projects/${slug}`} replace />;
+  }
+
+  const filteredProjects = timelineProjects.filter((item) => {
+    if (isWaterProject) {
+      return (
+        activeSegment === "concession-project" &&
+        item.category === "Water Project"
+      );
+    }
+
+    return item.category === page.category;
+  });
 
   return (
     <main className="overflow-hidden bg-white pt-32 text-slate-900">
-      <Breadcrumb page={page} />
-      <ProjectHero page={page} />
+      <Breadcrumb page={page} activeSegment={activeSegment} />
+      <ProjectHero page={page} activeSegment={activeSegment} />
 
-      <ProjectTimeline
-        key={slug}
-        page={page}
-        projects={filteredProjects}
-        onSelect={setSelectedProject}
-      />
+
+      {isWaterProject && activeSegment !== "concession-project" ? (
+        <ComingSoonProjects activeSegment={activeSegment ?? "industrial-project"} />
+      ) : (
+        <ProjectTimeline
+          key={`${slug}-${activeSegment ?? "main"}`}
+          page={page}
+          projects={filteredProjects}
+          onSelect={setSelectedProject}
+        />
+      )}
 
       <ProjectModal
         project={selectedProject}

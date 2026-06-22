@@ -302,13 +302,7 @@ export default function Services() {
                 <p className="mt-4 min-h-[96px] leading-7 text-slate-600">
                   {item.text}
                 </p>
-                <span className="mt-7 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-[#005AAA]">
-                  Open Page
-                  <ArrowRight
-                    className="transition group-hover:translate-x-1"
-                    size={18}
-                  />
-                </span>
+
               </Link>
             );
           })}

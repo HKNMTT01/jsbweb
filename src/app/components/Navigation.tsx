@@ -3,6 +3,12 @@ import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { useState } from "react";
 import logoImage from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 
+type NavItem = {
+  path: string;
+  label: string;
+  sub?: NavItem[];
+};
+
 function NavOceanWaveBackground() {
   return (
     <div className="pointer-events-none absolute inset-x-0 top-0 h-[122px] overflow-hidden bg-transparent opacity-100 transition-opacity duration-700 group-hover:opacity-0">
@@ -46,7 +52,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { path: "/", label: "HOME" },
     {
       path: "/about",
@@ -92,7 +98,15 @@ export default function Navigation() {
       path: "/projects",
       label: "PROJECTS",
       sub: [
-        { label: "Water Project", path: "/projects/water-project" },
+        {
+          label: "Water Project",
+          path: "/projects/water-project/concession-project",
+          sub: [
+            { label: "Industrial Project", path: "/projects/water-project/industrial-project" },
+            { label: "Commercial Project", path: "/projects/water-project/commercial-project" },
+            { label: "Concession Project", path: "/projects/water-project/concession-project" },
+          ],
+        },
         { label: "Renewable Energy Project", path: "/projects/renewable-energy-project" },
       ],
     },
@@ -156,15 +170,33 @@ export default function Navigation() {
 
               {item.sub && (
                 <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 translate-y-2 opacity-0 transition-all duration-300 group-hover/item:visible group-hover/item:translate-y-0 group-hover/item:opacity-100">
-                  <div className="overflow-hidden rounded-b-xl bg-[#2f3337]/95 py-2 shadow-[0_22px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+                  <div className="overflow-visible rounded-b-xl bg-[#2f3337]/95 py-2 shadow-[0_22px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
                     {item.sub.map((sub) => (
-                      <Link
-                        key={sub.label}
-                        to={sub.path}
-                        className="block px-5 py-3 text-sm font-bold text-white transition hover:bg-[#005AAA] hover:text-white"
-                      >
-                        {sub.label}
-                      </Link>
+                      <div key={sub.label} className="group/sub relative">
+                        <Link
+                          to={sub.path}
+                          className="flex items-center justify-between gap-3 px-5 py-3 text-sm font-bold text-white transition hover:bg-[#005AAA] hover:text-white"
+                        >
+                          <span>{sub.label}</span>
+                          {sub.sub && <ChevronDown size={13} className="-rotate-90" strokeWidth={3} />}
+                        </Link>
+
+                        {sub.sub && (
+                          <div className="invisible absolute left-full top-0 z-[80] w-64 translate-x-2 opacity-0 transition-all duration-300 group-hover/sub:visible group-hover/sub:translate-x-0 group-hover/sub:opacity-100">
+                            <div className="overflow-hidden rounded-r-xl bg-[#2f3337]/95 py-2 shadow-[0_22px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+                              {sub.sub.map((child) => (
+                                <Link
+                                  key={child.label}
+                                  to={child.path}
+                                  className="block px-5 py-3 text-sm font-bold text-white transition hover:bg-[#005AAA] hover:text-white"
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -208,14 +240,30 @@ export default function Navigation() {
               {item.sub && (
                 <div className="mt-1 space-y-1 pl-4">
                   {item.sub.map((sub) => (
-                    <Link
-                      key={sub.label}
-                      to={sub.path}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block rounded-lg px-4 py-2.5 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white"
-                    >
-                      {sub.label}
-                    </Link>
+                    <div key={sub.label}>
+                      <Link
+                        to={sub.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block rounded-lg px-4 py-2.5 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white"
+                      >
+                        {sub.label}
+                      </Link>
+
+                      {sub.sub && (
+                        <div className="ml-4 mt-1 space-y-1 border-l border-white/15 pl-3">
+                          {sub.sub.map((child) => (
+                            <Link
+                              key={child.label}
+                              to={child.path}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block rounded-lg px-4 py-2 text-sm font-semibold text-white/65 hover:bg-white/10 hover:text-white"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}

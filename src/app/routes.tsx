@@ -55,6 +55,7 @@ export const router = createBrowserRouter([
       { path: "services", Component: Services },
       { path: "services/:slug", Component: ServicesDetail },
       { path: "projects", Component: Projects },
+      { path: "projects/:slug/:segment", Component: ProjectsDetail },
       { path: "projects/:slug", Component: ProjectsDetail },
       { path: "careers", Component: Careers },
       { path: "news", Component: News },

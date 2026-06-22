@@ -135,10 +135,6 @@ export default function JointVenture() {
                 </div>
 
                 <div className="mt-7">
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0b2f7f] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white">
-                    <Building2 size={15} />
-                    Joint Venture
-                  </div>
 
                   <h3 className="text-2xl font-black leading-tight text-[#0b2f7f]">
                     {item.title}
@@ -146,10 +142,6 @@ export default function JointVenture() {
 
                   <p className="mt-4 leading-7 text-slate-600">{item.text}</p>
 
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-[#35b24a]">
-                    View Details
-                    <ArrowRight size={17} />
-                  </div>
                 </div>
               </Link>
             ))}

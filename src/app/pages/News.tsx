@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
+import { listRows, type NewsRecord } from "../../lib/adminCms";
 
 import galleryImage from "@/assets/jetama-about-3.jpg";
 import videoImage from "@/assets/DJI_0298.jpg";
@@ -23,7 +24,7 @@ import bebasRasuahImage from "@/assets/prgmbbasrasuah.jpg";
 import annualDinnerImage from "@/assets/annualdinner jetama.jpg";
 import ulangTahunImage from "@/assets/ulang thun jetama.jpg";
 
-type NewsType = "gallery" | "videos" | "press-releases";
+type NewsType = "gallery" | "videos" | "press-releases" | "announcement";
 type FilterType = "all" | NewsType;
 
 type NewsItem = {
@@ -178,7 +179,22 @@ const typeOptions: Array<{ value: FilterType; label: string }> = [
 function getTypeLabel(type: NewsType) {
   if (type === "videos") return "Video";
   if (type === "press-releases") return "News";
+  if (type === "announcement") return "Announcement";
   return "Gallery";
+}
+
+function mapBackendNews(item: NewsRecord): NewsItem {
+  return {
+    title: item.title,
+    date: item.date || String(item.year || new Date().getFullYear()),
+    day: item.day || "--",
+    month: item.month || "JETAMA",
+    year: Number(item.year || new Date().getFullYear()),
+    type: item.type === "announcement" ? "press-releases" : item.type,
+    description: item.description,
+    image: item.image_url || galleryImage,
+    sourceUrl: item.source_url || undefined,
+  };
 }
 
 function getTypeIcon(type: NewsType) {
@@ -202,11 +218,19 @@ function OceanWaveDivider() {
 }
 
 export default function News() {
+  const [backendItems, setBackendItems] = useState<NewsItem[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const featuredNews = newsItems.slice(0, 5);
+  useEffect(() => {
+    listRows<NewsRecord>("news", []).then((rows) => {
+      setBackendItems(rows.filter((item) => item.is_published !== false).map(mapBackendNews));
+    });
+  }, []);
+
+  const allNewsItems = backendItems.length ? backendItems : newsItems;
+  const featuredNews = allNewsItems.slice(0, 5);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -221,7 +245,7 @@ export default function News() {
   const visibleItems = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
 
-    return newsItems
+    return allNewsItems
       .filter((item) => {
         const matchType = selectedType === "all" || item.type === selectedType;
         const matchSearch =
@@ -234,7 +258,7 @@ export default function News() {
         return matchType && matchSearch;
       })
       .sort((a, b) => b.year - a.year);
-  }, [selectedType, searchTerm]);
+  }, [selectedType, searchTerm, allNewsItems]);
 
   const currentSlide = featuredNews[activeSlide];
   const mainFeature = visibleItems[0];
@@ -356,9 +380,9 @@ export default function News() {
 
         <section className="mt-12 grid gap-6 md:grid-cols-3">
           {[
-            ["Latest Events", newsItems.filter((item) => item.type === "gallery").length],
-            ["Media Updates", newsItems.filter((item) => item.type === "press-releases").length],
-            ["Video Highlights", newsItems.filter((item) => item.type === "videos").length],
+            ["Latest Events", allNewsItems.filter((item) => item.type === "gallery").length],
+            ["Media Updates", allNewsItems.filter((item) => item.type === "press-releases").length],
+            ["Video Highlights", allNewsItems.filter((item) => item.type === "videos").length],
           ].map(([label, value]) => (
             <div key={label as string} className="group rounded-[2rem] border border-[#dcebf3] bg-white p-6 shadow-[0_18px_55px_rgba(0,70,145,0.08)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_25px_75px_rgba(0,70,145,0.14)]">
               <TrendingUp className="mb-5 text-[#41b650]" size={30} />

@@ -12,7 +12,8 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { listRows, type CareerRecord } from "../../lib/adminCms";
 
 type Job = {
   title: string;
@@ -22,6 +23,7 @@ type Job = {
   description: string;
   responsibilities: string[];
   requirements: string[];
+  application_email?: string;
 };
 
 const jobs: Job[] = [
@@ -97,13 +99,26 @@ const documents = [
 
 const applicationEmail = "hr@jetama.com.my";
 
+function mapBackendCareer(item: CareerRecord): Job {
+  return {
+    title: item.title,
+    type: item.type,
+    location: item.location,
+    department: item.department,
+    description: item.description,
+    responsibilities: item.responsibilities || [],
+    requirements: item.requirements || [],
+    application_email: item.application_email,
+  };
+}
+
 function getApplicationMailto(job: Job) {
   const subject = encodeURIComponent(`Application for ${job.title}`);
   const body = encodeURIComponent(
     `Dear JETAMA HR Team,\n\nI would like to apply for the ${job.title} position.\n\nPlease find my application documents attached.\n\nThank you.\n\nRegards,`,
   );
 
-  return `mailto:${applicationEmail}?subject=${subject}&body=${body}`;
+  return `mailto:${job.application_email || applicationEmail}?subject=${subject}&body=${body}`;
 }
 
 function OceanWaveDivider() {
@@ -222,7 +237,16 @@ function OceanWaveDivider() {
 }
 
 export default function Careers() {
+  const [backendJobs, setBackendJobs] = useState<Job[]>([]);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+
+  useEffect(() => {
+    listRows<CareerRecord>("careers", []).then((rows) => {
+      setBackendJobs(rows.filter((item) => item.is_active !== false).map(mapBackendCareer));
+    });
+  }, []);
+
+  const activeJobs = backendJobs.length ? backendJobs : jobs;
 
   return (
     <main className="overflow-hidden bg-[#f6fafc] text-[#062f4e]">

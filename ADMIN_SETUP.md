@@ -1,6 +1,4 @@
 # JETAMA Admin CMS Setup
-
-## What was added
 This project now includes an admin CMS under `/admin/login`.
 
 Admin can manage:

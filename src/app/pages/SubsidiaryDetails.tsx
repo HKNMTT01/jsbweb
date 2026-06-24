@@ -150,6 +150,22 @@ function SectionHero({ page }: { page: SubsidiaryPage }) {
   );
 }
 
+function DetailBreadcrumb({ page }: { page: SubsidiaryPage }) {
+  return (
+    <div className="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
+      <Link to="/" className="transition hover:text-[#005AAA]">
+        Home
+      </Link>
+      <ChevronRight size={15} className="text-slate-400" />
+      <Link to="/subsidiary" className="transition hover:text-[#005AAA]">
+        Subsidiaries
+      </Link>
+      <ChevronRight size={15} className="text-slate-400" />
+      <span className="font-bold text-[#005AAA]">{page.shortTitle}</span>
+    </div>
+  );
+}
+
 function Sidebar() {
   const location = useLocation();
 
@@ -523,11 +539,19 @@ export default function SubsidiaryDetails() {
   const page = subsidiaryPages[selected];
 
   return (
-    <div className="overflow-hidden bg-white text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
-      <SectionHero page={page} />
-      <OceanWaveDivider />
+    <div className="relative min-h-screen overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
+        <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
+      </div>
 
-      <section className="bg-white px-4 pb-8 pt-3 sm:px-6 lg:px-8">
+      <section className="relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <DetailBreadcrumb page={page} />
+        </div>
+
         <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
           <Sidebar />
 

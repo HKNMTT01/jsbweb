@@ -163,7 +163,6 @@ export default function About() {
         </div>
       </section>
 
-      <OceanWaveDivider />
 
       <section className="relative z-10 -mt-10 overflow-hidden bg-white">
         <div className="grid min-h-[520px] lg:grid-cols-2">
@@ -217,7 +216,6 @@ export default function About() {
         </div>
       </section>
 
-      <OceanWaveDivider />
 
       <section className="py-8 lg:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

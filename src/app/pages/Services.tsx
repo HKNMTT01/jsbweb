@@ -65,120 +65,6 @@ const featuredFacilities = [
   },
 ];
 
-function OceanWaveDivider() {
-  return (
-    <div className="pointer-events-none relative -mt-20 h-44 overflow-hidden bg-transparent">
-      <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-transparent via-white/25 to-white/70" />
-
-      <div className="absolute left-[-5%] top-8 h-10 w-[110%] rounded-[50%] bg-white/55 blur-2xl" />
-      <div className="absolute left-[-10%] top-14 h-12 w-[120%] rounded-[50%] bg-white/60 blur-xl" />
-
-      <svg
-        className="absolute -bottom-4 left-0 h-44 w-full"
-        viewBox="0 0 1440 260"
-        preserveAspectRatio="none"
-      >
-        {/* White Foam */}
-        <path
-          d="M0,45 C180,10 320,90 520,55 C720,20 900,95 1100,45 C1280,10 1360,25 1440,20 L1440,260 L0,260 Z"
-          fill="rgba(255,255,255,1)"
-        />
-
-        {/* Soft White Layer */}
-        <path
-          d="M0,70 C220,30 420,105 620,65 C820,30 1020,100 1220,60 C1320,40 1390,48 1440,42 L1440,260 L0,260 Z"
-          fill="rgba(248,255,250,.98)"
-        />
-
-        {/* Light Green */}
-        <path
-          d="M0,100 C220,65 420,130 650,95 C870,60 1060,130 1260,95 C1360,78 1410,85 1440,82 L1440,260 L0,260 Z"
-          fill="rgba(103,214,111,.55)"
-        />
-
-        {/* JETAMA Green */}
-        <path
-          d="M0,125 C240,90 460,155 690,120 C910,90 1120,155 1320,118 C1390,105 1420,108 1440,105 L1440,260 L0,260 Z"
-          fill="rgba(65,182,80,.75)"
-        />
-
-        {/* Corporate Blue */}
-        <path
-          d="M0,155 C250,115 500,175 740,145 C950,120 1160,175 1360,145 C1400,140 1425,138 1440,136 L1440,260 L0,260 Z"
-          fill="rgba(0,84,166,.78)"
-        />
-
-        {/* Main Blue */}
-        <path
-          d="M0,182 C260,140 530,205 770,175 C990,145 1190,205 1380,175 C1410,170 1430,168 1440,166 L1440,260 L0,260 Z"
-          fill="rgba(0,70,145,.88)"
-        />
-
-        {/* Deep JETAMA Blue */}
-        <path
-          d="M0,210 C300,170 560,225 820,200 C1080,175 1260,220 1440,195 L1440,260 L0,260 Z"
-          fill="rgba(0,59,122,.96)"
-        />
-      </svg>
-
-      {/* Left Splash */}
-      <div className="absolute bottom-24 left-[8%]">
-        <div className="h-8 w-5 animate-bounce rounded-full bg-white/80 blur-[1px]" />
-      </div>
-
-      <div className="absolute bottom-36 left-[10%]">
-        <div className="h-4 w-4 animate-ping rounded-full bg-[#67D66F]/90" />
-      </div>
-
-      <div className="absolute bottom-30 left-[12%]">
-        <div className="h-3 w-3 animate-bounce rounded-full bg-white/70" />
-      </div>
-
-      {/* Center Splash */}
-      <div className="absolute bottom-28 left-[48%]">
-        <div className="h-10 w-6 animate-bounce rounded-full bg-white/80 shadow-[0_0_15px_rgba(255,255,255,.8)]" />
-      </div>
-
-      <div className="absolute bottom-40 left-[50%]">
-        <div className="h-4 w-4 animate-ping rounded-full bg-[#41B650]" />
-      </div>
-
-      <div className="absolute bottom-34 left-[52%]">
-        <div className="h-3 w-3 animate-bounce rounded-full bg-white/90" />
-      </div>
-
-      {/* Right Splash */}
-      <div className="absolute bottom-26 right-[12%]">
-        <div className="h-9 w-5 animate-bounce rounded-full bg-white/80" />
-      </div>
-
-      <div className="absolute bottom-38 right-[10%]">
-        <div className="h-5 w-5 animate-ping rounded-full bg-[#67D66F]/90" />
-      </div>
-
-      <div className="absolute bottom-30 right-[8%]">
-        <div className="h-3 w-3 animate-bounce rounded-full bg-white/70" />
-      </div>
-
-      {/* Bottom Blend */}
-      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white via-white/45 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-r from-[#41B650]/20 via-white/50 to-[#0054A6]/20 blur-xl" />
-
-      {/* Floating Drops */}
-      <div className="absolute left-[20%] bottom-20 h-2 w-2 animate-ping rounded-full bg-white" />
-      <div className="absolute left-[35%] bottom-32 h-3 w-3 animate-bounce rounded-full bg-[#67D66F]" />
-      <div className="absolute left-[65%] bottom-24 h-2 w-2 animate-ping rounded-full bg-white" />
-      <div className="absolute left-[80%] bottom-36 h-4 w-4 animate-bounce rounded-full bg-[#41B650]" />
-      <div className="absolute bottom-20 left-[55%] h-5 w-5 animate-bounce rounded-full bg-white/70" />
-      <div className="absolute bottom-28 left-[72%] h-2 w-2 animate-ping rounded-full bg-[#0054A6]" />
-      <div className="absolute bottom-18 left-[90%] h-4 w-4 animate-pulse rounded-full bg-white/70" />
-
-      {/* Glow */}
-      <div className="absolute bottom-10 left-0 right-0 h-10 bg-[#0054A6]/20 blur-3xl" />
-      <div className="absolute bottom-19 left-0 right-0 h-6 bg-white/40 blur-2xl" />
-    </div>
-  );
-}
 
 export default function Services() {
   return (
@@ -216,7 +102,7 @@ export default function Services() {
           </p>
         </div>
       </section>
-      <OceanWaveDivider />
+
 
       <section className="bg-white px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -281,7 +167,7 @@ export default function Services() {
           </div>
         </div>
       </section>
-      <OceanWaveDivider />
+  
 
       <section className="relative -mt-32 z-10 px-16 pb-16 pt-28 sm:px-15 lg:px-5">
         <div className="mx-auto grid max-w-7xl gap-7 md:grid-cols-3">

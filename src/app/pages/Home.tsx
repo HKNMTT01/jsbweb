@@ -516,7 +516,6 @@ export default function Home() {
         </div>
       </section>
 
-      <OceanWaveDivider />
 
       <section className="grid bg-white lg:grid-cols-2">
         <div className="scroll-reveal-left relative min-h-[520px] overflow-hidden">
@@ -567,7 +566,6 @@ export default function Home() {
         </div>
       </section>
 
-      <OceanWaveDivider />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-[#f8fbff] via-white to-[#eef8fb] px-4 py-24 sm:px-6 lg:px-8">
         <div className="relative mx-auto max-w-7xl">
@@ -805,7 +803,6 @@ export default function Home() {
         </div>
       </section>
 
-      <OceanWaveDivider />
 
       <section
         className="relative overflow-hidden bg-cover bg-center px-4 py-16 text-white sm:px-6 lg:px-8"

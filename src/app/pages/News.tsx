@@ -203,20 +203,6 @@ function getTypeIcon(type: NewsType) {
   return <ImageIcon size={13} />;
 }
 
-function OceanWaveDivider() {
-  return (
-    <div className="pointer-events-none relative -mt-16 h-40 overflow-hidden bg-transparent">
-      <svg className="absolute bottom-0 left-0 h-40 w-full" viewBox="0 0 1440 260" preserveAspectRatio="none">
-        <path d="M0,70 C220,30 420,105 620,65 C820,30 1020,100 1220,60 C1320,40 1390,48 1440,42 L1440,260 L0,260 Z" fill="rgba(255,255,255,1)" />
-        <path d="M0,125 C240,80 480,155 720,120 C960,85 1170,155 1440,115 L1440,260 L0,260 Z" fill="rgba(65,182,80,.35)" />
-        <path d="M0,160 C250,115 500,175 740,145 C950,120 1160,175 1360,145 C1400,140 1425,138 1440,136 L1440,260 L0,260 Z" fill="rgba(0,84,166,.72)" />
-        <path d="M0,205 C300,160 560,220 820,195 C1080,170 1260,215 1440,190 L1440,260 L0,260 Z" fill="rgba(0,59,122,.94)" />
-      </svg>
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#f7fbfd] via-[#f7fbfd]/45 to-transparent" />
-    </div>
-  );
-}
-
 export default function News() {
   const [backendItems, setBackendItems] = useState<NewsItem[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>("all");
@@ -344,8 +330,6 @@ export default function News() {
           ))}
         </div>
       </section>
-
-      <OceanWaveDivider />
 
       <section className="relative -mt-28 z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="rounded-[2rem] border border-white bg-white/95 p-5 shadow-[0_25px_80px_rgba(0,70,145,0.14)] backdrop-blur">

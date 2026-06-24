@@ -544,13 +544,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto -mb-2 flex w-fit flex-col items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/90">
-          <div className="flex h-12 w-7 items-start justify-center rounded-full border border-white/70 p-1">
-            <span className="mt-1 h-2 w-2 animate-bounce rounded-full bg-white" />
-          </div>
-          Scroll Down
-        </div>
-
         <GeometricDivider />
       </section>
 

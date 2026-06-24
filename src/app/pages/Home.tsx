@@ -233,25 +233,68 @@ function ScrollAnimationStyles() {
       .float-slow { animation: jetamaFloat 7s ease-in-out infinite; }
       .float-medium { animation: jetamaFloat 5.5s ease-in-out infinite; }
       .drift { animation: jetamaDrift 10s ease-in-out infinite; }
+
+      .geo-drift-a { animation: jetamaGeoSlide 9s ease-in-out infinite; transform-origin: center; }
+      .geo-drift-b { animation: jetamaGeoSlide 11s ease-in-out infinite reverse; transform-origin: center; }
+      .geo-drift-c { animation: jetamaGeoSlide 13s ease-in-out infinite; transform-origin: center; }
+      .geo-float-a { animation: jetamaGeoFloat 7s ease-in-out infinite; transform-origin: center; }
+      .geo-float-b { animation: jetamaGeoFloat 8s ease-in-out infinite reverse; transform-origin: center; }
+      .geo-float-c { animation: jetamaGeoFloat 9s ease-in-out infinite; transform-origin: center; }
+      .geo-line-soft { animation-delay: 1.2s; }
+      @keyframes jetamaGeoSlide {
+        0%, 100% { transform: translateX(0) translateY(0); }
+        50% { transform: translateX(-26px) translateY(8px); }
+      }
+      @keyframes jetamaGeoFloat {
+        0%, 100% { transform: translateY(0) scale(1); opacity: .9; }
+        50% { transform: translateY(-12px) scale(1.035); opacity: 1; }
+      }
     `}</style>
   );
 }
 
 function GeometricDivider({ flip = false }: { flip?: boolean }) {
   return (
-    <div className={`pointer-events-none relative h-40 overflow-hidden bg-white ${flip ? "rotate-180" : ""}`}>
-      <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-transparent to-white" />
-      <svg className="absolute inset-x-0 bottom-0 h-full w-full" viewBox="0 0 1440 190" preserveAspectRatio="none">
-        <polygon points="0,70 185,100 360,52 590,110 810,62 1040,108 1210,48 1440,92 1440,190 0,190" fill="#ffffff" />
-        <polygon className="drift" points="0,118 240,82 430,128 670,75 930,126 1160,72 1440,120 1440,190 0,190" fill="rgba(0,90,170,.92)" />
-        <polygon className="float-slow" points="0,92 180,120 335,78 520,126 690,98 870,132 1040,84 1220,118 1440,76 1440,130 0,145" fill="rgba(53,178,74,.88)" />
-        <polygon className="float-medium" points="180,120 360,52 590,110 810,62 1040,108 950,135 700,122 430,146" fill="rgba(0,71,171,.96)" />
-        <polygon className="float-slow" points="1080,92 1210,48 1440,92 1440,138 1305,128" fill="rgba(245,166,35,.84)" />
-        <polyline className="geo-line" points="0,112 165,98 260,118 360,72 520,126 690,98 870,132 1040,84 1190,112 1440,78" fill="none" stroke="rgba(255,255,255,.75)" strokeWidth="1.5" />
-        <circle className="geo-dot" cx="250" cy="116" r="5" fill="#35B24A" />
-        <circle className="geo-dot" cx="520" cy="126" r="4" fill="#F5A623" />
-        <circle className="geo-dot" cx="870" cy="132" r="5" fill="#00AEEF" />
-        <circle className="geo-dot" cx="1190" cy="112" r="4" fill="#35B24A" />
+    <div
+      className={`pointer-events-none relative left-1/2 h-[150px] w-screen -translate-x-1/2 overflow-hidden bg-transparent ${
+        flip ? "rotate-180" : ""
+      }`}
+    >
+      <svg
+        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 1440 180"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="geoBlue" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#003B7A" stopOpacity="0.98" />
+            <stop offset="52%" stopColor="#005AAA" stopOpacity="0.96" />
+            <stop offset="100%" stopColor="#003B7A" stopOpacity="0.98" />
+          </linearGradient>
+          <linearGradient id="geoGreen" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#35B24A" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#7ED957" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="geoOrange" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#F5A623" stopOpacity="0.92" />
+            <stop offset="100%" stopColor="#FFD166" stopOpacity="0.86" />
+          </linearGradient>
+        </defs>
+
+        <polygon className="geo-drift-a" points="0,92 155,118 330,82 510,126 720,80 905,120 1115,74 1270,116 1440,84 1440,180 0,180" fill="url(#geoBlue)" />
+        <polygon className="geo-drift-b" points="0,118 220,78 405,124 630,88 835,128 1050,82 1240,126 1440,94 1440,180 0,180" fill="url(#geoGreen)" />
+        <polygon className="geo-drift-c" points="0,134 180,106 355,140 590,102 770,136 980,98 1190,142 1440,112 1440,180 0,180" fill="url(#geoBlue)" opacity="0.9" />
+        <polygon className="geo-float-a" points="0,84 160,108 285,92 420,112 300,142 110,130" fill="url(#geoGreen)" />
+        <polygon className="geo-float-b" points="960,100 1125,72 1300,108 1440,90 1440,132 1210,138" fill="url(#geoOrange)" />
+        <polygon className="geo-float-c" points="260,118 390,82 555,116 705,94 620,138 420,146" fill="#005AAA" opacity="0.9" />
+
+        <polyline className="geo-line" points="20,118 155,108 285,126 420,96 600,128 780,98 960,126 1135,88 1290,122 1420,96" fill="none" stroke="rgba(255,255,255,.78)" strokeWidth="1.35" />
+        <polyline className="geo-line geo-line-soft" points="0,142 205,126 390,146 590,118 790,144 1020,116 1210,140 1440,118" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth="1" />
+        <circle className="geo-dot" cx="155" cy="108" r="5" fill="#35B24A" />
+        <circle className="geo-dot" cx="420" cy="96" r="4" fill="#00AEEF" />
+        <circle className="geo-dot" cx="780" cy="98" r="5" fill="#F5A623" />
+        <circle className="geo-dot" cx="1135" cy="88" r="5" fill="#35B24A" />
+        <circle className="geo-dot" cx="1290" cy="122" r="3.5" fill="#00AEEF" />
       </svg>
     </div>
   );
@@ -408,7 +451,7 @@ export default function Home() {
 
         <FloatingGeometry />
 
-        <div className="relative mx-auto grid min-h-[700px] max-w-[1500px] items-center gap-12 lg:grid-cols-[.78fr_1.22fr]">
+        <div className="relative mx-auto grid min-h-[690px] max-w-[1500px] items-center gap-12 lg:grid-cols-[.78fr_1.22fr]">
           <div className="scroll-reveal-left max-w-2xl pt-8 lg:pl-2">
             <p className="mb-5 text-sm font-black uppercase tracking-[0.38em] text-[#9effbd]">
               JETAMA SDN BHD
@@ -501,7 +544,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto -mb-8 flex w-fit flex-col items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/90">
+        <div className="relative z-20 mx-auto -mb-2 flex w-fit flex-col items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/90">
           <div className="flex h-12 w-7 items-start justify-center rounded-full border border-white/70 p-1">
             <span className="mt-1 h-2 w-2 animate-bounce rounded-full bg-white" />
           </div>
@@ -554,8 +597,9 @@ export default function Home() {
       </section>
 
       <section className="relative overflow-hidden bg-white px-4 pb-20 sm:px-6 lg:px-8">
-        <GeometricDivider flip />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(0,59,122,.05),transparent_45%,rgba(53,178,74,.06))]" />
+        <div className="pointer-events-none absolute -left-20 top-8 h-56 w-56 rotate-12 bg-[#005AAA]/10 [clip-path:polygon(0_0,100%_35%,60%_100%,0_70%)]" />
+        <div className="pointer-events-none absolute -right-16 bottom-10 h-72 w-72 -rotate-12 bg-[#35B24A]/12 [clip-path:polygon(25%_0,100%_20%,80%_100%,0_70%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_.95fr]">
           <div className="scroll-reveal-left relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#003b7a] via-[#005AAA] to-[#0b7f6b] p-7 text-white shadow-[0_28px_80px_rgba(0,59,122,.25)]">
             <div className="absolute inset-0 opacity-30" style={{ backgroundImage: `url(${blueWaterImage})`, backgroundSize: "cover", backgroundPosition: "center" }} />
@@ -636,7 +680,13 @@ export default function Home() {
 
       <section className="relative overflow-hidden bg-[#052b45] px-4 py-20 text-white sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(53,178,74,.25),transparent_30%),radial-gradient(circle_at_90%_70%,rgba(0,90,170,.35),transparent_35%)]" />
-        <GeometricDivider flip />
+        <div className="pointer-events-none absolute left-1/2 top-0 h-[130px] w-screen -translate-x-1/2 overflow-hidden opacity-90">
+          <svg className="h-full w-full" viewBox="0 0 1440 160" preserveAspectRatio="none">
+            <polygon className="geo-drift-a" points="0,0 1440,0 1440,48 1220,72 970,42 700,74 455,44 210,78 0,52" fill="#005AAA" />
+            <polygon className="geo-drift-b" points="0,0 1440,0 1440,34 1180,60 900,34 610,65 340,36 0,68" fill="#35B24A" opacity="0.9" />
+            <polygon className="geo-float-b" points="0,0 320,0 300,50 80,42" fill="#F5A623" opacity="0.85" />
+          </svg>
+        </div>
         <div className="relative mx-auto max-w-5xl text-center">
           <p className="scroll-reveal text-sm font-black uppercase tracking-[0.3em] text-[#9effbd]">Moving Forward</p>
           <h2 className="scroll-reveal mt-4 text-3xl font-black tracking-[-0.03em] md:text-5xl">Building a Sustainable Tomorrow for Sabah</h2>

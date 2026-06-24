@@ -183,10 +183,10 @@ const closingCards = [
 
 function OceanWaveDivider() {
   return (
-    <div className="pointer-events-none relative -mt-6 h-57 overflow-hidden bg-transparent">
+    <div className="pointer-events-none relative -mt-6 h-56 overflow-hidden bg-transparent">
       <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent via-white/80 to-white" />
-      <div className="absolute left-[-5%] top-10 h-15 w-[110%] rounded-[50%] bg-white blur-2xl" />
-      <div className="absolute left-[-10%] top-20 h-17 w-[120%] rounded-[50%] bg-white/95 blur-xl" />
+      <div className="absolute left-[-5%] top-10 h-16 w-[110%] rounded-[50%] bg-white blur-2xl" />
+      <div className="absolute left-[-10%] top-20 h-16 w-[120%] rounded-[50%] bg-white/95 blur-xl" />
 
       <svg
         className="absolute bottom-0 left-0 h-52 w-full"
@@ -232,6 +232,203 @@ function OceanWaveDivider() {
   );
 }
 
+function HomeScrollStyles() {
+  return (
+    <style>{`
+      @keyframes jetamaFloatSlow {
+        0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+        50% { transform: translate3d(18px, -22px, 0) rotate(2deg); }
+      }
+
+      @keyframes jetamaFloatReverse {
+        0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+        50% { transform: translate3d(-20px, 20px, 0) rotate(-2deg); }
+      }
+
+      @keyframes jetamaShine {
+        0% { transform: translateX(-120%) rotate(18deg); opacity: 0; }
+        25% { opacity: .55; }
+        70% { opacity: .18; }
+        100% { transform: translateX(150%) rotate(18deg); opacity: 0; }
+      }
+
+      @keyframes jetamaDriftLine {
+        0% { background-position: 0 0; }
+        100% { background-position: 180px 180px; }
+      }
+
+      .jetama-3d-space {
+        perspective: 1300px;
+        transform-style: preserve-3d;
+      }
+
+      .jetama-hero-layer {
+        will-change: transform;
+        transform-style: preserve-3d;
+      }
+
+      .jetama-floating-soft {
+        animation: jetamaFloatSlow 8s ease-in-out infinite;
+      }
+
+      .jetama-floating-reverse {
+        animation: jetamaFloatReverse 9s ease-in-out infinite;
+      }
+
+      .jetama-glass-shine::after {
+        content: "";
+        position: absolute;
+        inset: -40% auto -40% -35%;
+        width: 38%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.48), transparent);
+        animation: jetamaShine 5.5s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      .jetama-grid-motion {
+        background-image:
+          linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+        background-size: 90px 90px;
+        animation: jetamaDriftLine 18s linear infinite;
+      }
+
+      .scroll-reveal,
+      .scroll-reveal-left,
+      .scroll-reveal-right,
+      .scroll-scale {
+        opacity: 0;
+        transition-property: opacity, transform, filter;
+        transition-duration: 900ms;
+        transition-timing-function: cubic-bezier(.16, 1, .3, 1);
+        filter: blur(10px);
+      }
+
+      .scroll-reveal { transform: translate3d(0, 42px, 0); }
+      .scroll-reveal-left { transform: translate3d(-55px, 28px, 0) rotateY(12deg); }
+      .scroll-reveal-right { transform: translate3d(55px, 28px, 0) rotateY(-12deg); }
+      .scroll-scale { transform: translate3d(0, 38px, 0) scale(.92) rotateX(8deg); }
+
+      .scroll-visible {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg) rotateY(0deg);
+        filter: blur(0);
+      }
+
+      .jetama-tilt-card {
+        transform-style: preserve-3d;
+      }
+
+      .jetama-tilt-card:hover {
+        transform: translateY(-12px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+      }
+
+      .jetama-tilt-card:hover .jetama-card-depth {
+        transform: translateZ(34px);
+      }
+
+      .jetama-card-depth {
+        transform: translateZ(0);
+        transition: transform 500ms cubic-bezier(.16, 1, .3, 1);
+      }
+    `}</style>
+  );
+}
+
+function JetamaParksPortal() {
+  const portalCards = [
+    {
+      title: "Water Operations",
+      label: "Core Service",
+      text: "Treatment plants, technical operations and reliable water infrastructure support.",
+      icon: Droplets,
+      link: "/services",
+      color: "#005AAA",
+    },
+    {
+      title: "Renewable Energy",
+      label: "Growth Sector",
+      text: "Solar PV and sustainable energy projects for Sabah's next development phase.",
+      icon: Zap,
+      link: "/subsidiary/energy",
+      color: "#F5A623",
+    },
+    {
+      title: "Sustainability",
+      label: "ESG Direction",
+      text: "Environmental responsibility, community programmes and long-term corporate stewardship.",
+      icon: Leaf,
+      link: "/sustainability",
+      color: "#35B24A",
+    },
+  ];
+
+  return (
+    <section className="relative overflow-hidden bg-white px-4 py-24 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_10%,rgba(53,178,74,.12),transparent_28%),radial-gradient(circle_at_90%_20%,rgba(0,90,170,.12),transparent_30%),linear-gradient(180deg,#ffffff,#f4fbff)]" />
+      <div className="jetama-grid-motion absolute inset-0 opacity-60" />
+
+      <div className="relative mx-auto max-w-7xl">
+        <div className="scroll-reveal mx-auto mb-14 max-w-3xl text-center">
+          <p className="text-sm font-black uppercase tracking-[0.3em] text-[#00a884]">
+            Official Gateway
+          </p>
+          <h2 className="mt-3 text-4xl font-black tracking-[-0.05em] text-[#073e63] md:text-5xl">
+            Explore Jetama Services
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+            A portal-style section inspired by official destination websites — animated, structured and easy to browse.
+          </p>
+        </div>
+
+        <div className="jetama-3d-space grid gap-7 lg:grid-cols-3">
+          {portalCards.map((card, index) => {
+            const Icon = card.icon;
+
+            return (
+              <Link
+                key={card.title}
+                to={card.link}
+                className="scroll-scale jetama-tilt-card group relative overflow-hidden rounded-[2.5rem] border border-[#d7edf5] bg-white p-7 shadow-[0_25px_80px_rgba(0,57,104,.10)] transition duration-500"
+                style={{ transitionDelay: `${index * 120}ms` }}
+              >
+                <div
+                  className="absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-15 blur-2xl transition duration-500 group-hover:scale-125 group-hover:opacity-25"
+                  style={{ backgroundColor: card.color }}
+                />
+                <div className="jetama-card-depth relative">
+                  <div
+                    className="mb-7 flex h-16 w-16 items-center justify-center rounded-2xl text-white shadow-[0_18px_42px_rgba(0,44,85,.18)]"
+                    style={{ backgroundColor: card.color }}
+                  >
+                    <Icon size={30} />
+                  </div>
+                  <p
+                    className="mb-4 inline-flex rounded-full px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-white"
+                    style={{ backgroundColor: card.color }}
+                  >
+                    {card.label}
+                  </p>
+                  <h3 className="text-2xl font-black text-[#073e63]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-4 min-h-[96px] text-base leading-7 text-slate-600">
+                    {card.text}
+                  </p>
+                  <div className="mt-7 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-[#005AAA]">
+                    View Details
+                    <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [aboutImageIndex, setAboutImageIndex] = useState(0);
   const [activeNewsIndex, setActiveNewsIndex] = useState(0);
@@ -239,6 +436,7 @@ export default function Home() {
   const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true);
   const [heroVideoVolume, setHeroVideoVolume] = useState(0.7);
   const [showControls, setShowControls] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const heroVideoFrameRef = useRef<HTMLDivElement | null>(null);
@@ -326,6 +524,28 @@ export default function Home() {
     fullscreenTarget.msRequestFullscreen?.();
   };
 
+
+  useEffect(() => {
+    let frame = 0;
+
+    const handleScroll = () => {
+      if (frame) return;
+
+      frame = window.requestAnimationFrame(() => {
+        setScrollY(window.scrollY);
+        frame = 0;
+      });
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   useEffect(() => {
     const timer = window.setInterval(() => {
       setAboutImageIndex((current) =>
@@ -383,8 +603,13 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden bg-[#eef8fb] text-[#102f42] selection:bg-[#fbf234] selection:text-[#062a43]">
+      <HomeScrollStyles />
       <section className="relative overflow-hidden bg-[#052b45] px-4 pb-10 pt-32 text-white sm:px-6 lg:px-8">
-        <div className="absolute inset-0">
+        <div className="jetama-grid-motion pointer-events-none absolute inset-0 z-[1] opacity-30" />
+        <div className="jetama-floating-soft pointer-events-none absolute left-[7%] top-28 z-[2] h-24 w-48 rounded-[999px] bg-white/18 blur-xl" />
+        <div className="jetama-floating-reverse pointer-events-none absolute right-[9%] top-36 z-[2] h-20 w-40 rounded-[999px] bg-[#9effbd]/18 blur-xl" />
+        <div className="jetama-floating-soft pointer-events-none absolute bottom-24 left-[42%] z-[2] h-28 w-28 rounded-full bg-[#fbf234]/18 blur-2xl" />
+        <div className="absolute inset-0 jetama-hero-layer" style={{ transform: `translate3d(0, ${scrollY * 0.12}px, 0) scale(${1 + scrollY * 0.00008})` }}>
           <img
             src={heroImage}
             alt="JETAMA water infrastructure"
@@ -394,8 +619,8 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-white via-white/70 to-transparent" />
         </div>
 
-        <div className="relative mx-auto grid min-h-[700px] max-w-[1500px] items-center gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-          <div className="scroll-reveal-left max-w-2xl pt-8 lg:pl-2">
+        <div className="jetama-3d-space relative z-10 mx-auto grid min-h-[700px] max-w-[1500px] items-center gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="scroll-reveal-left max-w-2xl pt-8 lg:pl-2" style={{ transform: `translate3d(0, ${scrollY * -0.035}px, 35px)` }}>
             <p className="mb-5 text-sm font-black uppercase tracking-[0.3em] text-[#9effbd]">
               JETAMA SDN BHD
             </p>
@@ -441,7 +666,8 @@ export default function Home() {
               ref={heroVideoFrameRef}
               onMouseEnter={() => setShowControls(true)}
               onMouseLeave={() => setShowControls(false)}
-              className="relative overflow-hidden rounded-[2.8rem] border border-white/15 bg-white/10 p-4 shadow-[0_50px_140px_rgba(0,0,0,.45)] backdrop-blur"
+              className="jetama-glass-shine relative overflow-hidden rounded-[2.8rem] border border-white/15 bg-white/10 p-4 shadow-[0_50px_140px_rgba(0,0,0,.45)] backdrop-blur transition-transform duration-300"
+              style={{ transform: `translate3d(0, ${scrollY * -0.055}px, 70px) rotateX(3deg) rotateY(-4deg)` }}
             >
               <video
                 ref={heroVideoRef}
@@ -516,6 +742,8 @@ export default function Home() {
         </div>
       </section>
 
+      <OceanWaveDivider />
+      <JetamaParksPortal />
 
       <section className="grid bg-white lg:grid-cols-2">
         <div className="scroll-reveal-left relative min-h-[520px] overflow-hidden">
@@ -589,7 +817,7 @@ export default function Home() {
               <Link
                 key={item.title}
                 to={item.link}
-                className="scroll-scale group relative overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white p-7 shadow-[0_22px_70px_rgba(0,44,85,0.08)] transition hover:-translate-y-2 hover:shadow-[0_30px_90px_rgba(0,44,85,0.15)]"
+                className="scroll-scale jetama-tilt-card group relative overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white p-7 shadow-[0_22px_70px_rgba(0,44,85,0.08)] transition hover:-translate-y-2 hover:shadow-[0_30px_90px_rgba(0,44,85,0.15)]"
                 style={{ transitionDelay: `${index * 110}ms` }}
               >
                 <div
@@ -597,7 +825,7 @@ export default function Home() {
                   style={{ backgroundColor: item.color }}
                 />
 
-                <div className="mb-7 flex h-32 items-center justify-center rounded-[1.6rem] bg-[#f8fbff] p-5 ring-1 ring-[#d8eef5]">
+                <div className="jetama-card-depth mb-7 flex h-32 items-center justify-center rounded-[1.6rem] bg-[#f8fbff] p-5 ring-1 ring-[#d8eef5]">
                   <img
                     src={item.logo}
                     alt={item.title}

@@ -16,7 +16,7 @@ import aboutImageTwo from "@/assets/jetama-about-2.jpg";
 import aboutImageThree from "@/assets/jetama-about-3.jpg";
 import aboutImageFour from "@/assets/jetama-about-4.jpg";
 import jetamaEnergyLogo from "@/assets/LOGO-JESB.png";
-import jetamaWaterLogo from "@/assets/logo-jetamawater.png";
+import jetamaWaterLogo from "@/assets/JETAMA WATER - 2.png";
 import jetamaAlpineLogo from "@/assets/jetamaAlpine.png";
 import solarLogo from "@/assets/solarpvlogo.png";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";

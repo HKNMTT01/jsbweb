@@ -18,17 +18,14 @@ import energyHero from "@/assets/DJI_0298.jpg";
 import waterHero from "@/assets/jetama-dam-hero.jpg";
 import jesbLogo from "@/assets/LOGO-JESB.png";
 import waterLogo from "@/assets/JETAMA WATER - 2.png";
-import solarLogo from "@/assets/solarpvlogo.png";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 
 import moyogPlant from "@/assets/MOYOG.jpg";
 import telibongPlant from "@/assets/TELIBONG.jpg";
 import kasiguiPlant from "@/assets/KASIGUI.jpg";
 import solarPlantImage from "@/assets/pvplant.png";
-import solarBabagonImage from "@/assets/pvterapung.png";
-import solarLaunchImage from "@/assets/solarlaunching.png";
 
-type SubsidiaryKey = "water" | "energy" | "solar-pv";
+type SubsidiaryKey = "water" | "energy";
 
 type SubsidiaryPage = {
   key: SubsidiaryKey;
@@ -73,20 +70,6 @@ const subsidiaryPages: Record<SubsidiaryKey, SubsidiaryPage> = {
     accentSoft: "#fff7e6",
     path: "/subsidiary/energy",
   },
-  "solar-pv": {
-    key: "solar-pv",
-    title: "Solar PV Power Sdn. Bhd.",
-    shortTitle: "Solar PV Power",
-    subtitle:
-      "A special purpose vehicle for large scale solar development and clean energy generation projects.",
-    eyebrow: "Solar PV Development",
-    logo: solarLogo,
-    hero: energyHero,
-    icon: SunMedium,
-    accent: "#f5a623",
-    accentSoft: "#fff7e6",
-    path: "/subsidiary/solar-pv",
-  },
 };
 
 const subsidiariesNavigation = Object.values(subsidiaryPages).map((page) => ({
@@ -96,54 +79,39 @@ const subsidiariesNavigation = Object.values(subsidiaryPages).map((page) => ({
 }));
 
 function SectionHero({ page }: { page: SubsidiaryPage }) {
-  return (
-    <section className="relative -mt-8 overflow-hidden bg-white pt-20 lg:-mt-10 lg:pt-24">
-      <div className="absolute left-0 top-0 z-10 h-8 w-full bg-[#005AAA]" />
+  const Icon = page.icon;
 
-      <div className="relative h-[430px] overflow-hidden sm:h-[450px] lg:h-[470px]">
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
+      <div className="absolute inset-x-0 top-0 h-[350px] overflow-hidden">
         <img
           src={page.hero}
           alt={page.title}
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-center"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#061b46]/85 via-[#0b2f7f]/60 to-white" />
+      </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-black/20" />
-        <div className="absolute -left-24 top-0 h-full w-[58%] -skew-x-12 bg-white/94 shadow-[40px_0_90px_rgba(255,255,255,0.78)]" />
-        <div className="absolute left-0 top-20 h-56 w-56 rounded-full bg-[#41B650]/15 blur-3xl" />
-        <div className="absolute left-48 bottom-10 h-64 w-64 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-white via-white/70 to-transparent" />
-
-        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl -translate-y-2">
-            <div className="mb-5 flex items-center gap-2 text-sm font-semibold text-slate-700">
-              <Link to="/" className="hover:text-[#005AAA]">
-                Home
-              </Link>
-              <ChevronRight size={15} />
-              <Link to="/subsidiary" className="hover:text-[#005AAA]">
-                Subsidiaries
-              </Link>
-              <ChevronRight size={15} />
-              <span className="font-bold text-[#005AAA]">{page.shortTitle}</span>
-            </div>
-
-            <p
-              className="mb-4 inline-flex rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.22em]"
-              style={{ backgroundColor: page.accentSoft, color: page.accent }}
-            >
-              {page.eyebrow}
-            </p>
-
-            <h1 className="font-serif text-4xl font-normal leading-tight text-[#064C82] sm:text-5xl lg:text-6xl">
-              {page.title}
-            </h1>
-
-            <div className="mt-5 h-1 w-24 rounded-full bg-[#41B650]" />
-
-            <p className="mt-5 max-w-xl text-base font-medium leading-8 text-slate-700">
-              {page.subtitle}
-            </p>
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[2rem] bg-white text-[#0b2f7f] shadow-[0_20px_55px_rgba(0,44,85,0.28)]">
+            <Icon size={46} />
           </div>
+
+          <p
+            className="mx-auto mt-8 inline-flex items-center rounded-full border border-white/40 bg-white/90 px-5 py-3 text-xs font-black uppercase tracking-[0.25em] shadow-sm backdrop-blur"
+            style={{ color: page.accent }}
+          >
+            {page.eyebrow}
+          </p>
+
+          <h1 className="mt-8 text-4xl font-black text-[#102f83] sm:text-5xl lg:text-6xl">
+            {page.title}
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
+            {page.subtitle}
+          </p>
         </div>
       </div>
     </section>
@@ -391,28 +359,6 @@ function JetamaEnergyDetail() {
   );
 }
 
-function SolarPVDetail() {
-  const page = subsidiaryPages["solar-pv"];
-
-  return (
-    <div className="space-y-8">
-      <SubsidiaryIntroCard page={page}>
-        <InfoPoint>
-          Solar PV Power Sdn. Bhd. is a special purpose vehicle established for large scale solar project development.
-        </InfoPoint>
-        <InfoPoint>
-          The company supports clean energy generation through solar photovoltaic initiatives and long-term renewable energy planning.
-        </InfoPoint>
-        <InfoPoint>
-          Its portfolio includes the 10MWac Large Scale Solar PV project in Federal Territory Labuan.
-        </InfoPoint>
-      </SubsidiaryIntroCard>
-
-      <SolarProjectSection />
-      <SolarFutureProjects />
-    </div>
-  );
-}
 
 function SolarProjectSection({ compact = false }: { compact?: boolean }) {
   const milestones = [
@@ -461,52 +407,11 @@ function SolarProjectSection({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function SolarFutureProjects() {
-  const projects = [
-    {
-      title: "13.21 MWac Floating Solar PV",
-      text: "Proposed development at Babagon Dam, Penampang.",
-      image: solarBabagonImage,
-    },
-    {
-      title: "15 MWac Ground Mounted Solar PV",
-      text: "Proposed development at Batu Sapi, Sandakan.",
-      image: solarLaunchImage,
-    },
-  ];
-
-  return (
-    <section className="scroll-reveal rounded-[2.5rem] border border-slate-200 bg-[#f8fbff] p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
-      <div className="mb-8">
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-[#f5a623]">Future Development</p>
-        <h3 className="mt-3 text-3xl font-black text-[#052b4f]">LSS Sabah 2024 Projects</h3>
-        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-700">
-          Two additional Large Scale Solar projects are planned through LSS Sabah 2024 with scheduled commercial operations in December 2026.
-        </p>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-2">
-        {projects.map((project) => (
-          <article key={project.title} className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_22px_60px_rgba(0,90,170,0.14)]">
-            <div className="h-72 overflow-hidden">
-              <img src={project.image} alt={project.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
-            </div>
-            <div className="p-6">
-              <Leaf className="mb-4 text-[#41B650]" size={28} />
-              <h4 className="text-xl font-black text-[#052b4f]">{project.title}</h4>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{project.text}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function CurrentContent({ selected }: { selected: SubsidiaryKey }) {
   if (selected === "water") return <JetamaWaterDetail />;
   if (selected === "energy") return <JetamaEnergyDetail />;
-  return <SolarPVDetail />;
+  return null;
 }
 
 export default function SubsidiaryDetails() {
@@ -539,20 +444,22 @@ export default function SubsidiaryDetails() {
   const page = subsidiaryPages[selected];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
-        <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
-        <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
+    <main className="overflow-hidden bg-white pt-32 text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <DetailBreadcrumb page={page} />
       </div>
 
-      <section className="relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <DetailBreadcrumb page={page} />
+      <SectionHero page={page} />
+
+      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
+          <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
+          <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
         </div>
 
-        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
           <Sidebar />
 
           <main className="min-w-0">
@@ -560,6 +467,6 @@ export default function SubsidiaryDetails() {
           </main>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

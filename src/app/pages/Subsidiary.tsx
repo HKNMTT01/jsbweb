@@ -19,7 +19,6 @@ import energyHero from "@/assets/DJI_0298.jpg";
 import jesbLogo from "@/assets/LOGO-JESB.png";
 import waterLogo from "@/assets/jwater.png";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
-import solarLogo from "@/assets/solarpvlogo.png";
 
 import waterHero from "@/assets/jetama-dam-hero.jpg";
 import moyogPlant from "@/assets/MOYOG.jpg";
@@ -29,7 +28,7 @@ import paparPlant from "@/assets/PAPAR.jpg";
 import tamparuliPlant from "@/assets/TAMPARULI.jpg";
 import tuaranPlant from "@/assets/TUARAN.jpg";
 
-type SubsidiaryKey = "water" | "energy" | "solar-pv";
+type SubsidiaryKey = "water" | "energy";
 
 const subsidiaryCards = [
   {
@@ -47,14 +46,6 @@ const subsidiaryCards = [
     logo: jesbLogo,
     text: "Renewable energy initiatives supporting Sabah’s low-carbon direction.",
     color: "from-[#005AAA] to-[#F5A623]",
-  },
-  {
-    title: "Solar PV Power Sdn. Bhd.",
-    path: "/subsidiary/solar-pv",
-    icon: SunMedium,
-    logo: solarLogo,
-    text: "Large scale solar photovoltaic development under Jetama Energy.",
-    color: "from-[#35B24A] to-[#F5A623]",
   },
 ];
 
@@ -147,8 +138,7 @@ export default function Subsidiary() {
   if (
     selectedSubsidiary &&
     selectedSubsidiary !== "water" &&
-    selectedSubsidiary !== "energy" &&
-    selectedSubsidiary !== "solar-pv"
+    selectedSubsidiary !== "energy"
   ) {
     return <Navigate to="/subsidiary" replace />;
   }
@@ -158,8 +148,6 @@ export default function Subsidiary() {
       ? "Jetama Water Sdn. Bhd."
       : selectedSubsidiary === "energy"
         ? "Jetama Energy Sdn. Bhd."
-        : selectedSubsidiary === "solar-pv"
-          ? "Solar PV Power Sdn. Bhd."
           : "Subsidiaries";
 
   return (
@@ -167,8 +155,7 @@ export default function Subsidiary() {
       <section className="relative overflow-hidden bg-[#062A44] pb-24 pt-32 text-white">
         <img
           src={
-            selectedSubsidiary === "energy" ||
-            selectedSubsidiary === "solar-pv"
+            selectedSubsidiary === "energy"
               ? energyHero
               : waterHero
           }
@@ -207,7 +194,6 @@ export default function Subsidiary() {
         {!selectedSubsidiary && <SubsidiaryOverview />}
         {selectedSubsidiary === "water" && <JetamaWaterDetail />}
         {selectedSubsidiary === "energy" && <JetamaEnergyDetail />}
-        {selectedSubsidiary === "solar-pv" && <SolarPVDetail />}
       </div>
     </main>
   );
@@ -598,40 +584,3 @@ function JetamaEnergyDetail() {
   );
 }
 
-function SolarPVDetail() {
-  return (
-    <section className="relative -mt-20 z-10 bg-white pb-20 pt-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[2.5rem] border border-slate-200 bg-white p-8 text-center shadow-[0_30px_90px_rgba(0,44,85,0.14)] sm:p-12">
-          <img
-            src={solarLogo}
-            alt="Solar PV Power Sdn. Bhd."
-            className="mx-auto max-h-40 w-auto object-contain"
-          />
-
-          <h2 className="mt-10 text-4xl font-black text-[#102f83]">
-            Solar PV Power Sdn. Bhd.
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
-            Solar PV Power Sdn. Bhd. is a subsidiary under Jetama Energy Sdn.
-            Bhd., supporting renewable energy development and sustainable
-            low-carbon initiatives.
-          </p>
-
-          <div className="mt-14 rounded-[2rem] border border-slate-200 bg-[#f8fbff] p-8 text-left shadow-[0_20px_60px_rgba(0,44,85,0.08)]">
-            <h3 className="text-3xl font-black text-[#102f83]">
-              Large Scale Solar Photovoltaic Project
-            </h3>
-
-            <p className="mt-6 text-lg leading-9 text-slate-600">
-              The project involves the development of a 10MWac Large Scale Solar
-              Photovoltaic Plant at Kg Bukit Kalam, FT Labuan, supporting Sabah’s
-              move towards sustainable renewable energy solutions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}

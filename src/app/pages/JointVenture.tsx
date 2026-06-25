@@ -9,6 +9,7 @@ import {
 import heroImage from "@/assets/jetama-dam-hero.jpg";
 import jetamaLogo from "@/assets/jetama-wide-logo-transparent.png";
 import alpineLogo from "@/assets/Jetama Pipe - FINAL.png";
+import solarLogo from "@/assets/solarpvlogo.png";
 
 const jointVentures = [
   {
@@ -17,6 +18,14 @@ const jointVentures = [
     logo: alpineLogo,
     text: "Pipe supply, production and steel section products for Sabah.",
     accent: "from-[#102f83] to-[#d5282f]",
+  },
+
+  {
+    title: "Solar PV Power Sdn. Bhd.",
+    path: "/jointventure/solar-pv-power",
+    logo: solarLogo,
+    text: "Large scale solar photovoltaic development through strategic renewable energy partnership.",
+    accent: "from-[#35B24A] to-[#F5A623]",
   },
   {
     title: "Jetama Batu Sapi Solar Sdn. Bhd.",
@@ -82,7 +91,7 @@ export default function JointVenture() {
             </h2>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-4">
             {jointVentures.map((item) => (
               <Link
                 key={item.title}

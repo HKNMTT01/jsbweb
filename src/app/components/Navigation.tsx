@@ -82,7 +82,6 @@ export default function Navigation() {
       sub: [
         { label: "Jetama Water Sdn. Bhd.", path: "/subsidiary/water" },
         { label: "Jetama Energy Sdn. Bhd.", path: "/subsidiary/energy" },
-        { label: "Solar PV Power Sdn. Bhd.", path: "/subsidiary/solar-pv" },
       ],
     },
     {
@@ -90,6 +89,7 @@ export default function Navigation() {
       label: "JOINT VENTURES",
       sub: [
         { label: "Jetama Alpine Pipe (Sabah) Sdn. Bhd.", path: "/jointventure/jetama-alpine-pipe" },
+        { label: "Solar PV Power Sdn. Bhd.", path: "/jointventure/solar-pv-power" },
         { label: "Jetama Batu Sapi Solar Sdn. Bhd.", path: "/jointventure/jetama-batu-sapi-solar" },
         { label: "Jetama Babagon Floating Solar Sdn. Bhd.", path: "/jointventure/jetama-babagon-floating-solar" },
       ],

@@ -10,6 +10,7 @@ import {
   Leaf,
   ShieldCheck,
   SunMedium,
+  Zap,
   Wrench,
   X,
 } from "lucide-react";
@@ -19,9 +20,14 @@ import alpineLogo from "@/assets/Jetama Pipe - FINAL.png";
 import certificationBoard from "@/assets/certAl.jpeg";
 import jetamaEnergyLogo from "@/assets/LOGO-JESB.png";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
+import solarLogo from "@/assets/solarpvlogo.png";
+import solarPlantImage from "@/assets/pvplant.png";
+import solarBabagonImage from "@/assets/pvterapung.png";
+import solarLaunchImage from "@/assets/solarlaunching.png";
 
 type JointVentureKey =
   | "jetama-alpine-pipe"
+  | "solar-pv-power"
   | "jetama-batu-sapi-solar"
   | "jetama-babagon-floating-solar";
 
@@ -53,6 +59,21 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
     hero: heroImage,
     path: "/jointventure/jetama-alpine-pipe",
     icon: Factory,
+  },
+
+  "solar-pv-power": {
+    key: "solar-pv-power",
+    title: "Solar PV Power Sdn. Bhd.",
+    shortTitle: "Solar PV Power",
+    subtitle:
+      "A joint venture company supporting large scale solar photovoltaic development and clean energy generation projects.",
+    eyebrow: "Solar PV Joint Venture",
+    accent: "#f5a623",
+    accentSoft: "#fff7e6",
+    logo: solarLogo,
+    hero: heroImage,
+    path: "/jointventure/solar-pv-power",
+    icon: SunMedium,
   },
   "jetama-batu-sapi-solar": {
     key: "jetama-batu-sapi-solar",
@@ -108,54 +129,39 @@ const alpineScope = [
 ];
 
 function SectionHero({ page }: { page: JointVenturePage }) {
-  return (
-    <section className="relative -mt-8 overflow-hidden bg-white pt-20 lg:-mt-10 lg:pt-24">
-      <div className="absolute left-0 top-0 z-10 h-8 w-full bg-[#005AAA]" />
+  const Icon = page.icon;
 
-      <div className="relative h-[430px] overflow-hidden sm:h-[450px] lg:h-[470px]">
+  return (
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
+      <div className="absolute inset-x-0 top-0 h-[350px] overflow-hidden">
         <img
           src={page.hero}
           alt={page.title}
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-center"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#061b46]/85 via-[#0b2f7f]/60 to-white" />
+      </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-black/20" />
-        <div className="absolute -left-24 top-0 h-full w-[58%] -skew-x-12 bg-white/94 shadow-[40px_0_90px_rgba(255,255,255,0.78)]" />
-        <div className="absolute left-0 top-20 h-56 w-56 rounded-full bg-[#41B650]/15 blur-3xl" />
-        <div className="absolute left-48 bottom-10 h-64 w-64 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-white via-white/70 to-transparent" />
-
-        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl -translate-y-2">
-            <div className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-700">
-              <Link to="/" className="hover:text-[#005AAA]">
-                Home
-              </Link>
-              <ChevronRight size={15} />
-              <Link to="/jointventure" className="hover:text-[#005AAA]">
-                Joint Ventures
-              </Link>
-              <ChevronRight size={15} />
-              <span className="font-bold text-[#005AAA]">{page.shortTitle}</span>
-            </div>
-
-            <p
-              className="mb-4 inline-flex rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.22em]"
-              style={{ backgroundColor: page.accentSoft, color: page.accent }}
-            >
-              {page.eyebrow}
-            </p>
-
-            <h1 className="font-serif text-4xl font-normal leading-tight text-[#064C82] sm:text-5xl lg:text-6xl">
-              {page.title}
-            </h1>
-
-            <div className="mt-5 h-1 w-24 rounded-full bg-[#41B650]" />
-
-            <p className="mt-5 max-w-xl text-base font-medium leading-8 text-slate-700">
-              {page.subtitle}
-            </p>
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[2rem] bg-white text-[#0b2f7f] shadow-[0_20px_55px_rgba(0,44,85,0.28)]">
+            <Icon size={46} />
           </div>
+
+          <p
+            className="mx-auto mt-8 inline-flex items-center rounded-full border border-white/40 bg-white/90 px-5 py-3 text-xs font-black uppercase tracking-[0.25em] shadow-sm backdrop-blur"
+            style={{ color: page.accent }}
+          >
+            {page.eyebrow}
+          </p>
+
+          <h1 className="mt-8 text-4xl font-black text-[#102f83] sm:text-5xl lg:text-6xl">
+            {page.title}
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
+            {page.subtitle}
+          </p>
         </div>
       </div>
     </section>
@@ -552,11 +558,123 @@ function SolarJointVentureDetail({ page }: { page: JointVenturePage }) {
   );
 }
 
+function SolarPVPowerJointVentureDetail({ page }: { page: JointVenturePage }) {
+  return (
+    <div className="space-y-8">
+      <JointVentureIntroCard page={page}>
+        <InfoPoint>
+          Solar PV Power Sdn. Bhd. is positioned under the Joint Ventures section to reflect its strategic renewable energy partnership structure.
+        </InfoPoint>
+        <InfoPoint>
+          The company supports large scale solar photovoltaic development, clean energy generation and long-term renewable energy planning.
+        </InfoPoint>
+        <InfoPoint>
+          Its portfolio includes the 10MWac Large Scale Solar PV project in Federal Territory Labuan.
+        </InfoPoint>
+      </JointVentureIntroCard>
+
+      <SolarPVProjectSection />
+      <SolarPVFutureProjects />
+    </div>
+  );
+}
+
+function SolarPVProjectSection() {
+  const milestones = [
+    "Letter of Acceptance of Offer from ST received on 28 November 2017.",
+    "Power Purchase Agreement signed on 15 December 2021.",
+    "Commercial operations achieved on 9 February 2024.",
+  ];
+
+  return (
+    <section className="scroll-reveal rounded-[2.5rem] border border-orange-100 bg-white p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
+      <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#f5a623]">Solar Project</p>
+          <h3 className="mt-3 text-3xl font-black leading-tight text-[#052b4f]">
+            10MWac Large Scale Solar PV Project
+          </h3>
+          <p className="mt-5 text-base leading-8 text-slate-700">
+            Large Scale Solar Photovoltaic Plant located at Kg Bukit Kalam, Federal Territory Labuan, developed to support clean energy generation.
+          </p>
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            The project contributes approximately 23 Gigawatt hours of power per year and supports carbon reduction compared with conventional generation sources.
+          </p>
+
+          <div className="mt-6 space-y-3">
+            {milestones.map((item) => (
+              <div key={item} className="flex gap-3 rounded-2xl bg-[#fff7e6] p-4">
+                <SunMedium className="mt-1 shrink-0 text-[#f5a623]" size={18} />
+                <p className="text-sm leading-7 text-slate-700">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-[2rem] border border-orange-100 bg-white shadow-[0_22px_60px_rgba(0,44,85,0.12)]">
+          <img src={solarPlantImage} alt="10MWac Large Scale Solar PV Plant" className="h-[360px] w-full object-cover" />
+          <div className="flex items-center gap-3 bg-[#052b4f] px-6 py-4 text-white">
+            <Zap size={20} className="text-[#f5a623]" />
+            <span className="text-sm font-black uppercase">F.T. Labuan Solar PV Plant</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SolarPVFutureProjects() {
+  const futureProjects = [
+    {
+      title: "13.21 MWac Floating Solar PV",
+      location: "Babagon Dam, Penampang",
+      image: solarBabagonImage,
+    },
+    {
+      title: "15 MWac Ground Mounted Solar PV",
+      location: "Batu Sapi, Sandakan",
+      image: solarLaunchImage,
+    },
+  ];
+
+  return (
+    <section className="scroll-reveal rounded-[2.5rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3] p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
+      <div className="mb-7 text-center">
+        <Leaf className="mx-auto mb-4 text-[#41B650]" size={38} />
+        <p className="text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">Future Solar Direction</p>
+        <h3 className="mt-3 text-3xl font-black text-[#052b4f]">Upcoming Large Scale Solar Developments</h3>
+        <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
+          Two additional Large Scale Solar projects are planned through LSS Sabah 2024 with scheduled commercial operations in December 2026.
+        </p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {futureProjects.map((project) => (
+          <article key={project.title} className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_22px_60px_rgba(0,90,170,0.14)]">
+            <div className="h-64 overflow-hidden">
+              <img src={project.image} alt={project.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+            </div>
+            <div className="p-6">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f5a623]">Solar PV Development</p>
+              <h4 className="mt-3 text-2xl font-black text-[#052b4f]">{project.title}</h4>
+              <p className="mt-3 text-sm font-semibold text-slate-600">{project.location}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CurrentContent({ selected }: { selected: JointVentureKey }) {
   const page = jointVenturePages[selected];
 
   if (selected === "jetama-alpine-pipe") {
     return <JetamaAlpinePipeDetail page={page} />;
+  }
+
+  if (selected === "solar-pv-power") {
+    return <SolarPVPowerJointVentureDetail page={page} />;
   }
 
   if (selected === "jetama-batu-sapi-solar") {
@@ -596,20 +714,22 @@ export default function JointVentureDetails() {
   const page = jointVenturePages[selected];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
-        <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
-        <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
+    <main className="overflow-hidden bg-white pt-32 text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <DetailBreadcrumb page={page} />
       </div>
 
-      <section className="relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <DetailBreadcrumb page={page} />
+      <SectionHero page={page} />
+
+      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
+          <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
+          <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
         </div>
 
-        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
           <Sidebar />
 
           <main className="min-w-0">
@@ -617,6 +737,6 @@ export default function JointVentureDetails() {
           </main>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

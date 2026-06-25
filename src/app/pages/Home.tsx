@@ -62,7 +62,7 @@ const subsidiaries = [
     color: "#F9A51A",
     text: "Large scale solar photovoltaic development under Jetama Energy.",
     logo: solarLogo,
-    link: "/jointventure/solar-pv",
+    link: "/jointventure/solar-pv-power",
   },
   {
     title: "Jetama Alpine Pipe (Sabah) Sdn. Bhd.",

@@ -19,6 +19,53 @@ import tuaranImage from "@/assets/TUARAN.jpg";
 import telibongImage from "@/assets/TELIBONG.jpg";
 import kasiguiImage from "@/assets/KASIGUI.jpg";
 
+
+function CorporateCleanStyles() {
+  return (
+    <style>{`
+      @keyframes softCorporateFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; }
+        50% { transform: translate3d(18px,-14px,0) rotate(1deg); opacity: .82; }
+      }
+      @keyframes softCorporateBeam {
+        0%, 100% { transform: translateX(-8%) rotate(-8deg); opacity: .16; }
+        50% { transform: translateX(12%) rotate(-8deg); opacity: .30; }
+      }
+      @keyframes softTextLift {
+        0% { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+      .corporate-hero-title { animation: softTextLift .85s cubic-bezier(.2,.8,.2,1) both; }
+      .corporate-hero-copy { animation: softTextLift .95s cubic-bezier(.2,.8,.2,1) .12s both; }
+      .corporate-float-a { animation: softCorporateFloat 12s ease-in-out infinite; }
+      .corporate-float-b { animation: softCorporateFloat 15s ease-in-out infinite reverse; }
+      .corporate-beam { animation: softCorporateBeam 10s ease-in-out infinite; }
+      .corporate-glass {
+        background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(248,251,255,.72), rgba(244,255,247,.72));
+        border: 1px solid rgba(255,255,255,.78);
+        box-shadow: 0 28px 90px rgba(0,90,170,.14);
+        backdrop-filter: blur(14px);
+      }
+    `}</style>
+  );
+}
+
+function CorporateHeroAtmosphere() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <CorporateCleanStyles />
+      <div className="absolute inset-0 bg-transparent" />
+      <div className="corporate-beam absolute left-[-18%] top-[8%] h-[360px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(255,255,255,.95),transparent)] blur-[6px]" />
+      <div className="corporate-beam absolute right-[-18%] top-[4%] h-[360px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(246,166,35,.22),transparent)] blur-[12px] [animation-delay:2s]" />
+      <div className="corporate-float-a absolute left-[-120px] top-24 h-64 w-[560px] bg-[#005AAA]/[.075]" style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }} />
+      <div className="corporate-float-b absolute right-[-140px] top-36 h-72 w-[620px] bg-[#35B24A]/[.085]" style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }} />
+      <div className="corporate-float-a absolute bottom-4 left-[22%] h-28 w-[520px] bg-[#F5A623]/[.075]" style={{ clipPath: "polygon(0 35%, 74% 0, 100% 65%, 22% 100%)" }} />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f7fbff] via-white/80 to-transparent" />
+    </div>
+  );
+}
+
+
 const waterSegments = [
   {
     title: "Industrial Project",
@@ -83,55 +130,56 @@ const highlights = [
 
 export default function Projects() {
   return (
-    <main className="overflow-hidden bg-white text-[#122f3f]">
-      <section className="relative overflow-hidden bg-[#062A44] pt-32 text-white">
-        <img
+    <main className="overflow-hidden bg-[#f7fbff] text-[#122f3f]">
+      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-36 text-slate-900">
+        <CorporateHeroAtmosphere />
+<img
           src={heroImage}
           alt="JETAMA Projects"
-          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-55"
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-20"
         />
 
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(6,27,70,0.95)_0%,rgba(11,47,127,0.78)_54%,rgba(65,182,80,0.50)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,255,255,0.22),transparent_30%)]" />
-        <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#0b2f7f] via-[#68bd00] to-[#f5a623]" />
+        <div className="absolute inset-0 bg-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(0,90,170,0.10),transparent_32%)]" />
+        <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
         <div className="absolute -bottom-28 -right-20 h-72 w-72 rounded-full bg-[#68bd00]/20 blur-3xl" />
-        <div className="absolute -left-20 top-24 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -left-20 top-24 h-64 w-64 rounded-full bg-white/80 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-white/80">
-            <Link to="/" className="hover:text-white">
+          <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
+            <Link to="/" className="hover:text-[#005AAA]">
               Home
             </Link>
             <ChevronRight size={16} />
-            <span className="text-white">Projects</span>
+            <span className="text-[#005AAA]">Projects</span>
           </div>
 
           <div className="grid gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
             <div>
-              <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#b8ff6a] backdrop-blur">
+              <p className="inline-flex rounded-full border border-[#005AAA]/15 bg-white/75 px-5 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#35B24A] backdrop-blur">
                 Corporate Project Portfolio
               </p>
 
-              <h1 className="mt-6 text-5xl font-black leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+              <h1 className="corporate-hero-title mt-6 text-5xl font-black leading-[1.05] text-[#005AAA] sm:text-6xl lg:text-7xl">
                 Our Projects
               </h1>
 
-              <p className="mt-7 max-w-3xl text-lg leading-9 text-white/90 sm:text-xl">
+              <p className="corporate-hero-copy mt-7 max-w-3xl text-lg leading-9 text-slate-600 sm:text-xl">
                 Explore JETAMA's water infrastructure and renewable energy
                 portfolio through structured project groups and timeline records.
               </p>
             </div>
 
-            <div className="hidden rounded-[2rem] border border-white/15 bg-white/10 p-6 shadow-[0_25px_80px_rgba(0,0,0,0.18)] backdrop-blur-md lg:block">
+            <div className="hidden rounded-[2rem] border border-[#005AAA]/10 bg-white/80 p-6 shadow-[0_25px_80px_rgba(0,0,0,0.18)] backdrop-blur-md lg:block">
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#0b2f7f]">
                   <ShieldCheck size={34} />
                 </div>
                 <div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-[#fbf234]">
+                  <p className="text-sm font-black uppercase tracking-[0.18em] text-[#F5A623]">
                     Water & Energy
                   </p>
-                  <p className="mt-1 text-sm leading-6 text-white/80">
+                  <p className="mt-1 text-sm leading-6 text-slate-600">
                     Organized into concession, industrial, commercial and renewable energy records.
                   </p>
                 </div>
@@ -143,7 +191,7 @@ export default function Projects() {
 
 
       <section className="relative -mt-10 z-10 mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="rounded-[2.5rem] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_rgba(0,44,85,0.16)] sm:p-8 lg:p-10">
+        <div className="rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl p-6 shadow-[0_28px_85px_rgba(0,90,170,0.12)] sm:p-8 lg:p-10">
           <div className="mb-9 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.25em] text-[#35b24a]">
@@ -203,10 +251,10 @@ export default function Projects() {
                     </div>
 
                     <div className="absolute bottom-6 left-6 right-6">
-                      <p className="mb-2 text-xs font-black uppercase tracking-[0.18em] text-[#b8ff6a]">
+                      <p className="mb-2 text-xs font-black uppercase tracking-[0.18em] text-[#35B24A]">
                         Water Project
                       </p>
-                      <h3 className="text-2xl font-black leading-tight text-white">
+                      <h3 className="text-2xl font-black leading-tight text-[#005AAA]">
                         {item.title}
                       </h3>
                     </div>
@@ -217,7 +265,7 @@ export default function Projects() {
                       {item.text}
                     </p>
 
-                    <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-[#102f83] transition group-hover:bg-[#102f83] group-hover:text-white">
+                    <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-[#102f83] transition group-hover:bg-[#102f83] group-hover:text-[#005AAA]">
                       {ready ? "View Timeline" : "View Section"}
                       <ArrowRight size={15} className="transition group-hover:translate-x-1" />
                     </div>
@@ -232,7 +280,7 @@ export default function Projects() {
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <Link
           to={renewableProject.path}
-          className="group grid overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_35px_100px_rgba(0,44,85,0.18)] lg:grid-cols-[0.9fr_1.1fr]"
+          className="group grid overflow-hidden rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_35px_100px_rgba(0,44,85,0.18)] lg:grid-cols-[0.9fr_1.1fr]"
         >
           <div className="relative min-h-[360px] overflow-hidden">
             <img
@@ -297,7 +345,7 @@ export default function Projects() {
                     animationDelay: `${index * 80}ms`,
                   }}
                 >
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#0b2f7f] transition group-hover:bg-[#0b2f7f] group-hover:text-white">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#0b2f7f] transition group-hover:bg-[#0b2f7f] group-hover:text-[#005AAA]">
                     <Icon size={28} />
                   </div>
 

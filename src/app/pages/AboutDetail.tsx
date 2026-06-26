@@ -42,6 +42,53 @@ import bodKassim from "@/assets/Datuk Kassim.png";
 import bodEmerson from "@/assets/Emerson.png";
 import bodAkian from "@/assets/DrAkian.png";
 
+
+function CorporateCleanStyles() {
+  return (
+    <style>{`
+      @keyframes softCorporateFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; }
+        50% { transform: translate3d(18px,-14px,0) rotate(1deg); opacity: .82; }
+      }
+      @keyframes softCorporateBeam {
+        0%, 100% { transform: translateX(-8%) rotate(-8deg); opacity: .16; }
+        50% { transform: translateX(12%) rotate(-8deg); opacity: .30; }
+      }
+      @keyframes softTextLift {
+        0% { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+      .corporate-hero-title { animation: softTextLift .85s cubic-bezier(.2,.8,.2,1) both; }
+      .corporate-hero-copy { animation: softTextLift .95s cubic-bezier(.2,.8,.2,1) .12s both; }
+      .corporate-float-a { animation: softCorporateFloat 12s ease-in-out infinite; }
+      .corporate-float-b { animation: softCorporateFloat 15s ease-in-out infinite reverse; }
+      .corporate-beam { animation: softCorporateBeam 10s ease-in-out infinite; }
+      .corporate-glass {
+        background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(248,251,255,.72), rgba(244,255,247,.72));
+        border: 1px solid rgba(255,255,255,.78);
+        box-shadow: 0 28px 90px rgba(0,90,170,.14);
+        backdrop-filter: blur(14px);
+      }
+    `}</style>
+  );
+}
+
+function CorporateHeroAtmosphere() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <CorporateCleanStyles />
+      <div className="absolute inset-0 bg-transparent" />
+      <div className="corporate-beam absolute left-[-18%] top-[8%] h-[360px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(255,255,255,.95),transparent)] blur-[6px]" />
+      <div className="corporate-beam absolute right-[-18%] top-[4%] h-[360px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(246,166,35,.22),transparent)] blur-[12px] [animation-delay:2s]" />
+      <div className="corporate-float-a absolute left-[-120px] top-24 h-64 w-[560px] bg-[#005AAA]/[.075]" style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }} />
+      <div className="corporate-float-b absolute right-[-140px] top-36 h-72 w-[620px] bg-[#35B24A]/[.085]" style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }} />
+      <div className="corporate-float-a absolute bottom-4 left-[22%] h-28 w-[520px] bg-[#F5A623]/[.075]" style={{ clipPath: "polygon(0 35%, 74% 0, 100% 65%, 22% 100%)" }} />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f7fbff] via-white/80 to-transparent" />
+    </div>
+  );
+}
+
+
 type AboutPage = {
   title: string;
   shortLabel?: string;
@@ -352,7 +399,7 @@ function VisionMissionContent() {
                 key={value.letter}
                 className="group flex overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_10px_35px_rgba(15,23,42,0.06)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,90,170,0.15)]"
               >
-                <div className="flex w-20 items-center justify-center bg-[#005AAA] text-4xl font-black text-white">
+                <div className="flex w-20 items-center justify-center bg-[#005AAA] text-4xl font-black text-[#005AAA]">
                   {value.letter}
                 </div>
 
@@ -454,7 +501,7 @@ function BoardDirectorsContent() {
 
         <div className="relative grid lg:grid-cols-[0.88fr_1.12fr]">
           <div className="relative overflow-hidden bg-[#eef6fb]">
-            <div className="absolute left-5 top-5 z-10 rounded-full bg-[#052b4f] px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#fbf234] shadow-lg">
+            <div className="absolute left-5 top-5 z-10 rounded-full bg-[#052b4f] px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#F5A623] shadow-lg">
               Chairman
             </div>
 
@@ -482,7 +529,7 @@ function BoardDirectorsContent() {
               {chairman.quote}
             </p>
 
-            <div className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#052b4f] px-5 py-3 text-sm font-bold text-white">
+            <div className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#052b4f] px-5 py-3 text-sm font-bold text-[#005AAA]">
               Chairman Profile
               <ShieldCheck size={15} />
             </div>
@@ -506,7 +553,7 @@ function BoardDirectorsContent() {
               style={{ transitionDelay: `${index * 70}ms` }}
             >
               <div className="relative overflow-hidden bg-[#f4f9fc]">
-                <div className="absolute left-4 top-4 z-10 rounded-full bg-[#052b4f] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#fbf234]">
+                <div className="absolute left-4 top-4 z-10 rounded-full bg-[#052b4f] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#F5A623]">
                   {director.position}
                 </div>
 
@@ -620,7 +667,7 @@ function TopLevelManagementContent() {
       <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3]" />
       <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234]" />
 
-      <div className="absolute right-4 top-4 z-20 rounded-full bg-[#052b4f] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#fbf234] shadow-lg">
+      <div className="absolute right-4 top-4 z-20 rounded-full bg-[#052b4f] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#F5A623] shadow-lg">
         {person.tag}
       </div>
 
@@ -674,7 +721,7 @@ function TopLevelManagementContent() {
             <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3]" />
             <div className="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-[#005AAA] via-[#41B650] to-[#fbf234]" />
 
-            <div className="absolute right-5 top-5 z-20 rounded-full bg-[#052b4f] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#fbf234] shadow-lg">
+            <div className="absolute right-5 top-5 z-20 rounded-full bg-[#052b4f] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#F5A623] shadow-lg">
               {ceo.tag}
             </div>
 
@@ -967,7 +1014,7 @@ function ConcessionAreaContent() {
             <span
               className={`absolute left-1/2 top-12 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] shadow-xl transition duration-300 ${
                 active
-                  ? "scale-100 bg-[#052b4f] text-[#fbf234] opacity-100"
+                  ? "scale-100 bg-[#052b4f] text-[#F5A623] opacity-100"
                   : "scale-90 bg-white text-[#005AAA] opacity-0 group-hover:scale-100 group-hover:opacity-100"
               }`}
             >
@@ -1042,7 +1089,7 @@ function ConcessionAreaContent() {
 
                     <div>
                       <p className="text-3xl font-black">{item.value}</p>
-                      <p className="mt-1 text-sm font-semibold text-white/90">
+                      <p className="mt-1 text-sm font-semibold text-slate-600">
                         {item.label}
                       </p>
                     </div>
@@ -1073,7 +1120,7 @@ function ConcessionAreaContent() {
                   {card.id === "coverage" && renderPins(false)}
 
                   <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[1.7rem] border border-white/25 bg-white/18 p-5 text-white shadow-2xl backdrop-blur-md">
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#F5A623]">
                       Clickable Image
                     </p>
                     <h3 className="mt-2 text-2xl font-black leading-tight">
@@ -1113,8 +1160,8 @@ function ConcessionAreaContent() {
             className="max-h-[94vh] w-full max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-white">
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#fbf234]">
+            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-[#005AAA]">
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#F5A623]">
                 Concession Area Viewer
               </p>
               <h3 className="mt-2 text-2xl font-black">
@@ -1263,7 +1310,7 @@ export default function AboutDetail() {
         <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
         <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
         <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(0,90,170,0.10),transparent_32%)]" />
       </div>
 
       <section className="relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">

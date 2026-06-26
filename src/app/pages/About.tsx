@@ -17,6 +17,53 @@ import {
 import jetamaHero from "../../assets/jetama-dam-hero.jpg";
 import moyogPlant from "../../assets/solarlaunching.png";
 
+
+function CorporateCleanStyles() {
+  return (
+    <style>{`
+      @keyframes softCorporateFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; }
+        50% { transform: translate3d(18px,-14px,0) rotate(1deg); opacity: .82; }
+      }
+      @keyframes softCorporateBeam {
+        0%, 100% { transform: translateX(-8%) rotate(-8deg); opacity: .16; }
+        50% { transform: translateX(12%) rotate(-8deg); opacity: .30; }
+      }
+      @keyframes softTextLift {
+        0% { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+      .corporate-hero-title { animation: softTextLift .85s cubic-bezier(.2,.8,.2,1) both; }
+      .corporate-hero-copy { animation: softTextLift .95s cubic-bezier(.2,.8,.2,1) .12s both; }
+      .corporate-float-a { animation: softCorporateFloat 12s ease-in-out infinite; }
+      .corporate-float-b { animation: softCorporateFloat 15s ease-in-out infinite reverse; }
+      .corporate-beam { animation: softCorporateBeam 10s ease-in-out infinite; }
+      .corporate-glass {
+        background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(248,251,255,.72), rgba(244,255,247,.72));
+        border: 1px solid rgba(255,255,255,.78);
+        box-shadow: 0 28px 90px rgba(0,90,170,.14);
+        backdrop-filter: blur(14px);
+      }
+    `}</style>
+  );
+}
+
+function CorporateHeroAtmosphere() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <CorporateCleanStyles />
+      <div className="absolute inset-0 bg-transparent" />
+      <div className="corporate-beam absolute left-[-18%] top-[8%] h-[360px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(255,255,255,.95),transparent)] blur-[6px]" />
+      <div className="corporate-beam absolute right-[-18%] top-[4%] h-[360px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(246,166,35,.22),transparent)] blur-[12px] [animation-delay:2s]" />
+      <div className="corporate-float-a absolute left-[-120px] top-24 h-64 w-[560px] bg-[#005AAA]/[.075]" style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }} />
+      <div className="corporate-float-b absolute right-[-140px] top-36 h-72 w-[620px] bg-[#35B24A]/[.085]" style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }} />
+      <div className="corporate-float-a absolute bottom-4 left-[22%] h-28 w-[520px] bg-[#F5A623]/[.075]" style={{ clipPath: "polygon(0 35%, 74% 0, 100% 65%, 22% 100%)" }} />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f7fbff] via-white/80 to-transparent" />
+    </div>
+  );
+}
+
+
 function OceanWaveDivider() {
   return (
     <div className="pointer-events-none relative -mt-20 h-44 overflow-hidden bg-transparent">
@@ -107,31 +154,32 @@ export default function About() {
 
   return (
     <div className="bg-[#F4F8FC] text-slate-900">
-      <section className="relative overflow-hidden bg-[#062A44] pt-32 text-white">
-        <img src={jetamaHero} alt="JETAMA" className="absolute inset-0 h-full w-full object-cover opacity-55" />
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(4,31,55,0.92)_0%,rgba(0,82,154,0.72)_56%,rgba(65,182,80,0.50)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.18),transparent_30%)]" />
+      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-36 text-slate-900">
+        <CorporateHeroAtmosphere />
+<img src={jetamaHero} alt="JETAMA" className="absolute inset-0 h-full w-full object-cover opacity-20" />
+        <div className="absolute inset-0 bg-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(0,90,170,0.10),transparent_32%)]" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-white/75">
-            <Link to="/" className="hover:text-white">Home</Link>
+          <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
+            <Link to="/" className="hover:text-[#005AAA]">Home</Link>
             <ChevronRight size={16} />
-            <span className="text-white">About Us</span>
+            <span className="text-[#005AAA]">About Us</span>
           </div>
 
           <div className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div>
-              <h1 className="max-w-5xl text-5xl font-black leading-[1.02] text-white sm:text-6xl lg:text-7xl">
+              <h1 className="corporate-hero-title max-w-5xl text-5xl font-black leading-[1.02] text-[#005AAA] sm:text-6xl lg:text-7xl">
                 About JETAMA Sdn. Bhd.
               </h1>
 
-              <p className="mt-7 max-w-3xl text-lg leading-9 text-white/90 sm:text-xl">
+              <p className="corporate-hero-copy mt-7 max-w-3xl text-lg leading-9 text-slate-600 sm:text-xl">
                 A Sabah-based water utility organisation dedicated to reliable treated water supply,
                 operational excellence and sustainable infrastructure development.
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-white/15 bg-white/10 p-6 backdrop-blur-md shadow-[0_24px_70px_rgba(0,0,0,0.20)]">
+            <div className="rounded-[2rem] border border-[#005AAA]/10 bg-white/80 p-6 backdrop-blur-md shadow-[0_24px_70px_rgba(0,0,0,0.20)]">
               <div className="flex items-start gap-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-[#005AAA]">
                   <Waves size={28} />
@@ -144,7 +192,7 @@ export default function About() {
                   <h2 className="mt-3 text-3xl font-black leading-tight">
                     Reliable Water Services For Sabah
                   </h2>
-                  <p className="mt-4 leading-7 text-white/78">
+                  <p className="mt-4 leading-7 text-slate-600">
                     Built on service reliability, technical capability and responsibility to the people we serve.
                   </p>
                 </div>

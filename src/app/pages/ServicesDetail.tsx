@@ -148,7 +148,7 @@ const waterPlants: WaterPlant[] = [
 
 function SectionHero({ page }: { page: ServicePage }) {
   return (
-    <section className="relative -mt-8 overflow-hidden bg-white pt-20 lg:-mt-10 lg:pt-24">
+    <section className="relative overflow-hidden bg-white pt-28 lg:pt-32">
       <div className="absolute left-0 top-0 z-10 h-8 w-full bg-[#005AAA]" />
 
       <div className="relative h-[430px] overflow-hidden sm:h-[450px] lg:h-[470px]">
@@ -254,7 +254,7 @@ function Sidebar() {
 
 function OceanWaveDivider() {
   return (
-    <div className="pointer-events-none relative -mt-8 h-28 overflow-hidden bg-transparent">
+    <div className="pointer-events-none relative -mt-8 h-16 overflow-hidden bg-transparent opacity-40">
       <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-transparent via-white/80 to-white" />
       <div className="absolute left-[-5%] top-4 h-10 w-[110%] rounded-[50%] bg-white blur-2xl" />
       <div className="absolute left-[-10%] top-8 h-12 w-[120%] rounded-[50%] bg-white/95 blur-xl" />
@@ -882,6 +882,143 @@ function CurrentContent({ slug }: { slug: string }) {
   return <TotalCapabilityContent />;
 }
 
+
+function CleanCorporateTheme() {
+  return (
+    <style>{`
+      @keyframes jetamaFadeUp { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+      @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
+      @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
+
+      .clean-corporate-page { background: #f7fbff; color: #0f2f44; }
+      .clean-corporate-page > section:first-of-type {
+        position: relative;
+        isolation: isolate;
+        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 48%, #f8fff6 100%) !important;
+        color: #0f2f44 !important;
+        overflow: hidden;
+      }
+      .clean-corporate-page > section:first-of-type::before {
+        content: "";
+        position: absolute;
+        left: -180px;
+        top: 26px;
+        width: 420px;
+        height: 420px;
+        border-radius: 72px;
+        border: 1px solid rgba(0,90,170,.10);
+        background: rgba(0,90,170,.045);
+        transform: rotate(45deg);
+        z-index: 1;
+        animation: jetamaSoftFloat 11s ease-in-out infinite;
+      }
+      .clean-corporate-page > section:first-of-type::after {
+        content: "";
+        position: absolute;
+        right: -170px;
+        top: 95px;
+        width: 430px;
+        height: 430px;
+        border-radius: 76px;
+        border: 1px solid rgba(53,178,74,.16);
+        background: rgba(53,178,74,.05);
+        transform: rotate(12deg);
+        z-index: 1;
+        animation: jetamaSoftFloat 14s ease-in-out infinite reverse;
+      }
+      .clean-corporate-page > section:first-of-type img {
+        opacity: .16 !important;
+        filter: saturate(1.08) contrast(1.08) brightness(1.08);
+      }
+      .clean-corporate-page > section:first-of-type .absolute.inset-0,
+      .clean-corporate-page > section:first-of-type .absolute.inset-x-0.top-0,
+      .clean-corporate-page > section:first-of-type .absolute.-right-24,
+      .clean-corporate-page > section:first-of-type .absolute.-left-20,
+      .clean-corporate-page > section:first-of-type .absolute.left-10,
+      .clean-corporate-page > section:first-of-type .absolute.-bottom-28,
+      .clean-corporate-page > section:first-of-type .absolute.left-0.top-0.z-10 {
+        opacity: .32;
+      }
+      .clean-corporate-page > section:first-of-type > div:last-child,
+      .clean-corporate-page > section:first-of-type .relative {
+        z-index: 5;
+      }
+      .clean-corporate-page > section:first-of-type h1 {
+        color: #005AAA !important;
+        letter-spacing: -0.045em;
+        text-shadow: none !important;
+      }
+      .clean-corporate-page > section:first-of-type h1 span,
+      .clean-corporate-page > section:first-of-type .font-serif {
+        color: #005AAA !important;
+        font-family: inherit !important;
+        font-weight: 900 !important;
+      }
+      .clean-corporate-page > section:first-of-type p {
+        color: #475569 !important;
+      }
+      .clean-corporate-page > section:first-of-type a,
+      .clean-corporate-page > section:first-of-type span {
+        color: #005AAA;
+      }
+      .clean-corporate-page > section:first-of-type [class*="text-white"] {
+        color: #0f2f44 !important;
+      }
+      .clean-corporate-page > section:first-of-type [class*="bg-white/10"],
+      .clean-corporate-page > section:first-of-type [class*="bg-white/90"],
+      .clean-corporate-page > section:first-of-type [class*="border-white"] {
+        background: rgba(255,255,255,.82) !important;
+        border-color: rgba(0,90,170,.16) !important;
+        box-shadow: 0 18px 55px rgba(0,90,170,.10);
+      }
+      .clean-corporate-page > section:first-of-type div[class*="h-24"][class*="w-24"][class*="rounded"] {
+        display: none !important;
+      }
+      .clean-corporate-page > section:first-of-type .inline-flex,
+      .clean-corporate-page > section:first-of-type button {
+        backdrop-filter: blur(14px);
+      }
+      .clean-corporate-page article,
+      .clean-corporate-page .rounded-\[2rem\],
+      .clean-corporate-page .rounded-\[2\.5rem\],
+      .clean-corporate-page .rounded-\[1\.8rem\] {
+        border-color: rgba(0,90,170,.12) !important;
+      }
+      .clean-corporate-page .shadow-\[0_30px_90px_rgba\(0\,44\,85\,0\.16\)\],
+      .clean-corporate-page .shadow-\[0_28px_90px_rgba\(0\,44\,85\,0\.12\)\],
+      .clean-corporate-page .shadow-\[0_24px_70px_rgba\(0\,90\,170\,0\.08\)\] {
+        box-shadow: 0 24px 80px rgba(0,90,170,.10) !important;
+      }
+      .clean-corporate-page .scroll-reveal,
+      .clean-corporate-page .animate-\[fadeInUp_\.8s_ease_both\],
+      .clean-corporate-page .animate-\[fadeInUp_\.7s_ease_both\] {
+        animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both !important;
+      }
+      .clean-corporate-page .shine-layer,
+      .clean-corporate-page article,
+      .clean-corporate-page button,
+      .clean-corporate-page a.group {
+        position: relative;
+        overflow: hidden;
+      }
+      .clean-corporate-page .shine-layer::before,
+      .clean-corporate-page article::before,
+      .clean-corporate-page button::before,
+      .clean-corporate-page a.group::before {
+        content: "";
+        position: absolute;
+        top: -50%; bottom: -50%; left: -35%; width: 28%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
+        transform: translateX(-150%) skewX(-18deg);
+        pointer-events: none;
+      }
+      .clean-corporate-page article:hover::before,
+      .clean-corporate-page button:hover::before,
+      .clean-corporate-page a.group:hover::before { animation: jetamaShine 1.9s ease; }
+    `}</style>
+  );
+}
+
 export default function ServicesDetail() {
   const { slug } = useParams();
 
@@ -927,7 +1064,8 @@ export default function ServicesDetail() {
         <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
           <Sidebar />
 
-          <main className="min-w-0">
+          <main className="clean-corporate-page min-w-0">
+      <CleanCorporateTheme />
             <CurrentContent slug={slug} />
           </main>
         </div>

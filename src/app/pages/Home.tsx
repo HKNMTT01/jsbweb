@@ -261,6 +261,33 @@ function HomeMotionStyles() {
         50% { transform: scale(1.08); filter: blur(36px); opacity: .95; }
       }
 
+      @keyframes heroWordEntrance {
+        0% { opacity: 0; transform: translate3d(0, 38px, 0) scale(.94); filter: blur(10px); }
+        58% { opacity: 1; transform: translate3d(0, -4px, 0) scale(1.015); filter: blur(0); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+      }
+
+      @keyframes heroWordFloat {
+        0%, 100% { transform: translate3d(0, 0, 0); }
+        50% { transform: translate3d(0, -7px, 0); }
+      }
+
+      @keyframes heroHaloPulse {
+        0%, 100% { opacity: .58; transform: scale(1); filter: blur(34px); }
+        50% { opacity: .88; transform: scale(1.08); filter: blur(42px); }
+      }
+
+      @keyframes heroLineSweep {
+        0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+        24% { opacity: .72; }
+        100% { transform: translateX(165%) skewX(-18deg); opacity: 0; }
+      }
+
+      @keyframes heroMiniText {
+        0%, 100% { opacity: .82; letter-spacing: .22em; }
+        50% { opacity: 1; letter-spacing: .30em; }
+      }
+
       .scroll-reveal,
       .scroll-reveal-left,
       .scroll-reveal-right,
@@ -292,6 +319,36 @@ function HomeMotionStyles() {
       .divider-geo-b { animation: dividerLayerB 13s ease-in-out infinite; transform-origin: center; }
       .divider-geo-c { animation: dividerLayerC 15s ease-in-out infinite; transform-origin: center; }
       .title-glow { animation: titleGlow 4.4s ease-in-out infinite; }
+      .hero-title-panel {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+      .hero-title-panel::after {
+        content: "";
+        position: absolute;
+        top: 8%;
+        bottom: 8%;
+        left: -42%;
+        width: 38%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.58), transparent);
+        animation: heroLineSweep 6.8s ease-in-out infinite;
+        pointer-events: none;
+        mix-blend-mode: screen;
+      }
+      .hero-halo { animation: heroHaloPulse 6s ease-in-out infinite; }
+      .hero-kicker { animation: heroMiniText 4.5s ease-in-out infinite; }
+      .hero-word {
+        display: inline-block;
+        opacity: 0;
+        animation: heroWordEntrance .95s cubic-bezier(.2,.8,.2,1) forwards, heroWordFloat 5.8s ease-in-out infinite;
+        -webkit-text-stroke: .8px rgba(255,255,255,.45);
+      }
+      .hero-word-1 { animation-delay: .08s, 1.25s; }
+      .hero-word-2 { animation-delay: .24s, 1.45s; }
+      .hero-word-3 { animation-delay: .40s, 1.65s; }
+      .hero-word-4 { animation-delay: .56s, 1.85s; }
       .soft-card-glow { animation: cardGlow 6s ease-in-out infinite; }
       .small-geo-pulse { animation: smallGeoPulse 6s ease-in-out infinite; }
       .cloud-drift-wide { animation: cloudDriftWide 14s ease-in-out infinite; transform-origin: center; }
@@ -323,7 +380,7 @@ function HeroGeometricAtmosphere() {
       <div className="premium-beam absolute right-[-20%] top-[0%] h-[420px] w-[58%] bg-[linear-gradient(105deg,transparent,rgba(251,242,52,.18),transparent)] blur-[10px] [animation-delay:2s]" />
 
       <svg
-        className="absolute inset-x-0 top-[9%] h-[390px] w-full opacity-90"
+        className="absolute inset-x-0 top-[12%] h-[390px] w-full opacity-65"
         viewBox="0 0 1440 390"
         preserveAspectRatio="none"
       >
@@ -597,8 +654,11 @@ export default function Home() {
             alt="JETAMA water infrastructure"
             className="hero-scene-bg h-full w-full object-cover opacity-100"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,123,149,.42)_0%,rgba(3,79,104,.23)_34%,rgba(4,45,57,.31)_68%,rgba(3,33,43,.48)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(2,22,38,.45),transparent_42%,rgba(0,90,170,.18)),radial-gradient(circle_at_50%_20%,rgba(255,255,255,.20),transparent_25%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,56,86,.50)_0%,rgba(0,90,112,.26)_34%,rgba(4,45,57,.45)_68%,rgba(3,28,43,.70)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(2,22,38,.66),rgba(3,50,70,.18)_42%,rgba(0,90,170,.34)),radial-gradient(circle_at_50%_34%,rgba(255,255,255,.28),transparent_24%),radial-gradient(circle_at_22%_30%,rgba(251,242,52,.22),transparent_20%),radial-gradient(circle_at_82%_26%,rgba(53,178,74,.22),transparent_22%)]" />
+          <div className="hero-halo absolute left-[-8%] top-[5%] h-[380px] w-[440px] rounded-full bg-[#39B9FF]/24" />
+          <div className="hero-halo absolute right-[-8%] top-[3%] h-[360px] w-[430px] rounded-full bg-[#F5A623]/22 [animation-delay:1.7s]" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/20 via-transparent to-transparent" />
         </div>
 
         <HeroGeometricAtmosphere />
@@ -623,25 +683,39 @@ export default function Home() {
         </div>
 
         <div className="relative z-30 mx-auto flex min-h-[820px] max-w-[1500px] flex-col items-center justify-center px-4 pb-36 pt-32 text-center sm:px-6 lg:px-8">
-          <div className="scroll-reveal shine-layer relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] px-35 py-6">
-            <div
-              className="absolute inset-0 bg-white/[.025] backdrop-blur-[1px]"
-              style={{
-                clipPath:
-                  "polygon(6% 0, 95% 0, 100% 72%, 88% 100%, 0 100%, 0 18%)",
-              }}
-            />
+          <div className="scroll-reveal hero-title-panel shine-layer relative mx-auto max-w-6xl overflow-hidden px-6 py-9 sm:px-10 lg:px-16 lg:py-12">
+            <div className="hero-halo pointer-events-none absolute left-1/2 top-1/2 h-[280px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#005AAA]/22 blur-3xl" />
+            <div className="hero-halo pointer-events-none absolute left-[58%] top-[36%] h-[220px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#35B24A]/16 blur-3xl [animation-delay:1.4s]" />
+            <div className="hero-halo pointer-events-none absolute left-[66%] top-[54%] h-[180px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6A623]/14 blur-3xl [animation-delay:2.2s]" />
 
-            <h1 className="title-glow relative text-5xl font-black leading-[0.95] tracking-[-0.07em] sm:text-6xl lg:text-8xl">
-              <span className="block text-[#1cf100]">Redefining</span>
-              <span className="mt-1 block">
-                <span className="text-[#2d00cf]">Water</span>
-                <span className="px-4 text-[#2d00cf]">&</span>
-                <span className="text-[#ffd932]">Energy</span>
+            <p className="hero-kicker relative mb-5 text-[11px] font-black uppercase tracking-[0.24em] text-white/86 drop-shadow-[0_6px_18px_rgba(0,0,0,.38)] sm:text-xs">
+              JETAMA SDN. BHD. 
+            </p>
+
+            <h1 className="title-glow relative text-5xl font-black leading-[0.92] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
+              <span className="block">
+                <span className="hero-word hero-word-1 text-[#35B24A] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
+                  Redefining
+                </span>
+              </span>
+              <span className="mt-2 block">
+                <span className="hero-word hero-word-2 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
+                  Water
+                </span>
+                <span className="hero-word hero-word-3 px-3 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(0,0,0,.42)] sm:px-4">
+                  &
+                </span>
+                <span className="hero-word hero-word-4 text-[#F6A623] drop-shadow-[0_12px_28px_rgba(0,0,0,.44)]">
+                  Energy
+                </span>
               </span>
             </h1>
 
-            <p className="relative mx-auto mt-7 max-w-3xl text-base leading-8 text-white/88 drop-shadow-[0_8px_20px_rgba(0,0,0,.35)] sm:text-lg">
+            <div className="relative mx-auto mt-7 h-[3px] max-w-md overflow-hidden rounded-full bg-white/18">
+              <div className="h-full w-full bg-gradient-to-r from-[#35B24A] via-[#005AAA] to-[#F6A623]" />
+            </div>
+
+            <p className="relative mx-auto mt-7 max-w-3xl text-base font-semibold leading-8 text-white drop-shadow-[0_8px_24px_rgba(0,0,0,.52)] sm:text-lg">
               Reliable treated water services, renewable energy initiatives and
               strategic development for Sabah.
             </p>

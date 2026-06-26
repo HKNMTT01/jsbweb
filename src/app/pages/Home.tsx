@@ -51,7 +51,7 @@ const subsidiaries = [
   {
     title: "Jetama Energy Sdn. Bhd.",
     category: "Subsidiary",
-    color: "#F5A623",
+    color: "#F6A623",
     text: "Renewable energy initiatives supporting Sabah’s low-carbon direction.",
     logo: jetamaEnergyLogo,
     link: "/subsidiary/energy",
@@ -59,7 +59,7 @@ const subsidiaries = [
   {
     title: "Solar PV Power Sdn. Bhd.",
     category: "Subsidiary",
-    color: "#F9A51A",
+    color: "#F6A623",
     text: "Large scale solar photovoltaic development under Jetama Energy.",
     logo: solarLogo,
     link: "/jointventure/solar-pv-power",
@@ -75,7 +75,7 @@ const subsidiaries = [
   {
     title: "Jetama Batu Sapi Solar Sdn. Bhd.",
     category: "Joint Venture",
-    color: "#F5A623",
+    color: "#F6A623",
     text: "Large scale solar development at Batu Sapi, Sandakan.",
     logo: jetamaLogo,
     link: "/jointventure/jetama-batu-sapi-solar",
@@ -387,15 +387,15 @@ function HeroGeometricAtmosphere() {
         <defs>
           <linearGradient id="heroBlueRibbon" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stopColor="#005AAA" stopOpacity="0.30" />
-            <stop offset="100%" stopColor="#39B9FF" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#005AAA" stopOpacity="0.08" />
           </linearGradient>
           <linearGradient id="heroGreenRibbon" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stopColor="#35B24A" stopOpacity="0.22" />
             <stop offset="100%" stopColor="#00A884" stopOpacity="0.08" />
           </linearGradient>
           <linearGradient id="heroGoldRibbon" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="#F5A623" stopOpacity="0.24" />
-            <stop offset="100%" stopColor="#FBF234" stopOpacity="0.09" />
+            <stop offset="0%" stopColor="#F6A623" stopOpacity="0.24" />
+            <stop offset="100%" stopColor="#F6A623" stopOpacity="0.09" />
           </linearGradient>
         </defs>
 
@@ -417,7 +417,7 @@ function HeroGeometricAtmosphere() {
       </svg>
 
       <div
-        className="small-geo-pulse absolute left-[12%] top-[33%] h-9 w-9 bg-[#39b9ff]/40 shadow-[0_0_30px_rgba(57,185,255,.36)]"
+        className="small-geo-pulse absolute left-[12%] top-[33%] h-9 w-9 bg-[#005AAA]/40 shadow-[0_0_30px_rgba(57,185,255,.36)]"
         style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
       />
       <div
@@ -425,7 +425,7 @@ function HeroGeometricAtmosphere() {
         style={{ clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)" }}
       />
       <div
-        className="small-geo-pulse absolute left-[72%] top-[51%] h-7 w-7 bg-[#F5A623]/42 shadow-[0_0_26px_rgba(245,166,35,.30)] [animation-delay:2.3s]"
+        className="small-geo-pulse absolute left-[72%] top-[51%] h-7 w-7 bg-[#F6A623]/42 shadow-[0_0_26px_rgba(245,166,35,.30)] [animation-delay:2.3s]"
         style={{
           clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
         }}
@@ -453,15 +453,15 @@ function GeometricBlendDivider() {
           </linearGradient>
           <linearGradient id="blendBlue" x1="0" x2="1">
             <stop offset="0%" stopColor="#005AAA" stopOpacity="0.30" />
-            <stop offset="100%" stopColor="#39B9FF" stopOpacity="0.11" />
+            <stop offset="100%" stopColor="#005AAA" stopOpacity="0.11" />
           </linearGradient>
           <linearGradient id="blendGreen" x1="0" x2="1">
             <stop offset="0%" stopColor="#35B24A" stopOpacity="0.28" />
             <stop offset="100%" stopColor="#00A884" stopOpacity="0.11" />
           </linearGradient>
           <linearGradient id="blendGold" x1="0" x2="1">
-            <stop offset="0%" stopColor="#F5A623" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#FBF234" stopOpacity="0.11" />
+            <stop offset="0%" stopColor="#F6A623" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#F6A623" stopOpacity="0.11" />
           </linearGradient>
         </defs>
 
@@ -501,7 +501,7 @@ function SectionGeometricBackground({
 }: {
   variant?: "light" | "news" | "bright";
 }) {
-  const blue = variant === "news" ? "#39B9FF" : "#005AAA";
+  const blue = variant === "news" ? "#005AAA" : "#005AAA";
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -526,7 +526,7 @@ function SectionGeometricBackground({
         style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }}
       />
       <div
-        className="premium-geo-c absolute bottom-10 left-[18%] h-24 w-[520px] bg-[#F5A623]/[.075]"
+        className="premium-geo-c absolute bottom-10 left-[18%] h-24 w-[520px] bg-[#F6A623]/[.075]"
         style={{ clipPath: "polygon(0 35%, 74% 0, 100% 65%, 22% 100%)" }}
       />
       <div
@@ -580,7 +580,7 @@ function NewsGeometricFrame() {
         style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }}
       />
       <div
-        className="premium-geo-b absolute right-[-10%] bottom-[10%] h-32 w-[58%] bg-[#FBF234]/[.08]"
+        className="premium-geo-b absolute right-[-10%] bottom-[10%] h-32 w-[58%] bg-[#F6A623]/[.08]"
         style={{ clipPath: "polygon(10% 0, 100% 32%, 84% 100%, 0 68%)" }}
       />
       <div
@@ -644,10 +644,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden bg-white text-[#102f42] selection:bg-[#fbf234] selection:text-[#062a43]">
+    <div className="overflow-hidden bg-white text-[#052B4F] selection:bg-[#F6A623] selection:text-[#052B4F]">
       <HomeMotionStyles />
 
-      <section className="relative min-h-[880px] overflow-hidden bg-[#062b39] text-white">
+      <section className="relative min-h-[880px] overflow-hidden bg-[#052B4F] text-white">
         <div className="absolute inset-0">
           <img
             src={heroImage}
@@ -656,8 +656,8 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,56,86,.50)_0%,rgba(0,90,112,.26)_34%,rgba(4,45,57,.45)_68%,rgba(3,28,43,.70)_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(2,22,38,.66),rgba(3,50,70,.18)_42%,rgba(0,90,170,.34)),radial-gradient(circle_at_50%_34%,rgba(255,255,255,.28),transparent_24%),radial-gradient(circle_at_22%_30%,rgba(251,242,52,.22),transparent_20%),radial-gradient(circle_at_82%_26%,rgba(53,178,74,.22),transparent_22%)]" />
-          <div className="hero-halo absolute left-[-8%] top-[5%] h-[380px] w-[440px] rounded-full bg-[#39B9FF]/24" />
-          <div className="hero-halo absolute right-[-8%] top-[3%] h-[360px] w-[430px] rounded-full bg-[#F5A623]/22 [animation-delay:1.7s]" />
+          <div className="hero-halo absolute left-[-8%] top-[5%] h-[380px] w-[440px] rounded-full bg-[#005AAA]/24" />
+          <div className="hero-halo absolute right-[-8%] top-[3%] h-[360px] w-[430px] rounded-full bg-[#F6A623]/22 [animation-delay:1.7s]" />
           <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/20 via-transparent to-transparent" />
         </div>
 
@@ -694,12 +694,12 @@ export default function Home() {
 
             <h1 className="title-glow relative text-5xl font-black leading-[0.92] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
               <span className="block">
-                <span className="hero-word hero-word-1 text-[#35B24A] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
+                <span className="hero-word hero-word-1 text-[#005AAA] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
                   Redefining
                 </span>
               </span>
               <span className="mt-2 block">
-                <span className="hero-word hero-word-2 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
+                <span className="hero-word hero-word-2 text-[#35B24A] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
                   Water
                 </span>
                 <span className="hero-word hero-word-3 px-3 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(0,0,0,.42)] sm:px-4">
@@ -723,7 +723,7 @@ export default function Home() {
             <div className="relative mt-9 flex flex-wrap items-center justify-center gap-4">
               <Link
                 to="/about"
-                className="inline-flex items-center gap-3 rounded-full bg-[#fbf234] px-7 py-4 text-xs font-black uppercase tracking-[0.14em] text-[#073e63] shadow-[0_18px_45px_rgba(0,0,0,.20)] transition hover:-translate-y-1 hover:bg-white"
+                className="inline-flex items-center gap-3 rounded-full bg-[#005AAA] px-7 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_18px_45px_rgba(0,90,170,.28)] transition hover:-translate-y-1 hover:bg-[#35B24A]"
               >
                 Explore Jetama
                 <ArrowRight size={16} />
@@ -750,7 +750,7 @@ export default function Home() {
             />
           ))}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#062a44]/90 via-[#062a44]/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#052B4F]/90 via-[#052B4F]/25 to-transparent" />
           <div
             className="absolute bottom-0 left-0 h-24 w-full bg-[linear-gradient(100deg,rgba(0,90,170,.22),rgba(53,178,74,.16),rgba(245,166,35,.14))]"
             style={{
@@ -763,11 +763,11 @@ export default function Home() {
         <div className="relative flex flex-col justify-center overflow-hidden px-4 py-20 sm:px-10 lg:px-16">
           <SectionGeometricBackground />
           <div className="relative">
-            <p className="scroll-reveal-right text-sm font-black uppercase tracking-[0.28em] text-[#00a884]">
+            <p className="scroll-reveal-right text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
               Our Facility
             </p>
 
-            <h2 className="scroll-reveal-right mt-3 text-4xl font-black leading-tight tracking-[-0.04em] text-[#073e63] md:text-5xl">
+            <h2 className="scroll-reveal-right mt-3 text-4xl font-black leading-tight tracking-[-0.04em] text-[#005AAA] md:text-5xl">
               Facilities that support reliable water service delivery
             </h2>
 
@@ -782,10 +782,10 @@ export default function Home() {
               {facilityCards.map((item, index) => (
                 <div
                   key={item}
-                  className="scroll-scale flex items-center gap-3 rounded-2xl border border-[#d8f1f4] bg-white/86 p-4 font-bold text-[#073e63] shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-md"
+                  className="scroll-scale flex items-center gap-3 rounded-2xl border border-[#DCEBF3] bg-white/86 p-4 font-bold text-[#005AAA] shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-md"
                   style={{ transitionDelay: `${index * 90}ms` }}
                 >
-                  <ShieldCheck className="text-[#00a884]" size={20} />
+                  <ShieldCheck className="text-[#35B24A]" size={20} />
                   {item}
                 </div>
               ))}
@@ -798,11 +798,11 @@ export default function Home() {
         <SectionGeometricBackground />
         <div className="relative mx-auto max-w-7xl">
           <div className="scroll-reveal mx-auto mb-12 max-w-3xl text-center">
-            <p className="text-sm font-black uppercase tracking-[0.28em] text-[#00a884]">
+            <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
               Explore JETAMA Group of Companies
             </p>
 
-            <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] text-[#073e63] md:text-5xl">
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] text-[#005AAA] md:text-5xl">
               Inside the JETAMA Group
             </h2>
 
@@ -833,7 +833,7 @@ export default function Home() {
                   }}
                 />
 
-                <div className="relative mb-7 flex h-32 items-center justify-center rounded-[1.6rem] bg-[#f8fbff]/90 p-5 ring-1 ring-[#d8eef5]">
+                <div className="relative mb-7 flex h-32 items-center justify-center rounded-[1.6rem] bg-[#f8fbff]/90 p-5 ring-1 ring-[#DCEBF3]">
                   <img
                     src={item.logo}
                     alt={item.title}
@@ -848,7 +848,7 @@ export default function Home() {
                   {item.category}
                 </div>
 
-                <h3 className="relative text-2xl font-black leading-tight text-[#073e63]">
+                <h3 className="relative text-2xl font-black leading-tight text-[#005AAA]">
                   {item.title}
                 </h3>
 
@@ -870,13 +870,13 @@ export default function Home() {
             style={{ clipPath: "polygon(0 0, 100% 0, 78% 100%, 0 70%)" }}
           />
           <div
-            className="premium-geo-b absolute right-0 top-0 h-24 w-80 bg-[#F5A623]/25"
+            className="premium-geo-b absolute right-0 top-0 h-24 w-80 bg-[#F6A623]/25"
             style={{ clipPath: "polygon(22% 0, 100% 0, 100% 72%, 0 100%)" }}
           />
 
           <div className="relative mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#9effbd]">
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
                 Latest Updates
               </p>
 
@@ -893,7 +893,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <Link
                 to="/news"
-                className="hidden items-center gap-3 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-[#fbf234] hover:bg-[#fbf234] hover:text-[#073e63] md:inline-flex"
+                className="hidden items-center gap-3 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#005AAA] md:inline-flex"
               >
                 View All News
                 <ArrowRight size={16} />
@@ -903,7 +903,7 @@ export default function Home() {
                 type="button"
                 aria-label="Previous news"
                 onClick={prevNews}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#fbf234] hover:text-[#073e63]"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -912,7 +912,7 @@ export default function Home() {
                 type="button"
                 aria-label="Next news"
                 onClick={nextNews}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#fbf234] hover:text-[#073e63]"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
               >
                 <ChevronRight size={20} />
               </button>
@@ -924,7 +924,7 @@ export default function Home() {
               href={activeNews.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group shine-layer relative min-h-[370px] overflow-hidden rounded-[1.8rem] border border-white/18 bg-[#073e63] shadow-[0_24px_75px_rgba(0,12,28,0.30)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_95px_rgba(0,12,28,0.42)]"
+              className="group shine-layer relative min-h-[370px] overflow-hidden rounded-[1.8rem] border border-white/18 bg-[#005AAA] shadow-[0_24px_75px_rgba(0,12,28,0.30)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_95px_rgba(0,12,28,0.42)]"
             >
               <img
                 key={`${activeNews.title}-${activeNews.image}`}
@@ -934,23 +934,23 @@ export default function Home() {
                 className="absolute inset-0 h-full w-full object-cover opacity-95 transition duration-700 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#041f35] via-[#041f35]/62 to-[#041f35]/10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#052B4F] via-[#052B4F]/62 to-[#052B4F]/10" />
               <div
                 className="absolute left-0 top-0 h-28 w-72 bg-[#35B24A]/30"
                 style={{ clipPath: "polygon(0 0, 100% 0, 75% 100%, 0 64%)" }}
               />
               <div
-                className="absolute right-0 bottom-0 h-32 w-80 bg-[#F5A623]/25"
+                className="absolute right-0 bottom-0 h-32 w-80 bg-[#F6A623]/25"
                 style={{
                   clipPath: "polygon(22% 0, 100% 32%, 100% 100%, 0 100%)",
                 }}
               />
 
-              <div className="absolute left-6 top-6 rounded-xl bg-[#fbf234] px-4 py-3 text-center shadow-xl">
-                <p className="text-3xl font-black leading-none text-[#073e63]">
+              <div className="absolute left-6 top-6 rounded-xl bg-[#F6A623] px-4 py-3 text-center shadow-xl">
+                <p className="text-3xl font-black leading-none text-[#005AAA]">
                   {activeNews.day}
                 </p>
-                <p className="mt-1 text-xs font-black uppercase text-[#073e63]">
+                <p className="mt-1 text-xs font-black uppercase text-[#005AAA]">
                   {activeNews.month}
                 </p>
               </div>
@@ -968,7 +968,7 @@ export default function Home() {
                   {activeNews.excerpt}
                 </p>
 
-                <div className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-[#fbf234]">
+                <div className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-[#F6A623]">
                   Read Full Story
                   <ArrowRight
                     size={16}
@@ -985,15 +985,15 @@ export default function Home() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-[1.6rem] border border-white/14 bg-white/12 shadow-[0_18px_55px_rgba(0,20,45,0.22)] backdrop-blur transition duration-500 hover:-translate-y-2 hover:border-[#fbf234]/45 hover:bg-white/18 hover:shadow-[0_26px_75px_rgba(0,20,45,0.32)]"
+                  className="group relative overflow-hidden rounded-[1.6rem] border border-white/14 bg-white/12 shadow-[0_18px_55px_rgba(0,20,45,0.22)] backdrop-blur transition duration-500 hover:-translate-y-2 hover:border-[#F6A623]/45 hover:bg-white/18 hover:shadow-[0_26px_75px_rgba(0,20,45,0.32)]"
                 >
                   <div
-                    className="absolute right-0 top-0 h-16 w-24 bg-[#39B9FF]/20"
+                    className="absolute right-0 top-0 h-16 w-24 bg-[#005AAA]/20"
                     style={{
                       clipPath: "polygon(28% 0, 100% 0, 100% 100%, 0 64%)",
                     }}
                   />
-                  <div className="relative h-44 overflow-hidden bg-[#073e63]">
+                  <div className="relative h-44 overflow-hidden bg-[#005AAA]">
                     <img
                       src={item.image}
                       alt={item.title}
@@ -1001,20 +1001,20 @@ export default function Home() {
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#041f35]/70 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#052B4F]/70 via-transparent to-transparent" />
 
-                    <div className="absolute left-4 top-4 rounded-xl bg-[#fbf234] px-3 py-2 text-center shadow-lg">
-                      <p className="text-xl font-black leading-none text-[#073e63]">
+                    <div className="absolute left-4 top-4 rounded-xl bg-[#F6A623] px-3 py-2 text-center shadow-lg">
+                      <p className="text-xl font-black leading-none text-[#005AAA]">
                         {item.day}
                       </p>
-                      <p className="mt-1 text-[10px] font-black uppercase text-[#073e63]">
+                      <p className="mt-1 text-[10px] font-black uppercase text-[#005AAA]">
                         {item.month}
                       </p>
                     </div>
                   </div>
 
                   <div className="relative p-5">
-                    <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.1em] text-[#9effbd]">
+                    <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.1em] text-[#35B24A]">
                       <CalendarDays size={13} />
                       {item.date}
                     </div>
@@ -1027,7 +1027,7 @@ export default function Home() {
                       {item.excerpt}
                     </p>
 
-                    <div className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-[#fbf234]">
+                    <div className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-[#F6A623]">
                       Read More
                       <ArrowRight
                         size={15}
@@ -1049,8 +1049,8 @@ export default function Home() {
                 onClick={() => setActiveNewsIndex(index)}
                 className={`h-2.5 rounded-full transition-all ${
                   activeNewsIndex === index
-                    ? "w-9 bg-[#fbf234]"
-                    : "w-2.5 bg-white/35 hover:bg-[#9effbd]"
+                    ? "w-9 bg-[#F6A623]"
+                    : "w-2.5 bg-white/35 hover:bg-[#35B24A]"
                 }`}
               />
             ))}
@@ -1058,7 +1058,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-4 py-20 text-[#073e63] sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden px-4 py-20 text-[#005AAA] sm:px-6 lg:px-8">
         <SectionGeometricBackground variant="bright" />
         <div className="relative mx-auto max-w-6xl">
           <div className="scroll-reveal shine-layer relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/82 p-7 shadow-[0_25px_80px_rgba(0,90,170,.12)] backdrop-blur-md md:p-10">
@@ -1074,11 +1074,11 @@ export default function Home() {
             />
             <div className="relative grid gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#00a884]">
+                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
                   Moving Forward
                 </p>
 
-                <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.03em] text-[#073e63] md:text-4xl lg:text-[2.8rem]">
+                <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.03em] text-[#005AAA] md:text-4xl lg:text-[2.8rem]">
                   Strengthening Water Services &
                   <span className="block text-[#005AAA]">
                     Sustainable Energy Growth
@@ -1094,7 +1094,7 @@ export default function Home() {
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
                     to="/projects"
-                    className="inline-flex items-center gap-3 rounded-full bg-[#fbf234] px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#073e63] shadow-lg transition hover:-translate-y-1 hover:bg-white"
+                    className="inline-flex items-center gap-3 rounded-full bg-[#005AAA] px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-white shadow-lg transition hover:-translate-y-1 hover:bg-[#35B24A]"
                   >
                     Explore Projects
                     <ArrowRight size={17} />
@@ -1102,7 +1102,7 @@ export default function Home() {
 
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-3 rounded-full border border-[#d8eef5] bg-white/80 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#073e63] backdrop-blur transition hover:-translate-y-1 hover:border-[#35B24A] hover:bg-white"
+                    className="inline-flex items-center gap-3 rounded-full border border-[#DCEBF3] bg-white/80 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#005AAA] backdrop-blur transition hover:-translate-y-1 hover:border-[#35B24A] hover:bg-white"
                   >
                     Contact Us
                     <ArrowRight size={17} />
@@ -1118,7 +1118,7 @@ export default function Home() {
                     <Link
                       key={card.title}
                       to={card.link}
-                      className="scroll-scale group relative overflow-hidden rounded-2xl border border-[#d8eef5] bg-white/86 p-5 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_55px_rgba(0,90,170,.14)]"
+                      className="scroll-scale group relative overflow-hidden rounded-2xl border border-[#DCEBF3] bg-white/86 p-5 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_55px_rgba(0,90,170,.14)]"
                       style={{ transitionDelay: `${index * 100}ms` }}
                     >
                       <div
@@ -1128,12 +1128,12 @@ export default function Home() {
                         }}
                       />
                       <div className="relative flex gap-4">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#073e63] text-white shadow-md transition group-hover:bg-[#fbf234] group-hover:text-[#073e63]">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#005AAA] text-white shadow-md transition group-hover:bg-[#F6A623] group-hover:text-[#005AAA]">
                           <Icon size={21} />
                         </div>
 
                         <div>
-                          <h3 className="text-lg font-black text-[#073e63]">
+                          <h3 className="text-lg font-black text-[#005AAA]">
                             {card.title}
                           </h3>
                           <p className="mt-2 text-sm leading-6 text-slate-600">

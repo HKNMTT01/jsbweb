@@ -43,6 +43,7 @@ function NavOceanWaveBackground() {
       <div className="absolute left-[54%] top-1 h-7 w-5 animate-bounce rounded-full bg-white/60 blur-[1px]" />
       <div className="absolute right-[12%] top-8 h-4 w-4 animate-ping rounded-full bg-[#67D66F]/60" />
       <div className="absolute right-[5%] top-0 h-5 w-5 animate-bounce rounded-full bg-white/65 blur-[1px]" />
+
     </div>
   );
 }
@@ -75,6 +76,7 @@ export default function Navigation() {
         { label: "Total Capability", path: "/services/total-capability" },
       ],
     },
+    { path: "/sustainability", label: "SUSTAINABILITY" },
     {
       path: "/subsidiary",
       label: "SUBSIDIARIES",

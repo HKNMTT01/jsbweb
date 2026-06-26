@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import Root from "./components/Root";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -9,6 +9,7 @@ import JointVenture from "./pages/JointVenture";
 import JointVentureDetails from "./pages/JointVentureDetails";
 import Services from "./pages/Services";
 import ServicesDetail from "./pages/ServicesDetail";
+import Sustainability from "./pages/Sustainability";
 import Projects from "./pages/Projects";
 import ProjectsDetail from "./pages/ProjectsDetail";
 import Careers from "./pages/Careers";
@@ -26,42 +27,44 @@ import DesignAdmin from "./pages/admin/DesignAdmin";
 import AdminPreview from "./pages/admin/AdminPreview";
 
 export const router = createBrowserRouter([
-  { path: "/admin/login", Component: AdminLogin },
+  { path: "/admin/login", element: <AdminLogin /> },
   {
     path: "/admin",
-    Component: AdminLayout,
+    element: <AdminLayout />,
     children: [
-      { index: true, Component: AdminDashboard },
-      { path: "dashboard", Component: AdminDashboard },
-      { path: "news", Component: NewsAdmin },
-      { path: "gallery", Component: GalleryAdmin },
-      { path: "careers", Component: CareersAdmin },
-      { path: "content", Component: ContentAdmin },
-      { path: "design", Component: DesignAdmin },
-      { path: "preview", Component: AdminPreview },
+      { index: true, element: <AdminDashboard /> },
+      { path: "dashboard", element: <AdminDashboard /> },
+      { path: "news", element: <NewsAdmin /> },
+      { path: "gallery", element: <GalleryAdmin /> },
+      { path: "careers", element: <CareersAdmin /> },
+      { path: "content", element: <ContentAdmin /> },
+      { path: "design", element: <DesignAdmin /> },
+      { path: "preview", element: <AdminPreview /> },
     ],
   },
   {
     path: "/",
-    Component: Root,
+    element: <Root />,
     children: [
-      { index: true, Component: Home },
-      { path: "about", Component: About },
-      { path: "about/:slug", Component: AboutDetail },
-      { path: "subsidiary", Component: Subsidiary },
-      { path: "subsidiary/:type", Component: SubsidiaryDetails },
-      { path: "jointventure", Component: JointVenture },
-      { path: "jointventure/:type", Component: JointVentureDetails },
-      { path: "services", Component: Services },
-      { path: "services/:slug", Component: ServicesDetail },
-      { path: "projects", Component: Projects },
-      { path: "projects/:slug/:segment", Component: ProjectsDetail },
-      { path: "projects/:slug", Component: ProjectsDetail },
-      { path: "careers", Component: Careers },
-      { path: "news", Component: News },
-      { path: "news/:section", Component: News },
-      { path: "contact", Component: Contact },
-      { path: "*", Component: NotFound },
+      { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "about/:slug", element: <AboutDetail /> },
+      { path: "services", element: <Services /> },
+      { path: "services/:slug", element: <ServicesDetail /> },
+      { path: "sustainability", element: <Sustainability /> },
+      { path: "sustanability", element: <Navigate to="/sustainability" replace /> },
+      { path: "subsidiary", element: <Subsidiary /> },
+      { path: "subsidiary/:type", element: <SubsidiaryDetails /> },
+      { path: "jointventure", element: <JointVenture /> },
+      { path: "jointventure/:type", element: <JointVentureDetails /> },
+      { path: "projects", element: <Projects /> },
+      { path: "projects/:slug/:segment", element: <ProjectsDetail /> },
+      { path: "projects/:slug", element: <ProjectsDetail /> },
+      { path: "careers", element: <Careers /> },
+      { path: "news", element: <News /> },
+      { path: "news/:section", element: <News /> },
+      { path: "contact", element: <Contact /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ]);

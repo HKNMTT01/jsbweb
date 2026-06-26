@@ -7,6 +7,7 @@ import {
   Building2,
   Newspaper,
   Briefcase,
+  Leaf,
 } from "lucide-react";
 
 import logoImage from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
@@ -152,6 +153,20 @@ export default function Footer() {
                     className="shrink-0 text-[#fffb29]"
                   />
                   Total Capability
+                </Link>
+              </li>
+
+
+              <li>
+                <Link
+                  to="/sustainability"
+                  className="flex items-center gap-4 transition duration-300 hover:text-[#7fffe5]"
+                >
+                  <Leaf
+                    size={20}
+                    className="shrink-0 text-[#fffb29]"
+                  />
+                  Sustainability
                 </Link>
               </li>
 

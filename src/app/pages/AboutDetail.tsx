@@ -36,10 +36,8 @@ import paparLocationImage from "@/assets/PAPAR.jpg";
 import tamparuliLocationImage from "@/assets/TAMPARULI.jpg";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 import bodChairman from "@/assets/Datuk Faisyal.png";
-import bodAbidin from "@/assets/Datuk Abidin.png";
+import bodSofian from "@/assets/Datuk Abidin.png";
 import bodPeter from "@/assets/Datuk Peter.png";
-import bodKassim from "@/assets/Datuk Kassim.png";
-import bodEmerson from "@/assets/Emerson.png";
 import bodAkian from "@/assets/DrAkian.png";
 
 
@@ -281,6 +279,115 @@ function Sidebar() {
 }
 
 function StandardContent({ page }: { page: AboutPage }) {
+  const isCeoMessage = Boolean(page.person);
+  const isCompanyProfile = page.title === "Company Profile";
+
+  if (isCeoMessage) {
+    const [opening, ...messageParagraphs] = page.content ?? [];
+
+    return (
+      <article className="scroll-reveal">
+        <section className="relative">
+          <div className="pointer-events-none absolute -right-16 top-8 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+          <div className="pointer-events-none absolute -left-12 bottom-8 h-64 w-64 rounded-full bg-[#41B650]/8 blur-3xl" />
+          <div className="pointer-events-none absolute right-[18%] top-24 h-28 w-52 rotate-[-10deg] bg-[#F5A623]/10 blur-3xl" />
+
+          <div className="relative grid gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(360px,0.88fr)] lg:items-stretch">
+            <div className="flex min-w-0 flex-col justify-between py-4 lg:min-h-[760px] lg:pr-4">
+              <div>
+
+                <h2 className="max-w-3xl font-serif text-3xl font-normal italic leading-tight text-[#052b4f] sm:text-4xl">
+                  {opening}
+                </h2>
+
+                <div className="my-7 flex items-center gap-3">
+                  <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+                  <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+                  <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+                </div>
+
+                <div className="max-w-4xl space-y-5 text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+                  {messageParagraphs.map((text, index) => (
+                    <p
+                      key={text}
+                      className="relative pl-5 before:absolute before:left-0 before:top-3 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]"
+                      style={{ animationDelay: `${index * 70}ms` }}
+                    >
+                      {text}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <aside className="relative flex min-h-[760px] flex-col items-center justify-end overflow-visible pt-4 lg:sticky lg:top-24 lg:-mr-10">
+              <div className="pointer-events-none absolute bottom-24 h-[62%] w-[82%] rounded-full bg-gradient-to-t from-[#005AAA]/12 via-[#41B650]/7 to-transparent blur-[70px]" />
+              <div className="pointer-events-none absolute right-4 top-10 h-32 w-32 rounded-full bg-[#F5A623]/12 blur-3xl" />
+
+              <div className="relative flex flex-1 items-end justify-center">
+                <img
+                  src={ceoImage}
+                  alt={page.person}
+                  className="relative z-10 h-[620px] w-auto max-w-none object-contain object-bottom drop-shadow-[0_42px_52px_rgba(0,68,130,0.20)] sm:h-[660px] lg:h-[700px] xl:h-[735px]"
+                  style={{ mixBlendMode: "multiply" }}
+                />
+              </div>
+
+              <div className="relative z-20 -mt-2 w-full max-w-[420px] text-center">
+
+                <h3 className="mt-2 text-2xl font-black leading-tight text-[#052b4f]">
+                  {page.person}
+                  {page.honorific && (
+                    <span className="ml-2 align-baseline text-[12px] font-semibold tracking-[0.18em] text-slate-500">
+                      {page.honorific}
+                    </span>
+                  )}
+                </h3>
+
+                <p className="mt-1 text-sm font-semibold text-slate-600">{page.role}</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </article>
+    );
+  }
+
+  if (isCompanyProfile) {
+    return (
+      <article className="scroll-reveal">
+        <section className="relative">
+          <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#005AAA]/7 blur-3xl" />
+          <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
+
+          <div className="relative">
+
+            <h2 className="font-serif text-3xl font-normal italic text-[#052b4f] sm:text-4xl">
+              Company Profile
+            </h2>
+
+            <div className="mt-5 flex items-center gap-3">
+              <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+              <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+            </div>
+
+            <div className="mt-9 columns-1 gap-10 text-justify text-[15.5px] leading-8 text-slate-700 sm:text-base lg:columns-2">
+              {page.content?.map((text, index) => (
+                <p key={text} className="mb-6 break-inside-avoid">
+                  <span className="mr-3 align-baseline font-serif text-2xl italic text-[#005AAA]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {text}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      </article>
+    );
+  }
+
   return (
     <article className="scroll-reveal">
       <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">{page.title}</h2>
@@ -290,26 +397,10 @@ function StandardContent({ page }: { page: AboutPage }) {
           <p key={text} className="text-justify">{text}</p>
         ))}
       </div>
-
-      {page.person && (
-        <div className="mt-10 border-l-4 border-[#41B650] bg-[#f6fbff] px-6 py-5">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#41B650]">Message By</p>
-
-          <h3 className="flex items-end gap-2 text-2xl font-bold text-[#052b4f]">
-            <span>{page.person}</span>
-            {page.honorific && (
-              <span className="mb-[2px] text-[13px] font-medium tracking-wide text-slate-500">
-                {page.honorific}
-              </span>
-            )}
-          </h3>
-
-          <p className="mt-1 text-sm text-slate-600">{page.role}</p>
-        </div>
-      )}
     </article>
   );
 }
+
 
 function VisionMissionContent() {
   const coreValues = [
@@ -423,22 +514,23 @@ function VisionMissionContent() {
 }
 
 function BoardDirectorsContent() {
+  const chairman = {
+    name: "Datuk Hj. Faisyal Bin Datuk Yusof Hamdain Diego",
+    position: "Chairman",
+    label: "Board Chairman",
+    image: bodChairman,
+    quote:
+      "Providing strategic governance and leadership direction for sustainable corporate growth, responsible decision-making and long-term service excellence.",
+  };
+
   const directors = [
     {
-      name: "Datuk Hj. Faisyal Bin Datuk Yusof Hamdain Diego",
-      position: "Chairman",
-      label: "JETAMA SDN BHD",
-      image: bodChairman,
-      quote:
-        "Providing strategic governance and leadership direction for sustainable corporate growth.",
-    },
-    {
-      name: "Datuk Abidin Bin Madingkir",
+      name: "Datuk Mohd Sofian Alfian Nair",
       position: "Director",
       label: "Board Member",
-      image: bodAbidin,
+      image: bodSofian,
       quote:
-        "Supporting responsible governance, strategic oversight and institutional direction.",
+        "Supporting responsible governance, strategic oversight and institutional direction for JETAMA.",
     },
     {
       name: "Datuk Jino @ Peter Bin Allion @ Alliun, J.P",
@@ -446,23 +538,7 @@ function BoardDirectorsContent() {
       label: "Board Member",
       image: bodPeter,
       quote:
-        "Contributing experience and leadership insight to JETAMA’s corporate direction.",
-    },
-    {
-      name: "Datuk Kassim Bin Razali",
-      position: "Director",
-      label: "Board Member",
-      image: bodKassim,
-      quote:
-        "Strengthening board oversight through responsible and experienced leadership.",
-    },
-    {
-      name: "Emerson Simon",
-      position: "Director",
-      label: "Board Member",
-      image: bodEmerson,
-      quote:
-        "Providing governance support and professional insight for JETAMA’s continued growth.",
+        "Contributing leadership experience and board insight to strengthen JETAMA’s corporate direction.",
     },
     {
       name: "Dr. Akian Bin Ahkiew",
@@ -474,121 +550,113 @@ function BoardDirectorsContent() {
     },
   ];
 
-  const chairman = directors[0];
-  const boardMembers = directors.slice(1);
-
   return (
     <article className="scroll-reveal">
-      <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
-        Board of Directors
-      </h2>
+      <section className="relative">
+        <div className="pointer-events-none absolute -right-20 top-10 h-80 w-80 rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="pointer-events-none absolute -left-12 bottom-12 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
 
-      <div className="space-y-6 text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
-        <p>
-          The Board of Directors provides strategic direction, corporate
-          governance and oversight to ensure JETAMA operates responsibly and
-          effectively.
-        </p>
-        <p>
-          Their leadership supports business continuity, sustainable planning
-          and transparent decision-making across the organisation.
-        </p>
-      </div>
+        <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(260px,0.82fr)] lg:items-center">
+          <div className="min-w-0 py-3 lg:pr-4">
 
-      <div className="group relative mt-10 w-full overflow-hidden rounded-[2.3rem] border border-[#dcebf3] bg-white text-left shadow-[0_25px_85px_rgba(0,90,170,0.14)] transition duration-500 hover:-translate-y-1 hover:border-[#41B650]/70 hover:shadow-[0_35px_100px_rgba(0,90,170,0.20)]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f8fbff] via-white to-[#eefbf3]" />
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#005AAA]/10 blur-3xl" />
+            <h2 className="max-w-3xl font-serif text-3xl font-normal italic leading-tight text-[#052b4f] sm:text-4xl">
+              Board of Directors
+            </h2>
 
-        <div className="relative grid lg:grid-cols-[0.88fr_1.12fr]">
-          <div className="relative overflow-hidden bg-[#eef6fb]">
-            <div className="absolute left-5 top-5 z-10 rounded-full bg-[#052b4f] px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-[#F5A623] shadow-lg">
-              Chairman
+            <div className="my-7 flex items-center gap-3">
+              <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+              <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
             </div>
+
+            <div className="max-w-4xl space-y-5 text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+              <p className="relative pl-5 before:absolute before:left-0 before:top-3 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                The Board of Directors provides strategic direction, corporate governance and oversight to ensure JETAMA operates responsibly and effectively.
+              </p>
+              <p className="relative pl-5 before:absolute before:left-0 before:top-3 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                Their leadership supports business continuity, sustainable planning and transparent decision-making across the organisation.
+              </p>
+              <p className="relative pl-5 before:absolute before:left-0 before:top-3 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                Under the Chairman’s guidance, the board continues to uphold strong governance, accountability and service commitment for the communities served by JETAMA.
+              </p>
+            </div>
+
+            <div className="mt-9">
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
+                Chairman
+              </p>
+              <h3 className="mt-2 text-2xl font-black leading-tight text-[#052b4f] sm:text-3xl">
+                {chairman.name}
+              </h3>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-[#005AAA]">
+                {chairman.label}
+              </p>
+            </div>
+          </div>
+
+          <aside className="relative flex min-h-[470px] items-end justify-center overflow-visible">
+            <div className="pointer-events-none absolute bottom-0 h-[72%] w-[88%] rounded-full bg-gradient-to-t from-[#005AAA]/10 via-[#41B650]/7 to-transparent blur-2xl" />
+            <div className="pointer-events-none absolute right-8 top-8 h-28 w-28 rounded-full bg-[#F5A623]/12 blur-3xl" />
 
             <img
               src={chairman.image}
               alt={chairman.name}
-              className="h-[460px] w-full object-cover object-top transition duration-700 group-hover:scale-105"
+              className="relative z-10 h-[470px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_28px_38px_rgba(0,68,130,0.18)] sm:h-[510px] lg:h-[540px]"
             />
-          </div>
+          </aside>
+        </div>
 
-          <div className="relative flex flex-col justify-center p-8 sm:p-11">
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">
-              Board Leadership
-            </p>
-
-            <h3 className="text-3xl font-black leading-tight text-[#052b4f] sm:text-4xl">
-              {chairman.name}
+        <div className="relative mt-16">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-[3px] w-16 rounded-full bg-[#005AAA]" />
+            <span className="h-[3px] w-8 rounded-full bg-[#41B650]" />
+            <h3 className="font-serif text-2xl font-normal italic text-[#052b4f]">
+              Board Members
             </h3>
+          </div>
 
-            <p className="mt-4 text-sm font-bold uppercase tracking-[0.18em] text-[#005AAA]">
-              {chairman.label}
-            </p>
+          <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
+            {directors.map((director, index) => (
+              <div
+                key={director.name}
+                className="group text-left"
+                style={{ transitionDelay: `${index * 80}ms` }}
+              >
+                <div className="relative flex min-h-[340px] items-end justify-center overflow-visible">
+                  <div className="pointer-events-none absolute bottom-0 h-[70%] w-[82%] rounded-full bg-gradient-to-t from-[#005AAA]/10 via-[#41B650]/7 to-transparent blur-2xl transition duration-500 group-hover:scale-110" />
+                  <img
+                    src={director.image}
+                    alt={director.name}
+                    className="relative z-10 h-[340px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_24px_35px_rgba(0,68,130,0.18)] transition duration-700 group-hover:-translate-y-2 sm:h-[365px]"
+                  />
+                </div>
 
-            <p className="mt-6 max-w-2xl text-[15px] leading-8 text-slate-700">
-              {chairman.quote}
-            </p>
+                <div className="mt-5">
+                  <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#41B650]">
+                    {director.position}
+                  </p>
 
-            <div className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-[#052b4f] px-5 py-3 text-sm font-bold text-[#005AAA]">
-              Chairman Profile
-              <ShieldCheck size={15} />
-            </div>
+                  <h3 className="text-xl font-black leading-tight text-[#052b4f]">
+                    {director.name}
+                  </h3>
+
+                  <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-[#005AAA]">
+                    {director.label}
+                  </p>
+
+                  <p className="mt-4 text-sm leading-7 text-slate-600">
+                    {director.quote}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-
-      <div className="mt-12">
-        <div className="mb-6 flex items-center gap-3">
-          <span className="h-1.5 w-12 rounded-full bg-[#005AAA]" />
-          <h3 className="text-xl font-black text-[#052b4f]">
-            Board Members
-          </h3>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {boardMembers.map((director, index) => (
-            <div
-              key={director.name}
-              className="group relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white text-left shadow-[0_18px_50px_rgba(15,23,42,0.08)] transition duration-500 hover:-translate-y-2 hover:border-[#41B650]/60 hover:shadow-[0_28px_70px_rgba(0,90,170,0.18)]"
-              style={{ transitionDelay: `${index * 70}ms` }}
-            >
-              <div className="relative overflow-hidden bg-[#f4f9fc]">
-                <div className="absolute left-4 top-4 z-10 rounded-full bg-[#052b4f] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[#F5A623]">
-                  {director.position}
-                </div>
-
-                <img
-                  src={director.image}
-                  alt={director.name}
-                  className="h-[345px] w-full object-cover object-top transition duration-700 group-hover:scale-105"
-                />
-              </div>
-
-              <div className="p-5">
-                <h3 className="text-lg font-black leading-tight text-[#052b4f]">
-                  {director.name}
-                </h3>
-
-                <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-[#005AAA]">
-                  {director.label}
-                </p>
-
-                <p className="mt-4 text-sm leading-7 text-slate-600">
-                  {director.quote}
-                </p>
-
-                <div className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#41B650]">
-                  Board Member
-                  <ShieldCheck size={15} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
     </article>
   );
 }
+
 
 function TopLevelManagementContent() {
   const management = [
@@ -658,45 +726,33 @@ function TopLevelManagementContent() {
   const seniorManagers = management.filter((person) => person.level === "senior");
   const generalManagers = management.filter((person) => person.level === "general");
 
-  const renderManagerCard = (person: (typeof management)[number], index: number) => (
-    <div
-      key={person.name}
-      className="group relative overflow-hidden rounded-[1.8rem] border border-white bg-white shadow-[0_18px_55px_rgba(15,23,42,0.09)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_28px_75px_rgba(0,90,170,0.18)]"
-      style={{ transitionDelay: `${index * 70}ms` }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3]" />
-      <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234]" />
-
-      <div className="absolute right-4 top-4 z-20 rounded-full bg-[#052b4f] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#F5A623] shadow-lg">
-        {person.tag}
+  const renderManager = (person: (typeof management)[number], index: number) => (
+    <div key={person.name} className="group" style={{ transitionDelay: `${index * 70}ms` }}>
+      <div className="relative flex min-h-[330px] items-end justify-center overflow-visible">
+        <div className="pointer-events-none absolute bottom-0 h-[72%] w-[80%] rounded-full bg-gradient-to-t from-[#005AAA]/9 via-[#41B650]/6 to-transparent blur-2xl transition duration-500 group-hover:scale-110" />
+        <img
+          src={person.image}
+          alt={person.name}
+          className="relative z-10 h-[330px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_22px_35px_rgba(0,68,130,0.16)] transition duration-700 group-hover:-translate-y-2"
+        />
       </div>
 
-      <div className="relative">
-        <div className="overflow-hidden bg-[#eef6fb]">
-          <img
-            src={person.image}
-            alt={person.name}
-            className="h-[340px] w-full object-cover object-top transition duration-700 group-hover:scale-105"
-          />
-        </div>
-
-        <div className="p-6">
-          <p className="mb-3 inline-flex rounded-full bg-[#eaf8ef] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#087629]">
-            {person.division}
-          </p>
-
-          <h4 className="text-xl font-black leading-tight text-[#052b4f]">
-            {person.name}
-          </h4>
-
-          <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-[#005AAA]">
-            {person.role}
-          </p>
-
-          <p className="mt-4 text-sm leading-7 text-slate-600">
-            {person.summary}
-          </p>
-        </div>
+      <div className="mt-5">
+        <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#41B650]">
+          {person.tag}
+        </p>
+        <h4 className="text-xl font-black leading-tight text-[#052b4f]">
+          {person.name}
+        </h4>
+        <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-[#005AAA]">
+          {person.role}
+        </p>
+        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+          {person.division}
+        </p>
+        <p className="mt-4 text-sm leading-7 text-slate-600">
+          {person.summary}
+        </p>
       </div>
     </div>
   );
@@ -707,84 +763,76 @@ function TopLevelManagementContent() {
         Top Level Management
       </h2>
 
-      <p className="mb-10 max-w-3xl text-base leading-8 text-slate-700">
-        JETAMA’s leadership team provides strategic direction, operational
-        guidance and corporate governance support across the organisation.
-      </p>
+      <div className="relative">
+        <div className="pointer-events-none absolute -right-16 top-10 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="pointer-events-none absolute -left-12 bottom-10 h-64 w-64 rounded-full bg-[#41B650]/8 blur-3xl" />
 
-      <section className="relative overflow-hidden rounded-[2.6rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#eef8f2] p-6 shadow-[0_28px_90px_rgba(0,90,170,0.10)] lg:p-8">
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#41B650]/12 blur-3xl" />
+        <p className="relative mb-10 max-w-3xl text-base leading-8 text-slate-700">
+          JETAMA’s leadership team provides strategic direction, operational
+          guidance and corporate governance support across the organisation.
+        </p>
 
-        <div className="relative">
-          <div className="group relative overflow-hidden rounded-[2.3rem] border border-white bg-white shadow-[0_25px_85px_rgba(0,90,170,0.16)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_35px_100px_rgba(0,90,170,0.22)]">
-            <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3]" />
-            <div className="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-[#005AAA] via-[#41B650] to-[#fbf234]" />
-
-            <div className="absolute right-5 top-5 z-20 rounded-full bg-[#052b4f] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#F5A623] shadow-lg">
-              {ceo.tag}
-            </div>
-
-            <div className="relative grid lg:grid-cols-[0.88fr_1.12fr]">
-              <div className="overflow-hidden bg-[#eef6fb]">
-                <img
-                  src={ceo.image}
-                  alt={ceo.name}
-                  className="h-[520px] w-full object-cover object-top transition duration-700 group-hover:scale-105"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center p-8 sm:p-11">
-                <p className="mb-4 inline-flex w-fit rounded-full bg-[#eaf8ef] px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-[#087629]">
-                  {ceo.division}
-                </p>
-
-                <h3 className="text-3xl font-black leading-tight tracking-[-0.03em] text-[#052b4f] sm:text-4xl">
-                  {ceo.name}
-                </h3>
-
-                <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#005AAA]">
-                  {ceo.role}
-                </p>
-
-                <p className="mt-6 max-w-2xl text-[15px] leading-8 text-slate-700">
-                  {ceo.summary}
-                </p>
-              </div>
-            </div>
+        <div className="relative grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+          <div className="relative flex min-h-[480px] items-end justify-center overflow-visible">
+            <div className="pointer-events-none absolute bottom-0 h-[72%] w-[78%] rounded-full bg-gradient-to-t from-[#005AAA]/10 via-[#41B650]/7 to-transparent blur-2xl" />
+            <img
+              src={ceo.image}
+              alt={ceo.name}
+              className="relative z-10 h-[500px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_28px_42px_rgba(0,68,130,0.18)]"
+            />
           </div>
 
-          <div className="mt-12">
-            <div className="mb-6 flex items-center gap-3">
-              <span className="h-1.5 w-12 rounded-full bg-[#005AAA]" />
-              <h3 className="text-xl font-black text-[#052b4f]">
-                General Managers
-              </h3>
+          <div className="max-w-2xl">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
+              {ceo.division}
+            </p>
+            <h3 className="font-serif text-3xl font-normal italic leading-tight text-[#052b4f] sm:text-4xl">
+              {ceo.name}
+            </h3>
+            <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#005AAA]">
+              {ceo.role}
+            </p>
+            <div className="my-6 flex items-center gap-3">
+              <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+              <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
             </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {generalManagers.map(renderManagerCard)}
-            </div>
+            <p className="text-[15px] leading-8 text-slate-700">
+              {ceo.summary}
+            </p>
           </div>
-
-          <div className="mt-12">
-            <div className="mb-6 flex items-center gap-3">
-              <span className="h-1.5 w-12 rounded-full bg-[#005AAA]" />
-              <h3 className="text-xl font-black text-[#052b4f]">
-                Senior General Managers
-              </h3>
-            </div>
-
-            <div className="grid gap-6 lg:grid-cols-2">
-              {seniorManagers.map(renderManagerCard)}
-            </div>
-          </div>
-
         </div>
-      </section>
+
+        <div className="relative mt-14">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-1.5 w-12 rounded-full bg-[#005AAA]" />
+            <h3 className="text-xl font-black text-[#052b4f]">
+              Senior General Managers
+            </h3>
+          </div>
+
+          <div className="grid gap-x-10 gap-y-14 md:grid-cols-2">
+            {seniorManagers.map(renderManager)}
+          </div>
+        </div>
+
+        <div className="relative mt-16">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="h-1.5 w-12 rounded-full bg-[#005AAA]" />
+            <h3 className="text-xl font-black text-[#052b4f]">
+              General Managers
+            </h3>
+          </div>
+
+          <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
+            {generalManagers.map(renderManager)}
+          </div>
+        </div>
+      </div>
     </article>
   );
 }
+
 
 function ShareholdersContent() {
   const shareholders = [
@@ -1108,11 +1156,11 @@ function ConcessionAreaContent() {
                 className="group relative overflow-hidden rounded-[2.3rem] border border-white bg-white text-left shadow-[0_28px_90px_rgba(0,90,170,0.16)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_38px_120px_rgba(0,90,170,0.24)]"
                 style={{ transitionDelay: `${index * 80}ms` }}
               >
-                <div className="relative h-[460px] overflow-hidden sm:h-[560px] xl:h-[620px]">
+                <div className="relative h-[420px] overflow-hidden bg-white sm:h-[480px] xl:h-[520px]">
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="h-full w-full object-cover transition duration-[1200ms] group-hover:scale-105"
+                    className="h-full w-full object-contain p-3 transition duration-[1200ms] group-hover:scale-[1.02]"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/80 via-[#052b4f]/10 to-transparent" />
@@ -1160,7 +1208,7 @@ function ConcessionAreaContent() {
             className="max-h-[94vh] w-full max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-[#005AAA]">
+            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-white">
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#F5A623]">
                 Concession Area Viewer
               </p>
@@ -1174,11 +1222,11 @@ function ConcessionAreaContent() {
             {activeViewer === "coverage" ? (
               <div className="grid max-h-[78vh] overflow-y-auto xl:grid-cols-[1fr_330px]">
                 <div className="overflow-auto bg-[#eef6fb] p-4">
-                  <div className="relative mx-auto h-[820px] min-w-[980px] overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-inner">
+                  <div className="relative mx-auto h-[min(72vh,760px)] w-full max-w-5xl overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-inner">
                     <img
                       src={aiConcessionMap}
                       alt="Zoomed JETAMA concession area map"
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain p-3"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/35 via-transparent to-transparent" />
                     {renderPins(true)}

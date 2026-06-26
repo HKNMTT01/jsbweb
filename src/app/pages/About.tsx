@@ -267,7 +267,7 @@ export default function About() {
 
       <section className="py-8 lg:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-[2.5rem] bg-gradient-to-br from-[#042B4D] via-[#063B66] to-[#085A8C] p-8 shadow-[0_24px_80px_rgba(0,44,85,0.08)] md:p-12">
+          <div className="rounded-[2.5rem] bg-gradient-to-br from-[#042B4D] via-[#005AAA] to-[#085A8C] p-8 shadow-[0_24px_80px_rgba(0,44,85,0.08)] md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
               <div>
                 <h2 className="mt-6 text-5xl font-black leading-[1.05] md:text-6xl">
@@ -292,7 +292,7 @@ export default function About() {
                 <div className="mt-8 flex items-center gap-3">
                   <div className="h-1.5 w-16 rounded-full bg-[#41B650]" />
                   <div className="h-1.5 w-8 rounded-full bg-[#00AEEF]" />
-                  <div className="h-1.5 w-4 rounded-full bg-white/70" />
+                  <div className="h-1.5 w-4 rounded-full bg-[#F6A623]" />
                 </div>
               </div>
 
@@ -307,7 +307,7 @@ export default function About() {
                       className="group relative overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-[#EAF7FF] via-[#F4FFFA] to-[#E8FFF0] p-6 shadow-[0_10px_30px_rgba(0,90,170,0.08)] transition-all duration-500 hover:-translate-y-2 hover:border-[#41B650]/30 hover:shadow-[0_20px_50px_rgba(0,90,170,0.18)]"
                     >
                       <div className="mb-4 flex items-center justify-between">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#005AAA] to-[#41B650] text-white shadow-lg">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#005AAA] to-[#005AAA] text-white shadow-lg">
                           <Icon size={22} />
                         </div>
 

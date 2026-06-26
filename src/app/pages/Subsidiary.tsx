@@ -199,7 +199,7 @@ export default function Subsidiary() {
 
   return (
     <main className="overflow-hidden bg-[#f7fbff] text-[#1f2933]">
-      <section className="relative isolate overflow-hidden bg-[#f7fbff] pb-24 pt-36 text-slate-900">
+      <section className="relative isolate overflow-hidden bg-[#f7fbff] pb-24 pt-32 text-slate-900">
         <CorporateHeroAtmosphere />
 <img
           src={
@@ -208,7 +208,7 @@ export default function Subsidiary() {
               : waterHero
           }
           alt={pageTitle}
-          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-20"
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.14]"
         />
 
         <div className="absolute inset-0 bg-transparent" />
@@ -225,9 +225,15 @@ export default function Subsidiary() {
           </div>
 
           <div className="max-w-4xl">
-            <h1 className="corporate-hero-title mt-6 text-5xl font-black leading-[1.05] text-[#005AAA] sm:text-6xl lg:text-7xl">
+            <h1 className="corporate-hero-title mt-6 font-serif text-4xl font-normal italic leading-tight text-[#005AAA] sm:text-5xl lg:text-6xl">
               {pageTitle}
             </h1>
+
+            <div className="mt-5 flex items-center gap-3">
+              <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+              <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+            </div>
 
             <p className="corporate-hero-copy mt-7 max-w-3xl text-lg leading-9 text-slate-600 sm:text-xl">
               {selectedSubsidiary
@@ -249,9 +255,9 @@ export default function Subsidiary() {
 
 function SubsidiaryOverview() {
   return (
-    <section className="relative -mt-20 z-10 bg-white pb-20 pt-8">
+    <section className="relative z-10 bg-white pb-20 pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl p-7 shadow-[0_28px_85px_rgba(0,90,170,0.12)] sm:p-10">
+        <div className="relative">
           <div className="text-center">
             <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
               Jetama Subsidiaries Chart
@@ -272,7 +278,7 @@ function SubsidiaryOverview() {
 
           <div className="mt-14 flex flex-col items-center">
 
-            <div className="mt-8 grid w-full gap-6 lg:grid-cols-3">
+            <div className="mx-auto mt-8 grid w-full max-w-5xl gap-8 md:grid-cols-2">
               {subsidiaryCards.map((item) => {
                 const Icon = item.icon;
 
@@ -280,7 +286,7 @@ function SubsidiaryOverview() {
                   <Link
                     key={item.title}
                     to={item.path}
-                    className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-white via-[#f8fbff] to-white p-7 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]"
+                    className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-white via-[#f8fbff] to-white p-8 text-center shadow-[0_18px_55px_rgba(0,44,85,0.08)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]"
                   >
                     <div
                       className={`absolute inset-x-0 top-0 h-2 bg-gradient-to-r ${item.color}`}
@@ -288,7 +294,7 @@ function SubsidiaryOverview() {
 
                     <div className="absolute -right-14 -top-14 h-32 w-32 rounded-full bg-[#35b24a]/10 transition group-hover:scale-125" />
 
-                    <div className="flex h-36 items-center justify-center rounded-[1.5rem] bg-white p-5 shadow-inner">
+                    <div className="flex h-40 items-center justify-center rounded-[1.5rem] bg-white/70 p-5">
                       <img
                         src={item.logo}
                         alt={item.title}
@@ -296,7 +302,7 @@ function SubsidiaryOverview() {
                       />
                     </div>
 
-                    <div className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#052b4f] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#005AAA]">
+                    <div className="mx-auto mt-7 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#005AAA]">
                       <Icon size={14} />
                       Subsidiary
                     </div>
@@ -322,9 +328,9 @@ function SubsidiaryOverview() {
 
 function JetamaWaterDetail() {
   return (
-    <section className="relative -mt-20 z-10 bg-white pb-20 pt-8">
+    <section className="relative z-10 bg-white pb-20 pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl shadow-[0_28px_85px_rgba(0,90,170,0.12)]">
+        <div className="relative overflow-hidden">
           <div className="relative min-h-[560px] overflow-hidden">
             <img
               src={waterHero}
@@ -364,7 +370,7 @@ function JetamaWaterDetail() {
               {waterStats.map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-[1.5rem] border border-slate-200 bg-[#f8fbff] p-5 shadow-sm"
+                  className="rounded-[1.5rem] bg-[#f8fbff] p-5 shadow-sm"
                 >
                   <div className="text-3xl font-black text-[#0b2f7f]">
                     {item.value}
@@ -401,7 +407,7 @@ function JetamaWaterDetail() {
                 </p>
               </div>
 
-              <div className="rounded-[2rem] border border-slate-200 bg-[#f8fbff] p-8">
+              <div className="rounded-[2rem] bg-[#f8fbff] p-8">
                 <div className="flex items-start gap-4">
                   <div className="rounded-2xl bg-[#eaf8ee] p-4 text-[#68bd00]">
                     <Target size={28} />
@@ -442,7 +448,7 @@ function JetamaWaterDetail() {
                 {waterPlants.map((plant) => (
                   <article
                     key={plant.title}
-                    className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.12)]"
+                    className="overflow-hidden rounded-[2rem] bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.12)]"
                   >
                     <div className="h-56 overflow-hidden">
                       <img
@@ -479,7 +485,7 @@ function JetamaWaterDetail() {
                   return (
                     <article
                       key={item.title}
-                      className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.12)]"
+                      className="group rounded-[2rem] bg-white p-7 shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.12)]"
                     >
                       <div className="mb-6 inline-flex rounded-2xl bg-[#edf8ff] p-4 text-[#0b2f7f] transition group-hover:bg-[#68bd00] group-hover:text-[#005AAA]">
                         <Icon size={28} />
@@ -506,9 +512,9 @@ function JetamaWaterDetail() {
 
 function JetamaEnergyDetail() {
   return (
-    <section className="relative -mt-20 z-10 bg-white pb-20 pt-8">
+    <section className="relative z-10 bg-white pb-20 pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl shadow-[0_28px_85px_rgba(0,90,170,0.12)]">
+        <div className="overflow-hidden">
           <div className="relative h-[410px] overflow-hidden">
             <img
               src={energyHero}
@@ -612,7 +618,7 @@ function JetamaEnergyDetail() {
                   Power Sdn. Bhd. of which Jetama Energy holds 70% equity.
                 </p>
 
-                <ul className="mt-8 space-y-4 rounded-[2rem] border border-slate-200 bg-[#f8fbff] p-8">
+                <ul className="mt-8 space-y-4 rounded-[2rem] bg-[#f8fbff] p-8">
                   {projectMilestones.map((item) => (
                     <li key={item} className="flex gap-4">
                       <SunMedium

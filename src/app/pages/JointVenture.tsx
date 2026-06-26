@@ -93,12 +93,12 @@ const jointVentures = [
 export default function JointVenture() {
   return (
     <main className="overflow-hidden bg-[#f7fbff] text-[#122f3f]">
-      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-36 text-slate-900">
+      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-32 text-slate-900">
         <CorporateHeroAtmosphere />
 <img
           src={heroImage}
           alt="Our Joint Ventures"
-          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-20"
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.14]"
         />
 
         <div className="absolute inset-0 bg-transparent" />
@@ -107,7 +107,7 @@ export default function JointVenture() {
         <div className="absolute -bottom-28 -right-20 h-72 w-72 rounded-full bg-[#68bd00]/20 blur-3xl" />
         <div className="absolute -left-20 top-24 h-64 w-64 rounded-full bg-white/80 blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-8 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
             <Link to="/" className="hover:text-[#005AAA]">
               Home
@@ -116,9 +116,15 @@ export default function JointVenture() {
             <span className="text-[#005AAA]">Our Joint Ventures</span>
           </div>
 
-          <h1 className="corporate-hero-title mt-6 text-5xl font-black leading-[1.05] text-[#005AAA] sm:text-6xl lg:text-7xl">
+          <h1 className="corporate-hero-title mt-6 font-serif text-4xl font-normal italic leading-tight text-[#005AAA] sm:text-5xl lg:text-6xl">
             Our Joint Ventures
           </h1>
+
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+            <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+            <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+          </div>
 
           <p className="corporate-hero-copy mt-7 max-w-3xl text-lg leading-9 text-slate-600 sm:text-xl">
             Strategic collaborations supporting Sabah’s water infrastructure,
@@ -127,8 +133,8 @@ export default function JointVenture() {
         </div>
       </section>
 
-      <section className="relative -mt-10 z-10 mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl p-6 shadow-[0_28px_85px_rgba(0,90,170,0.12)] sm:p-8">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative">
           <div className="mb-8 text-center">
             <p className="text-sm font-black uppercase tracking-[0.25em] text-[#35b24a]">
               Joint Venture Companies
@@ -144,7 +150,7 @@ export default function JointVenture() {
               <Link
                 key={item.title}
                 to={item.path}
-                className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-white via-[#f8fbff] to-white p-7 shadow-sm transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]"
+                className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-white via-[#f8fbff] to-white p-7 shadow-[0_18px_55px_rgba(0,44,85,0.08)] transition hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]"
               >
                 <div
                   className={`absolute inset-x-0 top-0 h-2 bg-gradient-to-r ${item.accent}`}
@@ -152,7 +158,7 @@ export default function JointVenture() {
 
                 <div className="absolute -right-14 -top-14 h-32 w-32 rounded-full bg-[#35b24a]/10 transition group-hover:scale-125" />
 
-                <div className="flex h-36 items-center justify-center rounded-[1.5rem] bg-white p-5 shadow-inner">
+                <div className="flex h-36 items-center justify-center rounded-[1.5rem] bg-white/70 p-5">
                   <img
                     src={item.logo}
                     alt={item.title}

@@ -10,6 +10,7 @@ import {
   MapPin,
   Send,
   Sparkles,
+  Users,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -121,141 +122,103 @@ function getApplicationMailto(job: Job) {
   return `mailto:${job.application_email || applicationEmail}?subject=${subject}&body=${body}`;
 }
 
-
-
-function CleanCorporateTheme() {
+function PageStyles() {
   return (
     <style>{`
-      @keyframes jetamaFadeUp { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-      @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
-      @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
-
-      .clean-corporate-page { background: #f7fbff; color: #0f2f44; }
-      .clean-corporate-page > section:first-of-type {
-        position: relative;
-        isolation: isolate;
-        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 48%, #f8fff6 100%) !important;
-        color: #0f2f44 !important;
-        overflow: hidden;
+      @keyframes careerFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .56; }
+        50% { transform: translate3d(18px,-16px,0) rotate(2deg); opacity: .82; }
       }
-      .clean-corporate-page > section:first-of-type::before {
+      @keyframes careerFadeUp {
+        from { opacity: 0; transform: translateY(24px); filter: blur(7px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+      @keyframes careerShine {
+        0% { transform: translateX(-140%) skewX(-18deg); opacity: 0; }
+        35% { opacity: .45; }
+        100% { transform: translateX(180%) skewX(-18deg); opacity: 0; }
+      }
+      .career-soft-in { animation: careerFadeUp .85s cubic-bezier(.2,.8,.2,1) both; }
+      .career-float-a { animation: careerFloat 13s ease-in-out infinite; }
+      .career-float-b { animation: careerFloat 16s ease-in-out infinite reverse; }
+      .career-shine::before {
         content: "";
         position: absolute;
-        left: -180px;
-        top: 26px;
-        width: 420px;
-        height: 420px;
-        border-radius: 72px;
-        border: 1px solid rgba(0,90,170,.10);
-        background: rgba(0,90,170,.045);
-        transform: rotate(45deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 11s ease-in-out infinite;
-      }
-      .clean-corporate-page > section:first-of-type::after {
-        content: "";
-        position: absolute;
-        right: -170px;
-        top: 95px;
-        width: 430px;
-        height: 430px;
-        border-radius: 76px;
-        border: 1px solid rgba(53,178,74,.16);
-        background: rgba(53,178,74,.05);
-        transform: rotate(12deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 14s ease-in-out infinite reverse;
-      }
-      .clean-corporate-page > section:first-of-type img {
-        opacity: .16 !important;
-        filter: saturate(1.08) contrast(1.08) brightness(1.08);
-      }
-      .clean-corporate-page > section:first-of-type .absolute.inset-0,
-      .clean-corporate-page > section:first-of-type .absolute.inset-x-0.top-0,
-      .clean-corporate-page > section:first-of-type .absolute.-right-24,
-      .clean-corporate-page > section:first-of-type .absolute.-left-20,
-      .clean-corporate-page > section:first-of-type .absolute.left-10,
-      .clean-corporate-page > section:first-of-type .absolute.-bottom-28,
-      .clean-corporate-page > section:first-of-type .absolute.left-0.top-0.z-10 {
-        opacity: .32;
-      }
-      .clean-corporate-page > section:first-of-type > div:last-child,
-      .clean-corporate-page > section:first-of-type .relative {
-        z-index: 5;
-      }
-      .clean-corporate-page > section:first-of-type h1 {
-        color: #005AAA !important;
-        letter-spacing: -0.045em;
-        text-shadow: none !important;
-      }
-      .clean-corporate-page > section:first-of-type h1 span,
-      .clean-corporate-page > section:first-of-type .font-serif {
-        color: #005AAA !important;
-        font-family: inherit !important;
-        font-weight: 900 !important;
-      }
-      .clean-corporate-page > section:first-of-type p {
-        color: #475569 !important;
-      }
-      .clean-corporate-page > section:first-of-type a,
-      .clean-corporate-page > section:first-of-type span {
-        color: #005AAA;
-      }
-      .clean-corporate-page > section:first-of-type [class*="text-white"] {
-        color: #0f2f44 !important;
-      }
-      .clean-corporate-page > section:first-of-type [class*="bg-white/10"],
-      .clean-corporate-page > section:first-of-type [class*="bg-white/90"],
-      .clean-corporate-page > section:first-of-type [class*="border-white"] {
-        background: rgba(255,255,255,.82) !important;
-        border-color: rgba(0,90,170,.16) !important;
-        box-shadow: 0 18px 55px rgba(0,90,170,.10);
-      }
-      .clean-corporate-page > section:first-of-type div[class*="h-24"][class*="w-24"][class*="rounded"] {
-        display: none !important;
-      }
-      .clean-corporate-page > section:first-of-type .inline-flex,
-      .clean-corporate-page > section:first-of-type button {
-        backdrop-filter: blur(14px);
-      }
-      .clean-corporate-page article,
-      .clean-corporate-page .rounded-\[2rem\],
-      .clean-corporate-page .rounded-\[2\.5rem\],
-      .clean-corporate-page .rounded-\[1\.8rem\] {
-        border-color: rgba(0,90,170,.12) !important;
-      }
-      .clean-corporate-page .shadow-\[0_30px_90px_rgba\(0\,44\,85\,0\.16\)\],
-      .clean-corporate-page .shadow-\[0_28px_90px_rgba\(0\,44\,85\,0\.12\)\],
-      .clean-corporate-page .shadow-\[0_24px_70px_rgba\(0\,90\,170\,0\.08\)\] {
-        box-shadow: 0 24px 80px rgba(0,90,170,.10) !important;
-      }
-      .clean-corporate-page .scroll-reveal,
-      .clean-corporate-page .animate-\[fadeInUp_\.8s_ease_both\],
-      .clean-corporate-page .animate-\[fadeInUp_\.7s_ease_both\] {
-        animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both !important;
-      }
-      .clean-corporate-page .shine-layer,
-      .clean-corporate-page article,
-      .clean-corporate-page button,
-      .clean-corporate-page a.group {
-        position: relative;
-        overflow: hidden;
-      }
-      .clean-corporate-page .shine-layer::before,
-      .clean-corporate-page article::before,
-      .clean-corporate-page button::before,
-      .clean-corporate-page a.group::before {
-        content: "";
-        position: absolute;
-        top: -50%; bottom: -50%; left: -35%; width: 28%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
-        transform: translateX(-150%) skewX(-18deg);
+        top: -60%;
+        bottom: -60%;
+        left: -40%;
+        width: 30%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+        transform: translateX(-140%) skewX(-18deg);
         pointer-events: none;
       }
-      .clean-corporate-page article:hover::before,
-      .clean-corporate-page button:hover::before,
-      .clean-corporate-page a.group:hover::before { animation: jetamaShine 1.9s ease; }
+      .career-shine:hover::before { animation: careerShine 1.8s ease; }
     `}</style>
+  );
+}
+
+function Hero({ activeJobs }: { activeJobs: Job[] }) {
+  const fullTime = activeJobs.filter((job) => job.type !== "Internship").length;
+  const internship = activeJobs.filter((job) => job.type === "Internship").length;
+
+  return (
+    <section className="relative isolate overflow-hidden pt-36">
+      <PageStyles />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#ffffff_0%,#eef8ff_46%,#f8fff6_100%)]" />
+      <div className="career-float-a absolute left-[-160px] top-8 -z-10 h-[420px] w-[420px] rotate-45 rounded-[72px] border border-[#005AAA]/10 bg-[#005AAA]/5 blur-sm" />
+      <div className="career-float-b absolute right-[-160px] top-28 -z-10 h-[420px] w-[420px] rotate-12 rounded-[72px] border border-[#35B24A]/15 bg-[#35B24A]/5" />
+      <div className="absolute bottom-4 left-[24%] -z-10 h-28 w-[520px] rotate-[-8deg] bg-[#F5A623]/[.075] blur-3xl" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#f7fbff] via-white/70 to-transparent" />
+
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 lg:grid-cols-[1fr_430px] lg:items-end lg:px-8">
+        <div className="career-soft-in">
+          <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
+            <Link to="/" className="transition hover:text-[#005AAA]">
+              Home
+            </Link>
+            <ChevronRight size={16} className="text-slate-400" />
+            <span className="font-bold text-[#005AAA]">Careers</span>
+          </div>
+
+          <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
+            Career Opportunities
+          </p>
+
+          <h1 className="mt-5 max-w-5xl text-5xl font-black uppercase leading-[0.96] tracking-tight text-[#005AAA] md:text-7xl">
+            Build Your Future
+            <span className="block text-[#35B24A]">With Jetama</span>
+          </h1>
+
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
+            Join a growing organisation committed to water, energy, innovation and sustainable development in Sabah.
+          </p>
+        </div>
+
+        <div className="career-soft-in relative overflow-hidden rounded-[34px] bg-white/85 p-7 shadow-[0_28px_80px_rgba(15,60,110,.14)] backdrop-blur-xl [animation-delay:.12s]">
+          <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F6A623]" />
+          <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#005AAA]/10 blur-2xl" />
+          <Users className="text-[#F6A623]" size={34} />
+          <p className="mt-5 text-sm font-black uppercase tracking-[0.24em] text-[#35B24A]">
+            Talent Growth
+          </p>
+          <h2 className="mt-3 text-3xl font-black leading-tight text-[#005AAA]">
+            Grow your career through meaningful corporate and operational work.
+          </h2>
+          <div className="mt-7 grid grid-cols-3 gap-3">
+            {[
+              [activeJobs.length, "Openings"],
+              [fullTime, "Full Time"],
+              [internship, "Internship"],
+            ].map(([value, label]) => (
+              <div key={label as string} className="rounded-2xl bg-[#f8fbff] px-4 py-5 text-center shadow-sm">
+                <p className="text-3xl font-black text-[#005AAA]">{value}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -272,86 +235,56 @@ export default function Careers() {
   const activeJobs = backendJobs.length ? backendJobs : jobs;
 
   return (
-    <main className="clean-corporate-page overflow-hidden bg-[#f6fafc] text-[#062f4e]">
-      <CleanCorporateTheme />
-      <section className="relative overflow-hidden bg-[#052b4f] px-4 pb-28 pt-40 text-white sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(65,182,80,0.35),transparent_34%),radial-gradient(circle_at_86%_25%,rgba(245,166,35,0.22),transparent_30%),linear-gradient(135deg,#052b4f,#005aaa)]" />
-        <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full border border-white/10" />
-        <div className="absolute left-10 top-36 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
+    <main className="overflow-hidden bg-[#f7fbff] text-[#062f4e]">
+      <Hero activeJobs={activeJobs} />
 
-        <div className="relative mx-auto max-w-7xl">
-          <div className="max-w-3xl animate-[fadeInUp_.8s_ease_both]">
-            <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-white/75">
-              <Link to="/" className="hover:text-white transition">
-                Home
-              </Link>
-
-              <ChevronRight size={16} />
-
-              <span className="text-white">
-                Careers
-              </span>
-            </div>
-
-            <h1 className="mt-8 text-5xl font-black leading-tight md:text-7xl">
-              Build Your Future With JETAMA
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-blue-50">
-              Join a growing organisation committed to water, energy,
-              innovation and sustainable development in Sabah.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative -mt-17 z-10 bg-transparent px-4 pb-20 pt-0 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <section className="relative pb-24">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_48%,#f8fff7_100%)]" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="mt-3 text-4xl font-black text-[#062f4e]">
+              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
+                Current Vacancies
+              </p>
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-[#005AAA] md:text-5xl">
                 Join Our Team
               </h2>
             </div>
 
+            <p className="max-w-xl text-sm font-semibold leading-7 text-slate-500">
+              Choose the role that fits your background. Each card opens a clean detail panel with responsibilities, requirements and application information.
+            </p>
           </div>
 
           <div className="grid gap-7 lg:grid-cols-3">
-            {jobs.map((job, index) => {
+            {activeJobs.map((job, index) => {
               const isInternship = job.type === "Internship";
 
               return (
                 <button
                   key={job.title}
                   onClick={() => setSelectedJob(job)}
-                  className="group relative overflow-hidden rounded-[2rem] border border-[#dcebf3] bg-[#f8fbfd] p-7 text-left shadow-[0_18px_60px_rgba(0,90,170,0.08)] transition duration-500 hover:-translate-y-2 hover:bg-white hover:shadow-[0_28px_85px_rgba(0,90,170,0.16)]"
-                  style={{
-                    animation: "fadeInUp .7s ease both",
-                    animationDelay: `${index * 100}ms`,
-                  }}
+                  className="career-shine group relative overflow-hidden rounded-[34px] bg-white/90 p-7 text-left shadow-[0_22px_70px_rgba(0,90,170,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:bg-white hover:shadow-[0_30px_95px_rgba(0,90,170,0.16)]"
+                  style={{ animation: "careerFadeUp .75s ease both", animationDelay: `${index * 90}ms` }}
                 >
-                  <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
-                  <div className="absolute -right-14 -top-14 h-32 w-32 rounded-full bg-[#005AAA]/8 transition group-hover:scale-150" />
+                  <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
+                  <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#005AAA]/8 blur-2xl transition group-hover:scale-125" />
 
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#005AAA] shadow-sm">
-                      {isInternship ? (
-                        <GraduationCap size={31} />
-                      ) : (
-                        <Briefcase size={31} />
-                      )}
+                  <div className="relative flex items-start justify-between gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA] shadow-sm">
+                      {isInternship ? <GraduationCap size={31} /> : <Briefcase size={31} />}
                     </div>
 
-                    <span className="rounded-full bg-[#eef8f1] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#12813b]">
+                    <span className="rounded-full bg-[#ecfbef] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#12813b]">
                       {job.type}
                     </span>
                   </div>
 
-                  <h3 className="mt-7 text-2xl font-black leading-tight text-[#062f4e]">
+                  <h3 className="relative mt-7 text-2xl font-black leading-tight text-[#062f4e]">
                     {job.title}
                   </h3>
 
-                  <div className="mt-4 space-y-2 text-sm font-bold text-slate-500">
+                  <div className="relative mt-4 space-y-2 text-sm font-bold text-slate-500">
                     <p className="flex items-center gap-2">
                       <Building2 size={15} className="text-[#35B24A]" />
                       {job.department}
@@ -362,13 +295,13 @@ export default function Careers() {
                     </p>
                   </div>
 
-                  <p className="mt-5 min-h-[96px] leading-7 text-slate-600">
+                  <p className="relative mt-5 min-h-[118px] leading-7 text-slate-600">
                     {job.description}
                   </p>
 
-                  <div className="mt-7 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-[#005AAA]">
+                  <div className="relative mt-7 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] transition group-hover:bg-[#005AAA] group-hover:text-white">
                     View Details
-                    <ArrowRight size={17} className="transition group-hover:translate-x-1" />
+                    <ArrowRight size={16} className="transition group-hover:translate-x-1" />
                   </div>
                 </button>
               );
@@ -377,14 +310,10 @@ export default function Careers() {
         </div>
       </section>
 
-
       {selectedJob && (
-        <div
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-[#021727]/80 px-4 py-8 backdrop-blur-md"
-          onClick={() => setSelectedJob(null)}
-        >
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#021727]/80 px-4 py-8 backdrop-blur-md" onClick={() => setSelectedJob(null)}>
           <div
-            className="relative max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[2.2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
+            className="relative max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[34px] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
             onClick={(event) => event.stopPropagation()}
           >
             <button
@@ -425,18 +354,15 @@ export default function Careers() {
 
             <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
               <div className="p-7 sm:p-10">
-                <p className="rounded-[1.4rem] border border-[#dcebf3] bg-[#f8fbff] p-5 text-base leading-8 text-slate-700">
+                <p className="text-base leading-8 text-slate-700">
                   {selectedJob.description}
                 </p>
 
                 <div className="mt-8">
-                  <h3 className="text-xl font-black text-[#062f4e]">
-                    Key Responsibilities
-                  </h3>
-
+                  <h3 className="text-xl font-black text-[#005AAA]">Key Responsibilities</h3>
                   <div className="mt-4 space-y-3">
                     {selectedJob.responsibilities.map((item) => (
-                      <div key={item} className="flex gap-3 rounded-2xl bg-white p-3 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+                      <div key={item} className="flex gap-3">
                         <CheckCircle2 className="mt-1 shrink-0 text-[#35B24A]" size={18} />
                         <p className="text-sm leading-7 text-slate-700">{item}</p>
                       </div>
@@ -445,13 +371,10 @@ export default function Careers() {
                 </div>
 
                 <div className="mt-8">
-                  <h3 className="text-xl font-black text-[#062f4e]">
-                    Requirements
-                  </h3>
-
+                  <h3 className="text-xl font-black text-[#005AAA]">Requirements</h3>
                   <div className="mt-4 space-y-3">
                     {selectedJob.requirements.map((item) => (
-                      <div key={item} className="flex gap-3 rounded-2xl bg-[#f8fbff] p-3">
+                      <div key={item} className="flex gap-3">
                         <Sparkles className="mt-1 shrink-0 text-[#F5A623]" size={18} />
                         <p className="text-sm leading-7 text-slate-700">{item}</p>
                       </div>
@@ -460,16 +383,13 @@ export default function Careers() {
                 </div>
               </div>
 
-              <aside className="border-t border-slate-200 bg-[#f8fbfd] p-7 sm:p-10 lg:border-l lg:border-t-0">
-                <div className="rounded-[2rem] border border-[#dcebf3] bg-white p-6 shadow-[0_18px_55px_rgba(0,90,170,0.10)]">
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#eef8f1] text-[#12813b]">
+              <aside className="bg-[#f8fbfd] p-7 sm:p-10">
+                <div className="rounded-[30px] bg-white p-6 shadow-[0_18px_55px_rgba(0,90,170,0.10)]">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ecfbef] text-[#12813b]">
                     <Mail size={31} />
                   </div>
 
-                  <h3 className="text-2xl font-black text-[#062f4e]">
-                    Submit Application
-                  </h3>
-
+                  <h3 className="text-2xl font-black text-[#062f4e]">Submit Application</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">
                     Click the email button below. Your email app will open with the application subject prepared.
                   </p>
@@ -482,16 +402,11 @@ export default function Careers() {
                     Apply via Email
                   </a>
 
-                  <p className="mt-4 text-center text-xs font-bold text-slate-500">
-                    Send to: {applicationEmail}
-                  </p>
+                  <p className="mt-4 text-center text-xs font-bold text-slate-500">Send to: {applicationEmail}</p>
                 </div>
 
-                <div className="mt-6 rounded-[2rem] border border-[#dcebf3] bg-white p-6">
-                  <h4 className="text-lg font-black text-[#062f4e]">
-                    Required Documents
-                  </h4>
-
+                <div className="mt-6 rounded-[30px] bg-white p-6 shadow-sm">
+                  <h4 className="text-lg font-black text-[#005AAA]">Required Documents</h4>
                   <div className="mt-4 space-y-3">
                     {documents.map((item) => (
                       <div key={item} className="flex gap-3 text-sm leading-6 text-slate-600">
@@ -506,20 +421,6 @@ export default function Careers() {
           </div>
         </div>
       )}
-
-
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(28px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </main>
   );
 }

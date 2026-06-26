@@ -116,19 +116,19 @@ const featuredFacilities = [
 export default function Services() {
   return (
     <main className="bg-[#f7fbff] text-slate-900">
-      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-36 text-slate-900">
+      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-32 text-slate-900">
         <CorporateHeroAtmosphere />
 <img
           src={damHeroImage}
           alt="JETAMA water facilities"
-          className="absolute inset-0 h-full w-full object-cover opacity-20"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.14]"
         />
         <div className="absolute inset-0 bg-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(0,90,170,0.10),transparent_32%)]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-8 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
-            <Link to="/" className="hover:text-white transition">
+            <Link to="/" className="transition hover:text-[#005AAA]">
               Home
             </Link>
 
@@ -139,9 +139,14 @@ export default function Services() {
             </span>
           </div>
           
-          <h1 className="corporate-hero-title max-w-5xl text-5xl font-black leading-[1.04] text-[#005AAA] sm:text-6xl">
+          <h1 className="corporate-hero-title max-w-5xl font-serif text-4xl font-normal italic leading-tight text-[#005AAA] sm:text-5xl lg:text-6xl">
             Services & Facilities
           </h1>
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+            <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+            <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+          </div>
           <p className="corporate-hero-copy mt-6 max-w-3xl text-lg leading-8 text-slate-600">
             JETAMA manages strategic water infrastructure,
             treatment facilities, rehabilitation works and
@@ -152,7 +157,7 @@ export default function Services() {
       </section>
 
 
-      <section className="bg-white px-4 py-10 sm:px-6 lg:px-8">
+      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
@@ -171,7 +176,7 @@ export default function Services() {
               {highlights.map((item) => (
                 <div
                   key={item}
-                  className="flex items-start gap-4 rounded-2xl bg-[#F4F8FC] p-5"
+                  className="flex items-start gap-4"
                 >
                   <CheckCircle2
                     className="mt-1 shrink-0 text-[#35B24A]"
@@ -189,7 +194,7 @@ export default function Services() {
             {featuredFacilities.map((facility) => (
               <article
                 key={facility.name}
-                className="overflow-hidden rounded-[28px] bg-white shadow-[0_20px_60px_rgba(0,44,85,0.10)] ring-1 ring-slate-100"
+                className="overflow-hidden rounded-[28px] bg-white shadow-[0_20px_60px_rgba(0,44,85,0.10)]"
               >
                 <div className="grid gap-0 sm:grid-cols-[220px_1fr]">
                   <img
@@ -217,7 +222,7 @@ export default function Services() {
       </section>
   
 
-      <section className="relative -mt-32 z-10 px-16 pb-16 pt-28 sm:px-15 lg:px-5">
+      <section className="relative z-10 bg-white px-4 pb-20 pt-4 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-7 md:grid-cols-3">
           {serviceCards.map((item) => {
             const Icon = item.icon;
@@ -225,7 +230,7 @@ export default function Services() {
               <Link
                 key={item.title}
                 to={item.path}
-                className="group rounded-[30px] bg-white p-8 shadow-[0_22px_70px_rgba(0,44,85,0.09)] ring-1 ring-slate-100 transition duration-300 hover:-translate-y-2 hover:shadow-[0_30px_85px_rgba(0,90,170,0.14)]"
+                className="group rounded-[30px] bg-gradient-to-br from-white via-[#f8fbff] to-white p-8 shadow-[0_18px_55px_rgba(0,44,85,0.08)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_26px_75px_rgba(0,90,170,0.13)]"
               >
                 <div className="mb-7 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#005AAA] to-[#35B24A] text-white shadow-lg">
                   <Icon size={32} />

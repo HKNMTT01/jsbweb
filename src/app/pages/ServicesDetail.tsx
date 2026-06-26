@@ -300,75 +300,103 @@ function OceanWaveDivider() {
   );
 }
 
-function NumberBlock({ no }: { no: string }) {
+
+function SoftNumber({ no }: { no: string }) {
   return (
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#005AAA] text-lg font-black text-white shadow-sm">
+    <span className="inline-flex min-w-[52px] font-serif text-2xl font-semibold italic leading-none text-[#005AAA]">
       {no}
+    </span>
+  );
+}
+
+function AccentRule() {
+  return (
+    <div className="my-7 flex items-center gap-3">
+      <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+      <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+      <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
     </div>
   );
 }
 
 function OverviewContent() {
+  const scopeItems = [
+    {
+      no: "01",
+      title: "Rehabilitation & Refurbishment",
+      text: "Rehabilitation and refurbishment of existing treatment plants and other facilities taken over from Jabatan Air Negeri Sabah (JANS).",
+    },
+    {
+      no: "02",
+      title: "Construction of New Facilities",
+      text: "Development of strategic water infrastructure including Moyog WTP, Babagon Dam, concrete reservoirs and major pipeline works.",
+      details: [
+        "Moyog WTP — 165 MLD (million litres per day)",
+        "Babagon Dam — 21,800 ML (million litres)",
+        "Nine 10 ML concrete reservoirs",
+        "70 kilometers of pipeline",
+      ],
+    },
+    {
+      no: "03",
+      title: "Operation & Maintenance",
+      text: "Operation and maintenance during the concession period to support service continuity, reliability and long-term infrastructure performance.",
+    },
+  ];
+
   return (
     <article className="scroll-reveal">
-      <section className="relative overflow-hidden rounded-[2.5rem] border border-[#dcebf3] bg-white p-8 shadow-[0_24px_70px_rgba(0,90,170,0.08)] lg:p-12">
-        <div className="absolute right-8 top-8 grid grid-cols-6 gap-4 opacity-30">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#005AAA]" />
-          ))}
-        </div>
+      <section className="relative">
+        <div className="pointer-events-none absolute -right-20 top-4 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="pointer-events-none absolute -left-16 bottom-4 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
+        <div className="pointer-events-none absolute right-[18%] top-28 h-28 w-52 rotate-[-10deg] bg-[#F5A623]/10 blur-3xl" />
 
         <div className="relative">
-          <h2 className="text-4xl font-black leading-tight text-[#005AAA]">
-            Scope of Works &
-            <br />
-            Responsibility
+          <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+              Scope Of Works & Responsibility
           </h2>
 
-          <p className="mt-14 text-xl font-black text-black">
-            Our scope of works & responsibility covers:-
+          <AccentRule />
+
+          <p className="max-w-4xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+            JETAMA’s service responsibility is structured around upgrading existing assets,
+            delivering new water infrastructure and maintaining reliable operations throughout
+            the concession period.
           </p>
 
-          <div className="mt-10 space-y-10">
-            <div className="flex gap-6">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#f5a93b] text-xl font-black text-black">
-                1
-              </div>
+          <div className="mt-12 space-y-10">
+            {scopeItems.map((item, index) => (
+              <div
+                key={item.no}
+                className="group relative grid gap-5 md:grid-cols-[72px_1fr]"
+                style={{ animationDelay: `${index * 70}ms` }}
+              >
+                <SoftNumber no={item.no} />
 
-              <p className="max-w-3xl text-xl font-black leading-8 text-[#005AAA]">
-                Rehabilitation & Refurbishment of existing treatment plants and
-                other facilities taken over from Jabatan Air Negeri Sabah (JANS).
-              </p>
-            </div>
+                <div className="relative pl-5 before:absolute before:left-0 before:top-2 before:h-12 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                  <h3 className="font-serif text-2xl font-semibold italic tracking-[-0.02em] text-[#052b4f] transition group-hover:text-[#005AAA]">
+                    {item.title}
+                  </h3>
 
-            <div className="flex gap-6">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#f5a93b] text-xl font-black text-black">
-                2
-              </div>
+                  <p className="mt-3 max-w-4xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
+                    {item.text}
+                  </p>
 
-              <div>
-                <p className="text-xl font-black leading-8 text-[#005AAA]">
-                  Construction of new facilities :-
-                </p>
-
-                <div className="mt-3 space-y-1 text-xl font-black leading-8 text-black">
-                  <p>a. Moyog WTP – 165MLD (million litres per day).</p>
-                  <p>b. Babagon Dam – 21,800 ML (million litres)</p>
-                  <p>c. Nine 10ML concrete reservoirs.</p>
-                  <p>d. 70 Kilometers of Pipeline.</p>
+                  {item.details && (
+                    <div className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                      {item.details.map((detail) => (
+                        <div key={detail} className="flex items-start gap-3">
+                          <CheckCircle2 className="mt-1 shrink-0 text-[#41B650]" size={17} />
+                          <p className="text-sm font-semibold leading-6 text-slate-700">
+                            {detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-
-            <div className="flex gap-6">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#f5a93b] text-xl font-black text-black">
-                3
-              </div>
-
-              <p className="max-w-3xl text-xl font-black leading-8 text-[#005AAA]">
-                Operation & Maintenance during the concession period.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -421,231 +449,210 @@ function FacilitiesContent() {
   ];
 
   return (
-    <article className="scroll-reveal space-y-10">
-      <section className="relative overflow-hidden rounded-[2.5rem] border border-[#dcebf3] bg-white p-8 shadow-[0_24px_70px_rgba(0,90,170,0.08)] lg:p-12">
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">
-          Water Infrastructure
-        </p>
+    <article className="scroll-reveal space-y-16">
+      <section className="relative">
+        <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
 
-        <h2 className="mt-4 text-3xl font-black leading-tight text-[#005AAA] lg:text-4xl">
-          Babagon Dam
-        </h2>
+        <div className="relative grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,1.05fr)] lg:items-center">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
+              Water Infrastructure
+            </p>
 
-        <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700">
-          Babagon Dam is constructed across the Babagon River, a tributary of the
-          Moyog River, and forms an important part of JETAMA’s water supply
-          infrastructure.
-        </p>
+            <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+              Babagon Dam
+            </h2>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {damComponents.map((item, index) => (
-            <div
-              key={item}
-              className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-[#fbfdff] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#41B650]/70 hover:shadow-[0_18px_45px_rgba(0,90,170,0.10)]"
-            >
-              <NumberBlock no={String(index + 1).padStart(2, "0")} />
-              <p className="font-black text-[#052b4f]">{item}</p>
+            <AccentRule />
+
+            <p className="max-w-4xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+              Babagon Dam is constructed across the Babagon River, a tributary of the
+              Moyog River, and forms an important part of JETAMA’s water supply
+              infrastructure.
+            </p>
+
+            <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              {damComponents.map((item, index) => (
+                <div key={item} className="flex items-start gap-4">
+                  <SoftNumber no={String(index + 1).padStart(2, "0")} />
+                  <p className="pt-1 text-sm font-black uppercase tracking-[0.10em] text-[#052b4f]">
+                    {item}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div className="mt-10 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-[0_16px_45px_rgba(0,44,85,0.08)]">
-          <img
-            src={heroImage}
-            alt="Babagon Dam"
-            className="h-[430px] w-full object-cover"
-          />
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden rounded-[2.5rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#eef8f2] p-8 shadow-[0_24px_70px_rgba(0,90,170,0.08)] lg:p-12">
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#41B650]/10 blur-3xl" />
-
-        <div className="relative">
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">
-            Treatment Plants
-          </p>
-
-          <h2 className="mt-4 text-3xl font-black leading-tight text-[#005AAA] lg:text-4xl">
-            Water Treatment Facilities
-          </h2>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {waterPlants.map((plant) => {
-              const isOpen = openPlant === plant.title;
-
-              return (
-                <article
-                  key={plant.title}
-                  className={`group relative overflow-hidden rounded-[1.7rem] border bg-white text-left shadow-[0_14px_42px_rgba(15,23,42,0.07)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,90,170,0.15)] ${
-                    isOpen ? "border-[#41B650]" : "border-slate-200 hover:border-[#005AAA]/40"
-                  }`}
-                >
-                  <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234]" />
-
-                  <div className="relative h-56 overflow-hidden bg-white">
-                    <img
-                      src={plant.image}
-                      alt={plant.title}
-                      className={`h-full w-full object-cover transition duration-700 ${
-                        isOpen ? "scale-105" : "group-hover:scale-105"
-                      }`}
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/80 via-[#052b4f]/15 to-transparent" />
-
-                    <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
-                      <div>
-                        <span className="rounded-full bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] shadow-lg">
-                          {plant.design}
-                        </span>
-                        <h3 className="mt-4 text-xl font-black leading-tight text-white">
-                          {plant.title}
-                        </h3>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    {!isOpen ? (
-                      <>
-                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
-                          {plant.location}
-                        </p>
-
-                        <p className="mt-4 text-sm leading-7 text-slate-600">
-                          {plant.text}
-                        </p>
-
-                        <button
-                          type="button"
-                          onClick={() => setOpenPlant(plant.title)}
-                          className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-4 py-2 text-sm font-black text-[#005AAA] transition hover:bg-[#005AAA] hover:text-white"
-                        >
-                          <Eye size={16} />
-                          View Details
-                          <ArrowRight size={15} />
-                        </button>
-                      </>
-                    ) : (
-                      <div className="animate-[fadeIn_.45s_ease]">
-                        <div className="mb-4 flex flex-wrap gap-2">
-                          <span className="rounded-md border border-[#005AAA]/15 bg-[#f5faff] px-3 py-1.5 text-xs font-bold text-[#005AAA]">
-                            Plant Design: {plant.design}
-                          </span>
-
-                          <span className="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600">
-                            {plant.location}
-                          </span>
-                        </div>
-
-                        <p className="rounded-[1.2rem] border-l-4 border-[#005AAA] bg-[#f8fbff] px-4 py-3 text-sm leading-7 text-slate-700">
-                          {plant.text}
-                        </p>
-
-                        <div className="mt-5 space-y-2">
-                          {plant.details.map((item) => (
-                            <div
-                              key={item}
-                              className="flex gap-3 border-b border-slate-200 pb-2"
-                            >
-                              <CheckCircle2
-                                className="mt-1 shrink-0 text-[#41B650]"
-                                size={16}
-                              />
-                              <p className="text-sm leading-6 text-slate-700">
-                                {item}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => setOpenPlant(null)}
-                          className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#052b4f] px-4 py-2 text-sm font-black text-white transition hover:bg-[#fbf234] hover:text-[#052b4f]"
-                        >
-                          <EyeOff size={16} />
-                          Hide Details
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
+          <div className="relative overflow-hidden rounded-[2.2rem] shadow-[0_28px_80px_rgba(0,44,85,0.14)]">
+            <img src={heroImage} alt="Babagon Dam" className="h-[430px] w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/55 via-transparent to-transparent" />
+            <div className="absolute left-6 bottom-6 right-6">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-white/75">
+                Key Facility
+              </p>
+              <h3 className="mt-2 font-serif text-3xl font-semibold italic text-white">
+                Babagon Dam
+              </h3>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="grid gap-5 md:grid-cols-3">
-        {supportFacilities.map((item) => {
-          const Icon = item.icon;
-          const isOpen = openFacility === item.title;
+      <section className="relative">
+        <div className="max-w-4xl">
 
-          return (
-            <article
-              key={item.title}
-              className={`group rounded-[1.5rem] border bg-white p-7 shadow-[0_12px_35px_rgba(15,23,42,0.06)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(0,90,170,0.13)] ${
-                isOpen ? "border-[#41B650]" : "border-slate-200"
-              }`}
-            >
-              <div className="mb-5 flex items-center justify-between">
-                <Icon className="text-[#41B650]" size={34} />
+          <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+            Water Treatment Facilities
+          </h2>
 
-              </div>
+          <AccentRule />
 
-              <h3 className="mb-3 text-xl font-black text-[#052b4f]">
-                {item.title}
-              </h3>
+          <p className="max-w-4xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
+            A clean view of JETAMA’s main treatment facilities, presented through soft image-led
+            layouts and editorial-style text instead of heavy bordered content boxes.
+          </p>
+        </div>
 
-              {!isOpen ? (
-                <>
-                  <p className="text-sm leading-7 text-slate-600">{item.text}</p>
-                  <button
-                    type="button"
-                    onClick={() => setOpenFacility(item.title)}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#005AAA]"
-                  >
-                    <Eye size={15} />
-                    View
-                  </button>
-                </>
-              ) : (
-                <div className="animate-[fadeIn_.45s_ease]">
-                  <p className="mb-4 rounded-2xl bg-[#f8fbff] p-4 text-sm leading-7 text-slate-700">
-                    {item.text}
-                  </p>
+        <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2">
+          {waterPlants.map((plant) => {
+            const isOpen = openPlant === plant.title;
 
-                  <div className="space-y-3">
-                    {item.details.map((detail) => (
-                      <div key={detail} className="flex gap-3">
-                        <CheckCircle2
-                          className="mt-1 shrink-0 text-[#41B650]"
-                          size={16}
-                        />
-                        <p className="text-sm leading-6 text-slate-700">
-                          {detail}
-                        </p>
-                      </div>
-                    ))}
+            return (
+              <article key={plant.title} className="group text-left">
+                <div className="relative overflow-hidden rounded-[2.2rem] shadow-[0_24px_75px_rgba(0,44,85,0.12)]">
+                  <img
+                    src={plant.image}
+                    alt={plant.title}
+                    className={`h-72 w-full object-cover transition duration-700 ${
+                      isOpen ? "scale-105" : "group-hover:scale-105"
+                    }`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/85 via-[#052b4f]/20 to-transparent" />
+                  <div className="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] shadow-lg backdrop-blur-md">
+                    {plant.design}
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={() => setOpenFacility(null)}
-                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#052b4f] px-4 py-2 text-sm font-black text-white transition hover:bg-[#fbf234] hover:text-[#052b4f]"
-                  >
-                    <EyeOff size={15} />
-                    Hide
-                  </button>
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/75">
+                      {plant.location}
+                    </p>
+                    <h3 className="mt-2 font-serif text-2xl font-semibold italic leading-tight text-white">
+                      {plant.title}
+                    </h3>
+                  </div>
                 </div>
-              )}
-            </article>
-          );
-        })}
+
+                <div className="mt-5">
+                  {!isOpen ? (
+                    <>
+                      <p className="text-justify text-sm leading-7 text-slate-600">{plant.text}</p>
+                      <button
+                        type="button"
+                        onClick={() => setOpenPlant(plant.title)}
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#005AAA] transition hover:text-[#41B650]"
+                      >
+                        <Eye size={16} />
+                        View Details
+                        <ArrowRight size={15} />
+                      </button>
+                    </>
+                  ) : (
+                    <div className="animate-[fadeIn_.45s_ease]">
+                      <p className="relative pl-5 text-justify text-sm leading-7 text-slate-700 before:absolute before:left-0 before:top-2 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                        {plant.text}
+                      </p>
+
+                      <div className="mt-5 space-y-3">
+                        {plant.details.map((item) => (
+                          <div key={item} className="flex gap-3">
+                            <CheckCircle2 className="mt-1 shrink-0 text-[#41B650]" size={16} />
+                            <p className="text-sm leading-6 text-slate-700">{item}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setOpenPlant(null)}
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#052b4f] transition hover:text-[#005AAA]"
+                      >
+                        <EyeOff size={16} />
+                        Hide Details
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="relative">
+        <div className="mb-8 flex items-center gap-3">
+          <span className="h-[3px] w-16 rounded-full bg-[#005AAA]" />
+          <span className="h-[3px] w-8 rounded-full bg-[#41B650]" />
+          <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+              Supporting Facilities
+            </h2>
+        </div>
+
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-3">
+          {supportFacilities.map((item) => {
+            const Icon = item.icon;
+            const isOpen = openFacility === item.title;
+
+            return (
+              <article key={item.title} className="group relative">
+                <div className="pointer-events-none absolute -right-5 -top-5 h-24 w-24 rounded-full bg-[#005AAA]/7 blur-2xl" />
+
+                <Icon className="mb-5 text-[#41B650]" size={34} />
+
+                <h3 className="font-serif text-2xl font-semibold italic tracking-[-0.02em] text-[#052b4f]">
+                  {item.title}
+                </h3>
+
+                {!isOpen ? (
+                  <>
+                    <p className="mt-4 text-justify text-sm leading-7 text-slate-600">{item.text}</p>
+                    <button
+                      type="button"
+                      onClick={() => setOpenFacility(item.title)}
+                      className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#005AAA] transition hover:text-[#41B650]"
+                    >
+                      <Eye size={15} />
+                      View
+                    </button>
+                  </>
+                ) : (
+                  <div className="animate-[fadeIn_.45s_ease]">
+                    <p className="mt-4 relative pl-5 text-justify text-sm leading-7 text-slate-700 before:absolute before:left-0 before:top-2 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                      {item.text}
+                    </p>
+
+                    <div className="mt-5 space-y-3">
+                      {item.details.map((detail) => (
+                        <div key={detail} className="flex gap-3">
+                          <CheckCircle2 className="mt-1 shrink-0 text-[#41B650]" size={16} />
+                          <p className="text-sm leading-6 text-slate-700">{detail}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setOpenFacility(null)}
+                      className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#052b4f] transition hover:text-[#005AAA]"
+                    >
+                      <EyeOff size={15} />
+                      Hide
+                    </button>
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
       </section>
     </article>
   );
@@ -664,7 +671,7 @@ function TotalCapabilityContent() {
     ["June 1995 (Phase I)", "175 MLD", 55],
     ["December 1995 (Advanced Phase II)", "215 MLD", 67],
     ["October 1997 (Phase II & Phase III)", "320 MLD", 100],
-  ];
+  ] as const;
 
   const capabilityStats = [
     {
@@ -688,7 +695,7 @@ function TotalCapabilityContent() {
   ];
 
   return (
-    <article className="scroll-reveal">
+    <article className="scroll-reveal relative overflow-hidden">
       <style>
         {`
           @keyframes capabilityPulse {
@@ -703,170 +710,135 @@ function TotalCapabilityContent() {
         `}
       </style>
 
-      <section className="relative overflow-hidden rounded-[2.7rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#eef8f2] p-8 shadow-[0_28px_90px_rgba(0,90,170,0.10)] lg:p-12">
-        <div className="absolute -right-28 -top-28 h-80 w-80 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute -bottom-28 -left-28 h-80 w-80 rounded-full bg-[#41B650]/12 blur-3xl" />
-        <div className="absolute right-10 top-10 grid grid-cols-8 gap-3 opacity-20">
-          {Array.from({ length: 40 }).map((_, index) => (
-            <span key={index} className="h-1.5 w-1.5 rounded-full bg-[#005AAA]" />
-          ))}
+      <div className="pointer-events-none absolute -right-24 -top-16 h-80 w-80 rounded-full bg-[#005AAA]/9 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-28 left-0 h-80 w-80 rounded-full bg-[#41B650]/10 blur-3xl" />
+      <div className="pointer-events-none absolute right-[18%] top-32 h-28 w-52 rotate-[-10deg] bg-[#F5A623]/10 blur-3xl" />
+
+      <section className="relative">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
+          Service Capability
+        </p>
+
+        <div className="mt-4 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+              Water Quality & Quantity
+            </h2>
+
+            <AccentRule />
+
+            <p className="max-w-4xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+              A corporate view of JETAMA’s treated water quality standards and
+              progressive supply capacity growth during the concession period.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-3">
+            {capabilityStats.map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <div key={item.label} className="group relative" style={{ transitionDelay: `${index * 80}ms` }}>
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#eef8ff] to-[#effaf3] text-[#005AAA] shadow-[0_14px_34px_rgba(0,90,170,0.10)]">
+                    <Icon size={24} />
+                  </div>
+
+                  <p className="text-3xl font-black text-[#052b4f]">{item.value}</p>
+                  <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-[#41B650]">
+                    {item.label}
+                  </p>
+                  <p className="mt-3 text-xs leading-5 text-slate-500">{item.detail}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="relative">
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">
-            Service Capability
-          </p>
+        <div className="mt-14 grid gap-12 xl:grid-cols-[0.9fr_1.1fr]">
+          <div className="relative overflow-hidden rounded-[2.4rem] bg-[#052b4f] p-8 text-white shadow-[0_26px_80px_rgba(0,90,170,0.18)]">
+            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#41B650]/25 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#005AAA]/40 blur-3xl" />
 
-          <div className="mt-4 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-            <div>
-              <h2 className="text-3xl font-black leading-tight text-[#005AAA] lg:text-5xl">
-                Water Quality &
-                <br />
-                Quantity Capability
-              </h2>
+            <div className="relative">
+              <div className="mb-7 flex items-center justify-between gap-5">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
+                    Water Quality
+                  </p>
+                  <h3 className="mt-2 font-serif text-3xl font-semibold italic">
+                    Quality Parameters
+                  </h3>
+                </div>
 
-              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-700">
-                A corporate view of JETAMA’s treated water quality standards and
-                progressive supply capacity growth during the concession period.
-              </p>
-            </div>
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/10">
+                  <span className="absolute h-20 w-20 rounded-full bg-[#41B650]/30" style={{ animation: "capabilityPulse 2.6s ease-in-out infinite" }} />
+                  <Droplet className="relative text-[#fbf234]" size={42} />
+                </div>
+              </div>
 
-            <div className="grid gap-4 sm:grid-cols-3">
-              {capabilityStats.map((item, index) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.label}
-                    className="group relative overflow-hidden rounded-[1.5rem] border border-white bg-white p-5 shadow-[0_18px_50px_rgba(0,90,170,0.10)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_28px_80px_rgba(0,90,170,0.16)]"
-                    style={{ transitionDelay: `${index * 80}ms` }}
-                  >
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234]" />
-
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA]">
-                      <Icon size={24} />
-                    </div>
-
-                    <p className="text-3xl font-black text-[#052b4f]">
-                      {item.value}
-                    </p>
-                    <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-[#41B650]">
-                      {item.label}
-                    </p>
-                    <p className="mt-3 text-xs leading-5 text-slate-500">
-                      {item.detail}
-                    </p>
+              <div className="space-y-4">
+                {quality.map((item, index) => (
+                  <div key={item} className="flex items-start gap-4" style={{ transitionDelay: `${index * 70}ms` }}>
+                    <CheckCircle2 className="mt-1 shrink-0 text-[#fbf234]" size={18} />
+                    <p className="text-sm font-semibold leading-7 text-white/90">{item}</p>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="mt-12 grid gap-7 xl:grid-cols-[0.9fr_1.1fr]">
-            <div className="relative overflow-hidden rounded-[2.2rem] bg-[#052b4f] p-7 text-white shadow-[0_26px_80px_rgba(0,90,170,0.20)]">
-              <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#41B650]/25 blur-3xl" />
-              <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#005AAA]/40 blur-3xl" />
+          <div className="relative">
+            <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#41B650]">
+                  Water Quantity
+                </p>
+                <h3 className="mt-2 font-serif text-3xl font-semibold italic text-[#052b4f]">
+                  Capacity Growth
+                </h3>
+              </div>
 
-              <div className="relative">
-                <div className="mb-6 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
-                      Water Quality
-                    </p>
-                    <h3 className="mt-2 text-3xl font-black">
-                      Quality Parameters
-                    </h3>
-                  </div>
-
-                  <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/10">
-                    <span className="absolute h-20 w-20 rounded-full bg-[#41B650]/30" style={{ animation: "capabilityPulse 2.6s ease-in-out infinite" }} />
-                    <Droplet className="relative text-[#fbf234]" size={42} />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  {quality.map((item, index) => (
-                    <div
-                      key={item}
-                      className="group/item flex items-start gap-4 rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-md transition hover:bg-white/15"
-                      style={{ transitionDelay: `${index * 70}ms` }}
-                    >
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#41B650] text-white">
-                        <CheckCircle2 size={18} />
-                      </div>
-
-                      <p className="text-sm font-semibold leading-7 text-white/90">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#eef8ff] to-[#effaf3] text-[#005AAA] shadow-[0_14px_34px_rgba(0,90,170,0.10)]">
+                <Activity size={34} />
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white p-7 shadow-[0_22px_70px_rgba(15,23,42,0.08)]">
-              <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-b from-[#41B650]/10 via-[#005AAA]/5 to-transparent" />
-
-              <div className="relative">
-                <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#41B650]">
-                      Water Quantity
-                    </p>
-                    <h3 className="mt-2 text-3xl font-black text-[#052b4f]">
-                      Capacity Growth
-                    </h3>
+            <div className="space-y-6">
+              {quantity.map(([period, amount, percent], index) => (
+                <div key={period}>
+                  <div className="mb-3 flex items-center justify-between gap-4">
+                    <span className="text-sm font-black text-[#052b4f]">{period}</span>
+                    <span className="text-xl font-black text-[#005AAA]">{amount}</span>
                   </div>
 
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA]">
-                    <Activity size={34} />
+                  <div className="h-3 overflow-hidden rounded-full bg-[#e8eef5]">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234] transition-all duration-1000"
+                      style={{
+                        width: `${percent}%`,
+                        transitionDelay: `${index * 120}ms`,
+                      }}
+                    />
                   </div>
                 </div>
+              ))}
+            </div>
 
-                <div className="space-y-5">
-                  {quantity.map(([period, amount, percent], index) => (
-                    <div key={period} className="rounded-[1.4rem] border border-slate-200 bg-[#f8fbff] p-5">
-                      <div className="mb-3 flex items-center justify-between gap-4">
-                        <span className="text-sm font-black text-[#052b4f]">
-                          {period}
-                        </span>
-                        <span className="text-xl font-black text-[#005AAA]">
-                          {amount}
-                        </span>
-                      </div>
+            <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative pl-5 before:absolute before:left-0 before:top-2 before:h-12 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#41B650]">
+                  Capability Milestone
+                </p>
+                <p className="mt-1 text-lg font-black text-[#052b4f]">
+                  Supply capacity increased from 135 MLD to 320 MLD.
+                </p>
+              </div>
 
-                      <div className="h-3 overflow-hidden rounded-full bg-white shadow-inner">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234] transition-all duration-1000"
-                          style={{
-                            width: `${percent}%`,
-                            transitionDelay: `${index * 120}ms`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 rounded-[1.5rem] border border-[#dcebf3] bg-gradient-to-r from-[#eef8ff] to-[#effaf3] p-5">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#41B650]">
-                        Capability Milestone
-                      </p>
-                      <p className="mt-1 text-lg font-black text-[#052b4f]">
-                        Supply capacity increased from 135 MLD to 320 MLD.
-                      </p>
-                    </div>
-
-                    <div className="rounded-2xl bg-white px-5 py-4 text-center shadow-sm">
-                      <p className="text-3xl font-black text-[#005AAA]">320</p>
-                      <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                        MLD
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-left sm:text-right">
+                <p className="text-5xl font-black tracking-[-0.05em] text-[#005AAA]">320</p>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+                  MLD
+                </p>
               </div>
             </div>
           </div>

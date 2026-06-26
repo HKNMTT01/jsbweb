@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BadgeCheck,
+  ChevronRight,
   Droplets,
   Factory,
   Handshake,
@@ -123,7 +124,15 @@ export default function Sustainability() {
             className="grid gap-10 lg:grid-cols-[1.08fr_.92fr] lg:items-end"
           >
             <div>
-              <h1 className="mt-7 max-w-5xl text-5xl font-black uppercase leading-[0.95] tracking-tight text-[#005AAA] md:text-7xl">
+              <div className="mb-6 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-700">
+                <Link to="/" className="transition hover:text-[#005AAA]">
+                  Home
+                </Link>
+                <ChevronRight size={15} className="text-slate-400" />
+                <span className="font-bold text-[#005AAA]">Sustainability</span>
+              </div>
+
+              <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.95] tracking-tight text-[#005AAA] md:text-7xl">
                 Shaping Sustainable
                 <span className="block text-[#35B24A]">Water & Energy</span>
                 <span className="block text-[#F6A623]">For Sabah's Future</span>

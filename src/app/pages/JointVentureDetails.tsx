@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { Link, Navigate, useLocation, useParams } from "react-router";
 import {
   Award,
@@ -60,7 +61,6 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
     path: "/jointventure/jetama-alpine-pipe",
     icon: Factory,
   },
-
   "solar-pv-power": {
     key: "solar-pv-power",
     title: "Solar PV Power Sdn. Bhd.",
@@ -119,7 +119,7 @@ const alpineScope = [
   {
     icon: Wrench,
     title: "Technical Capability",
-    text: "Driven by continuous improvement in pipe quality, forming process, tooling optimization and product development.",
+    text: "Driven by continuous improvement in pipe quality, forming process, tooling optimisation and product development.",
   },
   {
     icon: ShieldCheck,
@@ -128,49 +128,27 @@ const alpineScope = [
   },
 ];
 
-function SectionHero({ page }: { page: JointVenturePage }) {
-  const Icon = page.icon;
-
+function PageStyles() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
-      <div className="absolute inset-x-0 top-0 h-[350px] overflow-hidden">
-        <img
-          src={page.hero}
-          alt={page.title}
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#061b46]/85 via-[#0b2f7f]/60 to-white" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl text-center">
-          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[2rem] bg-white text-[#0b2f7f] shadow-[0_20px_55px_rgba(0,44,85,0.28)]">
-            <Icon size={46} />
-          </div>
-
-          <p
-            className="mx-auto mt-8 inline-flex items-center rounded-full border border-white/40 bg-white/90 px-5 py-3 text-xs font-black uppercase tracking-[0.25em] shadow-sm backdrop-blur"
-            style={{ color: page.accent }}
-          >
-            {page.eyebrow}
-          </p>
-
-          <h1 className="mt-8 text-4xl font-black text-[#102f83] sm:text-5xl lg:text-6xl">
-            {page.title}
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
-            {page.subtitle}
-          </p>
-        </div>
-      </div>
-    </section>
+    <style>{`
+      @keyframes jointFadeUp {
+        from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+      @keyframes jointFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; }
+        50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .85; }
+      }
+      .scroll-reveal { animation: jointFadeUp .82s cubic-bezier(.2,.8,.2,1) both; }
+      .joint-float-a { animation: jointFloat 12s ease-in-out infinite; }
+      .joint-float-b { animation: jointFloat 15s ease-in-out infinite reverse; }
+    `}</style>
   );
 }
 
 function DetailBreadcrumb({ page }: { page: JointVenturePage }) {
   return (
-    <div className="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
+    <div className="mb-6 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
       <Link to="/" className="transition hover:text-[#005AAA]">
         Home
       </Link>
@@ -184,20 +162,58 @@ function DetailBreadcrumb({ page }: { page: JointVenturePage }) {
   );
 }
 
+function ShortHero({ page }: { page: JointVenturePage }) {
+  return (
+    <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#eef8ff_48%,#f8fff6_100%)] pt-28">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <img
+          src={page.hero}
+          alt={page.title}
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.08]"
+        />
+        <div className="joint-float-a absolute left-[-150px] top-14 h-56 w-[520px] bg-[#005AAA]/[.07]" style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }} />
+        <div className="joint-float-b absolute right-[-150px] top-20 h-60 w-[560px] bg-[#35B24A]/[.08]" style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }} />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f7fbff] via-white/70 to-transparent" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+        <DetailBreadcrumb page={page} />
+
+        <div className="grid gap-8 lg:grid-cols-[230px_1fr] lg:items-center">
+          <div className="flex justify-start lg:justify-center">
+            <div className="flex h-36 w-52 items-center justify-center rounded-[2rem] bg-white/70 p-5 shadow-[0_22px_65px_rgba(0,90,170,0.12)] backdrop-blur-md">
+              <img src={page.logo} alt={page.title} className="max-h-24 w-auto object-contain" />
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: page.accent }}>
+              {page.eyebrow}
+            </p>
+            <h1 className="mt-3 max-w-5xl font-serif text-4xl font-semibold italic leading-tight tracking-[-0.03em] text-[#005AAA] sm:text-5xl lg:text-6xl">
+              {page.title}
+            </h1>
+            <AccentRule />
+            <p className="max-w-3xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+              {page.subtitle}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="relative -mt-3 h-fit bg-transparent px-4 py-0">
-      <div className="mb-1 flex justify-start">
-        <img
-          src={jetamaLogo}
-          alt="JETAMA"
-          className="h-[88px] w-auto object-contain"
-        />
+    <aside className="relative h-fit bg-transparent px-1 py-0 lg:sticky lg:top-28">
+      <div className="mb-2 flex justify-start">
+        <img src={jetamaLogo} alt="JETAMA" className="h-[82px] w-auto object-contain" />
       </div>
 
-      <nav className="-mt-2 space-y-1">
+      <nav className="space-y-1">
         {jointVentureNavigation.map((item) => {
           const Icon = item.icon;
           const active = location.pathname === item.path;
@@ -222,116 +238,86 @@ function Sidebar() {
   );
 }
 
-function OceanWaveDivider() {
+function AccentRule() {
   return (
-    <div className="pointer-events-none relative -mt-8 h-16 overflow-hidden bg-transparent opacity-40">
-      <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-transparent via-white/80 to-white" />
-      <div className="absolute left-[-5%] top-4 h-10 w-[110%] rounded-[50%] bg-white blur-2xl" />
-      <div className="absolute left-[-10%] top-8 h-12 w-[120%] rounded-[50%] bg-white/95 blur-xl" />
-
-      <svg
-        className="absolute bottom-0 left-0 h-28 w-full"
-        viewBox="0 0 1440 260"
-        preserveAspectRatio="none"
-      >
-        <path d="M0,45 C180,10 320,90 520,55 C720,20 900,95 1100,45 C1280,10 1360,25 1440,20 L1440,260 L0,260 Z" fill="rgba(255,255,255,1)" />
-        <path d="M0,70 C220,30 420,105 620,65 C820,30 1020,100 1220,60 C1320,40 1390,48 1440,42 L1440,260 L0,260 Z" fill="rgba(248,255,250,.98)" />
-        <path d="M0,105 C220,65 420,130 650,95 C870,60 1060,130 1260,95 C1360,78 1410,85 1440,82 L1440,260 L0,260 Z" fill="rgba(103,214,111,.50)" />
-        <path d="M0,130 C240,90 460,155 690,120 C910,90 1120,155 1320,118 C1390,105 1420,108 1440,105 L1440,260 L0,260 Z" fill="rgba(65,182,80,.72)" />
-        <path d="M0,160 C250,115 500,175 740,145 C950,120 1160,175 1360,145 C1400,140 1425,138 1440,136 L1440,260 L0,260 Z" fill="rgba(0,84,166,.80)" />
-        <path d="M0,190 C260,140 530,205 770,175 C990,145 1190,205 1380,175 C1410,170 1430,168 1440,166 L1440,260 L0,260 Z" fill="rgba(0,70,145,.90)" />
-        <path d="M0,215 C300,170 560,225 820,200 C1080,175 1260,220 1440,195 L1440,260 L0,260 Z" fill="rgba(0,59,122,.96)" />
-      </svg>
-
-      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white via-white/45 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-r from-[#41B650]/20 via-white/50 to-[#0054A6]/20 blur-xl" />
+    <div className="my-6 flex items-center gap-3">
+      <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+      <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+      <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
     </div>
   );
 }
 
-function JointVentureIntroCard({
-  page,
-  children,
-}: {
-  page: JointVenturePage;
-  children: React.ReactNode;
-}) {
-  const Icon = page.icon;
-
+function SectionTitle({ eyebrow, title, accent = "#41B650" }: { eyebrow: string; title: string; accent?: string }) {
   return (
-    <article className="scroll-reveal">
-      <section className="relative overflow-hidden rounded-[2.5rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3] p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8 lg:p-10">
-        <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#41B650]/12 blur-3xl" />
+    <div className="mb-8">
+      <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: accent }}>
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 font-serif text-3xl font-semibold italic leading-tight text-[#005AAA] sm:text-4xl">
+        {title}
+      </h2>
+      <AccentRule />
+    </div>
+  );
+}
 
-        <div className="relative grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
-          <div className="rounded-[2rem] border border-white bg-white/80 p-7 text-center shadow-[0_18px_55px_rgba(15,23,42,0.08)]">
+function EditorialPoint({ children, accent = "#005AAA" }: { children: ReactNode; accent?: string }) {
+  return (
+    <p
+      className="relative pl-5 text-justify text-[15px] leading-8 text-slate-700 before:absolute before:left-0 before:top-3 before:h-10 before:w-[3px] before:rounded-full sm:text-base"
+      style={{
+        backgroundImage: "none",
+      }}
+    >
+      <span
+        className="absolute left-0 top-3 h-10 w-[3px] rounded-full"
+        style={{ background: `linear-gradient(180deg, ${accent}, #41B650)` }}
+      />
+      {children}
+    </p>
+  );
+}
+
+function IconText({ title, text, icon: Icon, accent }: { title: string; text: string; icon: typeof Factory; accent: string }) {
+  return (
+    <div className="group relative">
+      <div className="mb-5 flex items-center gap-4">
+        <Icon size={30} style={{ color: accent }} />
+        <h3 className="font-serif text-2xl font-semibold italic leading-tight text-[#052b4f] transition group-hover:text-[#005AAA]">
+          {title}
+        </h3>
+      </div>
+      <p className="text-justify text-sm leading-7 text-slate-600">{text}</p>
+    </div>
+  );
+}
+
+function LogoIntro({ page, children }: { page: JointVenturePage; children: ReactNode }) {
+  return (
+    <article className="scroll-reveal relative">
+      <div className="pointer-events-none absolute -right-20 top-4 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-4 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
+
+      <section className="relative grid gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
+        <div className="flex justify-center lg:justify-start">
+          <div className="relative flex min-h-[250px] w-full max-w-[420px] items-center justify-center overflow-visible">
+            <div className="pointer-events-none absolute inset-x-8 bottom-0 h-[70%] rounded-full bg-gradient-to-t from-[#005AAA]/10 via-[#41B650]/6 to-transparent blur-3xl" />
             <img
               src={page.logo}
               alt={page.title}
-              className="mx-auto max-h-40 w-auto object-contain"
+              className="relative z-10 max-h-44 w-auto max-w-full object-contain drop-shadow-[0_24px_35px_rgba(0,68,130,0.16)]"
             />
-
-            <div
-              className="mx-auto mt-7 flex h-16 w-16 items-center justify-center rounded-2xl text-white shadow-lg"
-              style={{ backgroundColor: page.accent }}
-            >
-              <Icon size={32} />
-            </div>
-
-            <p
-              className="mt-5 text-xs font-black uppercase tracking-[0.25em]"
-              style={{ color: page.accent }}
-            >
-              {page.eyebrow}
-            </p>
           </div>
+        </div>
 
-          <div>
-            <h2 className="text-3xl font-black leading-tight text-[#005AAA] lg:text-4xl">
-              {page.title}
-            </h2>
-            <p className="mt-5 text-base leading-8 text-slate-700">
-              {page.subtitle}
-            </p>
-            <div className="mt-7 space-y-4">{children}</div>
+        <div>
+          <SectionTitle eyebrow={page.eyebrow} title={page.shortTitle} accent={page.accent} />
+          <div className="max-w-4xl space-y-5 font-serif italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+            {children}
           </div>
         </div>
       </section>
-    </article>
-  );
-}
-
-function InfoPoint({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <CheckCircle2 className="mt-1 shrink-0 text-[#41B650]" size={18} />
-      <p className="text-sm leading-7 text-slate-700">{children}</p>
-    </div>
-  );
-}
-
-function CapabilityCard({
-  title,
-  text,
-  icon: Icon,
-  accent,
-}: {
-  title: string;
-  text: string;
-  icon: typeof Factory;
-  accent: string;
-}) {
-  return (
-    <article className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_18px_55px_rgba(0,44,85,0.08)] transition duration-500 hover:-translate-y-2 hover:border-[#41B650]/60 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]">
-      <div
-        className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl text-white transition group-hover:scale-110"
-        style={{ backgroundColor: accent }}
-      >
-        <Icon size={27} />
-      </div>
-      <h3 className="text-xl font-black text-[#102f83]">{title}</h3>
-      <p className="mt-4 text-sm leading-7 text-slate-600">{text}</p>
     </article>
   );
 }
@@ -340,75 +326,46 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
   const [preview, setPreview] = useState<string | null>(null);
 
   return (
-    <div className="space-y-8">
-      <JointVentureIntroCard page={page}>
-        <InfoPoint>
+    <div className="space-y-16">
+      <LogoIntro page={page}>
+        <EditorialPoint accent={page.accent}>
           Jetama Alpine Pipe (Sabah) Sdn. Bhd. is a joint venture company between Jetama Sdn. Bhd. and Alpine Pipe Manufacturing Sdn. Bhd.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           The company supports pipe production, steel section products and quality infrastructure solutions for customer requirements.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           Its focus includes SSAW and ERW pipe solutions, supported by technical knowledge, product improvement and quality assurance.
-        </InfoPoint>
-      </JointVentureIntroCard>
+        </EditorialPoint>
+      </LogoIntro>
 
-      <section className="scroll-reveal grid gap-6 md:grid-cols-3">
+      <section className="scroll-reveal grid gap-x-10 gap-y-12 md:grid-cols-3">
         {alpineScope.map((item) => (
-          <CapabilityCard
-            key={item.title}
-            title={item.title}
-            text={item.text}
-            icon={item.icon}
-            accent={page.accent}
-          />
+          <IconText key={item.title} title={item.title} text={item.text} icon={item.icon} accent={page.accent} />
         ))}
       </section>
 
-      <section className="scroll-reveal rounded-[2.5rem] border border-[#dcebf3] bg-[#f8fbff] p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
-        <div className="mb-8 text-center">
-          <Handshake className="mx-auto mb-4 text-[#d5282f]" size={40} />
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#d5282f]">
-            Shareholding
-          </p>
-          <h3 className="mt-3 text-3xl font-black text-[#052b4f]">
-            Joint Venture Structure
-          </h3>
-        </div>
-
-        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-          <ShareCard name="Jetama Sdn. Bhd." percent="51%" />
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#d5282f] text-white shadow-xl">
-            <Handshake size={36} />
-          </div>
-          <ShareCard name="Alpine Pipe Manufacturing Sdn. Bhd." percent="49%" />
+      <section className="scroll-reveal relative">
+        <SectionTitle eyebrow="Shareholding" title="Joint Venture Structure" accent={page.accent} />
+        <div className="grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+          <ShareText name="Jetama Sdn. Bhd." percent="51%" accent={page.accent} />
+          <div className="hidden h-px w-24 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#F5A623] lg:block" />
+          <ShareText name="Alpine Pipe Manufacturing Sdn. Bhd." percent="49%" accent={page.accent} />
         </div>
       </section>
 
-      <section className="scroll-reveal rounded-[2.5rem] border border-[#dcebf3] bg-white p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
-        <div className="text-center">
-          <Award className="mx-auto mb-4 text-[#d5282f]" size={40} />
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#d5282f]">
-            Certifications
-          </p>
-          <h3 className="mt-3 text-3xl font-black text-[#052b4f]">
-            Mild Steel Concrete Lined Pipes Certifications
-          </h3>
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
-            Certifications and approvals related to pipe manufacturing, conformity, quality assurance and water industry standards.
-          </p>
-        </div>
+      <section className="scroll-reveal relative">
+        <SectionTitle eyebrow="Certifications" title="Mild Steel Concrete Lined Pipes Certifications" accent={page.accent} />
+        <p className="max-w-4xl text-justify text-base leading-8 text-slate-600">
+          Certifications and approvals related to pipe manufacturing, conformity, quality assurance and water industry standards.
+        </p>
 
         <button
           type="button"
           onClick={() => setPreview(certificationBoard)}
-          className="group relative mt-10 block w-full overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-1"
+          className="group relative mt-9 block w-full overflow-hidden rounded-[2rem] shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-1"
         >
-          <img
-            src={certificationBoard}
-            alt="Jetama Alpine Pipe Certifications"
-            className="w-full transition duration-700 group-hover:scale-[1.02]"
-          />
+          <img src={certificationBoard} alt="Jetama Alpine Pipe Certifications" className="w-full transition duration-700 group-hover:scale-[1.02]" />
           <div className="absolute inset-0 bg-[#061b46]/0 transition group-hover:bg-[#061b46]/10" />
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-white/95 px-6 py-3 text-sm font-black uppercase tracking-[0.15em] text-[#102f83] shadow-xl backdrop-blur">
             Click To Preview Certifications
@@ -426,11 +383,7 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
             </button>
 
             <div className="max-h-[95vh] max-w-7xl overflow-auto rounded-[2rem] bg-white p-3 shadow-2xl">
-              <img
-                src={preview}
-                alt="Certification Preview"
-                className="h-auto w-full object-contain"
-              />
+              <img src={preview} alt="Certification Preview" className="h-auto w-full object-contain" />
             </div>
           </div>
         )}
@@ -439,41 +392,39 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
   );
 }
 
-function ShareCard({ name, percent }: { name: string; percent: string }) {
+function ShareText({ name, percent, accent }: { name: string; percent: string; accent: string }) {
   return (
-    <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-center shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-[0_18px_55px_rgba(0,44,85,0.10)]">
-      <h4 className="text-6xl font-black text-[#d5282f]">{percent}</h4>
-      <p className="mt-4 text-xl font-black text-[#102f83]">{name}</p>
+    <div>
+      <p className="font-serif text-6xl font-semibold italic leading-none" style={{ color: accent }}>
+        {percent}
+      </p>
+      <p className="mt-4 text-xl font-black leading-tight text-[#052b4f]">{name}</p>
     </div>
   );
 }
 
 function ComingSoonJV({ page }: { page: JointVenturePage }) {
   return (
-    <div className="space-y-8">
-      <JointVentureIntroCard page={page}>
-        <InfoPoint>
+    <div className="space-y-16">
+      <LogoIntro page={page}>
+        <EditorialPoint accent={page.accent}>
           This joint venture company profile has been prepared for future official information updates.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           Project details, company background and operational information will be added once available.
-        </InfoPoint>
-      </JointVentureIntroCard>
+        </EditorialPoint>
+      </LogoIntro>
 
-      <section className="scroll-reveal rounded-[2.5rem] border border-[#dcebf3] bg-white p-8 text-center shadow-[0_24px_70px_rgba(0,90,170,0.08)]">
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-[1.6rem] bg-[#fff7e6] text-[#f5a623] shadow-inner">
-          <Building2 size={38} />
-        </div>
-
+      <section className="scroll-reveal relative text-center">
+        <Building2 className="mx-auto text-[#f5a623]" size={46} />
         <p className="mt-8 text-sm font-black uppercase tracking-[0.25em] text-[#f5a623]">
           Company Details
         </p>
-
-        <h3 className="mt-4 text-3xl font-black text-[#052b4f] sm:text-4xl">
+        <h2 className="mt-4 font-serif text-4xl font-semibold italic text-[#005AAA] sm:text-5xl">
           Coming Soon
-        </h3>
-
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600">
+        </h2>
+        <AccentRule />
+        <p className="mx-auto max-w-2xl text-base leading-8 text-slate-600">
           Information and project details will be announced in the future.
         </p>
       </section>
@@ -501,57 +452,38 @@ function SolarJointVentureDetail({ page }: { page: JointVenturePage }) {
   ];
 
   return (
-    <div className="space-y-8">
-      <JointVentureIntroCard page={page}>
-        <InfoPoint>
+    <div className="space-y-16">
+      <LogoIntro page={page}>
+        <EditorialPoint accent={page.accent}>
           Jetama Babagon Floating Solar Sdn. Bhd. supports floating solar development at Babagon Dam, Penampang.
-        </InfoPoint>
-        <InfoPoint>
-          The proposed project strengthens JETAMA Group’s renewable energy direction and clean energy portfolio.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
+          The proposed project strengthens JETAMA Group's renewable energy direction and clean energy portfolio.
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           The company supports project coordination, governance and future energy infrastructure delivery.
-        </InfoPoint>
-      </JointVentureIntroCard>
+        </EditorialPoint>
+      </LogoIntro>
 
-      <section className="scroll-reveal rounded-[2.5rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#eaf8ef] p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
-        <div className="mb-7">
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#35b24a]">
-            Project Snapshot
-          </p>
-          <h3 className="mt-3 text-3xl font-black text-[#052b4f]">
-            Floating Solar Development
-          </h3>
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-3">
+      <section className="scroll-reveal">
+        <SectionTitle eyebrow="Project Snapshot" title="Floating Solar Development" accent={page.accent} />
+        <div className="grid gap-x-10 gap-y-8 sm:grid-cols-3">
           {[
             ["Project Type", "Floating Solar PV"],
             ["Proposed Capacity", "13.21 MWac"],
             ["Location", "Babagon Dam, Penampang"],
           ].map(([label, value]) => (
-            <div
-              key={label}
-              className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
-                {label}
-              </p>
-              <p className="mt-3 text-xl font-black text-[#052b4f]">{value}</p>
+            <div key={label}>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">{label}</p>
+              <p className="mt-3 font-serif text-3xl font-semibold italic text-[#052b4f]">{value}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="scroll-reveal grid gap-6 md:grid-cols-3">
+      <section className="scroll-reveal grid gap-x-10 gap-y-12 md:grid-cols-3">
         {focusAreas.map((item) => (
-          <CapabilityCard
-            key={item.title}
-            title={item.title}
-            text={item.text}
-            icon={item.icon}
-            accent={page.accent}
-          />
+          <IconText key={item.title} title={item.title} text={item.text} icon={item.icon} accent={page.accent} />
         ))}
       </section>
     </div>
@@ -560,26 +492,26 @@ function SolarJointVentureDetail({ page }: { page: JointVenturePage }) {
 
 function SolarPVPowerJointVentureDetail({ page }: { page: JointVenturePage }) {
   return (
-    <div className="space-y-8">
-      <JointVentureIntroCard page={page}>
-        <InfoPoint>
+    <div className="space-y-16">
+      <LogoIntro page={page}>
+        <EditorialPoint accent={page.accent}>
           Solar PV Power Sdn. Bhd. is positioned under the Joint Ventures section to reflect its strategic renewable energy partnership structure.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           The company supports large scale solar photovoltaic development, clean energy generation and long-term renewable energy planning.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           Its portfolio includes the 10MWac Large Scale Solar PV project in Federal Territory Labuan.
-        </InfoPoint>
-      </JointVentureIntroCard>
+        </EditorialPoint>
+      </LogoIntro>
 
-      <SolarPVProjectSection />
+      <SolarPVProjectSection page={page} />
       <SolarPVFutureProjects />
     </div>
   );
 }
 
-function SolarPVProjectSection() {
+function SolarPVProjectSection({ page }: { page: JointVenturePage }) {
   const milestones = [
     "Letter of Acceptance of Offer from ST received on 28 November 2017.",
     "Power Purchase Agreement signed on 15 December 2021.",
@@ -587,23 +519,22 @@ function SolarPVProjectSection() {
   ];
 
   return (
-    <section className="scroll-reveal rounded-[2.5rem] border border-orange-100 bg-white p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
-      <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+    <section className="scroll-reveal relative">
+      <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#f5a623]">Solar Project</p>
-          <h3 className="mt-3 text-3xl font-black leading-tight text-[#052b4f]">
-            10MWac Large Scale Solar PV Project
-          </h3>
-          <p className="mt-5 text-base leading-8 text-slate-700">
-            Large Scale Solar Photovoltaic Plant located at Kg Bukit Kalam, Federal Territory Labuan, developed to support clean energy generation.
-          </p>
-          <p className="mt-4 text-base leading-8 text-slate-700">
-            The project contributes approximately 23 Gigawatt hours of power per year and supports carbon reduction compared with conventional generation sources.
-          </p>
+          <SectionTitle eyebrow="Solar Project" title="10MWac Large Scale Solar PV Project" accent={page.accent} />
+          <div className="space-y-5">
+            <EditorialPoint accent={page.accent}>
+              Large Scale Solar Photovoltaic Plant located at Kg Bukit Kalam, Federal Territory Labuan, developed to support clean energy generation.
+            </EditorialPoint>
+            <EditorialPoint accent={page.accent}>
+              The project contributes approximately 23 Gigawatt hours of power per year and supports carbon reduction compared with conventional generation sources.
+            </EditorialPoint>
+          </div>
 
-          <div className="mt-6 space-y-3">
+          <div className="mt-8 space-y-4">
             {milestones.map((item) => (
-              <div key={item} className="flex gap-3 rounded-2xl bg-[#fff7e6] p-4">
+              <div key={item} className="flex gap-3">
                 <SunMedium className="mt-1 shrink-0 text-[#f5a623]" size={18} />
                 <p className="text-sm leading-7 text-slate-700">{item}</p>
               </div>
@@ -611,11 +542,11 @@ function SolarPVProjectSection() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[2rem] border border-orange-100 bg-white shadow-[0_22px_60px_rgba(0,44,85,0.12)]">
-          <img src={solarPlantImage} alt="10MWac Large Scale Solar PV Plant" className="h-[360px] w-full object-cover" />
+        <div className="overflow-hidden rounded-[2rem] shadow-[0_22px_60px_rgba(0,44,85,0.12)]">
+          <img src={solarPlantImage} alt="10MWac Large Scale Solar PV Plant" className="h-[380px] w-full object-cover" />
           <div className="flex items-center gap-3 bg-[#052b4f] px-6 py-4 text-white">
             <Zap size={20} className="text-[#f5a623]" />
-            <span className="text-sm font-black uppercase">F.T. Labuan Solar PV Plant</span>
+            <span className="text-sm font-black uppercase tracking-[0.14em]">F.T. Labuan Solar PV Plant</span>
           </div>
         </div>
       </div>
@@ -638,25 +569,21 @@ function SolarPVFutureProjects() {
   ];
 
   return (
-    <section className="scroll-reveal rounded-[2.5rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3] p-6 shadow-[0_24px_70px_rgba(0,90,170,0.08)] sm:p-8">
-      <div className="mb-7 text-center">
-        <Leaf className="mx-auto mb-4 text-[#41B650]" size={38} />
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-[#41B650]">Future Solar Direction</p>
-        <h3 className="mt-3 text-3xl font-black text-[#052b4f]">Upcoming Large Scale Solar Developments</h3>
-        <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
-          Two additional Large Scale Solar projects are planned through LSS Sabah 2024 with scheduled commercial operations in December 2026.
-        </p>
-      </div>
+    <section className="scroll-reveal relative">
+      <SectionTitle eyebrow="Future Solar Direction" title="Upcoming Large Scale Solar Developments" accent="#41B650" />
+      <p className="max-w-4xl text-justify text-base leading-8 text-slate-600">
+        Two additional Large Scale Solar projects are planned through LSS Sabah 2024 with scheduled commercial operations in December 2026.
+      </p>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="mt-10 grid gap-10 md:grid-cols-2">
         {futureProjects.map((project) => (
-          <article key={project.title} className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_22px_60px_rgba(0,90,170,0.14)]">
-            <div className="h-64 overflow-hidden">
-              <img src={project.image} alt={project.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+          <article key={project.title} className="group">
+            <div className="overflow-hidden rounded-[2rem] shadow-[0_22px_60px_rgba(0,44,85,0.12)]">
+              <img src={project.image} alt={project.title} className="h-72 w-full object-cover transition duration-700 group-hover:scale-105" />
             </div>
-            <div className="p-6">
+            <div className="mt-5">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f5a623]">Solar PV Development</p>
-              <h4 className="mt-3 text-2xl font-black text-[#052b4f]">{project.title}</h4>
+              <h3 className="mt-3 font-serif text-2xl font-semibold italic text-[#052b4f]">{project.title}</h3>
               <p className="mt-3 text-sm font-semibold text-slate-600">{project.location}</p>
             </div>
           </article>
@@ -669,156 +596,10 @@ function SolarPVFutureProjects() {
 function CurrentContent({ selected }: { selected: JointVentureKey }) {
   const page = jointVenturePages[selected];
 
-  if (selected === "jetama-alpine-pipe") {
-    return <JetamaAlpinePipeDetail page={page} />;
-  }
-
-  if (selected === "solar-pv-power") {
-    return <SolarPVPowerJointVentureDetail page={page} />;
-  }
-
-  if (selected === "jetama-batu-sapi-solar") {
-    return <ComingSoonJV page={page} />;
-  }
-
+  if (selected === "jetama-alpine-pipe") return <JetamaAlpinePipeDetail page={page} />;
+  if (selected === "solar-pv-power") return <SolarPVPowerJointVentureDetail page={page} />;
+  if (selected === "jetama-batu-sapi-solar") return <ComingSoonJV page={page} />;
   return <SolarJointVentureDetail page={page} />;
-}
-
-
-function CleanCorporateTheme() {
-  return (
-    <style>{`
-      @keyframes jetamaFadeUp { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-      @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
-      @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
-
-      .clean-corporate-page { background: #f7fbff; color: #0f2f44; }
-      .clean-corporate-page > section:first-of-type {
-        position: relative;
-        isolation: isolate;
-        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 48%, #f8fff6 100%) !important;
-        color: #0f2f44 !important;
-        overflow: hidden;
-      }
-      .clean-corporate-page > section:first-of-type::before {
-        content: "";
-        position: absolute;
-        left: -180px;
-        top: 26px;
-        width: 420px;
-        height: 420px;
-        border-radius: 72px;
-        border: 1px solid rgba(0,90,170,.10);
-        background: rgba(0,90,170,.045);
-        transform: rotate(45deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 11s ease-in-out infinite;
-      }
-      .clean-corporate-page > section:first-of-type::after {
-        content: "";
-        position: absolute;
-        right: -170px;
-        top: 95px;
-        width: 430px;
-        height: 430px;
-        border-radius: 76px;
-        border: 1px solid rgba(53,178,74,.16);
-        background: rgba(53,178,74,.05);
-        transform: rotate(12deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 14s ease-in-out infinite reverse;
-      }
-      .clean-corporate-page > section:first-of-type img {
-        opacity: .16 !important;
-        filter: saturate(1.08) contrast(1.08) brightness(1.08);
-      }
-      .clean-corporate-page > section:first-of-type .absolute.inset-0,
-      .clean-corporate-page > section:first-of-type .absolute.inset-x-0.top-0,
-      .clean-corporate-page > section:first-of-type .absolute.-right-24,
-      .clean-corporate-page > section:first-of-type .absolute.-left-20,
-      .clean-corporate-page > section:first-of-type .absolute.left-10,
-      .clean-corporate-page > section:first-of-type .absolute.-bottom-28,
-      .clean-corporate-page > section:first-of-type .absolute.left-0.top-0.z-10 {
-        opacity: .32;
-      }
-      .clean-corporate-page > section:first-of-type > div:last-child,
-      .clean-corporate-page > section:first-of-type .relative {
-        z-index: 5;
-      }
-      .clean-corporate-page > section:first-of-type h1 {
-        color: #005AAA !important;
-        letter-spacing: -0.045em;
-        text-shadow: none !important;
-      }
-      .clean-corporate-page > section:first-of-type h1 span,
-      .clean-corporate-page > section:first-of-type .font-serif {
-        color: #005AAA !important;
-        font-family: inherit !important;
-        font-weight: 900 !important;
-      }
-      .clean-corporate-page > section:first-of-type p {
-        color: #475569 !important;
-      }
-      .clean-corporate-page > section:first-of-type a,
-      .clean-corporate-page > section:first-of-type span {
-        color: #005AAA;
-      }
-      .clean-corporate-page > section:first-of-type [class*="text-white"] {
-        color: #0f2f44 !important;
-      }
-      .clean-corporate-page > section:first-of-type [class*="bg-white/10"],
-      .clean-corporate-page > section:first-of-type [class*="bg-white/90"],
-      .clean-corporate-page > section:first-of-type [class*="border-white"] {
-        background: rgba(255,255,255,.82) !important;
-        border-color: rgba(0,90,170,.16) !important;
-        box-shadow: 0 18px 55px rgba(0,90,170,.10);
-      }
-      .clean-corporate-page > section:first-of-type div[class*="h-24"][class*="w-24"][class*="rounded"] {
-        display: none !important;
-      }
-      .clean-corporate-page > section:first-of-type .inline-flex,
-      .clean-corporate-page > section:first-of-type button {
-        backdrop-filter: blur(14px);
-      }
-      .clean-corporate-page article,
-      .clean-corporate-page .rounded-\[2rem\],
-      .clean-corporate-page .rounded-\[2\.5rem\],
-      .clean-corporate-page .rounded-\[1\.8rem\] {
-        border-color: rgba(0,90,170,.12) !important;
-      }
-      .clean-corporate-page .shadow-\[0_30px_90px_rgba\(0\,44\,85\,0\.16\)\],
-      .clean-corporate-page .shadow-\[0_28px_90px_rgba\(0\,44\,85\,0\.12\)\],
-      .clean-corporate-page .shadow-\[0_24px_70px_rgba\(0\,90\,170\,0\.08\)\] {
-        box-shadow: 0 24px 80px rgba(0,90,170,.10) !important;
-      }
-      .clean-corporate-page .scroll-reveal,
-      .clean-corporate-page .animate-\[fadeInUp_\.8s_ease_both\],
-      .clean-corporate-page .animate-\[fadeInUp_\.7s_ease_both\] {
-        animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both !important;
-      }
-      .clean-corporate-page .shine-layer,
-      .clean-corporate-page article,
-      .clean-corporate-page button,
-      .clean-corporate-page a.group {
-        position: relative;
-        overflow: hidden;
-      }
-      .clean-corporate-page .shine-layer::before,
-      .clean-corporate-page article::before,
-      .clean-corporate-page button::before,
-      .clean-corporate-page a.group::before {
-        content: "";
-        position: absolute;
-        top: -50%; bottom: -50%; left: -35%; width: 28%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
-        transform: translateX(-150%) skewX(-18deg);
-        pointer-events: none;
-      }
-      .clean-corporate-page article:hover::before,
-      .clean-corporate-page button:hover::before,
-      .clean-corporate-page a.group:hover::before { animation: jetamaShine 1.9s ease; }
-    `}</style>
-  );
 }
 
 export default function JointVentureDetails() {
@@ -827,7 +608,6 @@ export default function JointVentureDetails() {
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".scroll-reveal");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -851,25 +631,20 @@ export default function JointVentureDetails() {
   const page = jointVenturePages[selected];
 
   return (
-    <main className="clean-corporate-page overflow-hidden bg-white pt-32 text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
-      <CleanCorporateTheme />
-      <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-        <DetailBreadcrumb page={page} />
-      </div>
+    <main className="overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+      <PageStyles />
+      <ShortHero page={page} />
 
-      <SectionHero page={page} />
-
-      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] px-4 py-16 sm:px-6 lg:px-8">
+      <section className="relative px-4 py-14 sm:px-6 lg:px-8">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
-          <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
+          <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-[#005AAA]/8 blur-3xl" />
+          <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] rounded-full bg-[#41B650]/10 blur-3xl" />
           <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.06)_1px,transparent_0)] [background-size:28px_28px] opacity-35" />
         </div>
 
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[260px_1fr]">
           <Sidebar />
-
           <main className="min-w-0">
             <CurrentContent selected={selected} />
           </main>

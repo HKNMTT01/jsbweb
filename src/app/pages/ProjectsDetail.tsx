@@ -232,7 +232,7 @@ function Breadcrumb({
   activeSegment?: ProjectSegment;
 }) {
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 pb-5 sm:px-6 lg:px-8">
       <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
         <Link to="/" className="hover:text-[#005AAA]">
           Home
@@ -263,40 +263,45 @@ function ProjectHero({
   page: ProjectPage;
   activeSegment?: ProjectSegment;
 }) {
-  const Icon = page.icon;
   const segment = activeSegment ? waterProjectSegments[activeSegment] : null;
   const title = segment ? `${page.title}: ${segment.label}` : page.title;
   const subtitle = segment ? segment.subtitle : page.subtitle;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8fbff] via-white to-white">
-      <div className="absolute inset-x-0 top-0 h-[350px] overflow-hidden">
+    <section className="relative isolate overflow-hidden bg-[#f7fbff]">
+      <div className="absolute inset-0 -z-10">
         <img
           src={heroImage}
           alt={title}
-          className="h-full w-full object-cover"
+          className="h-full w-full scale-105 object-cover opacity-[0.28]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#061b46]/85 via-[#0b2f7f]/60 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/58" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(0,90,170,0.16),transparent_35%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f7fbff] via-[#f7fbff]/78 to-transparent" />
+        <div className="absolute -left-24 top-8 h-56 w-[500px] rotate-[-8deg] bg-[#005AAA]/[0.07] blur-[1px]" style={{ clipPath: "polygon(0 20%, 82% 0, 100% 72%, 12% 100%)" }} />
+        <div className="absolute -right-32 top-12 h-64 w-[560px] rotate-[8deg] bg-[#35B24A]/[0.07]" style={{ clipPath: "polygon(8% 0, 100% 25%, 82% 100%, 0 72%)" }} />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl text-center">
-          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-[2rem] bg-white text-[#0b2f7f] shadow-[0_20px_55px_rgba(0,44,85,0.28)]">
-            <Icon size={46} />
-          </div>
-
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-10 sm:px-6 lg:px-8">
+        <div className="max-w-4xl">
           <p
-            className="mx-auto mt-8 inline-flex items-center rounded-full border border-white/40 bg-white/90 px-5 py-3 text-xs font-black uppercase tracking-[0.25em] shadow-sm backdrop-blur"
+            className="text-xs font-black uppercase tracking-[0.28em]"
             style={{ color: page.accent }}
           >
             {page.eyebrow}
           </p>
 
-          <h1 className="mt-8 text-4xl font-black text-[#102f83] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-serif text-4xl font-normal italic leading-tight tracking-[-0.035em] text-[#005AAA] sm:text-5xl lg:text-6xl">
             {title}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+            <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+            <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+          </div>
+
+          <p className="mt-5 max-w-3xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
             {subtitle}
           </p>
         </div>
@@ -313,36 +318,36 @@ function ComingSoonProjects({
   const item = waterProjectSegments[activeSegment];
 
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-gradient-to-br from-white via-[#f8fbff] to-[#effaf3] p-8 shadow-[0_28px_90px_rgba(0,44,85,0.12)] sm:p-12">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#35b24a]/12 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#102f83]/10 blur-3xl" />
+    <section className="relative overflow-hidden bg-[#f7fbff] py-14">
+      <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-8 h-72 w-72 rounded-full bg-[#35B24A]/8 blur-3xl" />
 
-          <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-[1.6rem] bg-[#eef8ff] text-[#102f83] shadow-inner">
-            <ClipboardList size={38} />
-          </div>
+      <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35b24a]">
+          Project Timeline
+        </p>
 
-          <p className="relative mt-8 text-sm font-black uppercase tracking-[0.25em] text-[#35b24a]">
-            Project Timeline
-          </p>
+        <h2 className="mt-4 font-serif text-3xl font-normal italic leading-tight text-[#005AAA] sm:text-4xl">
+          {item.label} Timeline Coming Soon
+        </h2>
 
-          <h2 className="relative mt-4 text-3xl font-black text-[#102f83] sm:text-4xl">
-            {item.label} Timeline Coming Soon
-          </h2>
-
-          <p className="relative mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600">
-            This section has been prepared for future project records. Once the {item.shortLabel.toLowerCase()} project information is ready, the timeline cards can be added here without changing the page structure.
-          </p>
-
-          <Link
-            to="/projects/water-project/concession-project"
-            className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-[#102f83] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#35b24a] hover:text-[#102f83]"
-          >
-            View Concession Timeline
-            <ChevronRight size={17} />
-          </Link>
+        <div className="mx-auto my-6 flex w-fit items-center gap-3">
+          <span className="h-[3px] w-16 rounded-full bg-[#005AAA]" />
+          <span className="h-[3px] w-8 rounded-full bg-[#35B24A]" />
+          <span className="h-[3px] w-5 rounded-full bg-[#F5A623]" />
         </div>
+
+        <p className="mx-auto max-w-2xl text-base leading-8 text-slate-600">
+          This section has been prepared for future project records. Once the {item.shortLabel.toLowerCase()} project information is ready, the timeline can be added here while keeping the same clean corporate layout.
+        </p>
+
+        <Link
+          to="/projects/water-project/concession-project"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#005AAA] px-6 py-3 text-sm font-black text-white shadow-[0_18px_45px_rgba(0,90,170,0.22)] transition hover:-translate-y-1 hover:bg-[#35B24A] hover:text-[#052b4f]"
+        >
+          View Concession Timeline
+          <ChevronRight size={17} />
+        </Link>
       </div>
     </section>
   );
@@ -383,7 +388,7 @@ function ProjectTimeline({
   }, [projects, page.category]);
 
   return (
-    <section className="bg-white py-20">
+    <section className="relative overflow-hidden bg-[#f7fbff] py-14">
       <style>
         {`
           .timeline-reveal {
@@ -496,9 +501,19 @@ function ProjectTimeline({
           style={{ color: page.accent }}
         />
 
-        <h2 className="text-4xl font-black uppercase text-[#102f83] underline decoration-[#35b24a] decoration-4 underline-offset-8">
+        <h2 className="font-serif text-4xl font-normal italic leading-tight text-[#005AAA] sm:text-5xl">
           Project Timeline
         </h2>
+
+        <div className="mx-auto mt-5 flex w-fit items-center gap-3">
+          <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+          <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+          <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+        </div>
+
+        <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600">
+          A structured project journey presented directly after the header, with clean motion, balanced imagery and readable corporate timeline details.
+        </p>
 
       </div>
 
@@ -595,7 +610,7 @@ function TimelineWrapper({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div className="timeline-wrapper relative mx-auto mt-20 max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div className="timeline-wrapper relative mx-auto mt-14 max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="main-timeline-line hidden lg:block" />
       <div className="main-timeline-progress hidden lg:block" />
       {children}
@@ -638,7 +653,7 @@ function ProjectCard({
     <button
       type="button"
       onClick={() => onSelect(project)}
-      className="timeline-card group relative block w-full max-w-[440px] overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white text-left shadow-[0_22px_70px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-3 hover:border-[#35b24a]/40 hover:shadow-[0_34px_100px_rgba(0,44,85,0.2)]"
+      className="timeline-card group relative block w-full max-w-[440px] overflow-hidden rounded-[2rem] bg-white/78 text-left shadow-[0_22px_70px_rgba(0,44,85,0.10)] backdrop-blur-md transition duration-500 hover:-translate-y-3 hover:shadow-[0_34px_100px_rgba(0,44,85,0.18)]"
     >
       <div className="relative h-[205px] overflow-hidden">
         <img
@@ -1034,8 +1049,7 @@ export default function ProjectsDetail() {
   });
 
   return (
-    <main className="clean-corporate-page overflow-hidden bg-white pt-32 text-slate-900">
-      <CleanCorporateTheme />
+    <main className="overflow-hidden bg-[#f7fbff] pt-28 text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
       <Breadcrumb page={page} activeSegment={activeSegment} />
       <ProjectHero page={page} activeSegment={activeSegment} />
 

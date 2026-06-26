@@ -370,7 +370,7 @@ function StandardContent({ page }: { page: AboutPage }) {
 
           <div className="relative">
 
-            <h2 className="font-serif text-3xl font-normal italic text-[#052b4f] sm:text-4xl">
+            <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
               Company Profile
             </h2>
 
@@ -567,8 +567,8 @@ function BoardDirectorsContent() {
         <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(260px,0.82fr)] lg:items-center">
           <div className="min-w-0 py-3 lg:pr-4">
 
-            <h2 className="max-w-3xl font-serif text-3xl font-normal italic leading-tight text-[#052b4f] sm:text-4xl">
-              Board of Directors
+            <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+              Board Of Directors
             </h2>
 
             <div className="my-7 flex items-center gap-3">

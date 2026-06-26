@@ -7,6 +7,7 @@ import {
   Phone,
   Printer,
   Send,
+  Sparkles,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
@@ -98,140 +99,105 @@ const contactGroups: ContactGroup[] = [
   },
 ];
 
-
-function CleanCorporateTheme() {
+function PageStyles() {
   return (
     <style>{`
-      @keyframes jetamaFadeUp { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-      @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
-      @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
-
-      .clean-corporate-page { background: #f7fbff; color: #0f2f44; }
-      .clean-corporate-page > section:first-of-type {
-        position: relative;
-        isolation: isolate;
-        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 48%, #f8fff6 100%) !important;
-        color: #0f2f44 !important;
-        overflow: hidden;
+      @keyframes contactFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .56; }
+        50% { transform: translate3d(18px,-16px,0) rotate(2deg); opacity: .82; }
       }
-      .clean-corporate-page > section:first-of-type::before {
+      @keyframes contactFadeUp {
+        from { opacity: 0; transform: translateY(24px); filter: blur(7px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+      @keyframes softShine {
+        0% { transform: translateX(-140%) skewX(-18deg); opacity: 0; }
+        35% { opacity: .45; }
+        100% { transform: translateX(180%) skewX(-18deg); opacity: 0; }
+      }
+      .jetama-soft-in { animation: contactFadeUp .85s cubic-bezier(.2,.8,.2,1) both; }
+      .jetama-float-a { animation: contactFloat 13s ease-in-out infinite; }
+      .jetama-float-b { animation: contactFloat 16s ease-in-out infinite reverse; }
+      .shine-hover::before {
         content: "";
         position: absolute;
-        left: -180px;
-        top: 26px;
-        width: 420px;
-        height: 420px;
-        border-radius: 72px;
-        border: 1px solid rgba(0,90,170,.10);
-        background: rgba(0,90,170,.045);
-        transform: rotate(45deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 11s ease-in-out infinite;
-      }
-      .clean-corporate-page > section:first-of-type::after {
-        content: "";
-        position: absolute;
-        right: -170px;
-        top: 95px;
-        width: 430px;
-        height: 430px;
-        border-radius: 76px;
-        border: 1px solid rgba(53,178,74,.16);
-        background: rgba(53,178,74,.05);
-        transform: rotate(12deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 14s ease-in-out infinite reverse;
-      }
-      .clean-corporate-page > section:first-of-type img {
-        opacity: .16 !important;
-        filter: saturate(1.08) contrast(1.08) brightness(1.08);
-      }
-      .clean-corporate-page > section:first-of-type .absolute.inset-0,
-      .clean-corporate-page > section:first-of-type .absolute.inset-x-0.top-0,
-      .clean-corporate-page > section:first-of-type .absolute.-right-24,
-      .clean-corporate-page > section:first-of-type .absolute.-left-20,
-      .clean-corporate-page > section:first-of-type .absolute.left-10,
-      .clean-corporate-page > section:first-of-type .absolute.-bottom-28,
-      .clean-corporate-page > section:first-of-type .absolute.left-0.top-0.z-10 {
-        opacity: .32;
-      }
-      .clean-corporate-page > section:first-of-type > div:last-child,
-      .clean-corporate-page > section:first-of-type .relative {
-        z-index: 5;
-      }
-      .clean-corporate-page > section:first-of-type h1 {
-        color: #005AAA !important;
-        letter-spacing: -0.045em;
-        text-shadow: none !important;
-      }
-      .clean-corporate-page > section:first-of-type h1 span,
-      .clean-corporate-page > section:first-of-type .font-serif {
-        color: #005AAA !important;
-        font-family: inherit !important;
-        font-weight: 900 !important;
-      }
-      .clean-corporate-page > section:first-of-type p {
-        color: #475569 !important;
-      }
-      .clean-corporate-page > section:first-of-type a,
-      .clean-corporate-page > section:first-of-type span {
-        color: #005AAA;
-      }
-      .clean-corporate-page > section:first-of-type [class*="text-white"] {
-        color: #0f2f44 !important;
-      }
-      .clean-corporate-page > section:first-of-type [class*="bg-white/10"],
-      .clean-corporate-page > section:first-of-type [class*="bg-white/90"],
-      .clean-corporate-page > section:first-of-type [class*="border-white"] {
-        background: rgba(255,255,255,.82) !important;
-        border-color: rgba(0,90,170,.16) !important;
-        box-shadow: 0 18px 55px rgba(0,90,170,.10);
-      }
-      .clean-corporate-page > section:first-of-type div[class*="h-24"][class*="w-24"][class*="rounded"] {
-        display: none !important;
-      }
-      .clean-corporate-page > section:first-of-type .inline-flex,
-      .clean-corporate-page > section:first-of-type button {
-        backdrop-filter: blur(14px);
-      }
-      .clean-corporate-page article,
-      .clean-corporate-page .rounded-\[2rem\],
-      .clean-corporate-page .rounded-\[2\.5rem\],
-      .clean-corporate-page .rounded-\[1\.8rem\] {
-        border-color: rgba(0,90,170,.12) !important;
-      }
-      .clean-corporate-page .shadow-\[0_30px_90px_rgba\(0\,44\,85\,0\.16\)\],
-      .clean-corporate-page .shadow-\[0_28px_90px_rgba\(0\,44\,85\,0\.12\)\],
-      .clean-corporate-page .shadow-\[0_24px_70px_rgba\(0\,90\,170\,0\.08\)\] {
-        box-shadow: 0 24px 80px rgba(0,90,170,.10) !important;
-      }
-      .clean-corporate-page .scroll-reveal,
-      .clean-corporate-page .animate-\[fadeInUp_\.8s_ease_both\],
-      .clean-corporate-page .animate-\[fadeInUp_\.7s_ease_both\] {
-        animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both !important;
-      }
-      .clean-corporate-page .shine-layer,
-      .clean-corporate-page article,
-      .clean-corporate-page button,
-      .clean-corporate-page a.group {
-        position: relative;
-        overflow: hidden;
-      }
-      .clean-corporate-page .shine-layer::before,
-      .clean-corporate-page article::before,
-      .clean-corporate-page button::before,
-      .clean-corporate-page a.group::before {
-        content: "";
-        position: absolute;
-        top: -50%; bottom: -50%; left: -35%; width: 28%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
-        transform: translateX(-150%) skewX(-18deg);
+        top: -60%;
+        bottom: -60%;
+        left: -40%;
+        width: 30%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+        transform: translateX(-140%) skewX(-18deg);
         pointer-events: none;
       }
-      .clean-corporate-page article:hover::before,
-      .clean-corporate-page button:hover::before,
-      .clean-corporate-page a.group:hover::before { animation: jetamaShine 1.9s ease; }
+      .shine-hover:hover::before { animation: softShine 1.8s ease; }
     `}</style>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative isolate overflow-hidden pt-36">
+      <PageStyles />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#ffffff_0%,#eef8ff_46%,#f8fff6_100%)]" />
+      <div className="jetama-float-a absolute left-[-160px] top-8 -z-10 h-[420px] w-[420px] rotate-45 rounded-[72px] border border-[#005AAA]/10 bg-[#005AAA]/5 blur-sm" />
+      <div className="jetama-float-b absolute right-[-160px] top-28 -z-10 h-[420px] w-[420px] rotate-12 rounded-[72px] border border-[#35B24A]/15 bg-[#35B24A]/5" />
+      <div className="absolute bottom-4 left-[24%] -z-10 h-28 w-[520px] rotate-[-8deg] bg-[#F5A623]/[.075] blur-3xl" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#f7fbff] via-white/70 to-transparent" />
+
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 lg:grid-cols-[1fr_420px] lg:items-end lg:px-8">
+        <div className="jetama-soft-in">
+          <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
+            <Link to="/" className="transition hover:text-[#005AAA]">
+              Home
+            </Link>
+            <ChevronRight size={16} className="text-slate-400" />
+            <span className="font-bold text-[#005AAA]">Contact Us</span>
+          </div>
+
+          <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
+            Get In Touch
+          </p>
+
+          <h1 className="mt-5 max-w-5xl text-5xl font-black uppercase leading-[0.96] tracking-tight text-[#005AAA] md:text-7xl">
+            Connect With
+            <span className="block text-[#35B24A]">Jetama Group</span>
+          </h1>
+
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
+            Reach our headquarters, subsidiaries and joint venture offices through a cleaner corporate directory built for quick reference and smooth enquiries.
+          </p>
+        </div>
+
+        <div className="jetama-soft-in relative overflow-hidden rounded-[34px] bg-white/85 p-7 shadow-[0_28px_80px_rgba(15,60,110,.14)] backdrop-blur-xl [animation-delay:.12s]">
+          <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F6A623]" />
+          <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#005AAA]/10 blur-2xl" />
+          <Sparkles className="text-[#F6A623]" size={34} />
+          <p className="mt-5 text-sm font-black uppercase tracking-[0.24em] text-[#35B24A]">
+            Office Directory
+          </p>
+          <h2 className="mt-3 text-3xl font-black leading-tight text-[#005AAA]">
+            Centralised contact access for JETAMA Group companies.
+          </h2>
+          <div className="mt-7 grid grid-cols-3 gap-3">
+            {["HQ", "Water", "Energy"].map((item) => (
+              <div key={item} className="rounded-2xl bg-[#f8fbff] px-4 py-5 text-center shadow-sm">
+                <p className="text-2xl font-black text-[#005AAA]">{item}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Office</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactInfoLine({ icon: Icon, children }: { icon: typeof MapPin; children: React.ReactNode }) {
+  return (
+    <div className="flex gap-3">
+      <Icon size={18} className="mt-1 shrink-0 text-[#005AAA]" />
+      <div className="text-sm font-medium leading-6 text-slate-600">{children}</div>
+    </div>
   );
 }
 
@@ -272,239 +238,168 @@ export default function Contact() {
   };
 
   return (
-    <main className="clean-corporate-page overflow-hidden bg-[#f6fafc] text-[#062f4e]">
-      <CleanCorporateTheme />
-      <section className="relative overflow-hidden bg-[#052b4f] px-4 pb-24 pt-40 text-white sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(65,182,80,0.35),transparent_34%),radial-gradient(circle_at_85%_30%,rgba(245,166,35,0.24),transparent_30%),linear-gradient(135deg,#052b4f,#005aaa)]" />
-        <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full border border-white/10" />
-        <div className="absolute left-10 top-32 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
+    <main className="overflow-hidden bg-[#f7fbff] text-[#062f4e]">
+      <Hero />
 
-        <div className="relative mx-auto max-w-7xl animate-[fadeInUp_.8s_ease_both]">
-          <div className="max-w-3xl">
-            <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-white/75">
-              <Link to="/" className="hover:text-white">Home</Link>
-              <ChevronRight size={16} />
-              <span className="text-white">Contact Us</span>
+      <section className="relative pb-24">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_48%,#f8fff7_100%)]" />
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+          <div>
+            <div className="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
+                  Corporate Directory
+                </p>
+                <h2 className="mt-3 text-4xl font-black tracking-tight text-[#005AAA] md:text-5xl">
+                  Office Locations
+                </h2>
+              </div>
+              <p className="max-w-md text-sm font-semibold leading-7 text-slate-500">
+                Contact cards are grouped by office location so the layout feels neat, balanced and easier to scan.
+              </p>
             </div>
 
-            <h1 className="mt-7 text-4xl font-black leading-tight md:text-7xl">
-              Connect With Us
-            </h1>
+            <div className="grid gap-6">
+              {contactGroups.map((group, index) => (
+                <article
+                  key={group.groupTitle}
+                  className="shine-hover group relative overflow-hidden rounded-[32px] bg-white/90 p-6 shadow-[0_22px_70px_rgba(0,90,170,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_95px_rgba(0,90,170,0.16)]"
+                  style={{ animation: "contactFadeUp .75s ease both", animationDelay: `${index * 90}ms` }}
+                >
+                  <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
+                  <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#005AAA]/8 blur-2xl transition group-hover:scale-125" />
 
-            <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-blue-50">
-              Reach JETAMA Group through shared office locations and dedicated
-              contact channels.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative -mt-2 z-10 mx-auto grid max-w-7xl gap-8 px-4 pb-24 pt-0 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-        <div>
-          <div className="mb-8">
-            <h2 className="mt-3 text-4xl font-black text-[#062f4e]">
-              Company Contact Directory
-            </h2>
-          </div>
-
-          <div className="grid gap-6">
-            {contactGroups.map((group, index) => (
-              <article
-                key={group.groupTitle}
-                className="group relative overflow-hidden rounded-[1.8rem] border border-[#dcebf3] bg-white p-5 shadow-[0_16px_50px_rgba(0,90,170,0.10)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(0,90,170,0.16)]"
-                style={{
-                  animation: "fadeInUp .7s ease both",
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
-                <div className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-[#005AAA]/8 transition group-hover:scale-150" />
-
-                <div className="grid gap-5 md:grid-cols-[0.9fr_1.1fr]">
-                  <div className="grid gap-3">
-                    {group.companies.map((company) => (
-                      <div
-                        key={company.name}
-                        className="rounded-[1.3rem] border border-[#edf4f7] bg-[#f8fbfd] p-4"
-                      >
-                        <div className="flex h-24 items-center justify-center rounded-2xl bg-white p-3 shadow-sm">
-                          <img
-                            src={company.logo}
-                            alt={company.name}
-                            className={`w-full object-contain transition duration-500 group-hover:scale-105 ${
-                              company.logoLarge ? "max-h-20" : "max-h-16"
-                            }`}
-                          />
+                  <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr] xl:items-center">
+                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+                      {group.companies.map((company) => (
+                        <div key={company.name} className="relative overflow-hidden rounded-[24px] bg-[#f8fbff] p-4">
+                          <div className="absolute left-0 top-0 h-full w-1.5" style={{ backgroundColor: company.accent }} />
+                          <div className="flex items-center gap-4 pl-3">
+                            <div className="flex h-24 w-32 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-sm">
+                              <img
+                                src={company.logo}
+                                alt={company.name}
+                                className={`w-full object-contain transition duration-500 group-hover:scale-105 ${company.logoLarge ? "max-h-20" : "max-h-16"}`}
+                              />
+                            </div>
+                            <div className="min-w-0">
+                              <span
+                                className="inline-flex rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white"
+                                style={{ backgroundColor: company.accent }}
+                              >
+                                {company.shortName}
+                              </span>
+                              <h3 className="mt-3 text-sm font-black leading-snug text-[#073e63]">
+                                {company.name}
+                              </h3>
+                            </div>
+                          </div>
                         </div>
+                      ))}
+                    </div>
 
-                        <span
-                          className="mt-4 inline-flex rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white"
-                          style={{ backgroundColor: company.accent }}
-                        >
-                          {company.shortName}
-                        </span>
-
-                        <h3 className="mt-3 text-[15px] font-black leading-snug text-[#073e63]">
-                          {company.name}
-                        </h3>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col justify-center rounded-[1.4rem] bg-white p-2">
-                    <h4 className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-[#35B24A]">
-                      {group.groupTitle}
-                    </h4>
-
-                    <div className="space-y-4 text-sm">
-                      <div className="flex gap-3">
-                        <MapPin
-                          size={18}
-                          className="mt-1 shrink-0 text-[#005AAA]"
-                        />
-                        <p className="leading-6 text-slate-600">
-                          {group.address}
-                        </p>
+                    <div className="relative rounded-[26px] bg-white/70 p-6">
+                      <div className="mb-5 flex items-center gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA]">
+                          <Building2 size={23} />
+                        </div>
+                        <h4 className="text-sm font-black uppercase tracking-[0.18em] text-[#35B24A]">
+                          {group.groupTitle}
+                        </h4>
                       </div>
 
-                      <div className="flex items-center gap-3">
-                        <Phone size={17} className="text-[#005AAA]" />
-                        <p className="font-bold text-slate-700">
-                          {group.phone}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <Printer size={17} className="text-[#005AAA]" />
-                        <p className="font-bold text-slate-700">{group.fax}</p>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <Mail size={17} className="text-[#005AAA]" />
-                        <a
-                          href={`mailto:${group.email}`}
-                          className="break-all font-bold text-slate-700 transition hover:text-[#35B24A]"
-                        >
-                          {group.email}
-                        </a>
+                      <div className="space-y-4">
+                        <ContactInfoLine icon={MapPin}>{group.address}</ContactInfoLine>
+                        <ContactInfoLine icon={Phone}>
+                          <span className="font-bold text-slate-700">{group.phone}</span>
+                        </ContactInfoLine>
+                        <ContactInfoLine icon={Printer}>
+                          <span className="font-bold text-slate-700">{group.fax}</span>
+                        </ContactInfoLine>
+                        <ContactInfoLine icon={Mail}>
+                          <a href={`mailto:${group.email}`} className="break-all font-bold text-slate-700 transition hover:text-[#35B24A]">
+                            {group.email}
+                          </a>
+                        </ContactInfoLine>
                       </div>
                     </div>
                   </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <aside className="lg:sticky lg:top-28 lg:self-start">
+            <div className="mb-8">
+              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#F5A623]">
+                Send Message
+              </p>
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-[#005AAA] md:text-5xl">
+                Send Inquiry
+              </h2>
+            </div>
+
+            <div className="mb-6 rounded-[28px] bg-gradient-to-br from-[#005AAA] via-[#006fba] to-[#35B24A] p-6 text-white shadow-[0_24px_75px_rgba(0,90,170,0.20)]">
+              <div className="flex items-start gap-4">
+                <div className="rounded-2xl bg-white/15 p-4 text-[#F5A623]">
+                  <Clock size={24} />
                 </div>
-              </article>
-            ))}
-          </div>
+                <div>
+                  <h3 className="text-lg font-black">Office Hours</h3>
+                  <p className="mt-2 text-sm text-white/80">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                  <p className="text-sm text-white/80">Saturday - Sunday: Closed</p>
+                </div>
+              </div>
+            </div>
+
+            {submitted && (
+              <div className="mb-6 rounded-2xl bg-[#ecfbef] px-6 py-4 font-bold text-[#168A46] shadow-sm">
+                Thank you for your inquiry. Our team will get back to you soon.
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="rounded-[34px] bg-white/92 p-6 shadow-[0_24px_80px_rgba(0,90,170,0.12)] backdrop-blur-xl">
+              <div className="grid gap-4">
+                {[
+                  ["name", "Full Name *", "text", true],
+                  ["email", "Email Address *", "email", true],
+                  ["phone", "Phone Number", "tel", false],
+                  ["subject", "Subject", "text", false],
+                ].map(([name, placeholder, type, required]) => (
+                  <input
+                    key={name as string}
+                    type={type as string}
+                    name={name as string}
+                    required={required as boolean}
+                    value={formData[name as keyof typeof formData]}
+                    onChange={handleChange}
+                    placeholder={placeholder as string}
+                    className="h-14 rounded-2xl bg-[#f8fbfd] px-5 text-sm font-semibold outline-none transition focus:bg-white focus:ring-4 focus:ring-[#35B24A]/15"
+                  />
+                ))}
+
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Please provide details about your inquiry..."
+                  className="resize-none rounded-2xl bg-[#f8fbfd] px-5 py-4 text-sm font-semibold outline-none transition focus:bg-white focus:ring-4 focus:ring-[#35B24A]/15"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#005AAA] to-[#35B24A] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-[#005AAA]/20 transition hover:-translate-y-1 hover:shadow-xl"
+              >
+                Send Inquiry
+                <Send size={18} />
+              </button>
+            </form>
+          </aside>
         </div>
-
-        <aside className="lg:sticky lg:top-28 lg:self-start">
-          <div className="mb-8">
-            <h2 className="mt-3 text-4xl font-black text-[#062f4e]">
-              Send Inquiry
-            </h2>
-          </div>
-
-          <div className="mb-6 rounded-[1.6rem] bg-[#eef8f1] p-5">
-            <div className="flex items-start gap-4">
-              <div className="rounded-2xl bg-[#005AAA] p-4 text-white">
-                <Clock size={24} />
-              </div>
-              <div>
-                <h3 className="text-lg font-black text-[#062f4e]">
-                  Office Hours
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  Monday - Friday: 8:00 AM - 5:00 PM
-                </p>
-                <p className="text-sm text-slate-600">
-                  Saturday - Sunday: Closed
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {submitted && (
-            <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-6 py-4 font-bold text-green-700">
-              Thank you for your inquiry. Our team will get back to you soon.
-            </div>
-          )}
-
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-[2rem] border border-[#dcebf3] bg-white p-6 shadow-[0_20px_70px_rgba(0,90,170,0.10)]"
-          >
-            <div className="grid gap-4">
-              <input
-                type="text"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name *"
-                className="h-13 rounded-2xl border border-[#d9e7ee] bg-[#f8fbfd] px-5 py-4 text-sm font-semibold outline-none transition focus:border-[#35B24A] focus:ring-4 focus:ring-[#35B24A]/10"
-              />
-
-              <input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address *"
-                className="h-13 rounded-2xl border border-[#d9e7ee] bg-[#f8fbfd] px-5 py-4 text-sm font-semibold outline-none transition focus:border-[#35B24A] focus:ring-4 focus:ring-[#35B24A]/10"
-              />
-
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                className="h-13 rounded-2xl border border-[#d9e7ee] bg-[#f8fbfd] px-5 py-4 text-sm font-semibold outline-none transition focus:border-[#35B24A] focus:ring-4 focus:ring-[#35B24A]/10"
-              />
-
-              <input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                placeholder="Subject"
-                className="h-13 rounded-2xl border border-[#d9e7ee] bg-[#f8fbfd] px-5 py-4 text-sm font-semibold outline-none transition focus:border-[#35B24A] focus:ring-4 focus:ring-[#35B24A]/10"
-              />
-
-              <textarea
-                name="message"
-                required
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Please provide details about your inquiry..."
-                className="resize-none rounded-2xl border border-[#d9e7ee] bg-[#f8fbfd] px-5 py-4 text-sm font-semibold outline-none transition focus:border-[#35B24A] focus:ring-4 focus:ring-[#35B24A]/10"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#005AAA] to-[#35B24A] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-[#005AAA]/20 transition hover:-translate-y-1"
-            >
-              Send Inquiry
-              <Send size={18} />
-            </button>
-          </form>
-        </aside>
       </section>
-
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(28px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </main>
   );
 }

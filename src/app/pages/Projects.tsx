@@ -131,12 +131,12 @@ const highlights = [
 export default function Projects() {
   return (
     <main className="overflow-hidden bg-[#f7fbff] text-[#122f3f]">
-      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-36 text-slate-900">
+      <section className="relative isolate overflow-hidden bg-[#f7fbff] pt-32 text-slate-900">
         <CorporateHeroAtmosphere />
 <img
           src={heroImage}
           alt="JETAMA Projects"
-          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-20"
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-[0.14]"
         />
 
         <div className="absolute inset-0 bg-transparent" />
@@ -145,7 +145,7 @@ export default function Projects() {
         <div className="absolute -bottom-28 -right-20 h-72 w-72 rounded-full bg-[#68bd00]/20 blur-3xl" />
         <div className="absolute -left-20 top-24 h-64 w-64 rounded-full bg-white/80 blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-8 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
             <Link to="/" className="hover:text-[#005AAA]">
               Home
@@ -160,9 +160,15 @@ export default function Projects() {
                 Corporate Project Portfolio
               </p>
 
-              <h1 className="corporate-hero-title mt-6 text-5xl font-black leading-[1.05] text-[#005AAA] sm:text-6xl lg:text-7xl">
+              <h1 className="corporate-hero-title mt-6 font-serif text-4xl font-normal italic leading-tight text-[#005AAA] sm:text-5xl lg:text-6xl">
                 Our Projects
               </h1>
+
+              <div className="mt-5 flex items-center gap-3">
+                <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+                <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+                <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+              </div>
 
               <p className="corporate-hero-copy mt-7 max-w-3xl text-lg leading-9 text-slate-600 sm:text-xl">
                 Explore JETAMA's water infrastructure and renewable energy
@@ -190,8 +196,8 @@ export default function Projects() {
       </section>
 
 
-      <section className="relative -mt-10 z-10 mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl p-6 shadow-[0_28px_85px_rgba(0,90,170,0.12)] sm:p-8 lg:p-10">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative">
           <div className="mb-9 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.25em] text-[#35b24a]">
@@ -219,7 +225,7 @@ export default function Projects() {
                 <Link
                   key={item.title}
                   to={item.path}
-                  className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-white via-[#f8fbff] to-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]"
+                  className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-white via-[#f8fbff] to-white shadow-[0_18px_55px_rgba(0,44,85,0.08)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(0,44,85,0.14)]"
                   style={{
                     animation: "projectFadeUp .75s ease both",
                     animationDelay: `${index * 90}ms`,
@@ -280,7 +286,7 @@ export default function Projects() {
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <Link
           to={renewableProject.path}
-          className="group grid overflow-hidden rounded-[2.3rem] border border-white/80 bg-white/88 backdrop-blur-xl shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_35px_100px_rgba(0,44,85,0.18)] lg:grid-cols-[0.9fr_1.1fr]"
+          className="group grid overflow-hidden rounded-[2.3rem] bg-white/88 backdrop-blur-xl shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_35px_100px_rgba(0,44,85,0.18)] lg:grid-cols-[0.9fr_1.1fr]"
         >
           <div className="relative min-h-[360px] overflow-hidden">
             <img
@@ -339,7 +345,7 @@ export default function Projects() {
               return (
                 <div
                   key={item.label}
-                  className="group rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_18px_50px_rgba(0,44,85,0.08)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,44,85,0.13)]"
+                  className="group rounded-[2rem] bg-white p-7 shadow-[0_18px_50px_rgba(0,44,85,0.08)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,44,85,0.13)]"
                   style={{
                     animation: "projectFadeUp .75s ease both",
                     animationDelay: `${index * 80}ms`,

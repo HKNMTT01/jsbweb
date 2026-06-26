@@ -320,31 +320,39 @@ function StandardContent({ page }: { page: AboutPage }) {
               </div>
             </div>
 
-            <aside className="relative flex min-h-[760px] flex-col items-center justify-end overflow-visible pt-4 lg:sticky lg:top-24 lg:-mr-10">
-              <div className="pointer-events-none absolute bottom-24 h-[62%] w-[82%] rounded-full bg-gradient-to-t from-[#005AAA]/12 via-[#41B650]/7 to-transparent blur-[70px]" />
-              <div className="pointer-events-none absolute right-4 top-10 h-32 w-32 rounded-full bg-[#F5A623]/12 blur-3xl" />
+            <aside className="relative flex min-h-[760px] flex-col items-center justify-start overflow-visible pt-0 lg:sticky lg:top-16 lg:-mr-10">
+              <div className="pointer-events-none absolute bottom-32 h-[62%] w-[82%] rounded-full bg-gradient-to-t from-[#005AAA]/12 via-[#41B650]/7 to-transparent blur-[70px]" />
+              <div className="pointer-events-none absolute right-4 top-6 h-32 w-32 rounded-full bg-[#F5A623]/12 blur-3xl" />
+              <div className="pointer-events-none absolute left-1/2 top-7 h-[610px] w-[390px] -translate-x-1/2 rounded-t-full rounded-b-[3.2rem] border-[3px] border-white/80 bg-gradient-to-b from-white/24 via-[#eaf5ff]/18 to-transparent shadow-[inset_0_0_35px_rgba(255,255,255,0.65),0_30px_90px_rgba(0,90,170,0.12)] sm:h-[650px] sm:w-[420px] lg:h-[680px] lg:w-[450px] xl:h-[710px] xl:w-[470px]" />
+              <div className="pointer-events-none absolute left-1/2 top-12 h-[560px] w-[350px] -translate-x-1/2 rounded-t-full rounded-b-[2.7rem] bg-gradient-to-b from-[#005AAA]/8 via-white/0 to-[#41B650]/7 blur-sm sm:h-[600px] sm:w-[380px] lg:h-[630px] lg:w-[410px] xl:h-[660px] xl:w-[430px]" />
 
-              <div className="relative flex flex-1 items-end justify-center">
+              <div className="relative flex h-[642px] w-full items-start justify-center overflow-hidden rounded-t-full rounded-b-[3rem] sm:h-[682px] lg:h-[707px] xl:h-[735px]">
                 <img
                   src={ceoImage}
                   alt={page.person}
-                  className="relative z-10 h-[620px] w-auto max-w-none object-contain object-bottom drop-shadow-[0_42px_52px_rgba(0,68,130,0.20)] sm:h-[660px] lg:h-[700px] xl:h-[735px]"
+                  className="relative z-10 h-[642px] w-auto max-w-none -translate-y-10 object-contain object-top drop-shadow-[0_42px_52px_rgba(0,68,130,0.20)] sm:h-[684px] lg:h-[720px] xl:h-[752px]"
                   style={{ mixBlendMode: "multiply" }}
                 />
               </div>
 
-              <div className="relative z-20 -mt-2 w-full max-w-[420px] text-center">
+              <div className="relative z-20 mt-12 w-full max-w-[470px] text-center">
+                <div className="mx-auto mb-4 flex w-fit items-center gap-2">
+                  <span className="h-[2px] w-12 rounded-full bg-[#005AAA]" />
+                  <span className="h-[2px] w-8 rounded-full bg-[#41B650]" />
+                  <span className="h-[2px] w-5 rounded-full bg-[#F5A623]" />
+                </div>
 
-                <h3 className="mt-2 text-2xl font-black leading-tight text-[#052b4f]">
+                <h3 className="font-serif text-[28px] font-semibold italic leading-tight tracking-[-0.03em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[32px]">
                   {page.person}
-                  {page.honorific && (
-                    <span className="ml-2 align-baseline text-[12px] font-semibold tracking-[0.18em] text-slate-500">
-                      {page.honorific}
-                    </span>
-                  )}
                 </h3>
 
-                <p className="mt-1 text-sm font-semibold text-slate-600">{page.role}</p>
+                {page.honorific && (
+                  <p className="mt-2 text-[11px] font-black uppercase tracking-[0.42em] text-[#005AAA]/75">
+                    {page.honorific}
+                  </p>
+                )}
+
+                <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-slate-600">{page.role}</p>
               </div>
             </aside>
           </div>
@@ -672,7 +680,6 @@ function TopLevelManagementContent() {
     },
     {
       name: "Ir. Lo Ho Min",
-      role: "Senior General Manager",
       division: "Water Division",
       image: sgmWaterImage,
       tag: "SGM Water",
@@ -682,7 +689,6 @@ function TopLevelManagementContent() {
     },
     {
       name: "Prof. Ts. Jude Abel Logijin",
-      role: "Senior General Manager",
       division: "Jetama Water Sdn. Bhd.",
       image: sgmJwsbImage,
       tag: "SGM JWSB",
@@ -692,7 +698,6 @@ function TopLevelManagementContent() {
     },
     {
       name: "Ag Ahmad Zaki Bin Abu Bakar",
-      role: "General Manager",
       division: "Human Resource & ESG Division",
       image: gmHrImage,
       tag: "GM HR & ESG",
@@ -702,7 +707,6 @@ function TopLevelManagementContent() {
     },
     {
       name: "Junidi Doronsoi",
-      role: "General Manager",
       division: "Jetama Energy Sdn. Bhd.",
       image: gmEnergyImage,
       tag: "GM JESB",
@@ -712,7 +716,6 @@ function TopLevelManagementContent() {
     },
     {
       name: "Wah Keng Yang",
-      role: "General Manager",
       division: "Finance & Procurement Division",
       image: gmFinanceImage,
       tag: "GM Finance",
@@ -744,9 +747,6 @@ function TopLevelManagementContent() {
         <h4 className="text-xl font-black leading-tight text-[#052b4f]">
           {person.name}
         </h4>
-        <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-[#005AAA]">
-          {person.role}
-        </p>
         <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
           {person.division}
         </p>

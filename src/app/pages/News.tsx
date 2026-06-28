@@ -351,13 +351,9 @@ export default function News() {
 
               <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.95] tracking-tight text-[#005AAA] md:text-7xl">
                 Discover
-                <span className="block text-[#35B24A]">News & Events</span>
-                <span className="block text-[#F6A623]">In Motion</span>
+                <span className="block text-[#35B24A]">News</span>
+                <span className="block text-[#F6A623]">& Events</span>
               </h1>
-
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
-                Follow JETAMA's latest media updates, corporate activities, video highlights and memorable community moments through a modern editorial showcase.
-              </p>
 
               <div className="mt-9 flex flex-wrap gap-4">
                 <a

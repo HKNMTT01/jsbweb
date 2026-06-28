@@ -36,7 +36,7 @@ import paparLocationImage from "@/assets/PAPAR.jpg";
 import tamparuliLocationImage from "@/assets/TAMPARULI.jpg";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 import bodChairman from "@/assets/Datuk Faisyal.png";
-import bodSofian from "@/assets/Datuk Abidin.png";
+import bodSofian from "@/assets/Datuk Sofian.jpeg";
 import bodPeter from "@/assets/Datuk Peter.png";
 import bodAkian from "@/assets/DrAkian.png";
 
@@ -537,24 +537,18 @@ function BoardDirectorsContent() {
       position: "Director",
       label: "Board Member",
       image: bodSofian,
-      quote:
-        "Supporting responsible governance, strategic oversight and institutional direction for JETAMA.",
     },
     {
       name: "Datuk Jino @ Peter Bin Allion @ Alliun, J.P",
       position: "Director",
       label: "Board Member",
       image: bodPeter,
-      quote:
-        "Contributing leadership experience and board insight to strengthen JETAMA’s corporate direction.",
     },
     {
       name: "Dr. Akian Bin Ahkiew",
       position: "Director",
       label: "Board Member",
       image: bodAkian,
-      quote:
-        "Strengthening board oversight through professional insight and responsible leadership.",
     },
   ];
 
@@ -684,8 +678,6 @@ function TopLevelManagementContent() {
       image: sgmWaterImage,
       tag: "SGM Water",
       level: "senior",
-      summary:
-        "Leads water operation strategy, technical performance, service reliability and continuous improvement across water services.",
     },
     {
       name: "Prof. Ts. Jude Abel Logijin",
@@ -693,26 +685,6 @@ function TopLevelManagementContent() {
       image: sgmJwsbImage,
       tag: "SGM JWSB",
       level: "senior",
-      summary:
-        "Oversees subsidiary-level water operations, service coordination and operational delivery for Jetama Water Sdn. Bhd.",
-    },
-    {
-      name: "Ag Ahmad Zaki Bin Abu Bakar",
-      division: "Human Resource & ESG Division",
-      image: gmHrImage,
-      tag: "GM HR & ESG",
-      level: "general",
-      summary:
-        "Leads people development, organisational culture, ESG initiatives and corporate human resource governance.",
-    },
-    {
-      name: "Junidi Doronsoi",
-      division: "Jetama Energy Sdn. Bhd.",
-      image: gmEnergyImage,
-      tag: "GM JESB",
-      level: "general",
-      summary:
-        "Drives energy business planning, renewable energy initiatives and operational coordination for energy-related ventures.",
     },
     {
       name: "Wah Keng Yang",
@@ -720,8 +692,20 @@ function TopLevelManagementContent() {
       image: gmFinanceImage,
       tag: "GM Finance",
       level: "general",
-      summary:
-        "Oversees financial management, procurement governance, reporting discipline and sustainable resource planning.",
+    },
+    {
+      name: "Ag Ahmad Zaki Bin Abu Bakar",
+      division: "Human Resource & ESG Division",
+      image: gmHrImage,
+      tag: "GM HR & ESG",
+      level: "general",
+    },
+    {
+      name: "Junidi Doronsoi",
+      division: "Jetama Energy Sdn. Bhd.",
+      image: gmEnergyImage,
+      tag: "GM JESB",
+      level: "general",
     },
   ];
 
@@ -1011,9 +995,9 @@ function ConcessionAreaContent() {
     {
       id: "coverage" as const,
       title: "Concession Area Map",
-      subtitle: "Interactive coverage map with animated pins",
+      subtitle: "Concession Area Located",
       image: aiConcessionMap,
-      action: "Open Interactive Map",
+      action: "View Here",
     },
     {
       id: "pipeline" as const,
@@ -1168,9 +1152,6 @@ function ConcessionAreaContent() {
                   {card.id === "coverage" && renderPins(false)}
 
                   <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[1.7rem] border border-white/25 bg-white/18 p-5 text-white shadow-2xl backdrop-blur-md">
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#F5A623]">
-                      Clickable Image
-                    </p>
                     <h3 className="mt-2 text-2xl font-black leading-tight">
                       {card.title}
                     </h3>

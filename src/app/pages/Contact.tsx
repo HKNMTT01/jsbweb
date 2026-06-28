@@ -167,26 +167,6 @@ function Hero() {
             Reach our headquarters, subsidiaries and joint venture offices through a cleaner corporate directory built for quick reference and smooth enquiries.
           </p>
         </div>
-
-        <div className="jetama-soft-in relative overflow-hidden rounded-[34px] bg-white/85 p-7 shadow-[0_28px_80px_rgba(15,60,110,.14)] backdrop-blur-xl [animation-delay:.12s]">
-          <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F6A623]" />
-          <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#005AAA]/10 blur-2xl" />
-          <Sparkles className="text-[#F6A623]" size={34} />
-          <p className="mt-5 text-sm font-black uppercase tracking-[0.24em] text-[#35B24A]">
-            Office Directory
-          </p>
-          <h2 className="mt-3 text-3xl font-black leading-tight text-[#005AAA]">
-            Centralised contact access for JETAMA Group companies.
-          </h2>
-          <div className="mt-7 grid grid-cols-3 gap-3">
-            {["HQ", "Water", "Energy"].map((item) => (
-              <div key={item} className="rounded-2xl bg-[#f8fbff] px-4 py-5 text-center shadow-sm">
-                <p className="text-2xl font-black text-[#005AAA]">{item}</p>
-                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Office</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

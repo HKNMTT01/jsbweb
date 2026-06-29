@@ -64,7 +64,7 @@ const contactGroups: ContactGroup[] = [
       "Lot B6.2, Block B, 6th Floor, Bangunan KWSP, 49, Jalan Karamunsing, 88000 Kota Kinabalu, Sabah.",
     phone: "+6 088 233 511",
     fax: "+6 088 238 128",
-    email: "jesb@jetama.com.my",
+    email: "jwsb@jetama.com.my",
     companies: [
       {
         name: "JETAMA WATER SDN BHD",
@@ -80,7 +80,7 @@ const contactGroups: ContactGroup[] = [
       "Lot No: B2-5-02, Block B, Level 5, Riverson Suites, Off Coastal Highway, 88100 Kota Kinabalu, Sabah.",
     phone: "+6 088 205 746",
     fax: "+6 088 278 744",
-    email: "Office@jetama.com.my",
+    email: "jesb@jetama.com.my",
     companies: [
       {
         name: "JETAMA ENERGY SDN BHD",

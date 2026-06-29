@@ -16,14 +16,17 @@ import {
 } from "lucide-react";
 
 import heroImage from "@/assets/jetama-dam-hero.jpg";
-import alpineLogo from "@/assets/Jetama Pipe - FINAL.png";
+import alpineLogo from "@/assets/jetama_alpine_pipe.png";
 import certificationBoard from "@/assets/certAl.jpeg";
-import jetamaEnergyLogo from "@/assets/LOGO-JESB.png";
+import jetamaEnergyLogo from "@/assets/jetama_energy.png";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
-import solarLogo from "@/assets/solarpvlogo.png";
+import solarLogo from "@/assets/solar_pv_power.png";
 import solarPlantImage from "@/assets/pvplant.png";
 import solarBabagonImage from "@/assets/pvterapung.png";
 import solarLaunchImage from "@/assets/solarlaunching.png";
+import jetamaBatuSapiLogo from "@/assets/jetama_batu_sapi.png";
+import jetamaBabagonLogo from "@/assets/jetama_babagon_floating_solar.png";
+
 
 type JointVentureKey =
   | "jetama-alpine-pipe"
@@ -78,7 +81,7 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
     subtitle: "Information and project details will be announced in the future.",
     eyebrow: "Joint Venture Company",
     accent: "#f5a623",
-    logo: jetamaLogo,
+    logo: jetamaBatuSapiLogo,
     hero: solarLaunchImage,
     path: "/jointventure/jetama-batu-sapi-solar",
     icon: Handshake,
@@ -91,7 +94,7 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
       "A renewable energy joint venture supporting the proposed floating solar development at Babagon Dam.",
     eyebrow: "Floating Solar JV",
     accent: "#35b24a",
-    logo: jetamaEnergyLogo,
+    logo: jetamaBabagonLogo,
     hero: solarBabagonImage,
     path: "/jointventure/jetama-babagon-floating-solar",
     icon: SunMedium,

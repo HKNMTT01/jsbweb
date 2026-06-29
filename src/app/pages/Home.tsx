@@ -15,11 +15,13 @@ import damHeroImage from "@/assets/jetama-dam-hero.jpg";
 import aboutImageTwo from "@/assets/jetama-about-2.jpg";
 import aboutImageThree from "@/assets/jetama-about-3.jpg";
 import aboutImageFour from "@/assets/jetama-about-4.jpg";
-import jetamaEnergyLogo from "@/assets/LOGO-JESB.png";
+import jetamaEnergyLogo from "@/assets/jetama_energy.png";
 import jetamaWaterLogo from "@/assets/JETAMA WATER - 2.png";
-import jetamaAlpineLogo from "@/assets/jetamaAlpine.png";
-import solarLogo from "@/assets/solarpvlogo.png";
+import jetamaAlpineLogo from "@/assets/jetama_alpine_pipe.png";
+import solarLogo from "@/assets/solar_pv_power.png";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
+import jetamaBatuSapiLogo from "@/assets/jetama_batu_sapi.png";
+import jetamaBabagonLogo from "@/assets/jetama_babagon_floating_solar.png";
 
 const heroImage = damHeroImage;
 const blueWaterImage = aboutImageTwo;
@@ -77,7 +79,7 @@ const subsidiaries = [
     category: "Joint Venture",
     color: "#F6A623",
     text: "Large scale solar development at Batu Sapi, Sandakan.",
-    logo: jetamaLogo,
+    logo: jetamaBatuSapiLogo,
     link: "/jointventure/jetama-batu-sapi-solar",
   },
   {
@@ -85,7 +87,7 @@ const subsidiaries = [
     category: "Joint Venture",
     color: "#35B24A",
     text: "Floating solar PV development at Babagon Dam, Penampang.",
-    logo: jetamaLogo,
+    logo: jetamaBabagonLogo,
     link: "/jointventure/jetama-babagon-floating-solar",
   },
 ];
@@ -546,15 +548,15 @@ function NewsCloudBlend() {
       className="pointer-events-none absolute inset-x-0 top-0 bottom-0 z-[1] overflow-hidden"
       aria-hidden="true"
     >
-      <div className="cloud-breath absolute inset-x-[-10%] top-[-78px] h-[190px] bg-[radial-gradient(ellipse_at_18%_55%,rgba(255,255,255,.98)_0%,rgba(255,255,255,.72)_30%,transparent_62%),radial-gradient(ellipse_at_48%_45%,rgba(232,248,255,.90)_0%,rgba(232,248,255,.55)_34%,transparent_66%),radial-gradient(ellipse_at_78%_58%,rgba(255,255,255,.96)_0%,rgba(255,255,255,.66)_32%,transparent_64%)]" />
-      <div className="cloud-drift-wide absolute left-[-18%] top-[-38px] h-[150px] w-[72%] rounded-[999px] bg-white/80 blur-3xl" />
-      <div className="cloud-drift-reverse absolute right-[-20%] top-[-50px] h-[165px] w-[76%] rounded-[999px] bg-[#eaf8ff]/75 blur-3xl" />
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/80 to-transparent" />
+      <div className="cloud-breath absolute inset-x-[-10%] top-[-82px] h-[190px] bg-[radial-gradient(ellipse_at_18%_55%,rgba(255,255,255,.88)_0%,rgba(255,255,255,.42)_30%,transparent_62%),radial-gradient(ellipse_at_48%_45%,rgba(0,90,170,.28)_0%,rgba(0,90,170,.14)_34%,transparent_66%),radial-gradient(ellipse_at_78%_58%,rgba(53,178,74,.30)_0%,rgba(53,178,74,.15)_32%,transparent_64%)]" />
+      <div className="cloud-drift-wide absolute left-[-18%] top-[-42px] h-[155px] w-[72%] rounded-[999px] bg-white/36 blur-3xl" />
+      <div className="cloud-drift-reverse absolute right-[-20%] top-[-54px] h-[170px] w-[76%] rounded-[999px] bg-[#005AAA]/28 blur-3xl" />
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/90 via-white/36 to-transparent" />
 
-      <div className="cloud-breath absolute inset-x-[-10%] bottom-[-82px] h-[195px] bg-[radial-gradient(ellipse_at_15%_42%,rgba(255,255,255,.98)_0%,rgba(255,255,255,.72)_30%,transparent_64%),radial-gradient(ellipse_at_52%_55%,rgba(236,255,241,.88)_0%,rgba(236,255,241,.55)_34%,transparent_68%),radial-gradient(ellipse_at_84%_44%,rgba(255,255,255,.96)_0%,rgba(255,255,255,.68)_32%,transparent_64%)] [animation-delay:1.2s]" />
-      <div className="cloud-drift-reverse absolute left-[-16%] bottom-[-48px] h-[155px] w-[78%] rounded-[999px] bg-white/82 blur-3xl" />
-      <div className="cloud-drift-wide absolute right-[-18%] bottom-[-40px] h-[145px] w-[72%] rounded-[999px] bg-[#eefaf2]/72 blur-3xl" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/80 to-transparent" />
+      <div className="cloud-breath absolute inset-x-[-10%] bottom-[-90px] h-[200px] bg-[radial-gradient(ellipse_at_15%_42%,rgba(255,255,255,.82)_0%,rgba(255,255,255,.34)_30%,transparent_64%),radial-gradient(ellipse_at_52%_55%,rgba(53,178,74,.30)_0%,rgba(53,178,74,.14)_34%,transparent_68%),radial-gradient(ellipse_at_84%_44%,rgba(246,166,35,.26)_0%,rgba(246,166,35,.12)_32%,transparent_64%)] [animation-delay:1.2s]" />
+      <div className="cloud-drift-reverse absolute left-[-16%] bottom-[-54px] h-[155px] w-[78%] rounded-[999px] bg-white/32 blur-3xl" />
+      <div className="cloud-drift-wide absolute right-[-18%] bottom-[-46px] h-[150px] w-[72%] rounded-[999px] bg-[#35B24A]/22 blur-3xl" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/90 via-white/30 to-transparent" />
     </div>
   );
 }
@@ -566,25 +568,26 @@ function NewsGeometricFrame() {
       aria-hidden="true"
     >
       <div
-        className="absolute inset-0 opacity-[0.14]"
+        className="absolute inset-0 opacity-[0.36]"
         style={{
           backgroundImage: `url(${damHeroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(4,31,53,.94),rgba(0,90,170,.86),rgba(0,128,112,.78))]" />
-      <div className="premium-beam absolute left-[-15%] top-[-25%] h-[520px] w-[60%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.20),transparent)] blur-[5px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(4,31,53,.96)_0%,rgba(0,90,170,.88)_48%,rgba(10,126,112,.78)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,.18),transparent_32%),radial-gradient(circle_at_78%_18%,rgba(53,178,74,.25),transparent_34%),radial-gradient(circle_at_68%_78%,rgba(246,166,35,.20),transparent_34%)]" />
+      <div className="premium-beam absolute left-[-15%] top-[-20%] h-[520px] w-[60%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.22),transparent)] blur-[5px]" />
       <div
-        className="premium-geo-a absolute left-[-8%] top-[9%] h-28 w-[54%] bg-white/[.075]"
+        className="premium-geo-a absolute left-[-8%] top-[9%] h-28 w-[54%] bg-white/[.09]"
         style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }}
       />
       <div
-        className="premium-geo-b absolute right-[-10%] bottom-[10%] h-32 w-[58%] bg-[#F6A623]/[.08]"
+        className="premium-geo-b absolute right-[-10%] bottom-[10%] h-32 w-[58%] bg-[#35B24A]/[.15]"
         style={{ clipPath: "polygon(10% 0, 100% 32%, 84% 100%, 0 68%)" }}
       />
       <div
-        className="premium-geo-c absolute left-[12%] bottom-[2%] h-20 w-[42%] bg-[#35B24A]/[.10]"
+        className="premium-geo-c absolute left-[12%] bottom-[2%] h-20 w-[42%] bg-[#F6A623]/[.13]"
         style={{ clipPath: "polygon(0 42%, 70% 0, 100% 58%, 25% 100%)" }}
       />
     </div>
@@ -864,13 +867,13 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
         <NewsGeometricFrame />
         <NewsCloudBlend />
-        <div className="relative z-10 mx-auto max-w-[1450px] overflow-hidden rounded-[2.4rem] border border-white/18 bg-white/12 p-6 shadow-[0_28px_95px_rgba(0,20,45,0.35)] backdrop-blur-md lg:p-10">
+        <div className="relative z-10 mx-auto max-w-[1450px] overflow-hidden rounded-[2.4rem] border border-white/25 bg-[#07395f]/78 p-6 shadow-[0_32px_105px_rgba(0,20,45,0.36)] backdrop-blur-xl lg:p-10">
           <div
-            className="premium-geo-a absolute left-0 top-0 h-20 w-72 bg-[#35B24A]/25"
+            className="premium-geo-a absolute left-0 top-0 h-20 w-72 bg-[#35B24A]/24"
             style={{ clipPath: "polygon(0 0, 100% 0, 78% 100%, 0 70%)" }}
           />
           <div
-            className="premium-geo-b absolute right-0 top-0 h-24 w-80 bg-[#F6A623]/25"
+            className="premium-geo-b absolute right-0 top-0 h-24 w-80 bg-[#F6A623]/22"
             style={{ clipPath: "polygon(22% 0, 100% 0, 100% 72%, 0 100%)" }}
           />
 
@@ -884,7 +887,7 @@ export default function Home() {
                 News & Events
               </h2>
 
-              <p className="mt-3 max-w-2xl text-base leading-7 text-white/78">
+              <p className="mt-3 max-w-2xl text-base leading-7 text-white/82">
                 Stay informed with the latest developments, initiatives and
                 corporate activities across the JETAMA Group.
               </p>
@@ -893,7 +896,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <Link
                 to="/news"
-                className="hidden items-center gap-3 rounded-full border border-white/15 bg-white/10 px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#005AAA] md:inline-flex"
+                className="hidden items-center gap-3 rounded-full border border-white/20 bg-white/12 px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#005AAA] md:inline-flex"
               >
                 View All News
                 <ArrowRight size={16} />
@@ -903,7 +906,7 @@ export default function Home() {
                 type="button"
                 aria-label="Previous news"
                 onClick={prevNews}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -912,7 +915,7 @@ export default function Home() {
                 type="button"
                 aria-label="Next news"
                 onClick={nextNews}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
               >
                 <ChevronRight size={20} />
               </button>
@@ -985,7 +988,7 @@ export default function Home() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-[1.6rem] border border-white/14 bg-white/12 shadow-[0_18px_55px_rgba(0,20,45,0.22)] backdrop-blur transition duration-500 hover:-translate-y-2 hover:border-[#F6A623]/45 hover:bg-white/18 hover:shadow-[0_26px_75px_rgba(0,20,45,0.32)]"
+                  className="group relative overflow-hidden rounded-[1.6rem] border border-white/18 bg-[#052B4F]/72 shadow-[0_18px_55px_rgba(0,20,45,0.26)] backdrop-blur transition duration-500 hover:-translate-y-2 hover:border-[#F6A623]/50 hover:bg-[#063a62]/82 hover:shadow-[0_26px_75px_rgba(0,20,45,0.38)]"
                 >
                   <div
                     className="absolute right-0 top-0 h-16 w-24 bg-[#005AAA]/20"

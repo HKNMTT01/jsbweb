@@ -16,7 +16,7 @@ import {
 
 import energyHero from "@/assets/DJI_0298.jpg";
 import waterHero from "@/assets/jetama-dam-hero.jpg";
-import jesbLogo from "@/assets/LOGO-JESB.png";
+import jesbLogo from "@/assets/jetama_energy.png";
 import waterLogo from "@/assets/JETAMA WATER - 2.png";
 
 import moyogPlant from "@/assets/MOYOG.jpg";

@@ -15,8 +15,8 @@ import {
 } from "lucide-react";
 
 import energyHero from "@/assets/DJI_0298.jpg";
-import jesbLogo from "@/assets/LOGO-JESB.png";
-import waterLogo from "@/assets/jwater.png";
+import jesbLogo from "@/assets/jetama_energy.png";
+import waterLogo from "@/assets/JETAMA WATER - 2.png";
 import waterHero from "@/assets/jetama-dam-hero.jpg";
 import moyogPlant from "@/assets/MOYOG.jpg";
 import telibongPlant from "@/assets/TELIBONG.jpg";

@@ -36,7 +36,7 @@ import paparLocationImage from "@/assets/PAPAR.jpg";
 import tamparuliLocationImage from "@/assets/TAMPARULI.jpg";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 import bodChairman from "@/assets/Datuk Faisyal.png";
-import bodSofian from "@/assets/Datuk Sofian.jpeg";
+import bodSofian from "@/assets/Datuk Sofian Alfian Nair.png";
 import bodPeter from "@/assets/Datuk Peter.png";
 import bodAkian from "@/assets/DrAkian.png";
 
@@ -326,7 +326,7 @@ function StandardContent({ page }: { page: AboutPage }) {
               <div className="pointer-events-none absolute left-1/2 top-7 h-[610px] w-[390px] -translate-x-1/2 rounded-t-full rounded-b-[3.2rem] border-[3px] border-white/80 bg-gradient-to-b from-white/24 via-[#eaf5ff]/18 to-transparent shadow-[inset_0_0_35px_rgba(255,255,255,0.65),0_30px_90px_rgba(0,90,170,0.12)] sm:h-[650px] sm:w-[420px] lg:h-[680px] lg:w-[450px] xl:h-[710px] xl:w-[470px]" />
               <div className="pointer-events-none absolute left-1/2 top-12 h-[560px] w-[350px] -translate-x-1/2 rounded-t-full rounded-b-[2.7rem] bg-gradient-to-b from-[#005AAA]/8 via-white/0 to-[#41B650]/7 blur-sm sm:h-[600px] sm:w-[380px] lg:h-[630px] lg:w-[410px] xl:h-[660px] xl:w-[430px]" />
 
-              <div className="relative flex h-[642px] w-full items-start justify-center overflow-hidden rounded-t-full rounded-b-[3rem] sm:h-[682px] lg:h-[707px] xl:h-[735px]">
+              <div className="relative flex h-[642px] w-full items-start justify-center overflow-hidden rounded-t-full rounded-b-[3rem] sm:h-[682px] lg:h-[px] xl:h-[735px]">
                 <img
                   src={ceoImage}
                   alt={page.person}
@@ -342,7 +342,7 @@ function StandardContent({ page }: { page: AboutPage }) {
                   <span className="h-[2px] w-5 rounded-full bg-[#F5A623]" />
                 </div>
 
-                <h3 className="font-serif text-[28px] font-semibold italic leading-tight tracking-[-0.03em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[32px]">
+                <h3 className="font-serif text-[20px] font-semibold italic leading-tight tracking-[-0.03em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[32px]">
                   {page.person}
                 </h3>
 

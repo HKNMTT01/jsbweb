@@ -6,6 +6,7 @@ import {
   ClipboardList,
   Droplets,
   Eye,
+  ExternalLink,
   MapPinned,
   ShieldCheck,
   Sparkles,
@@ -18,6 +19,8 @@ import moyogImage from "@/assets/MOYOG.jpg";
 import telibongImage from "@/assets/TELIBONG.jpg";
 import tuaranImage from "@/assets/TUARAN.jpg";
 import kasiguiImage from "@/assets/KASIGUI.jpg";
+import bottleFactoryImage from "@/assets/opening bottle factory.jpg";
+import sabahFcCollabImage from "@/assets/collab sabah fc.png";
 
 type ProjectCategory = "Water Project" | "Renewable Energy";
 type ProjectSegment = "industrial-project" | "commercial-project" | "concession-project";
@@ -40,6 +43,9 @@ type TimelineProject = {
   points?: string[];
   image: string;
   status?: string;
+  segment?: ProjectSegment;
+  sourceUrl?: string;
+  sourceLabel?: string;
 };
 
 const projectPages: Record<string, ProjectPage> = {
@@ -76,8 +82,9 @@ const waterProjectSegments: Record<
   "commercial-project": {
     label: "Commercial Project",
     shortLabel: "Commercial",
-    subtitle: "Commercial water project records will be added soon.",
-    status: "soon",
+    subtitle:
+      "Commercial water initiatives highlighting JETAMA's bottled water business expansion, brand partnerships and public-facing water products.",
+    status: "ready",
   },
   "concession-project": {
     label: "Concession Project",
@@ -187,6 +194,46 @@ const timelineProjects: TimelineProject[] = [
   },
   {
     no: "01",
+    year: "2025",
+    category: "Water Project",
+    segment: "commercial-project",
+    title: "Opening of JETAMA Bottled Water Factory at KKIP",
+    description:
+      "JETAMA opened its new bottled water factory at Kota Kinabalu Industrial Park on 26 February 2025, marking a commercial milestone for the company's drinking water product expansion.",
+    points: [
+      "New bottled water factory officially opened at KKIP on 26 February 2025.",
+      "Recognised as a major step for JETAMA's commercial water product direction.",
+      "Supports higher production efficiency, wider distribution and trusted drinking water supply.",
+      "Factory operations emphasise safety, cleanliness, regulatory compliance and environmental sustainability.",
+    ],
+    image: bottleFactoryImage,
+    status: "Opened 26 February 2025",
+    sourceUrl:
+      "https://www.dailyexpress.com.my/news/253366/jetama-sdn-bhd-membuka-kilang-pembotolan-air-baharu-pada-26-februari-2025/?utm_source=Newswav&utm_medium=Website",
+    sourceLabel: "Daily Express Malaysia",
+  },
+  {
+    no: "02",
+    year: "2025",
+    category: "Water Project",
+    segment: "commercial-project",
+    title: "JETAMA Waig Sponsorship With Sabah FC",
+    description:
+      "JETAMA strengthened its commercial water brand visibility through a RM1.5 million Sabah FC sponsorship, with the Waig bottled water brand to be displayed on the team's jersey.",
+    points: [
+      "JETAMA signed a RM1.5 million sponsorship agreement with Sabah FC for the season.",
+      "The Waig bottled water brand will be officially displayed on Sabah FC jerseys.",
+      "Waig was introduced as JETAMA's new drinking water brand and official drinking water for Sabah FC.",
+      "The initiative connects commercial brand growth with youth, sports and community development in Sabah.",
+    ],
+    image: sabahFcCollabImage,
+    status: "RM1.5 Million Sponsorship",
+    sourceUrl:
+      "https://sabahnews.com.my/jetama-taja-sabah-fc-rm1-5-juta-logo-waig-akan-dipapar-rasmi-di-jersi-pasukan/",
+    sourceLabel: "Sabah News",
+  },
+  {
+    no: "01",
     year: "2024",
     category: "Renewable Energy",
     title: "10 MWac Large Scale Solar PV Plant with Trackers in F.T. Labuan",
@@ -291,7 +338,7 @@ function ProjectHero({
             {page.eyebrow}
           </p>
 
-          <h1 className="mt-4 font-serif text-4xl font-normal italic leading-tight tracking-[-0.035em] text-[#005AAA] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-serif text-4xl font-black uppercase text-[#005AAA] sm:text-5xl lg:text-6xl">
             {title}
           </h1>
 
@@ -850,16 +897,17 @@ function ProjectModal({
             </div>
           )}
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#ecfbef] px-4 py-2 text-sm font-black text-[#1f8a3b]">
-              <ShieldCheck size={17} />
-              Corporate Portfolio
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-4 py-2 text-sm font-black text-[#102f83]">
-              <Icon size={17} />
-              {project.category}
-            </span>
-          </div>
+          {project.sourceUrl && (
+            <a
+              href={project.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#005AAA] px-5 py-3 text-sm font-black text-white shadow-[0_18px_45px_rgba(0,90,170,0.22)] transition hover:-translate-y-1 hover:bg-[#35B24A] hover:text-[#052b4f]"
+            >
+              <ExternalLink size={17} />
+              Read Source{project.sourceLabel ? `: ${project.sourceLabel}` : ""}
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -1039,10 +1087,15 @@ export default function ProjectsDetail() {
 
   const filteredProjects = timelineProjects.filter((item) => {
     if (isWaterProject) {
-      return (
-        activeSegment === "concession-project" &&
-        item.category === "Water Project"
-      );
+      if (activeSegment === "commercial-project") {
+        return item.segment === "commercial-project";
+      }
+
+      if (activeSegment === "concession-project") {
+        return item.category === "Water Project" && item.segment !== "commercial-project";
+      }
+
+      return false;
     }
 
     return item.category === page.category;
@@ -1054,8 +1107,8 @@ export default function ProjectsDetail() {
       <ProjectHero page={page} activeSegment={activeSegment} />
 
 
-      {isWaterProject && activeSegment !== "concession-project" ? (
-        <ComingSoonProjects activeSegment={activeSegment ?? "industrial-project"} />
+      {isWaterProject && activeSegment === "industrial-project" ? (
+        <ComingSoonProjects activeSegment={activeSegment} />
       ) : (
         <ProjectTimeline
           key={`${slug}-${activeSegment ?? "main"}`}

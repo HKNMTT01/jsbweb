@@ -21,6 +21,7 @@ import tuaranImage from "@/assets/TUARAN.jpg";
 import kasiguiImage from "@/assets/KASIGUI.jpg";
 import bottleFactoryImage from "@/assets/opening bottle factory.jpg";
 import sabahFcCollabImage from "@/assets/collab sabah fc.png";
+import systemresolveImage from "@/assets/jetama resolve system.jpeg";
 
 type ProjectCategory = "Water Project" | "Renewable Energy";
 type ProjectSegment = "industrial-project" | "commercial-project" | "concession-project";
@@ -76,8 +77,9 @@ const waterProjectSegments: Record<
   "industrial-project": {
     label: "Industrial Project",
     shortLabel: "Industrial",
-    subtitle: "Industrial water infrastructure projects will be added soon.",
-    status: "soon",
+    subtitle:
+      "Industrial and rural water technology initiatives supporting clean drinking water access for remote, off-grid and underserved communities in Sabah.",
+    status: "ready",
   },
   "commercial-project": {
     label: "Commercial Project",
@@ -191,6 +193,26 @@ const timelineProjects: TimelineProject[] = [
     title: "Upgrading the Kabang Intake Capacity from 9 MLD to 30 MLD",
     image: telibongImage,
     status: "Ongoing",
+  },
+  {
+    no: "01",
+    year: "2024",
+    category: "Water Project",
+    segment: "industrial-project",
+    title: "Solar-Powered Nano-Filtration Drinking Water System",
+    description:
+      "JETAMA introduced a solar-powered nano-filtration drinking water system as a pilot initiative to help resolve drinking water supply issues in remote areas of Sabah.",
+    points: [
+      "Pilot system planned for Kampung Pulau Berhala in Sandakan, Kampung Tanjung Batu in Sukau and Kampung Paris in Kinabatangan.",
+      "Designed for remote and off-grid communities that need reliable access to clean drinking water.",
+      "Uses solar panels to power water treatment units, supporting low operating cost and sustainable deployment.",
+      "Each unit can supply clean drinking water for up to 5,000 residents, with similar projects planned for more villages.",
+    ],
+    image: systemresolveImage,
+    status: " Consumption rate of 4L to 6L per person",
+    sourceUrl:
+      "https://www.theborneopost.com/2024/10/19/system-to-resolve-drinking-water-supply-issues-in-remote-areas-of-sabah/",
+    sourceLabel: "The Borneo Post",
   },
   {
     no: "01",
@@ -1087,12 +1109,20 @@ export default function ProjectsDetail() {
 
   const filteredProjects = timelineProjects.filter((item) => {
     if (isWaterProject) {
+      if (activeSegment === "industrial-project") {
+        return item.segment === "industrial-project";
+      }
+
       if (activeSegment === "commercial-project") {
         return item.segment === "commercial-project";
       }
 
       if (activeSegment === "concession-project") {
-        return item.category === "Water Project" && item.segment !== "commercial-project";
+        return (
+          item.category === "Water Project" &&
+          item.segment !== "commercial-project" &&
+          item.segment !== "industrial-project"
+        );
       }
 
       return false;
@@ -1107,7 +1137,9 @@ export default function ProjectsDetail() {
       <ProjectHero page={page} activeSegment={activeSegment} />
 
 
-      {isWaterProject && activeSegment === "industrial-project" ? (
+      {isWaterProject &&
+      activeSegment &&
+      waterProjectSegments[activeSegment].status === "soon" ? (
         <ComingSoonProjects activeSegment={activeSegment} />
       ) : (
         <ProjectTimeline

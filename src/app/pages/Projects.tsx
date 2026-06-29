@@ -18,6 +18,8 @@ import moyogImage from "@/assets/MOYOG.jpg";
 import tuaranImage from "@/assets/TUARAN.jpg";
 import telibongImage from "@/assets/TELIBONG.jpg";
 import kasiguiImage from "@/assets/KASIGUI.jpg";
+import bottleFactoryImage from "@/assets/opening bottle factory.jpg";
+import systemresolveImage from "@/assets/jetama resolve system.jpeg";
 
 
 function PageStyles() {
@@ -91,8 +93,8 @@ function Hero({
 
 export default function Projects() {
   const waterSegments = [
-    { title: "Industrial Project", path: "/projects/water-project/industrial-project", status: "Coming Soon", image: kasiguiImage, icon: Factory, text: "Prepared for future industrial water infrastructure records and project milestones.", accent: "from-[#102f83] to-[#005AAA]" },
-    { title: "Commercial Project", path: "/projects/water-project/commercial-project", status: "Coming Soon", image: telibongImage, icon: ClipboardList, text: "Reserved for future commercial water project timeline and development updates.", accent: "from-[#005AAA] to-[#35B24A]" },
+    { title: "Industrial Project", path: "/projects/water-project/industrial-project", status: "Timeline Available", image: systemresolveImage, icon: Factory, text: "Prepared for future industrial water infrastructure records and project milestones.", accent: "from-[#102f83] to-[#005AAA]" },
+    { title: "Commercial Project", path: "/projects/water-project/commercial-project", status: "Timeline Available", image: bottleFactoryImage, icon: ClipboardList, text: "Reserved for future commercial water project timeline and development updates.", accent: "from-[#005AAA] to-[#35B24A]" },
     { title: "Concession Project", path: "/projects/water-project/concession-project", status: "Timeline Available", image: moyogImage, icon: Waves, text: "Existing concession-related water infrastructure timeline from 1997 to ongoing projects.", accent: "from-[#35B24A] to-[#F6A623]" },
   ];
 

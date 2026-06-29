@@ -423,9 +423,6 @@ function ActivityFlipCards() {
             <p className="text-sm font-black uppercase tracking-[0.28em] text-[#F6A623]">
               ESG Activities
             </p>
-            <h2 className="mt-4 text-4xl font-black uppercase leading-tight md:text-5xl">
-              Flip Cards For Key Projects
-            </h2>
             <p className="mt-5 max-w-2xl leading-8 text-white/78">
               Hover each card to reveal a quick impact note. This keeps the section clean while still showing important ESG activity highlights.
             </p>
@@ -443,7 +440,7 @@ function ActivityFlipCards() {
               Report Highlight
             </p>
             <p className="mt-4 text-xl font-bold leading-8 text-white/86">
-              Activities connect the report's ESG priorities with visible actions: marine protection, circular innovation, clean energy, community development and integrity.
+              Activities ESG actions: marine protection, circular innovation, clean energy, community development and integrity.
             </p>
           </motion.div>
         </div>

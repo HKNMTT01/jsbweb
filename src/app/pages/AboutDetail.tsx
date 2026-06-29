@@ -326,31 +326,30 @@ function StandardContent({ page }: { page: AboutPage }) {
               <div className="pointer-events-none absolute left-1/2 top-7 h-[610px] w-[390px] -translate-x-1/2 rounded-t-full rounded-b-[3.2rem] border-[3px] border-white/80 bg-gradient-to-b from-white/24 via-[#eaf5ff]/18 to-transparent shadow-[inset_0_0_35px_rgba(255,255,255,0.65),0_30px_90px_rgba(0,90,170,0.12)] sm:h-[650px] sm:w-[420px] lg:h-[680px] lg:w-[450px] xl:h-[710px] xl:w-[470px]" />
               <div className="pointer-events-none absolute left-1/2 top-12 h-[560px] w-[350px] -translate-x-1/2 rounded-t-full rounded-b-[2.7rem] bg-gradient-to-b from-[#005AAA]/8 via-white/0 to-[#41B650]/7 blur-sm sm:h-[600px] sm:w-[380px] lg:h-[630px] lg:w-[410px] xl:h-[660px] xl:w-[430px]" />
 
-              <div className="relative flex h-[642px] w-full items-start justify-center overflow-hidden rounded-t-full rounded-b-[3rem] sm:h-[682px] lg:h-[px] xl:h-[735px]">
+              <div className="relative flex h-[690px] w-full items-start justify-center overflow-visible rounded-t-full rounded-b-[3rem] sm:h-[720px] lg:h-[740px] xl:h-[770px]">
                 <img
                   src={ceoImage}
                   alt={page.person}
-                  className="relative z-10 h-[642px] w-auto max-w-none -translate-y-10 object-contain object-top drop-shadow-[0_42px_52px_rgba(0,68,130,0.20)] sm:h-[684px] lg:h-[720px] xl:h-[752px]"
+                  className="relative z-10 h-[680px] w-auto max-w-none object-contain object-top drop-shadow-[0_42px_52px_rgba(0,68,130,0.20)] sm:h-[710px] lg:h-[735px] xl:h-[760px]"
                   style={{ mixBlendMode: "multiply" }}
                 />
               </div>
 
-              <div className="relative z-20 mt-12 w-full max-w-[470px] text-center">
+              <div className="relative z-20 mt-5 w-full max-w-[720px] text-center">
                 <div className="mx-auto mb-4 flex w-fit items-center gap-2">
                   <span className="h-[2px] w-12 rounded-full bg-[#005AAA]" />
                   <span className="h-[2px] w-8 rounded-full bg-[#41B650]" />
                   <span className="h-[2px] w-5 rounded-full bg-[#F5A623]" />
                 </div>
 
-                <h3 className="font-serif text-[20px] font-semibold italic leading-tight tracking-[-0.03em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[32px]">
-                  {page.person}
+                <h3 className="flex flex-wrap items-end justify-center gap-x-2 whitespace-nowrap font-serif text-[18px] font-semibold italic leading-tight tracking-[-0.03em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[26px] lg:text-[30px]">
+                  <span>{page.person}</span>
+                  {page.honorific && (
+                    <span className="relative -bottom-0.5 text-[10px] font-black not-italic uppercase tracking-[0.22em] text-[#005AAA]/75 sm:text-[11px]">
+                      {page.honorific}
+                    </span>
+                  )}
                 </h3>
-
-                {page.honorific && (
-                  <p className="mt-2 text-[11px] font-black uppercase tracking-[0.42em] text-[#005AAA]/75">
-                    {page.honorific}
-                  </p>
-                )}
 
                 <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-slate-600">{page.role}</p>
               </div>
@@ -587,7 +586,7 @@ function BoardDirectorsContent() {
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
                 Chairman
               </p>
-              <h3 className="mt-2 text-2xl font-black leading-tight text-[#052b4f] sm:text-3xl">
+              <h3 className="mt-2 whitespace-nowrap text-[22px] font-black leading-tight text-[#052b4f] sm:text-[28px] lg:text-[30px]">
                 {chairman.name}
               </h3>
               <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-[#005AAA]">
@@ -638,7 +637,7 @@ function BoardDirectorsContent() {
                     {director.position}
                   </p>
 
-                  <h3 className="text-xl font-black leading-tight text-[#052b4f]">
+                  <h3 className="whitespace-nowrap text-[17px] font-black leading-tight text-[#052b4f] sm:text-[18px] lg:text-[19px]">
                     {director.name}
                   </h3>
 
@@ -728,7 +727,7 @@ function TopLevelManagementContent() {
         <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#41B650]">
           {person.tag}
         </p>
-        <h4 className="text-xl font-black leading-tight text-[#052b4f]">
+        <h4 className="whitespace-nowrap text-[17px] font-black leading-tight text-[#052b4f] sm:text-[18px] lg:text-[19px]">
           {person.name}
         </h4>
         <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
@@ -770,7 +769,7 @@ function TopLevelManagementContent() {
             <p className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
               {ceo.division}
             </p>
-            <h3 className="font-serif text-3xl font-normal italic leading-tight text-[#052b4f] sm:text-4xl">
+            <h3 className="whitespace-nowrap font-serif text-[28px] font-normal italic leading-tight text-[#052b4f] sm:text-[34px] lg:text-[38px]">
               {ceo.name}
             </h3>
             <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#005AAA]">

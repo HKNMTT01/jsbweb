@@ -144,9 +144,6 @@ export default function Sustainability() {
                 <a href="#timeline" className="group inline-flex items-center gap-2 rounded-full bg-[#005AAA] px-7 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-[0_18px_45px_rgba(0,90,170,.28)] transition hover:-translate-y-1 hover:bg-[#004b8f]">
                   View Timeline <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>
-                <Link to="/contact" className="inline-flex items-center rounded-full border border-[#005AAA]/20 bg-white/80 px-7 py-3 text-sm font-extrabold uppercase tracking-wide text-[#005AAA] shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white">
-                  Contact ESG Team
-                </Link>
               </div>
             </div>
 

@@ -150,7 +150,6 @@ export default function About() {
               alt="JETAMA corporate direction"
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-119"
             />
-
           </div>
         </div>
       </section>

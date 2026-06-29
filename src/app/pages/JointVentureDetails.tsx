@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Link, Navigate, useLocation, useParams } from "react-router";
 import {
-  Award,
   Building2,
-  CheckCircle2,
   ChevronRight,
   Factory,
   Handshake,
   Leaf,
+  MapPin,
   ShieldCheck,
   SunMedium,
   Zap,
@@ -39,7 +38,6 @@ type JointVenturePage = {
   subtitle: string;
   eyebrow: string;
   accent: string;
-  accentSoft: string;
   logo: string;
   hero: string;
   path: string;
@@ -55,7 +53,6 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
       "A joint venture supporting pipe manufacturing, technical capability and quality infrastructure solutions.",
     eyebrow: "Pipe Manufacturing JV",
     accent: "#d5282f",
-    accentSoft: "#fff1f2",
     logo: alpineLogo,
     hero: heroImage,
     path: "/jointventure/jetama-alpine-pipe",
@@ -69,9 +66,8 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
       "A joint venture company supporting large scale solar photovoltaic development and clean energy generation projects.",
     eyebrow: "Solar PV Joint Venture",
     accent: "#f5a623",
-    accentSoft: "#fff7e6",
     logo: solarLogo,
-    hero: heroImage,
+    hero: solarPlantImage,
     path: "/jointventure/solar-pv-power",
     icon: SunMedium,
   },
@@ -82,9 +78,8 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
     subtitle: "Information and project details will be announced in the future.",
     eyebrow: "Joint Venture Company",
     accent: "#f5a623",
-    accentSoft: "#fff7e6",
     logo: jetamaLogo,
-    hero: heroImage,
+    hero: solarLaunchImage,
     path: "/jointventure/jetama-batu-sapi-solar",
     icon: Handshake,
   },
@@ -96,9 +91,8 @@ const jointVenturePages: Record<JointVentureKey, JointVenturePage> = {
       "A renewable energy joint venture supporting the proposed floating solar development at Babagon Dam.",
     eyebrow: "Floating Solar JV",
     accent: "#35b24a",
-    accentSoft: "#eaf8ef",
     logo: jetamaEnergyLogo,
-    hero: heroImage,
+    hero: solarBabagonImage,
     path: "/jointventure/jetama-babagon-floating-solar",
     icon: SunMedium,
   },
@@ -135,20 +129,57 @@ function PageStyles() {
         from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
         to { opacity: 1; transform: translateY(0); filter: blur(0); }
       }
+
       @keyframes jointFloat {
         0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; }
         50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .85; }
       }
-      .scroll-reveal { animation: jointFadeUp .82s cubic-bezier(.2,.8,.2,1) both; }
+
+      @keyframes jointShine {
+        0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; }
+        30% { opacity: .5; }
+        100% { transform: translateX(190%) skewX(-18deg); opacity: 0; }
+      }
+
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      .scroll-reveal.scroll-visible {
+        animation: jointFadeUp .82s cubic-bezier(.2,.8,.2,1) both;
+      }
+
       .joint-float-a { animation: jointFloat 12s ease-in-out infinite; }
       .joint-float-b { animation: jointFloat 15s ease-in-out infinite reverse; }
+
+      .joint-card-shine {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .joint-card-shine::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        bottom: -50%;
+        left: -35%;
+        width: 28%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+        transform: translateX(-150%) skewX(-18deg);
+        pointer-events: none;
+      }
+
+      .joint-card-shine:hover::before {
+        animation: jointShine 1.8s ease;
+      }
     `}</style>
   );
 }
 
 function DetailBreadcrumb({ page }: { page: JointVenturePage }) {
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
+    <div className="mb-10 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
       <Link to="/" className="transition hover:text-[#005AAA]">
         Home
       </Link>
@@ -162,42 +193,53 @@ function DetailBreadcrumb({ page }: { page: JointVenturePage }) {
   );
 }
 
+function AccentRule() {
+  return (
+    <div className="my-6 flex items-center gap-3">
+      <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+      <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+      <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+    </div>
+  );
+}
+
 function ShortHero({ page }: { page: JointVenturePage }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#eef8ff_48%,#f8fff6_100%)] pt-28">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <section className="relative isolate overflow-hidden pt-28">
+      <div className="absolute inset-0 -z-10">
         <img
           src={page.hero}
           alt={page.title}
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.08]"
+          className="h-full w-full object-cover opacity-35"
         />
-        <div className="joint-float-a absolute left-[-150px] top-14 h-56 w-[520px] bg-[#005AAA]/[.07]" style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }} />
-        <div className="joint-float-b absolute right-[-150px] top-20 h-60 w-[560px] bg-[#35B24A]/[.08]" style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }} />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f7fbff] via-white/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/82 to-white/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/50 to-[#f7fbff]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div
+        className="joint-float-a absolute left-[-150px] top-20 -z-10 h-56 w-[520px] bg-[#005AAA]/[.07]"
+        style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }}
+      />
+      <div
+        className="joint-float-b absolute right-[-150px] top-24 -z-10 h-60 w-[560px] bg-[#35B24A]/[.08]"
+        style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <DetailBreadcrumb page={page} />
 
-        <div className="grid gap-8 lg:grid-cols-[230px_1fr] lg:items-center">
-          <div className="flex justify-start lg:justify-center">
-            <div className="flex h-36 w-52 items-center justify-center rounded-[2rem] bg-white/70 p-5 shadow-[0_22px_65px_rgba(0,90,170,0.12)] backdrop-blur-md">
-              <img src={page.logo} alt={page.title} className="max-h-24 w-auto object-contain" />
-            </div>
-          </div>
+        <div className="scroll-reveal flex min-h-[320px] flex-col items-center justify-center text-center">
+          <img
+            src={page.logo}
+            alt={page.title}
+            className="max-h-[170px] w-auto max-w-[620px] object-contain drop-shadow-[0_24px_45px_rgba(0,68,130,0.18)]"
+          />
 
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: page.accent }}>
-              {page.eyebrow}
-            </p>
-            <h1 className="mt-3 max-w-5xl font-serif text-4xl font-semibold italic leading-tight tracking-[-0.03em] text-[#005AAA] sm:text-5xl lg:text-6xl">
-              {page.title}
-            </h1>
-            <AccentRule />
-            <p className="max-w-3xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
-              {page.subtitle}
-            </p>
-          </div>
+          <AccentRule />
+
+          <p className="max-w-3xl font-serif text-[16px] italic leading-8 text-slate-700">
+            {page.subtitle}
+          </p>
         </div>
       </div>
     </section>
@@ -208,12 +250,8 @@ function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="relative h-fit bg-transparent px-1 py-0 lg:sticky lg:top-28">
-      <div className="mb-2 flex justify-start">
-        <img src={jetamaLogo} alt="JETAMA" className="h-[82px] w-auto object-contain" />
-      </div>
-
-      <nav className="space-y-1">
+    <aside className="relative h-fit rounded-[28px] border border-slate-100 bg-white/70 p-4 shadow-[0_24px_70px_rgba(15,60,110,.08)] backdrop-blur-xl lg:sticky lg:top-28">
+      <nav className="space-y-2">
         {jointVentureNavigation.map((item) => {
           const Icon = item.icon;
           const active = location.pathname === item.path;
@@ -222,10 +260,10 @@ function Sidebar() {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex items-center gap-3 px-3 py-3 text-sm font-semibold transition ${
+              className={`joint-card-shine flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-black transition ${
                 active
-                  ? "bg-white text-[#005AAA] shadow-sm"
-                  : "text-slate-800 hover:bg-white hover:text-[#005AAA]"
+                  ? "bg-[#eaf8ef] text-[#16a34a] shadow-sm"
+                  : "text-slate-700 hover:bg-white hover:text-[#005AAA] hover:shadow-sm"
               }`}
             >
               <Icon size={16} />
@@ -238,20 +276,21 @@ function Sidebar() {
   );
 }
 
-function AccentRule() {
-  return (
-    <div className="my-6 flex items-center gap-3">
-      <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
-      <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
-      <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
-    </div>
-  );
-}
-
-function SectionTitle({ eyebrow, title, accent = "#41B650" }: { eyebrow: string; title: string; accent?: string }) {
+function SectionTitle({
+  eyebrow,
+  title,
+  accent = "#41B650",
+}: {
+  eyebrow: string;
+  title: string;
+  accent?: string;
+}) {
   return (
     <div className="mb-8">
-      <p className="text-xs font-black uppercase tracking-[0.28em]" style={{ color: accent }}>
+      <p
+        className="text-xs font-black uppercase tracking-[0.28em]"
+        style={{ color: accent }}
+      >
         {eyebrow}
       </p>
       <h2 className="mt-3 font-serif text-3xl font-semibold italic leading-tight text-[#005AAA] sm:text-4xl">
@@ -262,14 +301,15 @@ function SectionTitle({ eyebrow, title, accent = "#41B650" }: { eyebrow: string;
   );
 }
 
-function EditorialPoint({ children, accent = "#005AAA" }: { children: ReactNode; accent?: string }) {
+function EditorialPoint({
+  children,
+  accent = "#005AAA",
+}: {
+  children: ReactNode;
+  accent?: string;
+}) {
   return (
-    <p
-      className="relative pl-5 text-justify text-[15px] leading-8 text-slate-700 before:absolute before:left-0 before:top-3 before:h-10 before:w-[3px] before:rounded-full sm:text-base"
-      style={{
-        backgroundImage: "none",
-      }}
-    >
+    <p className="relative pl-5 text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
       <span
         className="absolute left-0 top-3 h-10 w-[3px] rounded-full"
         style={{ background: `linear-gradient(180deg, ${accent}, #41B650)` }}
@@ -279,7 +319,58 @@ function EditorialPoint({ children, accent = "#005AAA" }: { children: ReactNode;
   );
 }
 
-function IconText({ title, text, icon: Icon, accent }: { title: string; text: string; icon: typeof Factory; accent: string }) {
+function ContentIntro({
+  page,
+  children,
+  image,
+}: {
+  page: JointVenturePage;
+  children: ReactNode;
+  image?: string;
+}) {
+  return (
+    <article className="scroll-reveal relative">
+      <div className="pointer-events-none absolute -right-20 top-4 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-4 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
+
+      <section className={`relative grid gap-10 ${image ? "lg:grid-cols-[1fr_.95fr]" : ""} lg:items-center`}>
+        <div>
+          <SectionTitle
+            eyebrow={page.eyebrow}
+            title={page.shortTitle}
+            accent={page.accent}
+          />
+
+          <div className="max-w-4xl space-y-5 font-serif italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+            {children}
+          </div>
+        </div>
+
+        {image && (
+          <div className="overflow-hidden rounded-[30px] shadow-[0_24px_70px_rgba(15,60,110,.14)]">
+            <img
+              src={image}
+              alt={page.shortTitle}
+              className="h-[330px] w-full object-cover"
+            />
+          </div>
+        )}
+      </section>
+    </article>
+  );
+}
+
+function IconText({
+  title,
+  text,
+  icon: Icon,
+  accent,
+}: {
+  title: string;
+  text: string;
+  icon: typeof Factory;
+  accent: string;
+}) {
   return (
     <div className="group relative">
       <div className="mb-5 flex items-center gap-4">
@@ -293,41 +384,12 @@ function IconText({ title, text, icon: Icon, accent }: { title: string; text: st
   );
 }
 
-function LogoIntro({ page, children }: { page: JointVenturePage; children: ReactNode }) {
-  return (
-    <article className="scroll-reveal relative">
-      <div className="pointer-events-none absolute -right-20 top-4 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
-      <div className="pointer-events-none absolute -left-16 bottom-4 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
-
-      <section className="relative grid gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
-        <div className="flex justify-center lg:justify-start">
-          <div className="relative flex min-h-[250px] w-full max-w-[420px] items-center justify-center overflow-visible">
-            <div className="pointer-events-none absolute inset-x-8 bottom-0 h-[70%] rounded-full bg-gradient-to-t from-[#005AAA]/10 via-[#41B650]/6 to-transparent blur-3xl" />
-            <img
-              src={page.logo}
-              alt={page.title}
-              className="relative z-10 max-h-44 w-auto max-w-full object-contain drop-shadow-[0_24px_35px_rgba(0,68,130,0.16)]"
-            />
-          </div>
-        </div>
-
-        <div>
-          <SectionTitle eyebrow={page.eyebrow} title={page.shortTitle} accent={page.accent} />
-          <div className="max-w-4xl space-y-5 font-serif italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
-            {children}
-          </div>
-        </div>
-      </section>
-    </article>
-  );
-}
-
 function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
   const [preview, setPreview] = useState<string | null>(null);
 
   return (
     <div className="space-y-16">
-      <LogoIntro page={page}>
+      <ContentIntro page={page}>
         <EditorialPoint accent={page.accent}>
           Jetama Alpine Pipe (Sabah) Sdn. Bhd. is a joint venture company between Jetama Sdn. Bhd. and Alpine Pipe Manufacturing Sdn. Bhd.
         </EditorialPoint>
@@ -337,16 +399,27 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
         <EditorialPoint accent={page.accent}>
           Its focus includes SSAW and ERW pipe solutions, supported by technical knowledge, product improvement and quality assurance.
         </EditorialPoint>
-      </LogoIntro>
+      </ContentIntro>
 
       <section className="scroll-reveal grid gap-x-10 gap-y-12 md:grid-cols-3">
         {alpineScope.map((item) => (
-          <IconText key={item.title} title={item.title} text={item.text} icon={item.icon} accent={page.accent} />
+          <IconText
+            key={item.title}
+            title={item.title}
+            text={item.text}
+            icon={item.icon}
+            accent={page.accent}
+          />
         ))}
       </section>
 
       <section className="scroll-reveal relative">
-        <SectionTitle eyebrow="Shareholding" title="Joint Venture Structure" accent={page.accent} />
+        <SectionTitle
+          eyebrow="Shareholding"
+          title="Joint Venture Structure"
+          accent={page.accent}
+        />
+
         <div className="grid gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           <ShareText name="Jetama Sdn. Bhd." percent="51%" accent={page.accent} />
           <div className="hidden h-px w-24 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#F5A623] lg:block" />
@@ -355,7 +428,12 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
       </section>
 
       <section className="scroll-reveal relative">
-        <SectionTitle eyebrow="Certifications" title="Mild Steel Concrete Lined Pipes Certifications" accent={page.accent} />
+        <SectionTitle
+          eyebrow="Certifications"
+          title="Mild Steel Concrete Lined Pipes Certifications"
+          accent={page.accent}
+        />
+
         <p className="max-w-4xl text-justify text-base leading-8 text-slate-600">
           Certifications and approvals related to pipe manufacturing, conformity, quality assurance and water industry standards.
         </p>
@@ -365,7 +443,11 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
           onClick={() => setPreview(certificationBoard)}
           className="group relative mt-9 block w-full overflow-hidden rounded-[2rem] shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-1"
         >
-          <img src={certificationBoard} alt="Jetama Alpine Pipe Certifications" className="w-full transition duration-700 group-hover:scale-[1.02]" />
+          <img
+            src={certificationBoard}
+            alt="Jetama Alpine Pipe Certifications"
+            className="w-full transition duration-700 group-hover:scale-[1.02]"
+          />
           <div className="absolute inset-0 bg-[#061b46]/0 transition group-hover:bg-[#061b46]/10" />
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-white/95 px-6 py-3 text-sm font-black uppercase tracking-[0.15em] text-[#102f83] shadow-xl backdrop-blur">
             Click To Preview Certifications
@@ -383,7 +465,11 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
             </button>
 
             <div className="max-h-[95vh] max-w-7xl overflow-auto rounded-[2rem] bg-white p-3 shadow-2xl">
-              <img src={preview} alt="Certification Preview" className="h-auto w-full object-contain" />
+              <img
+                src={preview}
+                alt="Certification Preview"
+                className="h-auto w-full object-contain"
+              />
             </div>
           </div>
         )}
@@ -392,13 +478,26 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
   );
 }
 
-function ShareText({ name, percent, accent }: { name: string; percent: string; accent: string }) {
+function ShareText({
+  name,
+  percent,
+  accent,
+}: {
+  name: string;
+  percent: string;
+  accent: string;
+}) {
   return (
     <div>
-      <p className="font-serif text-6xl font-semibold italic leading-none" style={{ color: accent }}>
+      <p
+        className="font-serif text-6xl font-semibold italic leading-none"
+        style={{ color: accent }}
+      >
         {percent}
       </p>
-      <p className="mt-4 text-xl font-black leading-tight text-[#052b4f]">{name}</p>
+      <p className="mt-4 text-xl font-black leading-tight text-[#052b4f]">
+        {name}
+      </p>
     </div>
   );
 }
@@ -406,14 +505,14 @@ function ShareText({ name, percent, accent }: { name: string; percent: string; a
 function ComingSoonJV({ page }: { page: JointVenturePage }) {
   return (
     <div className="space-y-16">
-      <LogoIntro page={page}>
+      <ContentIntro page={page}>
         <EditorialPoint accent={page.accent}>
           This joint venture company profile has been prepared for future official information updates.
         </EditorialPoint>
         <EditorialPoint accent={page.accent}>
           Project details, company background and operational information will be added once available.
         </EditorialPoint>
-      </LogoIntro>
+      </ContentIntro>
 
       <section className="scroll-reveal relative text-center">
         <Building2 className="mx-auto text-[#f5a623]" size={46} />
@@ -453,7 +552,7 @@ function SolarJointVentureDetail({ page }: { page: JointVenturePage }) {
 
   return (
     <div className="space-y-16">
-      <LogoIntro page={page}>
+      <ContentIntro page={page} image={solarBabagonImage}>
         <EditorialPoint accent={page.accent}>
           Jetama Babagon Floating Solar Sdn. Bhd. supports floating solar development at Babagon Dam, Penampang.
         </EditorialPoint>
@@ -463,29 +562,57 @@ function SolarJointVentureDetail({ page }: { page: JointVenturePage }) {
         <EditorialPoint accent={page.accent}>
           The company supports project coordination, governance and future energy infrastructure delivery.
         </EditorialPoint>
-      </LogoIntro>
+      </ContentIntro>
 
       <section className="scroll-reveal">
-        <SectionTitle eyebrow="Project Snapshot" title="Floating Solar Development" accent={page.accent} />
-        <div className="grid gap-x-10 gap-y-8 sm:grid-cols-3">
-          {[
-            ["Project Type", "Floating Solar PV"],
-            ["Proposed Capacity", "13.21 MWac"],
-            ["Location", "Babagon Dam, Penampang"],
-          ].map(([label, value]) => (
-            <div key={label}>
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">{label}</p>
-              <p className="mt-3 font-serif text-3xl font-semibold italic text-[#052b4f]">{value}</p>
-            </div>
-          ))}
+        <SectionTitle
+          eyebrow="Project Snapshot"
+          title="Floating Solar Development"
+          accent={page.accent}
+        />
+
+        <div className="grid gap-5 md:grid-cols-3">
+          <SnapshotCard icon={Factory} label="Project Type" value="Floating Solar PV" />
+          <SnapshotCard icon={Zap} label="Proposed Capacity" value="13.21 MWac" />
+          <SnapshotCard icon={MapPin} label="Location" value="Babagon Dam, Penampang" />
         </div>
       </section>
 
       <section className="scroll-reveal grid gap-x-10 gap-y-12 md:grid-cols-3">
         {focusAreas.map((item) => (
-          <IconText key={item.title} title={item.title} text={item.text} icon={item.icon} accent={page.accent} />
+          <IconText
+            key={item.title}
+            title={item.title}
+            text={item.text}
+            icon={item.icon}
+            accent={page.accent}
+          />
         ))}
       </section>
+    </div>
+  );
+}
+
+function SnapshotCard({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: typeof Factory;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="joint-card-shine rounded-2xl border border-slate-100 bg-white/85 p-6 shadow-[0_18px_50px_rgba(15,60,110,.08)] backdrop-blur">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#eaf8ef] text-[#16a34a]">
+        <Icon size={23} />
+      </div>
+      <p className="text-xs font-black uppercase tracking-[0.15em] text-slate-500">
+        {label}
+      </p>
+      <p className="mt-2 font-serif text-2xl font-semibold italic text-[#052b4f]">
+        {value}
+      </p>
     </div>
   );
 }
@@ -493,7 +620,7 @@ function SolarJointVentureDetail({ page }: { page: JointVenturePage }) {
 function SolarPVPowerJointVentureDetail({ page }: { page: JointVenturePage }) {
   return (
     <div className="space-y-16">
-      <LogoIntro page={page}>
+      <ContentIntro page={page} image={solarPlantImage}>
         <EditorialPoint accent={page.accent}>
           Solar PV Power Sdn. Bhd. is positioned under the Joint Ventures section to reflect its strategic renewable energy partnership structure.
         </EditorialPoint>
@@ -503,7 +630,7 @@ function SolarPVPowerJointVentureDetail({ page }: { page: JointVenturePage }) {
         <EditorialPoint accent={page.accent}>
           Its portfolio includes the 10MWac Large Scale Solar PV project in Federal Territory Labuan.
         </EditorialPoint>
-      </LogoIntro>
+      </ContentIntro>
 
       <SolarPVProjectSection page={page} />
       <SolarPVFutureProjects />
@@ -522,7 +649,12 @@ function SolarPVProjectSection({ page }: { page: JointVenturePage }) {
     <section className="scroll-reveal relative">
       <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
         <div>
-          <SectionTitle eyebrow="Solar Project" title="10MWac Large Scale Solar PV Project" accent={page.accent} />
+          <SectionTitle
+            eyebrow="Solar Project"
+            title="10MWac Large Scale Solar PV Project"
+            accent={page.accent}
+          />
+
           <div className="space-y-5">
             <EditorialPoint accent={page.accent}>
               Large Scale Solar Photovoltaic Plant located at Kg Bukit Kalam, Federal Territory Labuan, developed to support clean energy generation.
@@ -543,10 +675,16 @@ function SolarPVProjectSection({ page }: { page: JointVenturePage }) {
         </div>
 
         <div className="overflow-hidden rounded-[2rem] shadow-[0_22px_60px_rgba(0,44,85,0.12)]">
-          <img src={solarPlantImage} alt="10MWac Large Scale Solar PV Plant" className="h-[380px] w-full object-cover" />
+          <img
+            src={solarPlantImage}
+            alt="10MWac Large Scale Solar PV Plant"
+            className="h-[380px] w-full object-cover"
+          />
           <div className="flex items-center gap-3 bg-[#052b4f] px-6 py-4 text-white">
             <Zap size={20} className="text-[#f5a623]" />
-            <span className="text-sm font-black uppercase tracking-[0.14em]">F.T. Labuan Solar PV Plant</span>
+            <span className="text-sm font-black uppercase tracking-[0.14em]">
+              F.T. Labuan Solar PV Plant
+            </span>
           </div>
         </div>
       </div>
@@ -570,7 +708,12 @@ function SolarPVFutureProjects() {
 
   return (
     <section className="scroll-reveal relative">
-      <SectionTitle eyebrow="Future Solar Direction" title="Upcoming Large Scale Solar Developments" accent="#41B650" />
+      <SectionTitle
+        eyebrow="Future Solar Direction"
+        title="Upcoming Large Scale Solar Developments"
+        accent="#41B650"
+      />
+
       <p className="max-w-4xl text-justify text-base leading-8 text-slate-600">
         Two additional Large Scale Solar projects are planned through LSS Sabah 2024 with scheduled commercial operations in December 2026.
       </p>
@@ -579,12 +722,22 @@ function SolarPVFutureProjects() {
         {futureProjects.map((project) => (
           <article key={project.title} className="group">
             <div className="overflow-hidden rounded-[2rem] shadow-[0_22px_60px_rgba(0,44,85,0.12)]">
-              <img src={project.image} alt={project.title} className="h-72 w-full object-cover transition duration-700 group-hover:scale-105" />
+              <img
+                src={project.image}
+                alt={project.title}
+                className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
+              />
             </div>
             <div className="mt-5">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f5a623]">Solar PV Development</p>
-              <h3 className="mt-3 font-serif text-2xl font-semibold italic text-[#052b4f]">{project.title}</h3>
-              <p className="mt-3 text-sm font-semibold text-slate-600">{project.location}</p>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#f5a623]">
+                Solar PV Development
+              </p>
+              <h3 className="mt-3 font-serif text-2xl font-semibold italic text-[#052b4f]">
+                {project.title}
+              </h3>
+              <p className="mt-3 text-sm font-semibold text-slate-600">
+                {project.location}
+              </p>
             </div>
           </article>
         ))}
@@ -596,9 +749,18 @@ function SolarPVFutureProjects() {
 function CurrentContent({ selected }: { selected: JointVentureKey }) {
   const page = jointVenturePages[selected];
 
-  if (selected === "jetama-alpine-pipe") return <JetamaAlpinePipeDetail page={page} />;
-  if (selected === "solar-pv-power") return <SolarPVPowerJointVentureDetail page={page} />;
-  if (selected === "jetama-batu-sapi-solar") return <ComingSoonJV page={page} />;
+  if (selected === "jetama-alpine-pipe") {
+    return <JetamaAlpinePipeDetail page={page} />;
+  }
+
+  if (selected === "solar-pv-power") {
+    return <SolarPVPowerJointVentureDetail page={page} />;
+  }
+
+  if (selected === "jetama-batu-sapi-solar") {
+    return <ComingSoonJV page={page} />;
+  }
+
   return <SolarJointVentureDetail page={page} />;
 }
 
@@ -608,6 +770,7 @@ export default function JointVentureDetails() {
 
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".scroll-reveal");
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -621,6 +784,7 @@ export default function JointVentureDetails() {
     );
 
     elements.forEach((element) => observer.observe(element));
+
     return () => observer.disconnect();
   }, [type]);
 
@@ -643,11 +807,13 @@ export default function JointVentureDetails() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.06)_1px,transparent_0)] [background-size:28px_28px] opacity-35" />
         </div>
 
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[260px_1fr]">
-          <Sidebar />
-          <main className="min-w-0">
-            <CurrentContent selected={selected} />
-          </main>
+        <div className="relative z-10 mx-auto max-w-7xl px-0">
+          <div className="grid gap-14 lg:grid-cols-[260px_1fr]">
+            <Sidebar />
+            <main className="min-w-0">
+              <CurrentContent selected={selected} />
+            </main>
+          </div>
         </div>
       </section>
     </main>

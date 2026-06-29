@@ -7,8 +7,14 @@ export default function SplashScreen() {
   const [opening, setOpening] = useState(false);
 
   useEffect(() => {
-    const splitTimer = setTimeout(() => setOpening(true), 2300);
-    const removeTimer = setTimeout(() => setVisible(false), 3300);
+    const logo = new Image();
+    logo.src = jetamaLogo;
+
+    const dam = new Image();
+    dam.src = damImage;
+
+    const splitTimer = setTimeout(() => setOpening(true), 2600);
+    const removeTimer = setTimeout(() => setVisible(false), 3600);
 
     return () => {
       clearTimeout(splitTimer);
@@ -19,29 +25,47 @@ export default function SplashScreen() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[99999] overflow-hidden">
-      <img src={damImage} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover" />
+    <div className="fixed inset-0 z-[99999] overflow-hidden bg-[#eaf6ff]">
+      <img
+        src={damImage}
+        alt=""
+        className="absolute inset-0 h-full w-full scale-110 object-cover"
+      />
 
-      <div className="absolute inset-0 bg-[#edf7ff]/72 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-white/72 backdrop-blur-[2px]" />
       <div className="absolute inset-0 bg-gradient-to-br from-[#dff1ff]/75 via-white/35 to-[#efffed]/75" />
 
-      <div className={`absolute left-0 top-0 h-full w-1/2 bg-white/85 backdrop-blur-md transition-transform duration-1000 ease-[cubic-bezier(.7,0,.2,1)] ${opening ? "-translate-x-full" : "translate-x-0"}`} />
-      <div className={`absolute right-0 top-0 h-full w-1/2 bg-white/85 backdrop-blur-md transition-transform duration-1000 ease-[cubic-bezier(.7,0,.2,1)] ${opening ? "translate-x-full" : "translate-x-0"}`} />
+      <div
+        className={`absolute left-0 top-0 h-full w-1/2 bg-white/85 backdrop-blur-md transition-transform duration-1000 ${
+          opening ? "-translate-x-full" : "translate-x-0"
+        }`}
+      />
+      <div
+        className={`absolute right-0 top-0 h-full w-1/2 bg-white/85 backdrop-blur-md transition-transform duration-1000 ${
+          opening ? "translate-x-full" : "translate-x-0"
+        }`}
+      />
 
       <div className="absolute -left-24 top-0 h-[420px] w-[420px] rotate-45 bg-[#005AAA]/16" />
       <div className="absolute -left-10 top-16 h-[220px] w-[220px] rotate-45 bg-[#35B24A]/14" />
       <div className="absolute -right-32 bottom-0 h-[420px] w-[420px] rotate-12 bg-[#35B24A]/16" />
       <div className="absolute right-12 bottom-24 h-44 w-44 rotate-45 bg-[#F5A623]/22" />
 
-      <div className={`relative z-10 flex h-full flex-col items-center justify-center px-8 text-center transition-all duration-700 ${opening ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
+      <div
+        className={`relative z-10 flex h-full flex-col items-center justify-center px-8 text-center transition-all duration-700 ${
+          opening ? "scale-95 opacity-0" : "scale-100 opacity-100"
+        }`}
+      >
         <div className="relative flex flex-col items-center">
           <div className="absolute -inset-12 rounded-[48px] bg-white/80 blur-2xl" />
-          <div className="absolute h-72 w-72 rounded-full bg-[#005AAA]/12 blur-3xl" />
 
           <img
             src={jetamaLogo}
             alt="JETAMA SDN BHD"
-            className="relative z-10 w-[540px] max-w-[88vw] object-contain drop-shadow-[0_24px_55px_rgba(0,90,170,.35)]"
+            decoding="sync"
+            loading="eager"
+            fetchPriority="high"
+            className="relative z-10 w-[540px] max-w-[88vw] object-contain opacity-100 drop-shadow-[0_24px_55px_rgba(0,90,170,.35)]"
           />
         </div>
 

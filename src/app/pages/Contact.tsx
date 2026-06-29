@@ -7,7 +7,6 @@ import {
   Phone,
   Printer,
   Send,
-  Sparkles,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
@@ -106,18 +105,30 @@ function PageStyles() {
         0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .56; }
         50% { transform: translate3d(18px,-16px,0) rotate(2deg); opacity: .82; }
       }
+
       @keyframes contactFadeUp {
         from { opacity: 0; transform: translateY(24px); filter: blur(7px); }
         to { opacity: 1; transform: translateY(0); filter: blur(0); }
       }
+
       @keyframes softShine {
         0% { transform: translateX(-140%) skewX(-18deg); opacity: 0; }
         35% { opacity: .45; }
         100% { transform: translateX(180%) skewX(-18deg); opacity: 0; }
       }
-      .jetama-soft-in { animation: contactFadeUp .85s cubic-bezier(.2,.8,.2,1) both; }
-      .jetama-float-a { animation: contactFloat 13s ease-in-out infinite; }
-      .jetama-float-b { animation: contactFloat 16s ease-in-out infinite reverse; }
+
+      .jetama-soft-in {
+        animation: contactFadeUp .85s cubic-bezier(.2,.8,.2,1) both;
+      }
+
+      .jetama-float-a {
+        animation: contactFloat 13s ease-in-out infinite;
+      }
+
+      .jetama-float-b {
+        animation: contactFloat 16s ease-in-out infinite reverse;
+      }
+
       .shine-hover::before {
         content: "";
         position: absolute;
@@ -129,7 +140,10 @@ function PageStyles() {
         transform: translateX(-140%) skewX(-18deg);
         pointer-events: none;
       }
-      .shine-hover:hover::before { animation: softShine 1.8s ease; }
+
+      .shine-hover:hover::before {
+        animation: softShine 1.8s ease;
+      }
     `}</style>
   );
 }
@@ -138,13 +152,14 @@ function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-36">
       <PageStyles />
+
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#ffffff_0%,#eef8ff_46%,#f8fff6_100%)]" />
       <div className="jetama-float-a absolute left-[-160px] top-8 -z-10 h-[420px] w-[420px] rotate-45 rounded-[72px] border border-[#005AAA]/10 bg-[#005AAA]/5 blur-sm" />
       <div className="jetama-float-b absolute right-[-160px] top-28 -z-10 h-[420px] w-[420px] rotate-12 rounded-[72px] border border-[#35B24A]/15 bg-[#35B24A]/5" />
       <div className="absolute bottom-4 left-[24%] -z-10 h-28 w-[520px] rotate-[-8deg] bg-[#F5A623]/[.075] blur-3xl" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#f7fbff] via-white/70 to-transparent" />
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 lg:grid-cols-[1fr_420px] lg:items-end lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
         <div className="jetama-soft-in">
           <div className="mb-8 flex items-center gap-2 text-sm font-semibold text-slate-600">
             <Link to="/" className="transition hover:text-[#005AAA]">
@@ -164,7 +179,9 @@ function Hero() {
           </h1>
 
           <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
-            Reach our headquarters, subsidiaries and joint venture offices through a cleaner corporate directory built for quick reference and smooth enquiries.
+            Reach our headquarters, subsidiaries and joint venture offices
+            through a cleaner corporate directory built for quick reference and
+            smooth enquiries.
           </p>
         </div>
       </div>
@@ -172,12 +189,119 @@ function Hero() {
   );
 }
 
-function ContactInfoLine({ icon: Icon, children }: { icon: typeof MapPin; children: React.ReactNode }) {
+function ContactInfoLine({
+  icon: Icon,
+  children,
+}: {
+  icon: typeof MapPin;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex gap-3">
       <Icon size={18} className="mt-1 shrink-0 text-[#005AAA]" />
-      <div className="text-sm font-medium leading-6 text-slate-600">{children}</div>
+      <div className="min-w-0 text-sm font-semibold leading-6 text-slate-600">
+        {children}
+      </div>
     </div>
+  );
+}
+
+function CompanyCard({ company }: { company: Company }) {
+  return (
+    <div className="relative overflow-hidden rounded-[26px] border border-[#005AAA]/10 bg-white p-5 shadow-[0_14px_35px_rgba(0,90,170,0.07)]">
+      <div
+        className="absolute inset-x-0 top-0 h-1.5"
+        style={{ backgroundColor: company.accent }}
+      />
+
+      <div className="grid gap-5 md:grid-cols-[190px_1fr] md:items-center">
+        <div className="flex min-h-[110px] items-center justify-center rounded-[22px] bg-[#f8fbff] p-4">
+          <img
+            src={company.logo}
+            alt={company.name}
+            className={`w-full object-contain ${
+              company.logoLarge ? "max-h-[82px]" : "max-h-[72px]"
+            }`}
+          />
+        </div>
+
+        <div className="min-w-0">
+          <span
+            className="inline-flex max-w-full rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-white"
+            style={{ backgroundColor: company.accent }}
+          >
+            {company.shortName}
+          </span>
+
+          <h3 className="mt-4 break-words text-base font-black uppercase leading-snug text-[#073e63]">
+            {company.name}
+          </h3>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function OfficeCard({ group, index }: { group: ContactGroup; index: number }) {
+  return (
+    <article
+      className="shine-hover group relative overflow-hidden rounded-[34px] border border-[#005AAA]/10 bg-white/90 p-6 shadow-[0_22px_70px_rgba(0,90,170,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_95px_rgba(0,90,170,0.16)]"
+      style={{
+        animation: "contactFadeUp .75s ease both",
+        animationDelay: `${index * 90}ms`,
+      }}
+    >
+      <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
+      <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#005AAA]/8 blur-2xl transition group-hover:scale-125" />
+
+      <div className="grid gap-6">
+        <div className="grid gap-4">
+          {group.companies.map((company) => (
+            <CompanyCard key={company.name} company={company} />
+          ))}
+        </div>
+
+        <div className="rounded-[28px] border border-[#005AAA]/10 bg-[#f8fbff] p-6">
+          <div className="mb-5 flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#005AAA] shadow-sm">
+              <Building2 size={23} />
+            </div>
+
+            <div className="min-w-0">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#35B24A]">
+                Office Location
+              </p>
+              <h4 className="mt-2 break-words text-xl font-black leading-tight text-[#005AAA]">
+                {group.groupTitle}
+              </h4>
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            <ContactInfoLine icon={MapPin}>{group.address}</ContactInfoLine>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <ContactInfoLine icon={Phone}>
+                <span className="font-black text-slate-700">{group.phone}</span>
+              </ContactInfoLine>
+
+              <ContactInfoLine icon={Printer}>
+                <span className="font-black text-slate-700">{group.fax}</span>
+              </ContactInfoLine>
+            </div>
+
+            <ContactInfoLine icon={Mail}>
+              <a
+                href={`mailto:${group.email}`}
+                className="break-all font-black text-slate-700 transition hover:text-[#35B24A]"
+              >
+                {group.email}
+              </a>
+            </ContactInfoLine>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -223,7 +347,8 @@ export default function Contact() {
 
       <section className="relative pb-24">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_48%,#f8fff7_100%)]" />
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_460px] lg:px-8">
           <div>
             <div className="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
@@ -234,77 +359,20 @@ export default function Contact() {
                   Office Locations
                 </h2>
               </div>
+
               <p className="max-w-md text-sm font-semibold leading-7 text-slate-500">
-                Contact cards are grouped by office location so the layout feels neat, balanced and easier to scan.
+                Contact cards are grouped by office location so the layout
+                feels neat, balanced and easier to scan.
               </p>
             </div>
 
             <div className="grid gap-6">
               {contactGroups.map((group, index) => (
-                <article
+                <OfficeCard
                   key={group.groupTitle}
-                  className="shine-hover group relative overflow-hidden rounded-[32px] bg-white/90 p-6 shadow-[0_22px_70px_rgba(0,90,170,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_95px_rgba(0,90,170,0.16)]"
-                  style={{ animation: "contactFadeUp .75s ease both", animationDelay: `${index * 90}ms` }}
-                >
-                  <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
-                  <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#005AAA]/8 blur-2xl transition group-hover:scale-125" />
-
-                  <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr] xl:items-center">
-                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-                      {group.companies.map((company) => (
-                        <div key={company.name} className="relative overflow-hidden rounded-[24px] bg-[#f8fbff] p-4">
-                          <div className="absolute left-0 top-0 h-full w-1.5" style={{ backgroundColor: company.accent }} />
-                          <div className="flex items-center gap-4 pl-3">
-                            <div className="flex h-24 w-32 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-sm">
-                              <img
-                                src={company.logo}
-                                alt={company.name}
-                                className={`w-full object-contain transition duration-500 group-hover:scale-105 ${company.logoLarge ? "max-h-20" : "max-h-16"}`}
-                              />
-                            </div>
-                            <div className="min-w-0">
-                              <span
-                                className="inline-flex rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white"
-                                style={{ backgroundColor: company.accent }}
-                              >
-                                {company.shortName}
-                              </span>
-                              <h3 className="mt-3 text-sm font-black leading-snug text-[#073e63]">
-                                {company.name}
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="relative rounded-[26px] bg-white/70 p-6">
-                      <div className="mb-5 flex items-center gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA]">
-                          <Building2 size={23} />
-                        </div>
-                        <h4 className="text-sm font-black uppercase tracking-[0.18em] text-[#35B24A]">
-                          {group.groupTitle}
-                        </h4>
-                      </div>
-
-                      <div className="space-y-4">
-                        <ContactInfoLine icon={MapPin}>{group.address}</ContactInfoLine>
-                        <ContactInfoLine icon={Phone}>
-                          <span className="font-bold text-slate-700">{group.phone}</span>
-                        </ContactInfoLine>
-                        <ContactInfoLine icon={Printer}>
-                          <span className="font-bold text-slate-700">{group.fax}</span>
-                        </ContactInfoLine>
-                        <ContactInfoLine icon={Mail}>
-                          <a href={`mailto:${group.email}`} className="break-all font-bold text-slate-700 transition hover:text-[#35B24A]">
-                            {group.email}
-                          </a>
-                        </ContactInfoLine>
-                      </div>
-                    </div>
-                  </div>
-                </article>
+                  group={group}
+                  index={index}
+                />
               ))}
             </div>
           </div>
@@ -326,8 +394,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-lg font-black">Office Hours</h3>
-                  <p className="mt-2 text-sm text-white/80">Monday - Friday: 8:00 AM - 5:00 PM</p>
-                  <p className="text-sm text-white/80">Saturday - Sunday: Closed</p>
+                  <p className="mt-2 text-sm text-white/80">
+                    Monday - Friday: 8:00 AM - 5:00 PM
+                  </p>
+                  <p className="text-sm text-white/80">
+                    Saturday - Sunday: Closed
+                  </p>
                 </div>
               </div>
             </div>
@@ -338,7 +410,10 @@ export default function Contact() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="rounded-[34px] bg-white/92 p-6 shadow-[0_24px_80px_rgba(0,90,170,0.12)] backdrop-blur-xl">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-[34px] bg-white/92 p-6 shadow-[0_24px_80px_rgba(0,90,170,0.12)] backdrop-blur-xl"
+            >
               <div className="grid gap-4">
                 {[
                   ["name", "Full Name *", "text", true],

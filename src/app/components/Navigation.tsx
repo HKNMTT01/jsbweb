@@ -205,7 +205,7 @@ export default function Navigation() {
             </div>
           ))}
 
-          <div className="ml-2 flex h-11 w-[210px] items-center gap-2 rounded-sm bg-white/20 px-4 shadow-[0_8px_20px_rgba(0,0,0,0.16)] backdrop-blur-md transition group-hover:bg-white/90">
+          <div className="ml-1 hidden h-10 w-[145px] items-center gap-2 rounded-xl bg-white/20 px-3 shadow-[0_8px_20px_rgba(0,0,0,0.16)] backdrop-blur-md transition group-hover:bg-white/90 2xl:flex">
             <Search size={18} className="text-white transition group-hover:text-gray-400" />
             <input
               type="text"

@@ -314,9 +314,8 @@ function ESGJourneyTimeline() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeader
           align="center"
-          eyebrow="Simple ESG Timeline"
-          title="One Connected E · S · G Journey"
-          text="The ESG section is simplified into one flowing timeline so users can understand Jetama's sustainability direction faster."
+          eyebrow="JETAMA ESG Timeline"
+          title="Our E · S · G Journey"
         />
 
         <div className="relative mx-auto mt-16 max-w-6xl">
@@ -532,7 +531,7 @@ function StandardsSection() {
               Certifications, SDGs & Jetama 2030
             </h2>
             <p className="mt-5 leading-8 text-slate-600">
-              A simple close-out section showing certified systems, ESG alignment and Jetama's direction from baseline reporting toward 2030.
+              A close-out section showing certified systems, ESG alignment and Jetama's direction from baseline reporting toward 2030.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">

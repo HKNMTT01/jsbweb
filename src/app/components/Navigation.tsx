@@ -1,6 +1,6 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import logoImage from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 
 type NavItem = {
@@ -8,6 +8,237 @@ type NavItem = {
   label: string;
   sub?: NavItem[];
 };
+
+type SearchResult = {
+  path: string;
+  label: string;
+  parent?: string;
+  category?: string;
+  description?: string;
+  keywords: string;
+};
+
+type SearchSuggestion = {
+  label: string;
+  path: string;
+  parent?: string;
+  category: string;
+  description: string;
+  aliases: string[];
+};
+
+const keywordSuggestions: SearchSuggestion[] = [
+  {
+    label: "Datuk Ahmad Naim Bin Uddang, PGDK",
+    path: "/about/ceo-message",
+    parent: "CEO's Message",
+    category: "Leadership",
+    description: "Chief Executive Officer profile and leadership message.",
+    aliases: ["ceo", "chief executive officer", "datuk ahmad naim", "ahmad naim", "pgdk", "leadership message"],
+  },
+  {
+    label: "Board of Directors",
+    path: "/about/board-of-directors",
+    parent: "About Us",
+    category: "Leadership",
+    description: "Board chairman and directors information.",
+    aliases: ["bod", "board", "directors", "chairman", "datuk faisyal", "datuk sofian", "datuk peter", "dr akian"],
+  },
+  {
+    label: "Top Level Management",
+    path: "/about/top-level-management",
+    parent: "About Us",
+    category: "Leadership",
+    description: "Senior General Managers and General Managers.",
+    aliases: ["management", "gm", "sgm", "ir lo ho min", "wah keng yang", "ag ahmad zaki", "junidi", "jude abel"],
+  },
+  {
+    label: "Company Profile",
+    path: "/about/company-profile",
+    parent: "About Us",
+    category: "Corporate",
+    description: "JETAMA background, concession and company overview.",
+    aliases: ["company", "profile", "incorporated", "pcca", "history", "corporate overview"],
+  },
+  {
+    label: "Concession Area",
+    path: "/about/concession-area",
+    parent: "About Us",
+    category: "Coverage",
+    description: "Kota Kinabalu, Tuaran, Telibong, Tamparuli, Moyog, Kasigui and Papar coverage.",
+    aliases: ["map", "coverage", "kota kinabalu", "tuaran", "telibong", "tamparuli", "moyog", "kasigui", "papar", "pipeline", "reservoir"],
+  },
+  {
+    label: "Vision, Mission & Core Values",
+    path: "/about/vision-mission-core-values",
+    parent: "About Us",
+    category: "Corporate",
+    description: "W.A.T.E.R values and corporate direction.",
+    aliases: ["vision", "mission", "core values", "water values", "well-being", "accountability", "teamwork", "excellence", "respect"],
+  },
+  {
+    label: "Jetama Water Sdn. Bhd.",
+    path: "/subsidiary/water",
+    parent: "Subsidiaries",
+    category: "Subsidiary",
+    description: "Water operations, plants and facilities.",
+    aliases: ["jetama water", "jwsb", "water subsidiary", "moyog wtp", "telibong wtp", "kasigui wtp", "treatment plant"],
+  },
+  {
+    label: "Jetama Energy Sdn. Bhd.",
+    path: "/subsidiary/energy",
+    parent: "Subsidiaries",
+    category: "Subsidiary",
+    description: "Renewable energy subsidiary and clean energy direction.",
+    aliases: ["jetama energy", "jesb", "energy subsidiary", "renewable", "solar", "clean energy"],
+  },
+  {
+    label: "Jetama Alpine Pipe (Sabah) Sdn. Bhd.",
+    path: "/jointventure/jetama-alpine-pipe",
+    parent: "Joint Ventures",
+    category: "Joint Venture",
+    description: "Pipe manufacturing joint venture and certifications.",
+    aliases: ["alpine", "pipe", "jetama alpine", "certification", "ssaw", "erw", "steel pipe"],
+  },
+  {
+    label: "Solar PV Power Sdn. Bhd.",
+    path: "/jointventure/solar-pv-power",
+    parent: "Joint Ventures",
+    category: "Joint Venture",
+    description: "Large scale solar PV project in Labuan.",
+    aliases: ["solar pv", "labuan", "large scale solar", "10mw", "photovoltaic", "solar power"],
+  },
+  {
+    label: "Babagon Floating Solar",
+    path: "/jointventure/jetama-babagon-floating-solar",
+    parent: "Joint Ventures",
+    category: "Joint Venture",
+    description: "Floating solar development at Babagon Dam.",
+    aliases: ["babagon", "floating solar", "dam solar", "13.21mw"],
+  },
+  {
+    label: "Batu Sapi Solar",
+    path: "/jointventure/jetama-batu-sapi-solar",
+    parent: "Joint Ventures",
+    category: "Joint Venture",
+    description: "Batu Sapi solar joint venture information.",
+    aliases: ["batu sapi", "sandakan", "15mw", "solar sandakan"],
+  },
+  {
+    label: "Water Projects",
+    path: "/projects/water-project/concession-project",
+    parent: "Projects",
+    category: "Projects",
+    description: "Water infrastructure timeline and concession projects.",
+    aliases: ["water project", "concession project", "babagon dam", "moyog", "reservoir", "uwss", "desalination", "water timeline"],
+  },
+  {
+    label: "Industrial Water Project",
+    path: "/projects/water-project/industrial-project",
+    parent: "Projects",
+    category: "Projects",
+    description: "Solar-powered nano-filtration drinking water system.",
+    aliases: ["industrial", "nano filtration", "drinking water", "remote area", "pulau berhala", "sukau", "kinabatangan"],
+  },
+  {
+    label: "Commercial Water Project",
+    path: "/projects/water-project/commercial-project",
+    parent: "Projects",
+    category: "Projects",
+    description: "Bottled water factory and WAIG commercial updates.",
+    aliases: ["commercial", "waig", "bottled water", "factory", "kkip", "sabah fc", "sponsorship"],
+  },
+  {
+    label: "Renewable Energy Projects",
+    path: "/projects/renewable-energy-project",
+    parent: "Projects",
+    category: "Projects",
+    description: "Solar PV and renewable energy project timeline.",
+    aliases: ["renewable energy project", "solar project", "labuan solar", "poic", "floating solar", "batu sapi"],
+  },
+  {
+    label: "Sustainability",
+    path: "/sustainability",
+    parent: "Main Page",
+    category: "ESG",
+    description: "Environment, Social and Governance initiatives.",
+    aliases: ["esg", "environment", "social", "governance", "sustainable", "sustainability report"],
+  },
+  {
+    label: "News & Events",
+    path: "/news",
+    parent: "Main Page",
+    category: "Updates",
+    description: "Latest news, events, videos and gallery updates.",
+    aliases: ["news", "events", "gallery", "video", "press release", "announcement", "kaamatan", "raya"],
+  },
+  {
+    label: "Careers",
+    path: "/careers",
+    parent: "Main Page",
+    category: "Jobs",
+    description: "Career opportunities and vacancies.",
+    aliases: ["career", "careers", "job", "jobs", "vacancy", "internship", "apply"],
+  },
+  {
+    label: "Contact Us",
+    path: "/contact",
+    parent: "Main Page",
+    category: "Contact",
+    description: "Address, contact details and enquiry information.",
+    aliases: ["contact", "address", "email", "phone", "location", "office"],
+  },
+];
+
+function buildSearchKeywords(...parts: Array<string | undefined>) {
+  return parts.filter(Boolean).join(" ").toLowerCase();
+}
+
+function flattenNavItems(items: NavItem[], parent?: string): SearchResult[] {
+  return items.flatMap((item) => {
+    const current: SearchResult = {
+      path: item.path,
+      label: item.label,
+      parent,
+      category: parent ? "Navigation" : "Page",
+      description: parent ? `Open ${item.label} under ${parent}.` : `Open ${item.label}.`,
+      keywords: buildSearchKeywords(item.label, parent, item.path),
+    };
+
+    return [current, ...(item.sub ? flattenNavItems(item.sub, item.label) : [])];
+  });
+}
+
+function normaliseSearch(value: string) {
+  return value.trim().toLowerCase();
+}
+
+function scoreSearchResult(item: SearchResult, query: string) {
+  if (!query) return 1;
+  const label = item.label.toLowerCase();
+  const parent = item.parent?.toLowerCase() ?? "";
+
+  if (label === query) return 100;
+  if (label.startsWith(query)) return 82;
+  if (label.includes(query)) return 70;
+  if (parent.includes(query)) return 48;
+  if (item.keywords.includes(query)) return 40;
+
+  const queryWords = query.split(/\s+/).filter(Boolean);
+  const matchedWords = queryWords.filter((word) => item.keywords.includes(word)).length;
+  return matchedWords ? matchedWords * 12 : 0;
+}
+
+function mergeSearchResults(results: SearchResult[]) {
+  const map = new Map<string, SearchResult>();
+
+  results.forEach((item) => {
+    const key = `${item.path}-${item.label}`;
+    if (!map.has(key)) map.set(key, item);
+  });
+
+  return Array.from(map.values());
+}
 
 function NavOceanWaveBackground() {
   return (
@@ -50,7 +281,10 @@ function NavOceanWaveBackground() {
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems: NavItem[] = [
     { path: "/", label: "HOME" },
@@ -116,6 +350,52 @@ export default function Navigation() {
     { path: "/contact", label: "CONTACT US" },
   ];
 
+  const searchIndex = useMemo(() => {
+    const navResults = flattenNavItems(navItems);
+    const keywordResults: SearchResult[] = keywordSuggestions.map((item) => ({
+      path: item.path,
+      label: item.label,
+      parent: item.parent,
+      category: item.category,
+      description: item.description,
+      keywords: buildSearchKeywords(item.label, item.parent, item.category, item.description, item.path, item.aliases.join(" ")),
+    }));
+
+    return mergeSearchResults([...keywordResults, ...navResults]);
+  }, [navItems]);
+
+  const cleanSearchQuery = normaliseSearch(searchQuery);
+
+  const searchResults = useMemo(() => {
+    if (!cleanSearchQuery) {
+      return searchIndex
+        .filter((item) => ["Leadership", "Projects", "Subsidiary", "Updates", "Jobs"].includes(item.category ?? ""))
+        .slice(0, 8);
+    }
+
+    return searchIndex
+      .map((item) => ({ item, score: scoreSearchResult(item, cleanSearchQuery) }))
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score || a.item.label.localeCompare(b.item.label))
+      .map(({ item }) => item)
+      .slice(0, 10);
+  }, [cleanSearchQuery, searchIndex]);
+
+  function goToSearchResult(path?: string) {
+    const targetPath = path ?? searchResults[0]?.path;
+    if (!targetPath) return;
+
+    navigate(targetPath);
+    setSearchQuery("");
+    setIsSearchOpen(false);
+    setIsMenuOpen(false);
+  }
+
+  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    goToSearchResult();
+  }
+
   const isActive = (path: string) =>
     path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
 
@@ -136,8 +416,8 @@ export default function Navigation() {
         <div className="absolute left-20 top-7 h-20 w-64 rounded-full bg-white/50 blur-[60px]" />
       </div>
 
-      <div className="relative mx-auto flex h-[108px] max-w-[1720px] items-center gap-6 px-8">
-        <Link to="/" className="flex w-[260px] shrink-0 items-center">
+      <div className="relative mx-auto flex h-[108px] max-w-[1680px] items-center gap-4 px-5 sm:px-8">
+        <Link to="/" className="flex w-[235px] shrink-0 items-center xl:w-[248px] 2xl:w-[255px]">
           <div className="relative">
             <div className="absolute left-1/2 top-1/2 h-24 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/60 blur-[60px]" />
             <div className="absolute left-1/2 top-1/2 h-20 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7dd3fc]/30 blur-[38px]" />
@@ -149,12 +429,12 @@ export default function Navigation() {
           </div>
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-end gap-6 lg:flex">
+        <nav className="hidden flex-1 items-center justify-center gap-4 xl:gap-5 2xl:gap-5 lg:flex">
           {navItems.map((item) => (
             <div key={item.path} className="group/item relative">
               <Link
                 to={item.path}
-                className={`relative flex items-center gap-1.5 whitespace-nowrap py-3 text-[13.5px] font-extrabold uppercase tracking-tight transition duration-300 ${
+                className={`relative flex items-center gap-1.5 whitespace-nowrap py-3 text-[12.5px] xl:text-[13px] 2xl:text-[13px] font-extrabold uppercase tracking-tight transition duration-300 ${
                   isActive(item.path)
                     ? "text-[#ffe04b]"
                     : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)] hover:text-[#ffe04b]"
@@ -205,14 +485,76 @@ export default function Navigation() {
             </div>
           ))}
 
-          <div className="ml-1 hidden h-10 w-[145px] items-center gap-2 rounded-xl bg-white/20 px-3 shadow-[0_8px_20px_rgba(0,0,0,0.16)] backdrop-blur-md transition group-hover:bg-white/90 2xl:flex">
-            <Search size={18} className="text-white transition group-hover:text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/80 transition group-hover:text-gray-700 group-hover:placeholder:text-gray-400"
-            />
-          </div>
+          <form
+            onSubmit={handleSearchSubmit}
+            className="relative ml-2 mr-3 hidden shrink-0 2xl:block"
+          >
+            <div className="flex h-10 w-[150px] items-center gap-2 rounded-xl bg-white/20 px-3 shadow-[0_8px_20px_rgba(0,0,0,0.16)] backdrop-blur-md transition group-hover:bg-white/90">
+              <Search size={18} className="text-white transition group-hover:text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(event) => {
+                  setSearchQuery(event.target.value);
+                  setIsSearchOpen(true);
+                }}
+                onFocus={() => setIsSearchOpen(true)}
+                placeholder="Search..."
+                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/80 transition group-hover:text-gray-700 group-hover:placeholder:text-gray-400"
+              />
+            </div>
+
+            {isSearchOpen && (searchQuery || searchResults.length > 0) && (
+              <div className="absolute right-0 top-12 z-[90] w-[310px] overflow-hidden rounded-2xl bg-white shadow-[0_24px_70px_rgba(0,0,0,0.25)] ring-1 ring-black/5">
+                <div className="border-b border-slate-100 px-4 py-3">
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#35B24A]">
+                    Quick Search
+                  </p>
+                </div>
+
+                {searchResults.length > 0 ? (
+                  <div className="max-h-[360px] overflow-y-auto py-2">
+                    {searchResults.map((result) => (
+                      <button
+                        key={`${result.parent ?? "main"}-${result.path}-${result.label}`}
+                        type="button"
+                        onMouseDown={(event) => event.preventDefault()}
+                        onClick={() => goToSearchResult(result.path)}
+                        className="block w-full px-4 py-3 text-left transition hover:bg-[#eef8ff]"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-black text-[#052b4f]">
+                              {result.label}
+                            </p>
+                            {result.description && (
+                              <p className="mt-1 truncate text-xs font-semibold leading-5 text-slate-500">
+                                {result.description}
+                              </p>
+                            )}
+                            {result.parent && (
+                              <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#005AAA]">
+                                {result.parent}
+                              </p>
+                            )}
+                          </div>
+                          {result.category && (
+                            <span className="shrink-0 rounded-full bg-[#eaf8ef] px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-[#17803a]">
+                              {result.category}
+                            </span>
+                          )}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="px-4 py-5 text-sm font-semibold text-slate-500">
+                    No page found. Try “about”, “projects”, “careers” or “news”.
+                  </div>
+                )}
+              </div>
+            )}
+          </form>
         </nav>
 
         <button
@@ -225,7 +567,59 @@ export default function Navigation() {
       </div>
 
       {isMenuOpen && (
-        <nav className="relative border-t border-white/10 bg-[#2f3337]/95 p-5 shadow-2xl backdrop-blur-xl lg:hidden">
+        <nav className="relative max-h-[calc(100vh-108px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#2f3337]/95 p-5 pb-10 shadow-2xl backdrop-blur-xl lg:hidden">
+          <form onSubmit={handleSearchSubmit} className="mb-5">
+            <div className="flex h-12 items-center gap-3 rounded-2xl bg-white/12 px-4 ring-1 ring-white/15">
+              <Search size={18} className="text-[#ffe04b]" />
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Search website..."
+                className="w-full bg-transparent text-sm font-semibold text-white outline-none placeholder:text-white/60"
+              />
+            </div>
+
+            {searchQuery && (
+              <div className="mt-3 max-h-[48vh] overflow-y-auto rounded-2xl bg-white/95 shadow-xl">
+                {searchResults.length > 0 ? (
+                  searchResults.map((result) => (
+                    <button
+                      key={`mobile-${result.parent ?? "main"}-${result.path}-${result.label}`}
+                      type="button"
+                      onClick={() => goToSearchResult(result.path)}
+                      className="block w-full border-b border-slate-100 px-4 py-3 text-left last:border-b-0"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-black text-[#052b4f]">{result.label}</p>
+                          {result.description && (
+                            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                              {result.description}
+                            </p>
+                          )}
+                          {result.parent && (
+                            <p className="mt-1 text-[10px] font-black uppercase tracking-[0.14em] text-[#005AAA]">
+                              {result.parent}
+                            </p>
+                          )}
+                        </div>
+                        {result.category && (
+                          <span className="rounded-full bg-[#eaf8ef] px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-[#17803a]">
+                            {result.category}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <p className="px-4 py-4 text-sm font-semibold text-slate-500">
+                    No page found.
+                  </p>
+                )}
+              </div>
+            )}
+          </form>
+
           {navItems.map((item) => (
             <div key={item.path} className="mb-2">
               <Link

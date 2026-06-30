@@ -8,13 +8,11 @@ import {
   Eye,
   ExternalLink,
   MapPinned,
-  ShieldCheck,
   Sparkles,
   Sun,
   X,
 } from "lucide-react";
 
-import heroImage from "@/assets/DJI_0298.jpg";
 import moyogImage from "@/assets/MOYOG.jpg";
 import telibongImage from "@/assets/TELIBONG.jpg";
 import tuaranImage from "@/assets/TUARAN.jpg";
@@ -24,7 +22,8 @@ import sabahFcCollabImage from "@/assets/collab sabah fc.png";
 import systemresolveImage from "@/assets/jetama resolve system.jpeg";
 
 type ProjectCategory = "Water Project" | "Renewable Energy";
-type ProjectSegment = "industrial-project" | "commercial-project" | "concession-project";
+type ProjectSegment =
+  "industrial-project" | "commercial-project" | "concession-project";
 
 type ProjectPage = {
   title: string;
@@ -72,7 +71,12 @@ const projectPages: Record<string, ProjectPage> = {
 
 const waterProjectSegments: Record<
   ProjectSegment,
-  { label: string; shortLabel: string; subtitle: string; status: "ready" | "soon" }
+  {
+    label: string;
+    shortLabel: string;
+    subtitle: string;
+    status: "ready" | "soon";
+  }
 > = {
   "industrial-project": {
     label: "Industrial Project",
@@ -91,7 +95,8 @@ const waterProjectSegments: Record<
   "concession-project": {
     label: "Concession Project",
     shortLabel: "Concession",
-    subtitle: "Existing concession-related water infrastructure timeline and project portfolio.",
+    subtitle:
+      "Existing concession-related water infrastructure timeline and project portfolio.",
     status: "ready",
   },
 };
@@ -325,84 +330,6 @@ function Breadcrumb({
   );
 }
 
-function ProjectHero({
-  page,
-  activeSegment,
-}: {
-  page: ProjectPage;
-  activeSegment?: ProjectSegment;
-}) {
-  const segment = activeSegment ? waterProjectSegments[activeSegment] : null;
-  const title = segment ? `${page.title}: ${segment.label}` : page.title;
-  const subtitle = segment ? segment.subtitle : page.subtitle;
-
-  return (
-    <section className="relative overflow-hidden bg-white pt-28 lg:pt-32">
-      <div className="absolute left-0 top-0 z-10 h-8 w-full bg-[#005AAA]" />
-
-      <div className="relative h-[430px] overflow-hidden sm:h-[450px] lg:h-[470px]">
-        <img
-          src={heroImage}
-          alt={title}
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/12 to-black/10" />
-        <div className="absolute -left-24 top-0 h-full w-[58%] -skew-x-12 bg-white/93 shadow-[40px_0_90px_rgba(255,255,255,0.78)]" />
-        <div className="absolute left-0 top-20 h-56 w-56 rounded-full bg-[#41B650]/15 blur-3xl" />
-        <div className="absolute left-48 bottom-10 h-64 w-64 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute left-[22%] top-12 h-28 w-52 rotate-[-10deg] bg-[#F5A623]/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-white via-white/70 to-transparent" />
-
-        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl -translate-y-2">
-            <div className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-700">
-              <Link to="/" className="hover:text-[#005AAA]">
-                Home
-              </Link>
-              <ChevronRight size={15} className="text-slate-400" />
-              <Link to="/projects" className="hover:text-[#005AAA]">
-                Projects
-              </Link>
-              <ChevronRight size={15} className="text-slate-400" />
-              <span className="font-bold text-[#005AAA]">{page.title}</span>
-              {activeSegment && (
-                <>
-                  <ChevronRight size={15} className="text-slate-400" />
-                  <span className="font-bold text-[#35b24a]">
-                    {waterProjectSegments[activeSegment].label}
-                  </span>
-                </>
-              )}
-            </div>
-
-            <p
-              className="mb-4 inline-flex rounded-full bg-[#eaf8ef] px-4 py-2 text-xs font-black uppercase tracking-[0.22em]"
-              style={{ color: page.accent }}
-            >
-              {page.eyebrow}
-            </p>
-
-            <h1 className="font-serif text-4xl font-normal leading-tight text-[#064C82] sm:text-5xl lg:text-6xl">
-              {title}
-            </h1>
-
-            <div className="mt-5 flex items-center gap-3">
-              <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
-              <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
-              <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base font-medium leading-8 text-slate-700">
-              {subtitle}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function ComingSoonProjects({
   activeSegment,
 }: {
@@ -431,7 +358,10 @@ function ComingSoonProjects({
         </div>
 
         <p className="mx-auto max-w-2xl text-base leading-8 text-slate-600">
-          This section has been prepared for future project records. Once the {item.shortLabel.toLowerCase()} project information is ready, the timeline can be added here while keeping the same clean corporate layout.
+          This section has been prepared for future project records. Once the{" "}
+          {item.shortLabel.toLowerCase()} project information is ready, the
+          timeline can be added here while keeping the same clean corporate
+          layout.
         </p>
 
         <Link
@@ -605,9 +535,10 @@ function ProjectTimeline({
         </div>
 
         <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600">
-          A structured project journey presented directly after the header, with clean motion, balanced imagery and readable corporate timeline details.
+          A structured project journey presented directly after the header, with
+          clean motion, balanced imagery and readable corporate timeline
+          details.
         </p>
-
       </div>
 
       <TimelineWrapper>
@@ -777,9 +708,7 @@ function ProjectCard({
             className="mb-2 text-xs font-black uppercase tracking-[0.18em]"
             style={{
               color:
-                project.category === "Renewable Energy"
-                  ? "#ffd96a"
-                  : "#b8ff6a",
+                project.category === "Renewable Energy" ? "#ffd96a" : "#b8ff6a",
             }}
           >
             {project.category}
@@ -907,9 +836,7 @@ function ProjectModal({
               <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">
                 Coverage
               </p>
-              <p className="mt-1 text-2xl font-black text-[#102f83]">
-                Sabah
-              </p>
+              <p className="mt-1 text-2xl font-black text-[#102f83]">Sabah</p>
             </div>
           </div>
 
@@ -960,7 +887,6 @@ function ProjectModal({
   );
 }
 
-
 function CleanCorporateTheme() {
   return (
     <style>{`
@@ -981,11 +907,66 @@ function CleanCorporateTheme() {
       }
 
       .clean-corporate-page {
-        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 48%, #f8fff7 100%);
+        background: linear-gradient(135deg,#f8fbff 0%,#ffffff 42%,#eefaf3 100%);
       }
 
-      .clean-corporate-page > section:not(:first-of-type) {
-        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 52%, #f8fff7 100%) !important;
+      .project-detail-shell {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .project-detail-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 1px 1px, rgba(0,90,170,.055) 1px, transparent 0);
+        background-size: 28px 28px;
+        opacity: .42;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .project-detail-glow-blue {
+        position: absolute;
+        left: -8rem;
+        top: 5rem;
+        height: 24rem;
+        width: 24rem;
+        border-radius: 999px;
+        background: rgba(0,90,170,.08);
+        filter: blur(70px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .project-detail-glow-green {
+        position: absolute;
+        right: -9rem;
+        top: 8rem;
+        height: 28rem;
+        width: 28rem;
+        border-radius: 999px;
+        background: rgba(65,182,80,.10);
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .project-detail-glow-gold {
+        position: absolute;
+        left: 35%;
+        top: 4rem;
+        height: 12rem;
+        width: 12rem;
+        border-radius: 999px;
+        background: rgba(245,166,35,.09);
+        filter: blur(55px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .clean-corporate-page > section {
+        background: transparent !important;
       }
 
       .clean-corporate-page .scroll-reveal {
@@ -1099,23 +1080,29 @@ export default function ProjectsDetail() {
   });
 
   return (
-    <main className="clean-corporate-page overflow-hidden bg-white text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+    <main className="clean-corporate-page min-h-screen overflow-hidden text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
       <CleanCorporateTheme />
-      <ProjectHero page={page} activeSegment={activeSegment} />
 
+      <section className="project-detail-shell relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
+        <div className="project-detail-glow-blue" />
+        <div className="project-detail-glow-green" />
+        <div className="project-detail-glow-gold" />
 
-      {isWaterProject &&
-      activeSegment &&
-      waterProjectSegments[activeSegment].status === "soon" ? (
-        <ComingSoonProjects activeSegment={activeSegment} />
-      ) : (
-        <ProjectTimeline
-          key={`${slug}-${activeSegment ?? "main"}`}
-          page={page}
-          projects={filteredProjects}
-          onSelect={setSelectedProject}
-        />
-      )}
+        <Breadcrumb page={page} activeSegment={activeSegment} />
+
+        {isWaterProject &&
+        activeSegment &&
+        waterProjectSegments[activeSegment].status === "soon" ? (
+          <ComingSoonProjects activeSegment={activeSegment} />
+        ) : (
+          <ProjectTimeline
+            key={`${slug}-${activeSegment ?? "main"}`}
+            page={page}
+            projects={filteredProjects}
+            onSelect={setSelectedProject}
+          />
+        )}
+      </section>
 
       <ProjectModal
         project={selectedProject}

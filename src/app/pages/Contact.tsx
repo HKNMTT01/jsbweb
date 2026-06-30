@@ -11,10 +11,10 @@ import {
 import { useState } from "react";
 import { Link } from "react-router";
 
-import jetamaEnergyLogo from "@/assets/LOGO-JESB.png";
-import jetamaWaterLogo from "@/assets/logo-jetamawater.png";
-import jetamaAlpineLogo from "@/assets/jetamaAlpine.png";
-import solarLogo from "@/assets/solarpvlogo.png";
+import jetamaEnergyLogo from "@/assets/jetama_energy.png";
+import jetamaWaterLogo from "@/assets/JETAMA WATER - 2.png";
+import jetamaAlpineLogo from "@/assets/jetama_alpine_pipe.png";
+import solarLogo from "@/assets/solar_pv_power.png";
 import jetamaLogo from "@/assets/jetama-wide-logo-transparent.png";
 
 type Company = {

@@ -238,6 +238,28 @@ function PageStyles() {
         z-index: -1;
       }
 
+      .joint-content-logo-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 92px;
+        max-width: min(620px, 100%);
+      }
+
+      .joint-content-logo {
+        max-height: 118px;
+        width: auto;
+        max-width: min(520px, 100%);
+        object-fit: contain;
+        filter: drop-shadow(0 20px 36px rgba(0,68,130,.14));
+      }
+
+      @media (max-width: 640px) {
+        .joint-content-logo {
+          max-height: 92px;
+        }
+      }
+
       .service-like-content {
         width: 100%;
         min-width: 0;
@@ -387,7 +409,6 @@ function Sidebar() {
 
       <nav className="-mt-2 space-y-1">
         {jointVentureNavigation.map((item) => {
-          const Icon = item.icon;
           const active = location.pathname === item.path;
 
           return (
@@ -400,7 +421,7 @@ function Sidebar() {
                   : "text-slate-800 hover:bg-white hover:text-[#005AAA]"
               }`}
             >
-              <Icon size={16} />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#41B650]" />
               <span>{item.label}</span>
             </Link>
           );
@@ -430,6 +451,29 @@ function SectionTitle({
       <h2 className="mt-3 font-serif text-3xl font-semibold italic leading-tight text-[#005AAA] sm:text-4xl">
         {title}
       </h2>
+      <AccentRule />
+    </div>
+  );
+}
+
+function LogoTitle({ page }: { page: JointVenturePage }) {
+  return (
+    <div className="mb-8">
+      <p
+        className="text-xs font-black uppercase tracking-[0.28em]"
+        style={{ color: page.accent }}
+      >
+        {page.eyebrow}
+      </p>
+
+      <div className="joint-content-logo-wrap mt-5">
+        <img
+          src={page.logo}
+          alt={page.title}
+          className="joint-content-logo"
+        />
+      </div>
+
       <AccentRule />
     </div>
   );
@@ -469,11 +513,7 @@ function ContentIntro({
 
       <section className={`relative grid gap-10 ${image ? "lg:grid-cols-[1fr_.95fr]" : ""} lg:items-center`}>
         <div>
-          <SectionTitle
-            eyebrow={page.eyebrow}
-            title={page.shortTitle}
-            accent={page.accent}
-          />
+<LogoTitle page={page} />
 
           <div className="max-w-4xl space-y-5 font-serif italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
             {children}

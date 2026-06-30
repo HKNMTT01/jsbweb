@@ -3,14 +3,8 @@ import { Link, Navigate, useLocation, useParams } from "react-router";
 import {
   ArrowRight,
   Building2,
-  CheckCircle2,
   ChevronRight,
   Droplets,
-  Factory,
-  Leaf,
-  Network,
-  ShieldCheck,
-  SunMedium,
   Zap,
 } from "lucide-react";
 
@@ -75,7 +69,6 @@ const subsidiaryPages: Record<SubsidiaryKey, SubsidiaryPage> = {
 const subsidiariesNavigation = Object.values(subsidiaryPages).map((page) => ({
   label: page.shortTitle,
   path: page.path,
-  icon: page.icon,
 }));
 
 function DetailBreadcrumb({ page }: { page: SubsidiaryPage }) {
@@ -162,20 +155,18 @@ function Sidebar() {
 
       <nav className="-mt-2 space-y-1">
         {subsidiariesNavigation.map((item) => {
-          const Icon = item.icon;
           const active = location.pathname === item.path;
 
           return (
             <Link
               key={item.path}
               to={item.path}
-              className={`subsidiary-card-shine flex items-center gap-3 px-3 py-3 text-sm font-semibold transition ${
+              className={`subsidiary-card-shine flex items-center px-3 py-3 text-sm font-semibold transition ${
                 active
                   ? "active-link bg-white text-[#005AAA] shadow-sm"
                   : "text-slate-800 hover:bg-white hover:text-[#005AAA]"
               }`}
             >
-              <Icon size={17} />
               <span>{item.label}</span>
             </Link>
           );
@@ -197,17 +188,22 @@ function SectionTitle({
   accent?: string;
 }) {
   return (
-    <div className="scroll-reveal max-w-3xl">
+    <div className="mb-8">
       <p
-        className="text-sm font-black uppercase tracking-[0.28em]"
+        className="text-xs font-black uppercase tracking-[0.28em]"
         style={{ color: accent }}
       >
         {eyebrow}
       </p>
-      <h2 className="mt-4 text-4xl font-black uppercase text-[#005AAA] md:text-5xl">
+      <h2 className="mt-3 font-serif text-3xl font-semibold italic leading-tight text-[#005AAA] sm:text-4xl">
         {title}
       </h2>
-      {text && <p className="mt-5 leading-8 text-slate-600">{text}</p>}
+      <AccentRule />
+      {text && (
+        <p className="max-w-4xl text-justify text-base leading-8 text-slate-600">
+          {text}
+        </p>
+      )}
     </div>
   );
 }
@@ -219,67 +215,56 @@ function IntroBlock({
   page: SubsidiaryPage;
   children: ReactNode;
 }) {
-  const Icon = page.icon;
-
   return (
-    <section id="details" className="scroll-reveal relative">
-      <div className="max-w-4xl">
-        <div
-          className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg"
-          style={{ backgroundColor: page.accent }}
-        >
-          <Icon size={28} />
+    <article className="scroll-reveal relative">
+      <div className="pointer-events-none absolute -right-20 top-4 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-4 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
+
+      <section className="relative">
+        <div className="max-w-4xl">
+          <p
+            className="text-xs font-black uppercase tracking-[0.28em]"
+            style={{ color: page.accent }}
+          >
+            {page.eyebrow}
+          </p>
+
+          <img
+            src={page.logo}
+            alt={page.title}
+            className="mt-5 max-h-[118px] w-auto max-w-full object-contain drop-shadow-[0_18px_38px_rgba(0,68,130,0.14)]"
+          />
+
+          <AccentRule />
+
+          <p className="max-w-4xl font-serif text-[16px] italic leading-8 text-slate-700 sm:text-[17px] sm:leading-9">
+            {page.subtitle}
+          </p>
+
+          <div className="mt-8 max-w-4xl space-y-5 font-serif italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+            {children}
+          </div>
         </div>
-
-        <p
-          className="text-sm font-black uppercase tracking-[0.28em]"
-          style={{ color: page.secondAccent }}
-        >
-          {page.eyebrow}
-        </p>
-
-        <h2 className="mt-4 text-4xl font-black leading-tight text-[#005AAA] md:text-5xl">
-          {page.title}
-        </h2>
-
-        <p className="mt-5 text-lg leading-8 text-slate-600">{page.subtitle}</p>
-
-        <div className="mt-7 grid gap-4">{children}</div>
-      </div>
-    </section>
+      </section>
+    </article>
   );
 }
 
-function InfoPoint({ children }: { children: ReactNode }) {
-  return (
-    <div className="subsidiary-card-shine group relative overflow-hidden rounded-2xl border border-[#005AAA]/10 bg-white/75 p-4 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_45px_rgba(0,90,170,.10)]">
-      <div className="flex gap-3">
-        <CheckCircle2 className="mt-1 shrink-0 text-[#41B650]" size={18} />
-        <p className="text-sm leading-7 text-slate-700">{children}</p>
-      </div>
-    </div>
-  );
-}
-
-function StatCard({
-  value,
-  label,
-  icon: Icon,
+function EditorialPoint({
+  children,
+  accent = "#005AAA",
 }: {
-  value: string;
-  label: string;
-  icon: typeof Building2;
+  children: ReactNode;
+  accent?: string;
 }) {
   return (
-    <div className="subsidiary-card-shine group relative overflow-hidden rounded-[24px] border border-[#005AAA]/10 bg-white/80 p-6 shadow-[0_18px_50px_rgba(15,60,110,.08)] backdrop-blur transition duration-500 hover:-translate-y-2 hover:shadow-[0_26px_70px_rgba(0,90,170,.16)]">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA] transition group-hover:bg-[#005AAA] group-hover:text-white">
-        <Icon size={24} />
-      </div>
-      <p className="text-3xl font-black text-[#005AAA]">{value}</p>
-      <p className="mt-2 text-xs font-black uppercase tracking-[0.16em] text-[#F6A623]">
-        {label}
-      </p>
-    </div>
+    <p className="relative pl-5 text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
+      <span
+        className="absolute left-0 top-3 h-10 w-[3px] rounded-full"
+        style={{ background: `linear-gradient(180deg, ${accent}, #41B650)` }}
+      />
+      {children}
+    </p>
   );
 }
 
@@ -295,26 +280,19 @@ function JetamaWaterDetail() {
   return (
     <div className="space-y-20">
       <IntroBlock page={page}>
-        <InfoPoint>
+        <EditorialPoint accent={page.accent}>
           Jetama Water Sdn. Bhd. supports water treatment operations and potable
           water supply services for Kota Kinabalu and selected West Coast areas.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           The company operates key water treatment facilities, transmission
           mains, service reservoirs and related water supply infrastructure.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           Its role is focused on reliable treated water production, operational
           maintenance and service continuity.
-        </InfoPoint>
+        </EditorialPoint>
       </IntroBlock>
-
-      <section className="scroll-reveal grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard value="6" label="Treatment Plants" icon={Factory} />
-        <StatCard value="30" label="Service Reservoirs" icon={Building2} />
-        <StatCard value="200 km" label="Transmission Mains" icon={Network} />
-        <StatCard value="1" label="Babagon Dam" icon={Droplets} />
-      </section>
 
       <section>
         <div className="mb-10">
@@ -360,22 +338,18 @@ function JetamaEnergyDetail() {
 
   const values = [
     {
-      icon: SunMedium,
       title: "Renewable Energy Development",
       text: "Expanding practical clean energy initiatives and solar opportunities.",
     },
     {
-      icon: Leaf,
       title: "Low-Carbon Direction",
       text: "Supporting Sabah’s transition toward more sustainable energy growth.",
     },
     {
-      icon: ShieldCheck,
       title: "Sustainable Growth",
       text: "Building energy projects with long-term operational value.",
     },
     {
-      icon: Zap,
       title: "Clean Partnerships",
       text: "Strengthening strategic collaborations for renewable energy delivery.",
     },
@@ -384,18 +358,18 @@ function JetamaEnergyDetail() {
   return (
     <div className="space-y-20">
       <IntroBlock page={page}>
-        <InfoPoint>
+        <EditorialPoint accent={page.accent}>
           Jetama Energy Sdn. Bhd. supports renewable energy development and
           sustainable power initiatives for Sabah.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           The subsidiary focuses on solar energy opportunities, clean energy
           partnerships and practical low-carbon project delivery.
-        </InfoPoint>
-        <InfoPoint>
+        </EditorialPoint>
+        <EditorialPoint accent={page.accent}>
           Its direction supports Sabah’s transition towards sustainable energy
           and reduced carbon footprint.
-        </InfoPoint>
+        </EditorialPoint>
       </IntroBlock>
 
       <section>
@@ -409,26 +383,19 @@ function JetamaEnergyDetail() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          {values.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <article
-                key={item.title}
-                className="scroll-reveal subsidiary-card-shine group rounded-[26px] border border-[#F5A623]/10 bg-white/80 p-6 shadow-[0_18px_50px_rgba(15,60,110,.08)] backdrop-blur transition hover:-translate-y-2 hover:shadow-[0_26px_70px_rgba(245,166,35,.16)]"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff7e6] text-[#F5A623] transition group-hover:bg-[#F5A623] group-hover:text-white">
-                  <Icon size={24} />
-                </div>
-                <h3 className="text-lg font-black uppercase text-[#052b4f]">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  {item.text}
-                </p>
-              </article>
-            );
-          })}
+          {values.map((item) => (
+            <article
+              key={item.title}
+              className="scroll-reveal subsidiary-card-shine group rounded-[26px] border border-[#F5A623]/10 bg-white/80 p-6 shadow-[0_18px_50px_rgba(15,60,110,.08)] backdrop-blur transition hover:-translate-y-2 hover:shadow-[0_26px_70px_rgba(245,166,35,.16)]"
+            >
+              <h3 className="font-serif text-2xl font-semibold italic leading-tight text-[#052b4f] transition group-hover:text-[#005AAA]">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-justify text-sm leading-7 text-slate-600">
+                {item.text}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -468,10 +435,7 @@ function SolarProjectSection() {
                 key={item}
                 className="subsidiary-card-shine group flex gap-3 rounded-2xl border border-[#F5A623]/10 bg-white/80 p-4 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_45px_rgba(245,166,35,.12)]"
               >
-                <SunMedium
-                  className="mt-1 shrink-0 text-[#F5A623]"
-                  size={18}
-                />
+                <span className="mt-2 h-10 w-[3px] shrink-0 rounded-full bg-gradient-to-b from-[#F5A623] to-[#41B650]" />
                 <p className="text-sm leading-7 text-slate-700">{item}</p>
               </div>
             ))}

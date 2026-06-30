@@ -15,7 +15,7 @@ import {
 
 import heroImage from "@/assets/DJI_0298.jpg";
 import moyogImage from "@/assets/MOYOG.jpg";
-import tuaranImage from "@/assets/TUARAN.jpg";
+import tuaranImage from "@/assets/pvplant.png";
 import telibongImage from "@/assets/TELIBONG.jpg";
 import kasiguiImage from "@/assets/KASIGUI.jpg";
 import bottleFactoryImage from "@/assets/opening bottle factory.jpg";

@@ -21,6 +21,9 @@ import perbarisanImage from "@/assets/prbarisanjetama.jpg";
 import bebasRasuahImage from "@/assets/prgmbbasrasuah.jpg";
 import annualDinnerImage from "@/assets/annualdinner jetama.jpg";
 import ulangTahunImage from "@/assets/ulang thun jetama.jpg";
+// import jetamaIntroVideo from "@/assets/JETAMA-INTRO30(1).mp4";
+
+const jetamaIntroVideo = "/JETAMA-INTRO30.mp4";
 
 type NewsType = "gallery" | "videos" | "press-releases" | "announcement";
 type FilterType = "all" | NewsType;
@@ -50,7 +53,8 @@ const newsItems: NewsItem[] = [
     month: "MAY",
     year: 2025,
     type: "gallery",
-    description: "Warm festive wishes from JETAMA to all staff, partners and communities.",
+    description:
+      "Warm festive wishes from JETAMA to all staff, partners and communities.",
     image: ulangTahunImage,
   },
   {
@@ -60,7 +64,8 @@ const newsItems: NewsItem[] = [
     month: "MAY",
     year: 2025,
     type: "gallery",
-    description: "Celebrating harmony, culture and togetherness with the community.",
+    description:
+      "Celebrating harmony, culture and togetherness with the community.",
     image: perbarisanImage,
   },
   {
@@ -70,38 +75,45 @@ const newsItems: NewsItem[] = [
     month: "SEP",
     year: 2024,
     type: "videos",
-    description: "Video update showcasing JETAMA's mobile water desalination modular initiative.",
+    description:
+      "Video update showcasing JETAMA's mobile water desalination modular initiative.",
     image: videoImage,
     sourceUrl: "https://www.jetama.com.my/demo/index.php/news-events/videos",
   },
   {
-    title: "Seawater desalination system to address water supply issues in Sabah",
+    title:
+      "Seawater desalination system to address water supply issues in Sabah",
     date: "23 October 2024, Wednesday",
     day: "23",
     month: "OCT",
     year: 2024,
     type: "press-releases",
-    description: "Media coverage on JETAMA's seawater desalination system to support water supply solutions in Sabah.",
+    description:
+      "Media coverage on JETAMA's seawater desalination system to support water supply solutions in Sabah.",
     image: newspaperImage,
   },
   {
-    title: "Jetama plans to build Sabah's first floating solar power plant at Babagon Dam",
+    title:
+      "Jetama plans to build Sabah's first floating solar power plant at Babagon Dam",
     date: "29 April 2024, Monday",
     day: "29",
     month: "APR",
     year: 2024,
     type: "press-releases",
-    description: "Media coverage on JETAMA's plan to develop floating solar power at Babagon Dam.",
+    description:
+      "Media coverage on JETAMA's plan to develop floating solar power at Babagon Dam.",
     image: babagonImage,
   },
   {
-    title: "Perbarisan Sempena Sambutan Hari Kebangsaan Peringkat Negeri Sabah 2023",
+    title:
+      "Perbarisan Sempena Sambutan Hari Kebangsaan Peringkat Negeri Sabah 2023",
     date: "Thursday, 31 August 2023",
     day: "31",
     month: "AUG",
     year: 2023,
     type: "gallery",
-    description: "JETAMA participation in the Sabah state-level National Day parade celebration.",
+    description:
+      "JETAMA participation in the Sabah state-level National Day parade celebration.",
     image: perbarisanImage,
     sourceUrl: "https://www.jetama.com.my/demo/index.php/news-events/gallery",
   },
@@ -112,7 +124,8 @@ const newsItems: NewsItem[] = [
     month: "MAY",
     year: 2023,
     type: "gallery",
-    description: "Celebration of JETAMA's 30th anniversary together with Hari Raya Aidilfitri gathering.",
+    description:
+      "Celebration of JETAMA's 30th anniversary together with Hari Raya Aidilfitri gathering.",
     image: ulangTahunImage,
     sourceUrl: "https://www.jetama.com.my/demo/index.php/news-events/gallery",
   },
@@ -123,7 +136,8 @@ const newsItems: NewsItem[] = [
     month: "JAN",
     year: 2023,
     type: "gallery",
-    description: "Annual appreciation night recognising teamwork, service and contribution across JETAMA Group.",
+    description:
+      "Annual appreciation night recognising teamwork, service and contribution across JETAMA Group.",
     image: annualDinnerImage,
     sourceUrl: "https://www.jetama.com.my/demo/index.php/news-events/gallery",
   },
@@ -134,7 +148,8 @@ const newsItems: NewsItem[] = [
     month: "JUL",
     year: 2022,
     type: "gallery",
-    description: "Integrity and anti-corruption programme held as part of corporate governance commitment.",
+    description:
+      "Integrity and anti-corruption programme held as part of corporate governance commitment.",
     image: bebasRasuahImage,
     sourceUrl: "https://www.jetama.com.my/demo/index.php/news-events/gallery",
   },
@@ -145,7 +160,8 @@ const newsItems: NewsItem[] = [
     month: "MAY",
     year: 2022,
     type: "gallery",
-    description: "Hari Raya Aidilfitri gathering for staff, partners and guests.",
+    description:
+      "Hari Raya Aidilfitri gathering for staff, partners and guests.",
     image: galleryImage,
   },
   {
@@ -155,7 +171,8 @@ const newsItems: NewsItem[] = [
     month: "MAR",
     year: 2021,
     type: "gallery",
-    description: "Gallery update for the electrochlorination system at Papar Water Treatment Plant.",
+    description:
+      "Gallery update for the electrochlorination system at Papar Water Treatment Plant.",
     image: paparImage,
   },
 ];
@@ -231,20 +248,55 @@ function NewsTheme() {
 
       .news-page-bg {
         background:
-          radial-gradient(circle at 12% 10%, rgba(0,90,170,.10), transparent 27%),
-          radial-gradient(circle at 90% 10%, rgba(53,178,74,.11), transparent 26%),
-          radial-gradient(circle at 50% 0%, rgba(246,166,35,.10), transparent 28%),
-          linear-gradient(135deg,#f8fbff 0%,#ffffff 45%,#f4fbf0 100%);
+          radial-gradient(circle at 10% 6%, rgba(0,90,170,.11), transparent 26%),
+          radial-gradient(circle at 92% 8%, rgba(53,178,74,.10), transparent 27%),
+          radial-gradient(circle at 50% 0%, rgba(246,166,35,.08), transparent 24%),
+          linear-gradient(135deg,#f7fbff 0%,#ffffff 46%,#f4fbf0 100%);
       }
 
-      .news-pattern::before {
+      .news-hero-bg {
+        background:
+          linear-gradient(135deg, rgba(238,247,255,.94) 0%, rgba(255,255,255,.96) 48%, rgba(237,250,244,.94) 100%);
+      }
+
+      .news-hero-bg::before {
         content: "";
         position: absolute;
         inset: 0;
-        background-image: radial-gradient(rgba(0,90,170,.08) 1px, transparent 1px);
-        background-size: 28px 28px;
-        opacity: .38;
+        background-image:
+          radial-gradient(rgba(0,90,170,.075) 1px, transparent 1px),
+          linear-gradient(120deg, rgba(0,90,170,.035), transparent 38%, rgba(53,178,74,.035));
+        background-size: 30px 30px, 100% 100%;
+        opacity: .55;
         pointer-events: none;
+      }
+
+      .hero-soft-panel {
+        background:
+          linear-gradient(145deg, rgba(255,255,255,.76), rgba(255,255,255,.42));
+        border: 1px solid rgba(255,255,255,.75);
+        box-shadow: 0 24px 80px rgba(0,70,130,.08);
+        backdrop-filter: blur(18px);
+      }
+
+      .video-player-shell {
+        background:
+          linear-gradient(135deg, rgba(0,90,170,.18), rgba(65,182,80,.14)),
+          rgba(255,255,255,.72);
+        box-shadow:
+          0 40px 110px rgba(0,60,115,.20),
+          inset 0 1px 0 rgba(255,255,255,.75);
+      }
+
+      .video-player-shell::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(135deg, rgba(0,90,170,.22), rgba(65,182,80,.18), rgba(246,166,35,.16));
+        z-index: -1;
+        border-radius: 2rem;
+        filter: blur(18px);
+        opacity: .75;
       }
 
       .line-clamp-2 {
@@ -274,7 +326,15 @@ function AccentRule({ className = "" }: { className?: string }) {
   );
 }
 
-function SectionHeading({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
+function SectionHeading({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: string;
+  title: string;
+  text: string;
+}) {
   return (
     <motion.div
       initial="hidden"
@@ -284,8 +344,12 @@ function SectionHeading({ eyebrow, title, text }: { eyebrow: string; title: stri
       transition={{ duration: 0.6 }}
       className="max-w-3xl"
     >
-      <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">{eyebrow}</p>
-      <h2 className="mt-4 text-4xl font-black uppercase tracking-tight text-[#005AAA] md:text-5xl">{title}</h2>
+      <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 text-4xl font-black uppercase tracking-tight text-[#005AAA] md:text-5xl">
+        {title}
+      </h2>
       <AccentRule className="mt-5" />
       <p className="mt-5 text-base leading-8 text-slate-600">{text}</p>
     </motion.div>
@@ -304,36 +368,13 @@ function NewsBadge({ item }: { item: NewsItem }) {
 function DateBox({ item }: { item: NewsItem }) {
   return (
     <div className="rounded-2xl bg-white/95 px-4 py-3 text-center shadow-[0_12px_30px_rgba(0,44,85,.12)] backdrop-blur">
-      <p className="text-2xl font-black leading-none text-[#005AAA]">{item.day}</p>
-      <p className="mt-1 text-[10px] font-black uppercase tracking-[0.14em] text-[#F6A623]">{item.month}</p>
+      <p className="text-2xl font-black leading-none text-[#005AAA]">
+        {item.day}
+      </p>
+      <p className="mt-1 text-[10px] font-black uppercase tracking-[0.14em] text-[#F6A623]">
+        {item.month}
+      </p>
     </div>
-  );
-}
-
-function FeatureCard({ item }: { item: NewsItem }) {
-  return (
-    <motion.article
-      key={item.title}
-      initial={{ opacity: 0, scale: 0.97, y: 16 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.65 }}
-      className="corporate-card-shine relative overflow-hidden rounded-[34px] border border-white/80 bg-white/80 p-4 shadow-[0_28px_90px_rgba(0,60,115,.16)] backdrop-blur-xl"
-    >
-      <div className="relative h-[430px] overflow-hidden rounded-[26px]">
-        <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/92 via-[#005AAA]/24 to-transparent" />
-        <div className="absolute left-5 top-5">
-          <DateBox item={item} />
-        </div>
-        <div className="absolute bottom-7 left-7 right-7">
-          <NewsBadge item={item} />
-          <h2 className="mt-4 line-clamp-2 text-2xl font-black leading-tight text-white md:text-3xl">
-            {item.title}
-          </h2>
-          <p className="mt-3 line-clamp-2 max-w-2xl text-sm leading-6 text-white/78">{item.description}</p>
-        </div>
-      </div>
-    </motion.article>
   );
 }
 
@@ -348,14 +389,28 @@ function EventCard({ item, index }: { item: NewsItem; index: number }) {
         index === 0 ? "lg:col-span-2" : ""
       }`}
     >
-      <div className={`relative overflow-hidden rounded-[24px] ${index === 0 ? "h-[360px]" : "h-[260px]"}`}>
-        <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+      <div
+        className={`relative overflow-hidden rounded-[24px] ${index === 0 ? "h-[360px]" : "h-[260px]"}`}
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/88 via-[#005AAA]/12 to-transparent" />
-        <div className="absolute left-5 top-5"><DateBox item={item} /></div>
+        <div className="absolute left-5 top-5">
+          <DateBox item={item} />
+        </div>
         <div className="absolute bottom-6 left-6 right-6">
           <NewsBadge item={item} />
-          <h3 className="mt-3 line-clamp-2 text-xl font-black leading-tight text-white md:text-2xl">{item.title}</h3>
-          {index === 0 && <p className="mt-3 line-clamp-2 text-sm leading-6 text-white/75">{item.description}</p>}
+          <h3 className="mt-3 line-clamp-2 text-xl font-black leading-tight text-white md:text-2xl">
+            {item.title}
+          </h3>
+          {index === 0 && (
+            <p className="mt-3 line-clamp-2 text-sm leading-6 text-white/75">
+              {item.description}
+            </p>
+          )}
         </div>
       </div>
     </motion.article>
@@ -374,17 +429,27 @@ function ArchiveCard({ item, index }: { item: NewsItem; index: number }) {
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#F6A623]" />
       <div className="flex gap-4">
         <div className="h-28 w-32 shrink-0 overflow-hidden rounded-2xl bg-slate-100">
-          <img src={item.image} alt={item.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+          <img
+            src={item.image}
+            alt={item.title}
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+          />
         </div>
         <div className="min-w-0">
           <div className="mb-2 flex flex-wrap items-center gap-2 text-[11px] font-black uppercase tracking-[0.12em] text-[#41B650]">
             {getTypeIcon(item.type)}
             <span>{getTypeLabel(item.type)}</span>
             <span className="text-slate-300">/</span>
-            <span className="text-slate-500">{item.day} {item.month} {item.year}</span>
+            <span className="text-slate-500">
+              {item.day} {item.month} {item.year}
+            </span>
           </div>
-          <h3 className="line-clamp-2 text-lg font-black leading-snug text-[#052b4f] transition group-hover:text-[#005AAA]">{item.title}</h3>
-          <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-600">{item.description}</p>
+          <h3 className="line-clamp-2 text-lg font-black leading-snug text-[#052b4f] transition group-hover:text-[#005AAA]">
+            {item.title}
+          </h3>
+          <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-600">
+            {item.description}
+          </p>
         </div>
       </div>
 
@@ -406,30 +471,51 @@ function ArchiveCard({ item, index }: { item: NewsItem; index: number }) {
   );
 }
 
+function VideoHeroPlayer() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 34 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7, delay: 0.1 }}
+      className="relative"
+    >
+      <div className="absolute -left-10 -top-10 -z-10 h-60 w-60 rounded-full bg-[#005AAA]/16 blur-[80px]" />
+      <div className="absolute -bottom-12 -right-12 -z-10 h-64 w-64 rounded-full bg-[#41B650]/16 blur-[90px]" />
+      <div className="absolute left-1/2 top-1/2 -z-10 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6A623]/10 blur-[85px]" />
+
+      <div className="video-player-shell relative overflow-hidden rounded-[32px] p-2">
+        <div className="relative overflow-hidden rounded-[26px] bg-[#061b46]">
+          <video
+            className="aspect-video h-full min-h-[390px] w-full bg-black object-cover lg:min-h-[505px]"
+            src={jetamaIntroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+            preload="auto"
+            poster={videoImage}
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function News() {
   const [backendItems, setBackendItems] = useState<NewsItem[]>([]);
   const [selectedType, setSelectedType] = useState<FilterType>("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     listRows<NewsRecord>("news", []).then((rows) => {
-      setBackendItems(rows.filter((item) => item.is_published !== false).map(mapBackendNews));
+      setBackendItems(
+        rows.filter((item) => item.is_published !== false).map(mapBackendNews),
+      );
     });
   }, []);
 
   const allNewsItems = backendItems.length ? backendItems : newsItems;
-  const featuredNews = allNewsItems.slice(0, 5);
-
-  useEffect(() => {
-    if (featuredNews.length <= 1) return;
-
-    const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current === featuredNews.length - 1 ? 0 : current + 1));
-    }, 5200);
-
-    return () => window.clearInterval(timer);
-  }, [featuredNews.length]);
 
   const visibleItems = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
@@ -449,22 +535,36 @@ export default function News() {
       .sort((a, b) => b.year - a.year);
   }, [selectedType, searchTerm, allNewsItems]);
 
-  const currentSlide = featuredNews[activeSlide] || allNewsItems[0];
-  const nextSlide = featuredNews[(activeSlide + 1) % featuredNews.length] || allNewsItems[0];
-  const eventItems = visibleItems.filter((item) => item.type === "gallery").slice(0, 5);
+  const eventItems = visibleItems
+    .filter((item) => item.type === "gallery")
+    .slice(0, 5);
   const archiveItems = visibleItems.slice(0, 8);
-  const newsTotal = allNewsItems.filter((item) => item.type === "press-releases").length;
-  const eventTotal = allNewsItems.filter((item) => item.type === "gallery").length;
-  const videoTotal = allNewsItems.filter((item) => item.type === "videos").length;
+  const newsTotal = allNewsItems.filter(
+    (item) => item.type === "press-releases",
+  ).length;
+  const eventTotal = allNewsItems.filter(
+    (item) => item.type === "gallery",
+  ).length;
+  const videoTotal = allNewsItems.filter(
+    (item) => item.type === "videos",
+  ).length;
 
   return (
     <main className="news-page-bg min-h-screen overflow-hidden text-slate-900">
       <NewsTheme />
 
-      <section className="news-pattern relative isolate overflow-hidden pt-32">
-        <div className="news-soft-float absolute left-[-190px] top-12 -z-10 h-[420px] w-[520px] bg-[#005AAA]/[.06]" style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }} />
-        <div className="news-soft-float absolute right-[-200px] top-28 -z-10 h-[430px] w-[560px] bg-[#41B650]/[.07] [animation-delay:1.2s]" style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }} />
-        <div className="absolute left-[30%] top-16 -z-10 h-52 w-52 rounded-full bg-[#F6A623]/10 blur-3xl" />
+      <section className="news-hero-bg relative isolate overflow-hidden pt-32 pb-10">
+        <div className="absolute -left-40 top-10 -z-10 h-[520px] w-[520px] rounded-full bg-[#005AAA]/12 blur-[120px]" />
+        <div className="absolute right-[-180px] top-20 -z-10 h-[520px] w-[520px] rounded-full bg-[#41B650]/12 blur-[120px]" />
+        <div className="absolute left-[42%] top-8 -z-10 h-[320px] w-[320px] rounded-full bg-[#F6A623]/10 blur-[105px]" />
+        <div
+          className="news-soft-float absolute left-[-160px] top-24 -z-10 h-[360px] w-[480px] bg-[#005AAA]/[.055]"
+          style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }}
+        />
+        <div
+          className="news-soft-float absolute right-[-160px] bottom-6 -z-10 h-[360px] w-[500px] bg-[#41B650]/[.06] [animation-delay:1.2s]"
+          style={{ clipPath: "polygon(9% 0, 100% 24%, 82% 100%, 0 72%)" }}
+        />
 
         <div className="relative mx-auto max-w-7xl px-6 pb-20 lg:px-8">
           <motion.div
@@ -472,11 +572,13 @@ export default function News() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.65 }}
-            className="grid gap-12 lg:grid-cols-[.92fr_1.08fr] lg:items-center"
+            className="grid gap-12 lg:grid-cols-[.86fr_1.14fr] lg:items-center"
           >
-            <div>
+            <div className="hero-soft-panel rounded-[32px] p-7 sm:p-8 lg:p-10">
               <div className="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
-                <Link to="/" className="transition hover:text-[#005AAA]">Home</Link>
+                <Link to="/" className="transition hover:text-[#005AAA]">
+                  Home
+                </Link>
                 <ChevronRight size={15} className="text-slate-400" />
                 <span className="font-bold text-[#005AAA]">News & Events</span>
               </div>
@@ -486,52 +588,39 @@ export default function News() {
               </h1>
               <AccentRule className="mt-7" />
               <p className="mt-7 max-w-2xl text-base leading-8 text-slate-600">
-                Stay updated with JETAMA corporate announcements, community events, media coverage and visual highlights.
+                Stay updated with JETAMA corporate announcements, community
+                events, media coverage and visual highlights.
               </p>
 
               <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
                 <div className="rounded-2xl border border-[#005AAA]/10 bg-white/75 p-4 shadow-sm backdrop-blur">
-                  <p className="text-2xl font-black text-[#005AAA]">{newsTotal}</p>
-                  <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">News</p>
+                  <p className="text-2xl font-black text-[#005AAA]">
+                    {newsTotal}
+                  </p>
+                  <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                    News
+                  </p>
                 </div>
                 <div className="rounded-2xl border border-[#41B650]/10 bg-white/75 p-4 shadow-sm backdrop-blur">
-                  <p className="text-2xl font-black text-[#41B650]">{eventTotal}</p>
-                  <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Events</p>
+                  <p className="text-2xl font-black text-[#41B650]">
+                    {eventTotal}
+                  </p>
+                  <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                    Events
+                  </p>
                 </div>
                 <div className="rounded-2xl border border-[#F6A623]/10 bg-white/75 p-4 shadow-sm backdrop-blur">
-                  <p className="text-2xl font-black text-[#F6A623]">{videoTotal}</p>
-                  <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Videos</p>
+                  <p className="text-2xl font-black text-[#F6A623]">
+                    {videoTotal}
+                  </p>
+                  <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                    Videos
+                  </p>
                 </div>
-              </div>
-
-              <div className="mt-9 flex flex-wrap gap-4">
-                <a href="#news-archive" className="group inline-flex items-center gap-2 rounded-full bg-[#005AAA] px-7 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-[0_18px_45px_rgba(0,90,170,.24)] transition hover:-translate-y-1 hover:bg-[#004b8f]">
-                  Browse Updates <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </a>
-                <a href="#events" className="inline-flex items-center rounded-full border border-[#005AAA]/15 bg-white/80 px-7 py-3 text-sm font-extrabold uppercase tracking-wide text-[#005AAA] shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white">
-                  View Events
-                </a>
               </div>
             </div>
 
-            <div className="relative">
-              <FeatureCard item={currentSlide} />
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.65, delay: 0.15 }}
-                className="absolute -bottom-8 right-6 hidden w-[46%] rounded-[26px] border border-white/90 bg-white/90 p-3 shadow-[0_22px_70px_rgba(15,60,110,.14)] backdrop-blur-xl md:block"
-              >
-                <div className="relative h-[190px] overflow-hidden rounded-[20px]">
-                  <img src={nextSlide.image} alt="Next highlight" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/88 to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#F6A623]">Next Highlight</p>
-                    <p className="mt-2 line-clamp-2 text-sm font-black leading-5 text-white">{nextSlide.title}</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+            <VideoHeroPlayer />
           </motion.div>
         </div>
       </section>
@@ -547,11 +636,19 @@ export default function News() {
               transition={{ duration: 0.6 }}
               className="sticky top-28 rounded-[32px] border border-[#005AAA]/10 bg-white/78 p-6 shadow-[0_22px_70px_rgba(15,60,110,.09)] backdrop-blur-xl"
             >
-              <h2 className="mt-3 text-3xl font-black uppercase text-[#005AAA]">Latest Updates</h2>
-              <p className="mt-4 text-sm leading-7 text-slate-600">Search and filter updates by category, event title, description or year.</p>
+              <h2 className="mt-3 text-3xl font-black uppercase text-[#005AAA]">
+                Latest Updates
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                Search and filter updates by category, event title, description
+                or year.
+              </p>
 
               <label className="relative mt-6 block">
-                <Search size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#005AAA]" />
+                <Search
+                  size={17}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-[#005AAA]"
+                />
                 <input
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
@@ -579,15 +676,23 @@ export default function News() {
 
             <div className="grid gap-5 md:grid-cols-2">
               {archiveItems.map((item, index) => (
-                <ArchiveCard key={`${item.title}-${item.date}`} item={item} index={index} />
+                <ArchiveCard
+                  key={`${item.title}-${item.date}`}
+                  item={item}
+                  index={index}
+                />
               ))}
             </div>
           </div>
 
           {visibleItems.length === 0 && (
             <div className="mt-10 rounded-[28px] border border-[#005AAA]/10 bg-white/75 p-10 text-center shadow-sm backdrop-blur">
-              <p className="text-xl font-black text-[#005AAA]">No update found.</p>
-              <p className="mt-2 text-slate-600">Try another keyword or category.</p>
+              <p className="text-xl font-black text-[#005AAA]">
+                No update found.
+              </p>
+              <p className="mt-2 text-slate-600">
+                Try another keyword or category.
+              </p>
             </div>
           )}
         </div>
@@ -601,19 +706,28 @@ export default function News() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeading
-              eyebrow="Corporate Moments"
+              eyebrow="JETAMA moments"
               title="Events Gallery"
-              text="A neat visual collection of celebrations, community activities and internal corporate moments."
+              text="Jetama collection of celebrations, community activities and internal corporate moments."
             />
-            <a href="#news-archive" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#005AAA]/15 bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] shadow-sm transition hover:-translate-y-1 hover:bg-[#005AAA] hover:text-white">
+            <a
+              href="#news-archive"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-[#005AAA]/15 bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] shadow-sm transition hover:-translate-y-1 hover:bg-[#005AAA] hover:text-white"
+            >
               View All Updates <ArrowRight size={15} />
             </a>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
-            {(eventItems.length ? eventItems : allNewsItems.slice(0, 5)).map((item, index) => (
-              <EventCard key={`${item.title}-${item.date}`} item={item} index={index} />
-            ))}
+            {(eventItems.length ? eventItems : allNewsItems.slice(0, 5)).map(
+              (item, index) => (
+                <EventCard
+                  key={`${item.title}-${item.date}`}
+                  item={item}
+                  index={index}
+                />
+              ),
+            )}
           </div>
         </div>
       </section>

@@ -132,9 +132,6 @@ export default function JointVenture() {
                   </div>
                   <h3 className="mt-5 text-xl font-black leading-tight text-[#052b4f]">{item.title}</h3>
                   <p className="mt-4 min-h-[84px] text-sm leading-7 text-slate-600">{item.text}</p>
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-[#005AAA]">
-                    View Details <ArrowRight size={15} className="transition group-hover:translate-x-1" />
-                  </div>
                 </Link>
               );
             })}

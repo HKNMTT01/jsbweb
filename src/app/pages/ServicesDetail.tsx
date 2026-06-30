@@ -53,8 +53,8 @@ const servicePages: Record<string, ServicePage> = {
   "our-facilities": {
     title: "Our Facilities",
     subtitle:
-      "Key water infrastructure including Babagon Dam, treatment plants, reservoirs, pipelines and existing facilities.",
-    eyebrow: "Water Infrastructure",
+      "Key water and energy infrastructure including Babagon Dam, treatment plants, reservoirs, pipelines, solar PV and renewable energy facilities.",
+    eyebrow: "Water & Energy Infrastructure",
     icon: Factory,
   },
   "total-capability": {
@@ -408,6 +408,7 @@ function OverviewContent() {
 function FacilitiesContent() {
   const [openPlant, setOpenPlant] = useState<string | null>(null);
   const [openFacility, setOpenFacility] = useState<string | null>(null);
+  const [openEnergy, setOpenEnergy] = useState<string | null>(null);
 
   const damComponents = [
     "Catchment and Reservoir",
@@ -449,8 +450,55 @@ function FacilitiesContent() {
     },
   ];
 
+  const energyFacilities = [
+    {
+      title: "Jetama Energy Sdn. Bhd.",
+      label: "Energy Subsidiary",
+      icon: Zap,
+      text: "Renewable energy arm supporting JETAMA's move into sustainable energy infrastructure and low-carbon development.",
+      details: [
+        "Supports the Group's strategic expansion into renewable energy.",
+        "Focuses on solar and clean-energy opportunities for Sabah.",
+        "Complements JETAMA's water infrastructure capability with energy-related development.",
+      ],
+    },
+    {
+      title: "Floating Solar Infrastructure",
+      label: "Solar PV Development",
+      icon: Activity,
+      text: "Floating solar development supports the use of water assets for renewable energy generation and long-term sustainability.",
+      details: [
+        "Designed to support renewable energy generation using suitable water-based locations.",
+        "Strengthens clean-energy visibility within JETAMA's infrastructure portfolio.",
+        "Aligns with the Group's Water & Energy direction.",
+      ],
+    },
+    {
+      title: "Utility-Scale Solar PV",
+      label: "Ground-Mounted Solar",
+      icon: Gauge,
+      text: "Large-scale solar photovoltaic projects support Sabah's energy transition through clean, scalable infrastructure.",
+      details: [
+        "Supports solar PV project development and strategic energy growth.",
+        "Creates long-term renewable energy capacity beyond water treatment operations.",
+        "Provides a platform for future sustainable infrastructure partnerships.",
+      ],
+    },
+    {
+      title: "Energy Partnerships",
+      label: "Strategic Collaboration",
+      icon: ShieldCheck,
+      text: "Strategic joint ventures and collaborations strengthen JETAMA's capability to deliver energy-related projects.",
+      details: [
+        "Supports knowledge sharing and delivery capability in renewable energy.",
+        "Enables project development through corporate and technical collaboration.",
+        "Strengthens JETAMA's position in sustainable infrastructure development.",
+      ],
+    },
+  ];
+
   return (
-    <article className="scroll-reveal space-y-16">
+    <article className="scroll-reveal space-y-20">
       <section className="relative">
         <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
         <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
@@ -502,6 +550,9 @@ function FacilitiesContent() {
 
       <section className="relative">
         <div className="max-w-6xl">
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
+            Water Infrastructure
+          </p>
 
           <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
             Water Treatment Facilities
@@ -590,12 +641,126 @@ function FacilitiesContent() {
       </section>
 
       <section className="relative">
-        <div className="mb-8 flex items-center gap-3">
+        <div className="max-w-6xl">
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#F5A623]">
+            Energy Infrastructure
+          </p>
+
+          <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+            Renewable Energy Facilities
+          </h2>
+
+          <AccentRule />
+
+          <p className="max-w-6xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
+            JETAMA’s facilities are expanded with renewable energy infrastructure through
+            Jetama Energy, solar PV development, floating solar initiatives and strategic
+            energy partnerships that support Sabah’s sustainable infrastructure direction.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
+          <div className="relative min-h-[430px] overflow-hidden rounded-[2.4rem] bg-[#052b4f] shadow-[0_28px_90px_rgba(0,44,85,0.18)]">
+            <img
+              src={heroImage}
+              alt="Energy infrastructure"
+              className="absolute inset-0 h-full w-full object-cover opacity-45"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(5,43,79,.96),rgba(0,90,170,.70),rgba(245,166,35,.32))]" />
+            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#F5A623]/35 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[#41B650]/28 blur-3xl" />
+
+            <div className="relative flex min-h-[430px] flex-col justify-end p-8 text-white lg:p-10">
+              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5A623] text-[#052b4f] shadow-[0_18px_45px_rgba(245,166,35,0.25)]">
+                <Zap size={34} />
+              </div>
+
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
+                Water & Energy Direction
+              </p>
+              <h3 className="mt-3 font-serif text-4xl font-semibold italic leading-tight">
+                Sustainable Energy Infrastructure
+              </h3>
+              <p className="mt-5 max-w-xl text-sm font-medium leading-7 text-white/82">
+                Renewable energy facilities complement JETAMA’s water infrastructure by
+                creating a broader platform for resilient, future-ready and low-carbon growth.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            {energyFacilities.map((item, index) => {
+              const Icon = item.icon;
+              const isOpen = openEnergy === item.title;
+
+              return (
+                <article key={item.title} className="group relative">
+                  <div className="mb-5 flex items-start gap-4">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#F5A623] to-[#fbf234] p-3 text-[#052b4f] shadow-[0_14px_34px_rgba(245,166,35,0.16)]">
+                      <Icon size={24} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#F5A623]">
+                        {item.label}
+                      </p>
+                      <h3 className="mt-1 font-serif text-xl font-semibold italic leading-tight text-[#052b4f] transition group-hover:text-[#005AAA]">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {!isOpen ? (
+                    <>
+                      <p className="text-justify text-sm leading-7 text-slate-600">{item.text}</p>
+                      <button
+                        type="button"
+                        onClick={() => setOpenEnergy(item.title)}
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#005AAA] transition hover:text-[#F5A623]"
+                      >
+                        <Eye size={15} />
+                        View Energy Details
+                      </button>
+                    </>
+                  ) : (
+                    <div className="animate-[fadeIn_.45s_ease]">
+                      <p className="relative pl-5 text-justify text-sm leading-7 text-slate-700 before:absolute before:left-0 before:top-2 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#F5A623] before:to-[#41B650]">
+                        {item.text}
+                      </p>
+
+                      <div className="mt-5 space-y-3">
+                        {item.details.map((detail) => (
+                          <div key={detail} className="flex gap-3">
+                            <CheckCircle2 className="mt-1 shrink-0 text-[#F5A623]" size={16} />
+                            <p className="text-sm leading-6 text-slate-700">{detail}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setOpenEnergy(null)}
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#052b4f] transition hover:text-[#005AAA]"
+                      >
+                        <EyeOff size={15} />
+                        Hide Details
+                      </button>
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative">
+        <div className="mb-8 flex flex-wrap items-center gap-3">
           <span className="h-[3px] w-16 rounded-full bg-[#005AAA]" />
           <span className="h-[3px] w-8 rounded-full bg-[#41B650]" />
-          <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
-              Supporting Facilities
-            </h2>
+          <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+          <h2 className="text-2xl font-bold text-[#005AAA]">
+            Supporting Facilities
+          </h2>
         </div>
 
         <div className="grid gap-x-10 gap-y-12 md:grid-cols-3">
@@ -658,6 +823,7 @@ function FacilitiesContent() {
     </article>
   );
 }
+
 
 function TotalCapabilityContent() {
   const quality = [
@@ -742,7 +908,7 @@ function TotalCapabilityContent() {
             <AccentRule />
 
             <p className="max-w-6xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
-              A corporate overview of JETAMA’s total capability covering treated
+              JETAMA’s total capability covering treated
               water quality standards, progressive supply quantity and renewable
               energy initiatives for sustainable infrastructure growth.
             </p>

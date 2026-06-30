@@ -92,6 +92,44 @@ const subsidiaries = [
   },
 ];
 
+
+function CompanyTitle({ title }: { title: string }) {
+  if (title === "Jetama Water Sdn. Bhd.") {
+    return (
+      <>
+        <span className="text-[#005AAA]">Jetama </span>
+        <span className="text-[#35B24A]">Water Sdn. Bhd.</span>
+      </>
+    );
+  }
+
+  if (title === "Jetama Energy Sdn. Bhd.") {
+    return (
+      <>
+        <span className="text-[#005AAA]">Jetama </span>
+        <span className="text-[#F6A623]">Energy </span>
+        <span className="text-[#005AAA]">Sdn. Bhd.</span>
+      </>
+    );
+  }
+
+  if (title === "Solar PV Power Sdn. Bhd.") {
+    return <span className="text-[#005AAA]">Solar PV Power Sdn. Bhd.</span>;
+  }
+
+  if (title === "Jetama Alpine Pipe (Sabah) Sdn. Bhd.") {
+    return (
+      <>
+        <span className="text-[#005AAA]">Jetama </span>
+        <span className="text-[#D62828]">Alpine Pipe </span>
+        <span className="text-[#005AAA]">(Sabah) Sdn. Bhd.</span>
+      </>
+    );
+  }
+
+  return <span className="text-[#005AAA]">{title}</span>;
+}
+
 const latestNews = [
   {
     title:
@@ -918,8 +956,8 @@ export default function Home() {
                   {item.category}
                 </div>
 
-                <h3 className="relative text-2xl font-black leading-tight text-[#005AAA]">
-                  {item.title}
+                <h3 className="relative text-2xl font-black leading-tight tracking-[-0.02em]">
+                  <CompanyTitle title={item.title} />
                 </h3>
 
                 <p className="relative mt-4 min-h-[86px] text-base leading-7 text-slate-600">

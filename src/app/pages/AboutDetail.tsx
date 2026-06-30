@@ -586,12 +586,9 @@ function BoardDirectorsContent() {
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
                 Chairman
               </p>
-              <h3 className="mt-2 whitespace-nowrap text-[20px] font-black leading-tight tracking-[-0.04em] text-[#052b4f] sm:text-[24px] lg:text-[26px] xl:text-[28px]">
+              <h3 className="mt-2 whitespace-nowrap text-[15px] font-black leading-tight tracking-[-0.04em] text-[#052b4f] sm:text-[24px] lg:text-[26px] xl:text-[23px]">
                 {chairman.name}
               </h3>
-              <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-[#005AAA]">
-                {chairman.label}
-              </p>
             </div>
           </div>
 
@@ -616,7 +613,7 @@ function BoardDirectorsContent() {
             </h3>
           </div>
 
-          <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-x-10 gap-y-17 sm:grid-cols-2 xl:grid-cols-3">
             {directors.map((director, index) => (
               <div
                 key={director.name}
@@ -633,23 +630,10 @@ function BoardDirectorsContent() {
                 </div>
 
                 <div className="mt-5">
-                  <p className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#41B650]">
-                    {director.position}
-                  </p>
 
-                  <h3 className="whitespace-nowrap text-[13px] font-black leading-tight tracking-[-0.045em] text-[#052b4f] sm:text-[14px] md:text-[15px] lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[15.5px]">
+                  <h3 className="mt-2 max-w-[335px] text-center text-[14px] font-black leading-snug tracking-[-0.03em] text-[#052b4f]">
                     {director.name}
                   </h3>
-
-                  <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-[#005AAA]">
-                    {director.label}
-                  </p>
-
-                  {director.quote && (
-                    <p className="mt-4 text-sm leading-7 text-slate-600">
-                      {director.quote}
-                    </p>
-                  )}
                 </div>
               </div>
             ))}

@@ -14,7 +14,7 @@ export default function SplashScreen() {
     dam.src = damImage;
 
     const splitTimer = setTimeout(() => setOpening(true), 2600);
-    const removeTimer = setTimeout(() => setVisible(false), 3600);
+    const removeTimer = setTimeout(() => setVisible(false), 3800);
 
     return () => {
       clearTimeout(splitTimer);
@@ -69,9 +69,9 @@ export default function SplashScreen() {
           />
         </div>
 
-        <p className="relative z-10 mt-7 text-[15px] font-black uppercase tracking-[0.35em] text-[#005AAA]">
-          Redefining Water <span className="text-[#35B24A]">&</span>{" "}
-          <span className="text-[#F5A623]">Energy</span>
+        <p className="relative z-10 mt-7 text-[15px] font-black uppercase tracking-[0.35em] text-[#35B24A]">
+          Redefining<span className="text-[#005AAA]">Water &</span>{" "}
+          <span className="text-[#F6A623]">Energy</span>
         </p>
 
         <div className="relative z-10 mt-5 h-[3px] w-44 rounded-full bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />

@@ -263,6 +263,38 @@ function HomeMotionStyles() {
         50% { transform: scale(1.08); filter: blur(36px); opacity: .95; }
       }
 
+      @keyframes techGridFlow {
+        0% { transform: translate3d(0, 0, 0); opacity: .32; }
+        50% { opacity: .52; }
+        100% { transform: translate3d(46px, 46px, 0); opacity: .32; }
+      }
+
+      @keyframes techScanLine {
+        0% { transform: translateY(-120%); opacity: 0; }
+        18% { opacity: .55; }
+        100% { transform: translateY(220%); opacity: 0; }
+      }
+
+      @keyframes techPulseRing {
+        0%, 100% { transform: scale(.94); opacity: .30; }
+        50% { transform: scale(1.04); opacity: .62; }
+      }
+
+      @keyframes techDataFloat {
+        0%, 100% { transform: translate3d(0, 0, 0); opacity: .58; }
+        50% { transform: translate3d(0, -10px, 0); opacity: .95; }
+      }
+
+      @keyframes techCardGlow {
+        0%, 100% { box-shadow: 0 22px 70px rgba(0, 33, 62, .16), inset 0 1px 0 rgba(255,255,255,.45); }
+        50% { box-shadow: 0 30px 90px rgba(0, 90, 170, .22), inset 0 1px 0 rgba(255,255,255,.62); }
+      }
+
+      @keyframes techActiveReveal {
+        0% { opacity: 0; transform: translate3d(18px, 0, 0) scale(.985); filter: blur(8px); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+      }
+
       @keyframes heroWordEntrance {
         0% { opacity: 0; transform: translate3d(0, 38px, 0) scale(.94); filter: blur(10px); }
         58% { opacity: 1; transform: translate3d(0, -4px, 0) scale(1.015); filter: blur(0); }
@@ -356,6 +388,13 @@ function HomeMotionStyles() {
       .cloud-drift-wide { animation: cloudDriftWide 14s ease-in-out infinite; transform-origin: center; }
       .cloud-drift-reverse { animation: cloudDriftReverse 17s ease-in-out infinite; transform-origin: center; }
       .cloud-breath { animation: cloudBreath 10s ease-in-out infinite; transform-origin: center; }
+      .tech-grid-flow { animation: techGridFlow 16s linear infinite; }
+      .tech-scan-line { animation: techScanLine 5.8s ease-in-out infinite; }
+      .tech-pulse-ring { animation: techPulseRing 5.5s ease-in-out infinite; }
+      .tech-data-float { animation: techDataFloat 6.5s ease-in-out infinite; }
+      .tech-card-glow { animation: techCardGlow 6.8s ease-in-out infinite; }
+      .tech-active-reveal { animation: techActiveReveal .55s cubic-bezier(.2,.8,.2,1); }
+
 
       .shine-layer::before {
         content: "";
@@ -561,38 +600,49 @@ function NewsCloudBlend() {
   );
 }
 
-function NewsGeometricFrame() {
+function NewsTechBackground() {
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
       <div
-        className="absolute inset-0 opacity-[0.36]"
+        className="absolute inset-0 opacity-[0.30]"
         style={{
           backgroundImage: `url(${damHeroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(4,31,53,.96)_0%,rgba(0,90,170,.88)_48%,rgba(10,126,112,.78)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,.18),transparent_32%),radial-gradient(circle_at_78%_18%,rgba(53,178,74,.25),transparent_34%),radial-gradient(circle_at_68%_78%,rgba(246,166,35,.20),transparent_34%)]" />
-      <div className="premium-beam absolute left-[-15%] top-[-20%] h-[520px] w-[60%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.22),transparent)] blur-[5px]" />
-      <div
-        className="premium-geo-a absolute left-[-8%] top-[9%] h-28 w-[54%] bg-white/[.09]"
-        style={{ clipPath: "polygon(0 25%, 84% 0, 100% 70%, 12% 100%)" }}
-      />
-      <div
-        className="premium-geo-b absolute right-[-10%] bottom-[10%] h-32 w-[58%] bg-[#35B24A]/[.15]"
-        style={{ clipPath: "polygon(10% 0, 100% 32%, 84% 100%, 0 68%)" }}
-      />
-      <div
-        className="premium-geo-c absolute left-[12%] bottom-[2%] h-20 w-[42%] bg-[#F6A623]/[.13]"
-        style={{ clipPath: "polygon(0 42%, 70% 0, 100% 58%, 25% 100%)" }}
-      />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(2,18,36,.98)_0%,rgba(0,63,112,.95)_42%,rgba(4,95,88,.90)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(53,178,74,.22),transparent_30%),radial-gradient(circle_at_78%_15%,rgba(246,166,35,.18),transparent_28%),radial-gradient(circle_at_50%_82%,rgba(0,90,170,.32),transparent_34%)]" />
+
+      <div className="tech-grid-flow absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:46px_46px]" />
+      <div className="absolute inset-0 [background-image:linear-gradient(120deg,transparent_0%,rgba(255,255,255,.08)_48%,transparent_52%)]" />
+
+      <div className="tech-scan-line absolute left-0 right-0 top-0 h-28 bg-[linear-gradient(to_bottom,transparent,rgba(53,178,74,.22),rgba(255,255,255,.18),transparent)] blur-[1px]" />
+      <div className="premium-beam absolute left-[-18%] top-[10%] h-[450px] w-[58%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.20),transparent)] blur-[5px]" />
+      <div className="premium-beam absolute right-[-22%] bottom-[-10%] h-[420px] w-[58%] bg-[linear-gradient(110deg,transparent,rgba(246,166,35,.16),transparent)] blur-[8px] [animation-delay:2s]" />
+
+      <div className="tech-pulse-ring absolute left-[7%] top-[18%] h-44 w-44 rounded-full border border-[#35B24A]/24" />
+      <div className="tech-pulse-ring absolute right-[8%] bottom-[16%] h-56 w-56 rounded-full border border-[#F6A623]/20 [animation-delay:1.5s]" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/85 via-white/24 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/88 via-white/18 to-transparent" />
     </div>
   );
 }
+
+function NewsMetricPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="tech-data-float rounded-2xl border border-white/12 bg-white/[.075] px-4 py-3 backdrop-blur-md">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/52">
+        {label}
+      </p>
+      <p className="mt-1 text-lg font-black text-white">{value}</p>
+    </div>
+  );
+}
+
 
 export default function Home() {
   const [aboutImageIndex, setAboutImageIndex] = useState(0);
@@ -697,12 +747,12 @@ export default function Home() {
 
             <h1 className="title-glow relative text-5xl font-black leading-[0.92] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
               <span className="block">
-                <span className="hero-word hero-word-1 text-[#005AAA] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
+                <span className="hero-word hero-word-1 text-[#35B24A] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
                   Redefining
                 </span>
               </span>
               <span className="mt-2 block">
-                <span className="hero-word hero-word-2 text-[#35B24A] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
+                <span className="hero-word hero-word-2 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
                   Water
                 </span>
                 <span className="hero-word hero-word-3 px-3 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(0,0,0,.42)] sm:px-4">
@@ -836,11 +886,15 @@ export default function Home() {
                   }}
                 />
 
-                <div className="relative mb-7 flex h-32 items-center justify-center rounded-[1.6rem] bg-[#f8fbff]/90 p-5 ring-1 ring-[#DCEBF3]">
+                <div className="relative mb-7 flex h-36 items-center justify-center rounded-[1.6rem] bg-[#f8fbff]/90 p-5 ring-1 ring-[#DCEBF3]">
                   <img
                     src={item.logo}
                     alt={item.title}
-                    className="max-h-24 max-w-full object-contain drop-shadow-[0_12px_28px_rgba(0,44,85,0.18)] transition duration-500 group-hover:scale-105"
+                    className={`object-contain drop-shadow-[0_12px_28px_rgba(0,44,85,0.18)] transition duration-500 group-hover:scale-105 ${
+                      item.title.includes("Batu Sapi") || item.title.includes("Babagon")
+                        ? "max-h-36 max-w-[112%] scale-140 group-hover:scale-[1.16]"
+                        : "max-h-24 max-w-full"
+                    }`}
                   />
                 </div>
 
@@ -865,198 +919,182 @@ export default function Home() {
       </section>
 
       <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
-        <NewsGeometricFrame />
-        <NewsCloudBlend />
-        <div className="relative z-10 mx-auto max-w-[1450px] overflow-hidden rounded-[2.4rem] border border-white/25 bg-[#07395f]/78 p-6 shadow-[0_32px_105px_rgba(0,20,45,0.36)] backdrop-blur-xl lg:p-10">
-          <div
-            className="premium-geo-a absolute left-0 top-0 h-20 w-72 bg-[#35B24A]/24"
-            style={{ clipPath: "polygon(0 0, 100% 0, 78% 100%, 0 70%)" }}
-          />
-          <div
-            className="premium-geo-b absolute right-0 top-0 h-24 w-80 bg-[#F6A623]/22"
-            style={{ clipPath: "polygon(22% 0, 100% 0, 100% 72%, 0 100%)" }}
-          />
+        <NewsTechBackground />
 
-          <div className="relative mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
-                Latest Updates
-              </p>
+        <div className="relative z-10 mx-auto max-w-[1450px]">
+          <div className="scroll-reveal mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
 
-              <h2 className="mt-2 text-4xl font-black tracking-[-0.04em] text-white md:text-5xl">
+              <h2 className="text-4xl font-black tracking-[-0.045em] text-white md:text-6xl">
                 News & Events
               </h2>
-
-              <p className="mt-3 max-w-2xl text-base leading-7 text-white/82">
-                Stay informed with the latest developments, initiatives and
-                corporate activities across the JETAMA Group.
-              </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <NewsMetricPill label="Updates" value={`${sortedLatestNews.length}`} />
               <Link
                 to="/news"
-                className="hidden items-center gap-3 rounded-full border border-white/20 bg-white/12 px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#005AAA] md:inline-flex"
+                className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[.10] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:-translate-y-1 hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#005AAA]"
               >
                 View All News
                 <ArrowRight size={16} />
               </Link>
-
-              <button
-                type="button"
-                aria-label="Previous news"
-                onClick={prevNews}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              <button
-                type="button"
-                aria-label="Next news"
-                onClick={nextNews}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/12 text-white shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
-              >
-                <ChevronRight size={20} />
-              </button>
             </div>
           </div>
 
-          <div className="relative grid gap-6 lg:grid-cols-[1.15fr_1fr]">
-            <a
-              href={activeNews.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group shine-layer relative min-h-[370px] overflow-hidden rounded-[1.8rem] border border-white/18 bg-[#005AAA] shadow-[0_24px_75px_rgba(0,12,28,0.30)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_95px_rgba(0,12,28,0.42)]"
-            >
-              <img
-                key={`${activeNews.title}-${activeNews.image}`}
-                src={activeNews.image}
-                alt={activeNews.title}
-                onError={handleNewsImageError}
-                className="absolute inset-0 h-full w-full object-cover opacity-95 transition duration-700 group-hover:scale-105"
-              />
+          <div className="tech-card-glow scroll-scale relative overflow-hidden rounded-[2.5rem] border border-white/16 bg-white/[.075] p-4 shadow-[0_32px_105px_rgba(0,20,45,0.36)] backdrop-blur-2xl sm:p-5 lg:p-6">
+            <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_35%,rgba(53,178,74,.08)_70%,rgba(246,166,35,.10))]" />
+            <div className="pointer-events-none absolute left-0 top-0 h-28 w-[42%] bg-[#35B24A]/18 [clip-path:polygon(0_0,100%_0,82%_100%,0_62%)]" />
+            <div className="pointer-events-none absolute right-0 bottom-0 h-32 w-[46%] bg-[#F6A623]/14 [clip-path:polygon(20%_0,100%_35%,100%_100%,0_100%)]" />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#052B4F] via-[#052B4F]/62 to-[#052B4F]/10" />
-              <div
-                className="absolute left-0 top-0 h-28 w-72 bg-[#35B24A]/30"
-                style={{ clipPath: "polygon(0 0, 100% 0, 75% 100%, 0 64%)" }}
-              />
-              <div
-                className="absolute right-0 bottom-0 h-32 w-80 bg-[#F6A623]/25"
-                style={{
-                  clipPath: "polygon(22% 0, 100% 32%, 100% 100%, 0 100%)",
-                }}
-              />
+            <div className="relative grid gap-5 lg:grid-cols-[1.22fr_.78fr]">
+              <a
+                key={activeNews.title}
+                href={activeNews.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tech-active-reveal group relative min-h-[470px] overflow-hidden rounded-[2rem] border border-white/16 bg-[#02172c] shadow-[0_24px_75px_rgba(0,12,28,0.36)] transition duration-500 hover:-translate-y-1 hover:border-[#35B24A]/55"
+              >
+                <img
+                  key={`${activeNews.title}-${activeNews.image}`}
+                  src={activeNews.image}
+                  alt={activeNews.title}
+                  onError={handleNewsImageError}
+                  className="absolute inset-0 h-full w-full object-cover opacity-88 transition duration-700 group-hover:scale-[1.035]"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,17,32,.96)_0%,rgba(2,17,32,.78)_38%,rgba(2,17,32,.22)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,17,32,.95),transparent_45%)]" />
+                <div className="tech-grid-flow absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.10)_1px,transparent_1px)] [background-size:38px_38px]" />
+                <div className="tech-scan-line absolute left-0 right-0 top-0 h-24 bg-[linear-gradient(to_bottom,transparent,rgba(53,178,74,.20),transparent)]" />
 
-              <div className="absolute left-6 top-6 rounded-xl bg-[#F6A623] px-4 py-3 text-center shadow-xl">
-                <p className="text-3xl font-black leading-none text-[#005AAA]">
-                  {activeNews.day}
-                </p>
-                <p className="mt-1 text-xs font-black uppercase text-[#005AAA]">
-                  {activeNews.month}
-                </p>
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-7 md:p-8">
-                <div className="mb-4 inline-flex rounded-full bg-[#35B24A] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white">
-                  Featured
-                </div>
-
-                <h3 className="max-w-3xl text-2xl font-black leading-tight text-white md:text-3xl">
-                  {activeNews.title}
-                </h3>
-
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/82">
-                  {activeNews.excerpt}
-                </p>
-
-                <div className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-[#F6A623]">
-                  Read Full Story
-                  <ArrowRight
-                    size={16}
-                    className="transition group-hover:translate-x-1"
-                  />
-                </div>
-              </div>
-            </a>
-
-            <div className="grid gap-5 sm:grid-cols-3 lg:grid-cols-3">
-              {sideNews.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative overflow-hidden rounded-[1.6rem] border border-white/18 bg-[#052B4F]/72 shadow-[0_18px_55px_rgba(0,20,45,0.26)] backdrop-blur transition duration-500 hover:-translate-y-2 hover:border-[#F6A623]/50 hover:bg-[#063a62]/82 hover:shadow-[0_26px_75px_rgba(0,20,45,0.38)]"
-                >
-                  <div
-                    className="absolute right-0 top-0 h-16 w-24 bg-[#005AAA]/20"
-                    style={{
-                      clipPath: "polygon(28% 0, 100% 0, 100% 100%, 0 64%)",
-                    }}
-                  />
-                  <div className="relative h-44 overflow-hidden bg-[#005AAA]">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      onError={handleNewsImageError}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#052B4F]/70 via-transparent to-transparent" />
-
-                    <div className="absolute left-4 top-4 rounded-xl bg-[#F6A623] px-3 py-2 text-center shadow-lg">
-                      <p className="text-xl font-black leading-none text-[#005AAA]">
-                        {item.day}
-                      </p>
-                      <p className="mt-1 text-[10px] font-black uppercase text-[#005AAA]">
-                        {item.month}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="relative p-5">
-                    <div className="mb-3 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.1em] text-[#35B24A]">
-                      <CalendarDays size={13} />
-                      {item.date}
-                    </div>
-
-                    <h3 className="line-clamp-3 text-lg font-black leading-snug text-white">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/70">
-                      {item.excerpt}
+                <div className="absolute left-6 top-6 flex items-center gap-3">
+                  <div className="rounded-2xl border border-[#F6A623]/45 bg-[#F6A623] px-4 py-3 text-center shadow-[0_16px_36px_rgba(246,166,35,.22)]">
+                    <p className="text-3xl font-black leading-none text-[#005AAA]">
+                      {activeNews.day}
                     </p>
-
-                    <div className="mt-5 flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-[#F6A623]">
-                      Read More
-                      <ArrowRight
-                        size={15}
-                        className="transition group-hover:translate-x-1"
-                      />
-                    </div>
+                    <p className="mt-1 text-xs font-black uppercase text-[#005AAA]">
+                      {activeNews.month}
+                    </p>
                   </div>
-                </a>
-              ))}
-            </div>
-          </div>
+                  <div className="hidden rounded-2xl border border-white/12 bg-white/[.08] px-4 py-3 backdrop-blur-md sm:block">
+                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/48">
+                      Featured Signal
+                    </p>
+                    <p className="mt-1 text-sm font-black text-[#35B24A]">
+                      Latest Highlight
+                    </p>
+                  </div>
+                </div>
 
-          <div className="relative mt-7 flex items-center justify-center gap-2">
-            {sortedLatestNews.map((item, index) => (
-              <button
-                key={item.title}
-                type="button"
-                aria-label={`Show news ${index + 1}`}
-                onClick={() => setActiveNewsIndex(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  activeNewsIndex === index
-                    ? "w-9 bg-[#F6A623]"
-                    : "w-2.5 bg-white/35 hover:bg-[#35B24A]"
-                }`}
-              />
-            ))}
+                <div className="absolute bottom-0 left-0 max-w-3xl p-7 md:p-9">
+
+                  <h3 className="text-2xl font-black leading-tight text-white md:text-4xl">
+                    {activeNews.title}
+                  </h3>
+
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-white/76">
+                    {activeNews.excerpt}
+                  </p>
+
+                  <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/[.10] px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-[#ffffff] backdrop-blur-md transition group-hover:bg-[#F6A623] group-hover:text-[#005AAA]">
+                    Read Full Story
+                    <ArrowRight
+                      size={16}
+                      className="transition group-hover:translate-x-1"
+                    />
+                  </div>
+                </div>
+              </a>
+
+              <div className="grid gap-4">
+                {sortedLatestNews.map((item, index) => {
+                  const isActive = index === activeNewsIndex;
+
+                  return (
+                    <button
+                      key={item.title}
+                      type="button"
+                      onClick={() => setActiveNewsIndex(index)}
+                      className={`group relative overflow-hidden rounded-[1.55rem] border p-3 text-left backdrop-blur-md transition duration-300 hover:-translate-y-1 ${
+                        isActive
+                          ? "border-[#F6A623]/60 bg-white/[.14] shadow-[0_18px_50px_rgba(246,166,35,.14)]"
+                          : "border-white/12 bg-white/[.065] hover:border-[#35B24A]/45 hover:bg-white/[.10]"
+                      }`}
+                    >
+                      <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,.10),transparent_48%,rgba(53,178,74,.08))] opacity-0 transition group-hover:opacity-100" />
+                      <div
+                        className={`absolute left-0 top-0 h-full w-1 transition ${
+                          isActive ? "bg-[#F6A623]" : "bg-[#35B24A]/45"
+                        }`}
+                      />
+
+                      <div className="relative flex gap-4">
+                        <div className="h-24 w-28 shrink-0 overflow-hidden rounded-[1.1rem] bg-[#005AAA]">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            onError={handleNewsImageError}
+                            className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                          />
+                        </div>
+
+                        <div className="min-w-0 flex-1 py-1">
+                          <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.12em] text-[#35B24A]">
+                            <CalendarDays size={12} />
+                            {item.date}
+                          </div>
+                          <h3 className="line-clamp-2 text-base font-black leading-snug text-white">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/58">
+                            {item.excerpt}
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="relative mt-6 flex flex-col gap-4 border-t border-white/10 pt-5 md:flex-row md:items-center md:justify-between">
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  aria-label="Previous news"
+                  onClick={prevNews}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/14 bg-white/[.08] text-white backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {sortedLatestNews.map((item, index) => (
+                    <button
+                      key={item.title}
+                      type="button"
+                      aria-label={`Show news ${index + 1}`}
+                      onClick={() => setActiveNewsIndex(index)}
+                      className={`h-2.5 rounded-full transition-all ${
+                        activeNewsIndex === index
+                          ? "w-10 bg-[#F6A623]"
+                          : "w-2.5 bg-white/28 hover:bg-[#35B24A]"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  aria-label="Next news"
+                  onClick={nextNews}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/14 bg-white/[.08] text-white backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

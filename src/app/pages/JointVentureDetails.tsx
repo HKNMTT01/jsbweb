@@ -176,6 +176,129 @@ function PageStyles() {
       .joint-card-shine:hover::before {
         animation: jointShine 1.8s ease;
       }
+
+      .service-like-page {
+        background: linear-gradient(135deg,#f8fbff 0%,#ffffff 42%,#eefaf3 100%);
+        color: #0f2f44;
+      }
+
+      .service-like-shell {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .service-like-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 1px 1px, rgba(0,90,170,.055) 1px, transparent 0);
+        background-size: 28px 28px;
+        opacity: .42;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-glow-blue {
+        position: absolute;
+        left: -8rem;
+        top: 5rem;
+        height: 24rem;
+        width: 24rem;
+        border-radius: 999px;
+        background: rgba(0,90,170,.08);
+        filter: blur(70px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-glow-green {
+        position: absolute;
+        right: -9rem;
+        top: 8rem;
+        height: 28rem;
+        width: 28rem;
+        border-radius: 999px;
+        background: rgba(65,182,80,.10);
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-glow-gold {
+        position: absolute;
+        left: 35%;
+        top: 4rem;
+        height: 12rem;
+        width: 12rem;
+        border-radius: 999px;
+        background: rgba(245,166,35,.09);
+        filter: blur(55px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-content {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .service-like-content article,
+      .service-like-content section {
+        background: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+      }
+
+      .service-like-content article {
+        overflow: visible !important;
+      }
+
+      .service-like-content h2,
+      .service-like-content h3 {
+        letter-spacing: -0.025em;
+      }
+
+      .service-like-content p {
+        max-width: 72rem;
+      }
+
+      .service-like-content [class*="border"][class*="bg-white"],
+      .service-like-content [class*="ring-1"] {
+        border-color: rgba(0,90,170,.10) !important;
+      }
+
+      .service-like-content [class*="shadow-"] {
+        box-shadow: 0 20px 65px rgba(0,90,170,.09) !important;
+      }
+
+      .service-side-nav {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        padding: 0 1rem !important;
+      }
+
+      .service-side-nav a {
+        border-radius: 0 !important;
+      }
+
+      .service-side-nav a.active-link {
+        background: #ffffff !important;
+        color: #005AAA !important;
+        box-shadow: 0 8px 24px rgba(0,90,170,.08) !important;
+      }
+
+      .service-side-nav a:not(.active-link) {
+        color: #1e293b !important;
+      }
+
+      .service-side-nav a:not(.active-link):hover {
+        background: #ffffff !important;
+        color: #005AAA !important;
+      }
+
     `}</style>
   );
 }
@@ -253,8 +376,16 @@ function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="relative h-fit rounded-[28px] border border-slate-100 bg-white/70 p-4 shadow-[0_24px_70px_rgba(15,60,110,.08)] backdrop-blur-xl lg:sticky lg:top-28">
-      <nav className="space-y-2">
+    <aside className="service-side-nav relative -mt-3 h-fit bg-transparent px-4 py-0 lg:sticky lg:top-28">
+      <div className="mb-1 flex justify-start">
+        <img
+          src={jetamaLogo}
+          alt="JETAMA"
+          className="h-[88px] w-auto object-contain"
+        />
+      </div>
+
+      <nav className="-mt-2 space-y-1">
         {jointVentureNavigation.map((item) => {
           const Icon = item.icon;
           const active = location.pathname === item.path;
@@ -263,10 +394,10 @@ function Sidebar() {
             <Link
               key={item.path}
               to={item.path}
-              className={`joint-card-shine flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-black transition ${
+              className={`joint-card-shine flex items-center gap-3 px-3 py-3 text-sm font-semibold transition ${
                 active
-                  ? "bg-[#eaf8ef] text-[#16a34a] shadow-sm"
-                  : "text-slate-700 hover:bg-white hover:text-[#005AAA] hover:shadow-sm"
+                  ? "active-link bg-white text-[#005AAA] shadow-sm"
+                  : "text-slate-800 hover:bg-white hover:text-[#005AAA]"
               }`}
             >
               <Icon size={16} />
@@ -798,25 +929,24 @@ export default function JointVentureDetails() {
   const page = jointVenturePages[selected];
 
   return (
-    <main className="overflow-hidden bg-[linear-gradient(135deg,#f8fbff_0%,#ffffff_42%,#eefaf3_100%)] text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+    <main className="service-like-page min-h-screen overflow-hidden text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
       <PageStyles />
-      <ShortHero page={page} />
 
-      <section className="relative px-4 py-14 sm:px-6 lg:px-8">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-[#005AAA]/8 blur-3xl" />
-          <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] rounded-full bg-[#41B650]/10 blur-3xl" />
-          <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.06)_1px,transparent_0)] [background-size:28px_28px] opacity-35" />
+      <section className="service-like-shell relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
+        <div className="service-like-glow-blue" />
+        <div className="service-like-glow-green" />
+        <div className="service-like-glow-gold" />
+
+        <div className="mx-auto max-w-[1540px]">
+          <DetailBreadcrumb page={page} />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-0">
-          <div className="grid gap-14 lg:grid-cols-[260px_1fr]">
-            <Sidebar />
-            <main className="min-w-0">
-              <CurrentContent selected={selected} />
-            </main>
-          </div>
+        <div className="mx-auto grid max-w-[1540px] gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
+          <Sidebar />
+
+          <main className="service-like-content min-w-0 w-full">
+            <CurrentContent selected={selected} />
+          </main>
         </div>
       </section>
     </main>

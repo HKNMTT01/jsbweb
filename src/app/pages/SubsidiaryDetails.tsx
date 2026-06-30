@@ -18,6 +18,7 @@ import energyHero from "@/assets/DJI_0298.jpg";
 import waterHero from "@/assets/jetama-dam-hero.jpg";
 import jesbLogo from "@/assets/jetama_energy.png";
 import waterLogo from "@/assets/JETAMA WATER - 2.png";
+import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 
 import moyogPlant from "@/assets/MOYOG.jpg";
 import telibongPlant from "@/assets/TELIBONG.jpg";
@@ -150,8 +151,16 @@ function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="scroll-reveal relative h-fit rounded-[28px] border border-slate-100 bg-white/70 p-4 shadow-[0_24px_70px_rgba(15,60,110,.08)] backdrop-blur-xl lg:sticky lg:top-28">
-      <nav className="space-y-2">
+    <aside className="service-side-nav scroll-reveal relative -mt-3 h-fit bg-transparent px-4 py-0 lg:sticky lg:top-28">
+      <div className="mb-1 flex justify-start">
+        <img
+          src={jetamaLogo}
+          alt="JETAMA"
+          className="h-[88px] w-auto object-contain"
+        />
+      </div>
+
+      <nav className="-mt-2 space-y-1">
         {subsidiariesNavigation.map((item) => {
           const Icon = item.icon;
           const active = location.pathname === item.path;
@@ -160,10 +169,10 @@ function Sidebar() {
             <Link
               key={item.path}
               to={item.path}
-              className={`subsidiary-card-shine flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-black transition ${
+              className={`subsidiary-card-shine flex items-center gap-3 px-3 py-3 text-sm font-semibold transition ${
                 active
-                  ? "bg-[#eaf8ef] text-[#16a34a] shadow-sm"
-                  : "text-slate-700 hover:bg-white hover:text-[#005AAA] hover:shadow-sm"
+                  ? "active-link bg-white text-[#005AAA] shadow-sm"
+                  : "text-slate-800 hover:bg-white hover:text-[#005AAA]"
               }`}
             >
               <Icon size={17} />
@@ -553,6 +562,129 @@ function CleanCorporateTheme() {
       .subsidiary-card-shine:hover::before {
         animation: jetamaShine 1.9s ease;
       }
+
+      .service-like-page {
+        background: linear-gradient(135deg,#f8fbff 0%,#ffffff 42%,#eefaf3 100%);
+        color: #0f2f44;
+      }
+
+      .service-like-shell {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .service-like-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 1px 1px, rgba(0,90,170,.055) 1px, transparent 0);
+        background-size: 28px 28px;
+        opacity: .42;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-glow-blue {
+        position: absolute;
+        left: -8rem;
+        top: 5rem;
+        height: 24rem;
+        width: 24rem;
+        border-radius: 999px;
+        background: rgba(0,90,170,.08);
+        filter: blur(70px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-glow-green {
+        position: absolute;
+        right: -9rem;
+        top: 8rem;
+        height: 28rem;
+        width: 28rem;
+        border-radius: 999px;
+        background: rgba(65,182,80,.10);
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-glow-gold {
+        position: absolute;
+        left: 35%;
+        top: 4rem;
+        height: 12rem;
+        width: 12rem;
+        border-radius: 999px;
+        background: rgba(245,166,35,.09);
+        filter: blur(55px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .service-like-content {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .service-like-content article,
+      .service-like-content section {
+        background: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+      }
+
+      .service-like-content article {
+        overflow: visible !important;
+      }
+
+      .service-like-content h2,
+      .service-like-content h3 {
+        letter-spacing: -0.025em;
+      }
+
+      .service-like-content p {
+        max-width: 72rem;
+      }
+
+      .service-like-content [class*="border"][class*="bg-white"],
+      .service-like-content [class*="ring-1"] {
+        border-color: rgba(0,90,170,.10) !important;
+      }
+
+      .service-like-content [class*="shadow-"] {
+        box-shadow: 0 20px 65px rgba(0,90,170,.09) !important;
+      }
+
+      .service-side-nav {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        padding: 0 1rem !important;
+      }
+
+      .service-side-nav a {
+        border-radius: 0 !important;
+      }
+
+      .service-side-nav a.active-link {
+        background: #ffffff !important;
+        color: #005AAA !important;
+        box-shadow: 0 8px 24px rgba(0,90,170,.08) !important;
+      }
+
+      .service-side-nav a:not(.active-link) {
+        color: #1e293b !important;
+      }
+
+      .service-side-nav a:not(.active-link):hover {
+        background: #ffffff !important;
+        color: #005AAA !important;
+      }
+
     `}</style>
   );
 }
@@ -588,20 +720,22 @@ export default function SubsidiaryDetails() {
   const page = subsidiaryPages[selected];
 
   return (
-    <main className="subsidiary-sustainable-page min-h-screen overflow-hidden bg-[#f7fbff] text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+    <main className="subsidiary-sustainable-page service-like-page min-h-screen overflow-hidden text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
       <CleanCorporateTheme />
 
-      <SectionHero page={page} />
+      <section className="service-like-shell relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
+        <div className="service-like-glow-blue" />
+        <div className="service-like-glow-green" />
+        <div className="service-like-glow-gold" />
 
-      <section className="relative overflow-hidden px-4 py-14 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_52%,#f8fff7_100%)]" />
-        <div className="subsidiary-float-one absolute left-[-150px] top-24 -z-10 h-[380px] w-[380px] rotate-45 rounded-[72px] border border-[#005AAA]/10 bg-[#005AAA]/5" />
-        <div className="subsidiary-float-two absolute right-[-170px] top-52 -z-10 h-[420px] w-[420px] rotate-12 rounded-[72px] border border-[#35B24A]/15 bg-[#35B24A]/5" />
-        <div className="absolute left-1/2 top-20 -z-10 h-64 w-64 -translate-x-1/2 rounded-full bg-[#F5A623]/10 blur-3xl" />
+        <div className="mx-auto max-w-[1540px]">
+          <DetailBreadcrumb page={page} />
+        </div>
 
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-14 lg:grid-cols-[260px_1fr]">
+        <div className="mx-auto grid max-w-[1540px] gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
           <Sidebar />
-          <main className="min-w-0">
+
+          <main className="service-like-content min-w-0 w-full">
             <CurrentContent selected={selected} />
           </main>
         </div>

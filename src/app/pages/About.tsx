@@ -142,7 +142,7 @@ export default function About() {
   ];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f7fbff] text-slate-900">
+    <main className="min-h-screen overflow-hidden bg-[#f7fbff] text-slate-800">
       <PageStyles />
 
       <Hero

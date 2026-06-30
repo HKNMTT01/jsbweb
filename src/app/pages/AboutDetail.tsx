@@ -323,10 +323,10 @@ function StandardContent({ page }: { page: AboutPage }) {
             <aside className="relative flex min-h-[760px] flex-col items-center justify-start overflow-visible pt-0 lg:sticky lg:top-16 lg:-mr-10">
               <div className="pointer-events-none absolute bottom-32 h-[62%] w-[82%] rounded-full bg-gradient-to-t from-[#005AAA]/12 via-[#41B650]/7 to-transparent blur-[70px]" />
               <div className="pointer-events-none absolute right-4 top-6 h-32 w-32 rounded-full bg-[#F5A623]/12 blur-3xl" />
-              <div className="pointer-events-none absolute left-1/2 top-7 h-[610px] w-[390px] -translate-x-1/2 rounded-t-full rounded-b-[3.2rem] border-[3px] border-white/80 bg-gradient-to-b from-white/24 via-[#eaf5ff]/18 to-transparent shadow-[inset_0_0_35px_rgba(255,255,255,0.65),0_30px_90px_rgba(0,90,170,0.12)] sm:h-[650px] sm:w-[420px] lg:h-[680px] lg:w-[450px] xl:h-[710px] xl:w-[470px]" />
-              <div className="pointer-events-none absolute left-1/2 top-12 h-[560px] w-[350px] -translate-x-1/2 rounded-t-full rounded-b-[2.7rem] bg-gradient-to-b from-[#005AAA]/8 via-white/0 to-[#41B650]/7 blur-sm sm:h-[600px] sm:w-[380px] lg:h-[630px] lg:w-[410px] xl:h-[660px] xl:w-[430px]" />
+              <div className="pointer-events-none absolute left-1/2 top-7 h-[610px] w-[390px] -translate-x-1/2 rounded-t-[9rem] rounded-b-[2.6rem] border-[3px] border-white/85 bg-gradient-to-b from-white/30 via-[#eaf5ff]/18 to-transparent shadow-[inset_0_0_35px_rgba(255,255,255,0.65),0_30px_90px_rgba(0,90,170,0.12)] sm:h-[650px] sm:w-[420px] lg:h-[680px] lg:w-[450px] xl:h-[710px] xl:w-[470px]" />
+              <div className="pointer-events-none absolute left-1/2 top-12 h-[560px] w-[350px] -translate-x-1/2 rounded-t-[8rem] rounded-b-[2.3rem] bg-gradient-to-b from-[#005AAA]/8 via-white/0 to-[#41B650]/7 blur-sm sm:h-[600px] sm:w-[380px] lg:h-[630px] lg:w-[410px] xl:h-[660px] xl:w-[430px]" />
 
-              <div className="relative flex h-[690px] w-full items-start justify-center overflow-visible rounded-t-full rounded-b-[3rem] sm:h-[720px] lg:h-[740px] xl:h-[770px]">
+              <div className="relative flex h-[690px] w-full items-start justify-center overflow-visible sm:h-[720px] lg:h-[740px] xl:h-[770px]">
                 <img
                   src={ceoImage}
                   alt={page.person}
@@ -342,10 +342,10 @@ function StandardContent({ page }: { page: AboutPage }) {
                   <span className="h-[2px] w-5 rounded-full bg-[#F5A623]" />
                 </div>
 
-                <h3 className="flex flex-wrap items-end justify-center gap-x-2 whitespace-nowrap font-serif text-[18px] font-semibold italic leading-tight tracking-[-0.03em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[26px] lg:text-[30px]">
+                <h3 className="flex items-end justify-center gap-x-2 whitespace-nowrap font-serif text-[18px] font-semibold italic leading-tight tracking-[-0.045em] text-[#052b4f] drop-shadow-[0_8px_18px_rgba(0,90,170,0.10)] sm:text-[23px] lg:text-[25px] xl:text-[27px]">
                   <span>{page.person}</span>
                   {page.honorific && (
-                    <span className="relative -bottom-0.5 text-[10px] font-black not-italic uppercase tracking-[0.22em] text-[#005AAA]/75 sm:text-[11px]">
+                    <span className="relative -bottom-0.5 text-[8px] font-black not-italic uppercase tracking-[0.16em] text-[#005AAA]/75 sm:text-[9px] lg:text-[10px]">
                       {page.honorific}
                     </span>
                   )}
@@ -497,7 +497,7 @@ function VisionMissionContent() {
                 key={value.letter}
                 className="group flex overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_10px_35px_rgba(15,23,42,0.06)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,90,170,0.15)]"
               >
-                <div className="flex w-20 items-center justify-center bg-[#005AAA] text-4xl font-black text-[#005AAA]">
+                <div className="flex w-20 shrink-0 items-center justify-center bg-[#005AAA] text-4xl font-black text-white shadow-[inset_0_0_24px_rgba(255,255,255,.18)]">
                   {value.letter}
                 </div>
 
@@ -586,7 +586,7 @@ function BoardDirectorsContent() {
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
                 Chairman
               </p>
-              <h3 className="mt-2 whitespace-nowrap text-[22px] font-black leading-tight text-[#052b4f] sm:text-[28px] lg:text-[30px]">
+              <h3 className="mt-2 whitespace-nowrap text-[20px] font-black leading-tight tracking-[-0.04em] text-[#052b4f] sm:text-[24px] lg:text-[26px] xl:text-[28px]">
                 {chairman.name}
               </h3>
               <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-[#005AAA]">
@@ -637,7 +637,7 @@ function BoardDirectorsContent() {
                     {director.position}
                   </p>
 
-                  <h3 className="whitespace-nowrap text-[17px] font-black leading-tight text-[#052b4f] sm:text-[18px] lg:text-[19px]">
+                  <h3 className="whitespace-nowrap text-[13px] font-black leading-tight tracking-[-0.045em] text-[#052b4f] sm:text-[14px] md:text-[15px] lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[15.5px]">
                     {director.name}
                   </h3>
 
@@ -645,9 +645,11 @@ function BoardDirectorsContent() {
                     {director.label}
                   </p>
 
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
-                    {director.quote}
-                  </p>
+                  {director.quote && (
+                    <p className="mt-4 text-sm leading-7 text-slate-600">
+                      {director.quote}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -663,8 +665,8 @@ function TopLevelManagementContent() {
   const management = [
     {
       name: "Datuk Ahmad Naim Bin Uddang",
+      honorific: "PGDK",
       role: "Chief Executive Officer",
-      division: "Executive Office",
       image: ceoImage,
       tag: "CEO",
       level: "chief",
@@ -727,7 +729,7 @@ function TopLevelManagementContent() {
         <p className="mb-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#41B650]">
           {person.tag}
         </p>
-        <h4 className="whitespace-nowrap text-[17px] font-black leading-tight text-[#052b4f] sm:text-[18px] lg:text-[19px]">
+        <h4 className="whitespace-nowrap text-[13px] font-black leading-tight tracking-[-0.045em] text-[#052b4f] sm:text-[14px] md:text-[15px] lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[15.5px]">
           {person.name}
         </h4>
         <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
@@ -769,8 +771,13 @@ function TopLevelManagementContent() {
             <p className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
               {ceo.division}
             </p>
-            <h3 className="whitespace-nowrap font-serif text-[28px] font-normal italic leading-tight text-[#052b4f] sm:text-[34px] lg:text-[38px]">
-              {ceo.name}
+            <h3 className="flex items-end gap-2 whitespace-nowrap font-serif text-[22px] font-normal italic leading-tight tracking-[-0.04em] text-[#052b4f] sm:text-[28px] lg:text-[31px] xl:text-[34px]">
+              <span>{ceo.name}</span>
+              {ceo.honorific && (
+                <span className="relative -bottom-0.5 text-[8px] font-black not-italic uppercase tracking-[0.16em] text-[#005AAA]/75 sm:text-[9px] lg:text-[10px]">
+                  {ceo.honorific}
+                </span>
+              )}
             </h3>
             <p className="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-[#005AAA]">
               {ceo.role}
@@ -912,56 +919,56 @@ function ConcessionAreaContent() {
       name: "Kota Kinabalu",
       short: "Main demand centre within JETAMA's concession coverage area.",
       image: concessionArea2,
-      x: 42,
-      y: 42,
+      x: 39,
+      y: 50,
       color: "bg-[#0077ff]",
     },
     {
       name: "Tuaran",
       short: "Northern district coverage supporting surrounding communities.",
       image: tuaranLocationImage,
-      x: 58,
-      y: 17,
+      x: 55,
+      y: 27,
       color: "bg-[#54b948]",
     },
     {
       name: "Telibong",
       short: "Important water supply area near the northern network corridor.",
       image: telibongLocationImage,
-      x: 65,
-      y: 28,
+      x: 58,
+      y: 34,
       color: "bg-[#8cc63f]",
     },
     {
       name: "Tamparuli",
       short: "Service area linked to upstream water supply and distribution routes.",
       image: tamparuliLocationImage,
-      x: 75,
-      y: 45,
+      x: 62,
+      y: 40,
       color: "bg-[#ffd200]",
     },
     {
       name: "Moyog",
       short: "Strategic water treatment area and major production location.",
       image: moyogLocationImage,
-      x: 53,
-      y: 53,
+      x: 46,
+      y: 56,
       color: "bg-[#00aeef]",
     },
     {
       name: "Kasigui",
       short: "Key treatment and operational support area within the network.",
       image: kasiguiLocationImage,
-      x: 59,
-      y: 66,
+      x: 48,
+      y: 63,
       color: "bg-[#92278f]",
     },
     {
       name: "Papar",
       short: "Southern concession coverage area supporting water service continuity.",
       image: paparLocationImage,
-      x: 47,
-      y: 79,
+      x: 42,
+      y: 74,
       color: "bg-[#ec4f9a]",
     },
   ];

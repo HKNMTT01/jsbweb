@@ -194,29 +194,6 @@ function Hero({ activeJobs }: { activeJobs: Job[] }) {
           </p>
         </div>
 
-        <div className="career-soft-in relative overflow-hidden rounded-[34px] bg-white/85 p-7 shadow-[0_28px_80px_rgba(15,60,110,.14)] backdrop-blur-xl [animation-delay:.12s]">
-          <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F6A623]" />
-          <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#005AAA]/10 blur-2xl" />
-          <Users className="text-[#F6A623]" size={34} />
-          <p className="mt-5 text-sm font-black uppercase tracking-[0.24em] text-[#35B24A]">
-            Talent Growth
-          </p>
-          <h2 className="mt-3 text-3xl font-black leading-tight text-[#005AAA]">
-            Grow your career through meaningful corporate and operational work.
-          </h2>
-          <div className="mt-7 grid grid-cols-3 gap-3">
-            {[
-              [activeJobs.length, "Openings"],
-              [fullTime, "Full Time"],
-              [internship, "Internship"],
-            ].map(([value, label]) => (
-              <div key={label as string} className="rounded-2xl bg-[#f8fbff] px-4 py-5 text-center shadow-sm">
-                <p className="text-3xl font-black text-[#005AAA]">{value}</p>
-                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -250,10 +227,6 @@ export default function Careers() {
                 Join Our Team
               </h2>
             </div>
-
-            <p className="max-w-xl text-sm font-semibold leading-7 text-slate-500">
-              Choose the role that fits your background. Each card opens a clean detail panel with responsibilities, requirements and application information.
-            </p>
           </div>
 
           <div className="grid gap-7 lg:grid-cols-3">

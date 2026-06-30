@@ -46,7 +46,7 @@ const subsidiaries = [
     title: "Jetama Water Sdn. Bhd.",
     category: "Subsidiary",
     color: "#005AAA",
-    text: "Water treatment operations and potable water service support for Sabah.",
+    text: "Water treatment operations and potable water service support in Sabah.",
     logo: jetamaWaterLogo,
     link: "/subsidiary/water",
   },
@@ -144,6 +144,19 @@ const latestNews = [
 const sortedLatestNews = [...latestNews].sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
 );
+
+
+const formatNewsDisplayDate = (dateText: string) => {
+  const date = new Date(dateText);
+
+  if (Number.isNaN(date.getTime())) return dateText;
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = date.toLocaleString("en-US", { month: "short" }).toUpperCase();
+  const year = date.getFullYear();
+
+  return `${day} • ${month} • ${year}`;
+};
 
 const newsFallbackImage = aboutImageFour;
 
@@ -394,7 +407,22 @@ function HomeMotionStyles() {
       .tech-data-float { animation: techDataFloat 6.5s ease-in-out infinite; }
       .tech-card-glow { animation: techCardGlow 6.8s ease-in-out infinite; }
       .tech-active-reveal { animation: techActiveReveal .55s cubic-bezier(.2,.8,.2,1); }
-
+      .logo-gradient-text {
+        background: linear-gradient(90deg, #35B24A 0%, #005AAA 48%, #F6A623 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+      }
+      .news-brand-glass::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 9px;
+        background: linear-gradient(90deg, #35B24A 0%, #005AAA 48%, #F6A623 100%);
+        opacity: .95;
+        z-index: 5;
+      }
 
       .shine-layer::before {
         content: "";
@@ -603,46 +631,34 @@ function NewsCloudBlend() {
 function NewsTechBackground() {
   return (
     <div
-      className="pointer-events-none absolute inset-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 overflow-hidden bg-[#005AAA]"
       aria-hidden="true"
     >
       <div
-        className="absolute inset-0 opacity-[0.30]"
+        className="absolute inset-0 opacity-[0.10]"
         style={{
           backgroundImage: `url(${damHeroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(2,18,36,.98)_0%,rgba(0,63,112,.95)_42%,rgba(4,95,88,.90)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(53,178,74,.22),transparent_30%),radial-gradient(circle_at_78%_15%,rgba(246,166,35,.18),transparent_28%),radial-gradient(circle_at_50%_82%,rgba(0,90,170,.32),transparent_34%)]" />
-
-      <div className="tech-grid-flow absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:46px_46px]" />
-      <div className="absolute inset-0 [background-image:linear-gradient(120deg,transparent_0%,rgba(255,255,255,.08)_48%,transparent_52%)]" />
-
-      <div className="tech-scan-line absolute left-0 right-0 top-0 h-28 bg-[linear-gradient(to_bottom,transparent,rgba(53,178,74,.22),rgba(255,255,255,.18),transparent)] blur-[1px]" />
-      <div className="premium-beam absolute left-[-18%] top-[10%] h-[450px] w-[58%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.20),transparent)] blur-[5px]" />
-      <div className="premium-beam absolute right-[-22%] bottom-[-10%] h-[420px] w-[58%] bg-[linear-gradient(110deg,transparent,rgba(246,166,35,.16),transparent)] blur-[8px] [animation-delay:2s]" />
-
-      <div className="tech-pulse-ring absolute left-[7%] top-[18%] h-44 w-44 rounded-full border border-[#35B24A]/24" />
-      <div className="tech-pulse-ring absolute right-[8%] bottom-[16%] h-56 w-56 rounded-full border border-[#F6A623]/20 [animation-delay:1.5s]" />
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/85 via-white/24 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/88 via-white/18 to-transparent" />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,90,170,.96)_0%,rgba(0,96,170,.92)_48%,rgba(0,120,145,.86)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(255,255,255,.18),transparent_30%),radial-gradient(circle_at_80%_18%,rgba(53,178,74,.20),transparent_28%),radial-gradient(circle_at_76%_76%,rgba(246,166,35,.18),transparent_32%)]" />
+      <div className="premium-beam absolute left-[-18%] top-[4%] h-[420px] w-[58%] bg-[linear-gradient(110deg,transparent,rgba(255,255,255,.22),transparent)] blur-[6px]" />
+      <div className="premium-beam absolute right-[-20%] bottom-[-8%] h-[380px] w-[56%] bg-[linear-gradient(110deg,transparent,rgba(246,166,35,.18),transparent)] blur-[8px] [animation-delay:2s]" />
+      <div
+        className="premium-geo-a absolute left-[-5%] top-[12%] h-32 w-[52%] bg-white/[.075]"
+        style={{ clipPath: "polygon(0 22%, 86% 0, 100% 70%, 12% 100%)" }}
+      />
+      <div
+        className="premium-geo-b absolute right-[-8%] bottom-[10%] h-36 w-[54%] bg-[#35B24A]/[.11]"
+        style={{ clipPath: "polygon(10% 0, 100% 28%, 84% 100%, 0 72%)" }}
+      />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/88 via-white/22 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/90 via-white/20 to-transparent" />
     </div>
   );
 }
-
-function NewsMetricPill({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="tech-data-float rounded-2xl border border-white/12 bg-white/[.075] px-4 py-3 backdrop-blur-md">
-      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/52">
-        {label}
-      </p>
-      <p className="mt-1 text-lg font-black text-white">{value}</p>
-    </div>
-  );
-}
-
 
 export default function Home() {
   const [aboutImageIndex, setAboutImageIndex] = useState(0);
@@ -742,25 +758,21 @@ export default function Home() {
             <div className="hero-halo pointer-events-none absolute left-[66%] top-[54%] h-[180px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F6A623]/14 blur-3xl [animation-delay:2.2s]" />
 
             <p className="hero-kicker relative mb-5 text-[11px] font-black uppercase tracking-[0.24em] text-white/86 drop-shadow-[0_6px_18px_rgba(0,0,0,.38)] sm:text-xs">
-              JETAMA SDN. BHD. 
+              JETAMA SDN. BHD.
             </p>
 
-            <h1 className="title-glow relative text-5xl font-black leading-[0.92] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
-              <span className="block">
-                <span className="hero-word hero-word-1 text-[#35B24A] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
-                  Redefining
-                </span>
+            <h1 className="title-glow relative mx-auto flex items-center justify-center whitespace-nowrap gap-2 text-[clamp(2rem,5vw,5.2rem)] font-black leading-none tracking-[-0.045em]">
+              <span className="hero-word hero-word-1 text-[#35B24A] drop-shadow-[0_12px_28px_rgba(0,0,0,.46)]">
+                Redefining
               </span>
-              <span className="mt-2 block">
-                <span className="hero-word hero-word-2 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
-                  Water
-                </span>
-                <span className="hero-word hero-word-3 px-3 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(0,0,0,.42)] sm:px-4">
-                  &
-                </span>
-                <span className="hero-word hero-word-4 text-[#F6A623] drop-shadow-[0_12px_28px_rgba(0,0,0,.44)]">
-                  Energy
-                </span>
+              <span className="hero-word hero-word-2 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(255,255,255,.18)]">
+                Water
+              </span>
+              <span className="hero-word hero-word-3 text-[#005AAA] drop-shadow-[0_12px_30px_rgba(0,0,0,.42)]">
+                &
+              </span>
+              <span className="hero-word hero-word-4 text-[#F6A623] drop-shadow-[0_12px_28px_rgba(0,0,0,.44)]">
+                Energy
               </span>
             </h1>
 
@@ -770,7 +782,7 @@ export default function Home() {
 
             <p className="relative mx-auto mt-7 max-w-3xl text-base font-semibold leading-8 text-white drop-shadow-[0_8px_24px_rgba(0,0,0,.52)] sm:text-lg">
               Reliable treated water services, renewable energy initiatives and
-              strategic development for Sabah.
+              strategic development around Sabah.
             </p>
 
             <div className="relative mt-9 flex flex-wrap items-center justify-center gap-4">
@@ -891,7 +903,8 @@ export default function Home() {
                     src={item.logo}
                     alt={item.title}
                     className={`object-contain drop-shadow-[0_12px_28px_rgba(0,44,85,0.18)] transition duration-500 group-hover:scale-105 ${
-                      item.title.includes("Batu Sapi") || item.title.includes("Babagon")
+                      item.title.includes("Batu Sapi") ||
+                      item.title.includes("Babagon")
                         ? "max-h-36 max-w-[112%] scale-140 group-hover:scale-[1.16]"
                         : "max-h-24 max-w-full"
                     }`}
@@ -918,85 +931,69 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
         <NewsTechBackground />
 
-        <div className="relative z-10 mx-auto max-w-[1450px]">
-          <div className="scroll-reveal mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="relative z-10 mx-auto max-w-[1280px]">
+          <div className="scroll-reveal relative z-30 mb-7 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-
-              <h2 className="text-4xl font-black tracking-[-0.045em] text-white md:text-6xl">
+              <h2 className="relative z-40 mt-3 text-4xl font-black tracking-[-0.045em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,.45)] md:text-6xl">
                 News & Events
               </h2>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <NewsMetricPill label="Updates" value={`${sortedLatestNews.length}`} />
-              <Link
-                to="/news"
-                className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[.10] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:-translate-y-1 hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#005AAA]"
-              >
-                View All News
-                <ArrowRight size={16} />
-              </Link>
-            </div>
+            <Link
+              to="/news"
+              className="inline-flex w-fit items-center gap-3 rounded-full border border-white/20 bg-white/[.12] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
+            >
+              View All News
+              <ArrowRight size={16} />
+            </Link>
           </div>
 
-          <div className="tech-card-glow scroll-scale relative overflow-hidden rounded-[2.5rem] border border-white/16 bg-white/[.075] p-4 shadow-[0_32px_105px_rgba(0,20,45,0.36)] backdrop-blur-2xl sm:p-5 lg:p-6">
-            <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_35%,rgba(53,178,74,.08)_70%,rgba(246,166,35,.10))]" />
-            <div className="pointer-events-none absolute left-0 top-0 h-28 w-[42%] bg-[#35B24A]/18 [clip-path:polygon(0_0,100%_0,82%_100%,0_62%)]" />
-            <div className="pointer-events-none absolute right-0 bottom-0 h-32 w-[46%] bg-[#F6A623]/14 [clip-path:polygon(20%_0,100%_35%,100%_100%,0_100%)]" />
+          <div className="news-brand-glass scroll-scale relative overflow-hidden rounded-[2.25rem] border border-white/20 bg-white/[.10] p-4 pt-6 shadow-[0_28px_85px_rgba(0,20,45,0.26)] backdrop-blur-xl sm:p-5 sm:pt-7 lg:p-5 lg:pt-7">
+            <div className="pointer-events-none absolute inset-0 rounded-[2.4rem] bg-[linear-gradient(135deg,rgba(255,255,255,.18),transparent_38%,rgba(246,166,35,.10))]" />
+            <div className="pointer-events-none absolute left-0 top-0 h-24 w-[44%] bg-[#F6A623]/18 [clip-path:polygon(0_0,100%_0,82%_100%,0_62%)]" />
 
-            <div className="relative grid gap-5 lg:grid-cols-[1.22fr_.78fr]">
+            <div className="relative flex flex-col gap-5 lg:flex-row">
               <a
                 key={activeNews.title}
                 href={activeNews.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tech-active-reveal group relative min-h-[470px] overflow-hidden rounded-[2rem] border border-white/16 bg-[#02172c] shadow-[0_24px_75px_rgba(0,12,28,0.36)] transition duration-500 hover:-translate-y-1 hover:border-[#35B24A]/55"
+                className="group relative min-h-[405px] flex-1 overflow-hidden rounded-[1.8rem] bg-[#052B4F] shadow-[0_24px_70px_rgba(0,20,45,0.30)] transition duration-500 hover:-translate-y-1"
               >
                 <img
                   key={`${activeNews.title}-${activeNews.image}`}
                   src={activeNews.image}
                   alt={activeNews.title}
                   onError={handleNewsImageError}
-                  className="absolute inset-0 h-full w-full object-cover opacity-88 transition duration-700 group-hover:scale-[1.035]"
+                  className="absolute inset-0 h-full w-full object-cover opacity-100 transition duration-700 group-hover:scale-[1.035]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,17,32,.96)_0%,rgba(2,17,32,.78)_38%,rgba(2,17,32,.22)_100%)]" />
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,17,32,.95),transparent_45%)]" />
-                <div className="tech-grid-flow absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.10)_1px,transparent_1px)] [background-size:38px_38px]" />
-                <div className="tech-scan-line absolute left-0 right-0 top-0 h-24 bg-[linear-gradient(to_bottom,transparent,rgba(53,178,74,.20),transparent)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,22,42,.94)_0%,rgba(2,22,42,.60)_42%,rgba(2,22,42,.10)_100%)]" />
+                <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/18 to-transparent" />
 
-                <div className="absolute left-6 top-6 flex items-center gap-3">
-                  <div className="rounded-2xl border border-[#F6A623]/45 bg-[#F6A623] px-4 py-3 text-center shadow-[0_16px_36px_rgba(246,166,35,.22)]">
-                    <p className="text-3xl font-black leading-none text-[#005AAA]">
-                      {activeNews.day}
-                    </p>
-                    <p className="mt-1 text-xs font-black uppercase text-[#005AAA]">
-                      {activeNews.month}
-                    </p>
-                  </div>
-                  <div className="hidden rounded-2xl border border-white/12 bg-white/[.08] px-4 py-3 backdrop-blur-md sm:block">
-                    <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/48">
-                      Featured Signal
-                    </p>
-                    <p className="mt-1 text-sm font-black text-[#35B24A]">
-                      Latest Highlight
-                    </p>
+                <div className="absolute left-6 top-6 overflow-hidden rounded-full border border-white/28 bg-white/18 px-4 py-2.5 shadow-[0_18px_42px_rgba(0,0,0,.22)] backdrop-blur-md">
+                  <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-[#35B24A] via-[#005AAA] to-[#F6A623]" />
+                  <div className="pl-2 text-[11px] font-black uppercase tracking-[0.18em] text-white drop-shadow">
+                    {formatNewsDisplayDate(activeNews.date)}
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 max-w-3xl p-7 md:p-9">
+                <div className="absolute bottom-0 left-0 max-w-4xl p-6 md:p-7">
+                  <div className="mb-4 inline-flex rounded-full bg-white/16 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                    Latest Update
+                  </div>
 
-                  <h3 className="text-2xl font-black leading-tight text-white md:text-4xl">
+                  <h3 className="text-2xl font-black leading-tight text-white md:text-3xl">
                     {activeNews.title}
                   </h3>
 
-                  <p className="mt-4 max-w-2xl text-base leading-7 text-white/76">
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-white/82">
                     {activeNews.excerpt}
                   </p>
 
-                  <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/[.10] px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-[#ffffff] backdrop-blur-md transition group-hover:bg-[#F6A623] group-hover:text-[#005AAA]">
+                  <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#ffffff] px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-[#005AAA] transition group-hover:bg-white">
                     Read Full Story
                     <ArrowRight
                       size={16}
@@ -1006,7 +1003,7 @@ export default function Home() {
                 </div>
               </a>
 
-              <div className="grid gap-4">
+              <div className="flex w-full flex-col gap-2.5 lg:w-[400px]">
                 {sortedLatestNews.map((item, index) => {
                   const isActive = index === activeNewsIndex;
 
@@ -1015,21 +1012,22 @@ export default function Home() {
                       key={item.title}
                       type="button"
                       onClick={() => setActiveNewsIndex(index)}
-                      className={`group relative overflow-hidden rounded-[1.55rem] border p-3 text-left backdrop-blur-md transition duration-300 hover:-translate-y-1 ${
+                      className={`group relative overflow-hidden rounded-[1.35rem] border p-2.5 text-left backdrop-blur-md transition duration-300 hover:-translate-y-1 ${
                         isActive
-                          ? "border-[#F6A623]/60 bg-white/[.14] shadow-[0_18px_50px_rgba(246,166,35,.14)]"
-                          : "border-white/12 bg-white/[.065] hover:border-[#35B24A]/45 hover:bg-white/[.10]"
+                          ? "border-[#F6A623]/70 bg-white/[.18] shadow-[0_18px_50px_rgba(246,166,35,.16)]"
+                          : "border-white/14 bg-white/[.09] hover:border-white/30 hover:bg-white/[.14]"
                       }`}
                     >
-                      <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,.10),transparent_48%,rgba(53,178,74,.08))] opacity-0 transition group-hover:opacity-100" />
                       <div
-                        className={`absolute left-0 top-0 h-full w-1 transition ${
-                          isActive ? "bg-[#F6A623]" : "bg-[#35B24A]/45"
+                        className={`absolute left-0 top-0 h-full w-1.5 transition ${
+                          isActive
+                            ? "bg-[#F6A623]"
+                            : "bg-white/28 group-hover:bg-[#35B24A]"
                         }`}
                       />
 
                       <div className="relative flex gap-4">
-                        <div className="h-24 w-28 shrink-0 overflow-hidden rounded-[1.1rem] bg-[#005AAA]">
+                        <div className="h-20 w-24 shrink-0 overflow-hidden rounded-[1.05rem] bg-[#005AAA] shadow-md">
                           <img
                             src={item.image}
                             alt={item.title}
@@ -1039,14 +1037,14 @@ export default function Home() {
                         </div>
 
                         <div className="min-w-0 flex-1 py-1">
-                          <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.12em] text-[#35B24A]">
+                          <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.12em] text-[#ffffff]">
                             <CalendarDays size={12} />
-                            {item.date}
+                            {formatNewsDisplayDate(item.date)}
                           </div>
                           <h3 className="line-clamp-2 text-base font-black leading-snug text-white">
                             {item.title}
                           </h3>
-                          <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/58">
+                          <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/64">
                             {item.excerpt}
                           </p>
                         </div>
@@ -1054,45 +1052,42 @@ export default function Home() {
                     </button>
                   );
                 })}
-              </div>
-            </div>
 
-            <div className="relative mt-6 flex flex-col gap-4 border-t border-white/10 pt-5 md:flex-row md:items-center md:justify-between">
+                <div className="mt-1 flex items-center justify-between rounded-[1.2rem] border border-white/14 bg-white/[.08] p-2.5 backdrop-blur-md">
+                  <button
+                    type="button"
+                    aria-label="Previous news"
+                    onClick={prevNews}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/[.10] text-white transition hover:bg-[#F6A623] hover:text-[#005AAA]"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
 
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  aria-label="Previous news"
-                  onClick={prevNews}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/14 bg-white/[.08] text-white backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
-                >
-                  <ChevronLeft size={20} />
-                </button>
+                  <div className="flex items-center gap-2">
+                    {sortedLatestNews.map((item, index) => (
+                      <button
+                        key={item.title}
+                        type="button"
+                        aria-label={`Show news ${index + 1}`}
+                        onClick={() => setActiveNewsIndex(index)}
+                        className={`h-2.5 rounded-full transition-all ${
+                          activeNewsIndex === index
+                            ? "w-10 bg-[#F6A623]"
+                            : "w-2.5 bg-white/36 hover:bg-[#35B24A]"
+                        }`}
+                      />
+                    ))}
+                  </div>
 
-                <div className="flex items-center gap-2">
-                  {sortedLatestNews.map((item, index) => (
-                    <button
-                      key={item.title}
-                      type="button"
-                      aria-label={`Show news ${index + 1}`}
-                      onClick={() => setActiveNewsIndex(index)}
-                      className={`h-2.5 rounded-full transition-all ${
-                        activeNewsIndex === index
-                          ? "w-10 bg-[#F6A623]"
-                          : "w-2.5 bg-white/28 hover:bg-[#35B24A]"
-                      }`}
-                    />
-                  ))}
+                  <button
+                    type="button"
+                    aria-label="Next news"
+                    onClick={nextNews}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/[.10] text-white transition hover:bg-[#F6A623] hover:text-[#005AAA]"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
                 </div>
-
-                <button
-                  type="button"
-                  aria-label="Next news"
-                  onClick={nextNews}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/14 bg-white/[.08] text-white backdrop-blur transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
-                >
-                  <ChevronRight size={20} />
-                </button>
               </div>
             </div>
           </div>

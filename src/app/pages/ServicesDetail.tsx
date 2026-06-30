@@ -14,6 +14,7 @@ import {
   Gauge,
   Info,
   ShieldCheck,
+  Zap,
 } from "lucide-react";
 
 import heroImage from "@/assets/DJI_0298.jpg";
@@ -59,7 +60,7 @@ const servicePages: Record<string, ServicePage> = {
   "total-capability": {
     title: "Total Capability",
     subtitle:
-      "Water quality requirements and increased quantity of treated water provided by JETAMA Sdn. Bhd.",
+      "Water and energy capability covering treated water quality, production capacity and renewable energy development.",
     eyebrow: "Capability",
     icon: Gauge,
   },
@@ -358,7 +359,7 @@ function OverviewContent() {
 
           <AccentRule />
 
-          <p className="max-w-4xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+          <p className="max-w-6xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
             JETAMA’s service responsibility is structured around upgrading existing assets,
             delivering new water infrastructure and maintaining reliable operations throughout
             the concession period.
@@ -378,7 +379,7 @@ function OverviewContent() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 max-w-4xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
+                  <p className="mt-3 max-w-6xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
                     {item.text}
                   </p>
 
@@ -454,7 +455,7 @@ function FacilitiesContent() {
         <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
         <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[#41B650]/8 blur-3xl" />
 
-        <div className="relative grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,1.05fr)] lg:items-center">
+        <div className="relative grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:items-center">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
               Water Infrastructure
@@ -466,7 +467,7 @@ function FacilitiesContent() {
 
             <AccentRule />
 
-            <p className="max-w-4xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+            <p className="max-w-6xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
               Babagon Dam is constructed across the Babagon River, a tributary of the
               Moyog River, and forms an important part of JETAMA’s water supply
               infrastructure.
@@ -500,7 +501,7 @@ function FacilitiesContent() {
       </section>
 
       <section className="relative">
-        <div className="max-w-4xl">
+        <div className="max-w-6xl">
 
           <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
             Water Treatment Facilities
@@ -508,13 +509,13 @@ function FacilitiesContent() {
 
           <AccentRule />
 
-          <p className="max-w-4xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
+          <p className="max-w-6xl text-justify text-[15px] leading-8 text-slate-700 sm:text-base">
             A clean view of JETAMA’s main treatment facilities, presented through soft image-led
             layouts and editorial-style text instead of heavy bordered content boxes.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2">
+        <div className="mt-12 grid gap-x-8 gap-y-14 md:grid-cols-2 2xl:grid-cols-3">
           {waterPlants.map((plant) => {
             const isOpen = openPlant === plant.title;
 
@@ -597,7 +598,7 @@ function FacilitiesContent() {
             </h2>
         </div>
 
-        <div className="grid gap-x-8 gap-y-12 md:grid-cols-3">
+        <div className="grid gap-x-10 gap-y-12 md:grid-cols-3">
           {supportFacilities.map((item) => {
             const Icon = item.icon;
             const isOpen = openFacility === item.title;
@@ -673,18 +674,31 @@ function TotalCapabilityContent() {
     ["October 1997 (Phase II & Phase III)", "320 MLD", 100],
   ] as const;
 
+  const energyCapability = [
+    "Renewable energy initiatives through Jetama Energy and strategic project development.",
+    "Floating solar and utility-scale solar opportunities supporting Sabah's low-carbon direction.",
+    "Energy projects aligned with sustainable infrastructure growth and long-term resilience.",
+    "Strategic collaboration to diversify capability beyond treated water operations.",
+  ];
+
   const capabilityStats = [
     {
-      label: "Final Capacity",
+      label: "Water Capacity",
       value: "320 MLD",
       icon: Gauge,
-      detail: "Phase II & Phase III",
+      detail: "Final treated water capacity",
     },
     {
-      label: "Quality Control",
+      label: "Water Quality",
       value: "4",
       icon: ShieldCheck,
-      detail: "Key water quality parameters",
+      detail: "Key quality parameters",
+    },
+    {
+      label: "Renewable Energy",
+      value: "Solar",
+      icon: Zap,
+      detail: "Floating and utility-scale initiatives",
     },
     {
       label: "Supply Growth",
@@ -719,21 +733,22 @@ function TotalCapabilityContent() {
           Service Capability
         </p>
 
-        <div className="mt-4 grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        <div className="mt-4 grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
           <div>
             <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
-              Water Quality & Quantity
+              Water, Energy, Quality & Quantity
             </h2>
 
             <AccentRule />
 
-            <p className="max-w-4xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
-              A corporate view of JETAMA’s treated water quality standards and
-              progressive supply capacity growth during the concession period.
+            <p className="max-w-6xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
+              A corporate overview of JETAMA’s total capability covering treated
+              water quality standards, progressive supply quantity and renewable
+              energy initiatives for sustainable infrastructure growth.
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {capabilityStats.map((item, index) => {
               const Icon = item.icon;
 
@@ -754,7 +769,7 @@ function TotalCapabilityContent() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-12 xl:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-14 grid gap-8 xl:grid-cols-3">
           <div className="relative overflow-hidden rounded-[2.4rem] bg-[#052b4f] p-8 text-white shadow-[0_26px_80px_rgba(0,90,170,0.18)]">
             <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#41B650]/25 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#005AAA]/40 blur-3xl" />
@@ -787,12 +802,47 @@ function TotalCapabilityContent() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#41B650]">
-                  Water Quantity
-                </p>
+          <div className="relative overflow-hidden rounded-[2.4rem] bg-gradient-to-br from-[#F6A623] via-[#F5A623] to-[#fbf234] p-8 text-[#052b4f] shadow-[0_26px_80px_rgba(246,166,35,0.20)]">
+            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/30 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#005AAA]/18 blur-3xl" />
+
+            <div className="relative">
+              <div className="mb-7 flex items-center justify-between gap-5">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#005AAA]">
+                    Energy Capability
+                  </p>
+                  <h3 className="mt-2 font-serif text-3xl font-semibold italic text-[#052b4f]">
+                    Renewable Energy
+                  </h3>
+                </div>
+
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/35 shadow-[0_16px_40px_rgba(0,90,170,0.12)]">
+                  <span className="absolute h-20 w-20 rounded-full bg-white/30" style={{ animation: "capabilityPulse 2.8s ease-in-out infinite" }} />
+                  <Zap className="relative text-[#005AAA]" size={42} />
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {energyCapability.map((item, index) => (
+                  <div key={item} className="flex items-start gap-4" style={{ transitionDelay: `${index * 70}ms` }}>
+                    <CheckCircle2 className="mt-1 shrink-0 text-[#005AAA]" size={18} />
+                    <p className="text-sm font-semibold leading-7 text-[#052b4f]/90">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden rounded-[2.4rem] bg-white/35 p-8 shadow-[0_20px_60px_rgba(0,90,170,0.07)] backdrop-blur-sm">
+            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#005AAA]/8 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#41B650]/10 blur-3xl" />
+            <div className="relative">
+              <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#41B650]">
+                    Water Quantity
+                  </p>
                 <h3 className="mt-2 font-serif text-3xl font-semibold italic text-[#052b4f]">
                   Capacity Growth
                 </h3>
@@ -841,6 +891,25 @@ function TotalCapabilityContent() {
                 </p>
               </div>
             </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="rounded-[1.6rem] bg-white/40 p-6 shadow-[0_14px_42px_rgba(0,90,170,0.06)] backdrop-blur-sm">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#41B650]">Total Capability</p>
+            <h4 className="mt-2 text-xl font-black text-[#052b4f]">Water Reliability</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-600">Quality standards and production capacity support reliable treated water supply.</p>
+          </div>
+          <div className="rounded-[1.6rem] bg-white/40 p-6 shadow-[0_14px_42px_rgba(0,90,170,0.06)] backdrop-blur-sm">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#F5A623]">Total Capability</p>
+            <h4 className="mt-2 text-xl font-black text-[#052b4f]">Energy Direction</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-600">Renewable energy capability expands JETAMA’s role in sustainable infrastructure.</p>
+          </div>
+          <div className="rounded-[1.6rem] bg-white/40 p-6 shadow-[0_14px_42px_rgba(0,90,170,0.06)] backdrop-blur-sm">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#005AAA]">Total Capability</p>
+            <h4 className="mt-2 text-xl font-black text-[#052b4f]">Growth Capacity</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-600">Capacity growth from 135 MLD to 320 MLD reflects strengthened operational capability.</p>
           </div>
         </div>
       </section>
@@ -862,41 +931,17 @@ function CleanCorporateTheme() {
       @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
       @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
 
-      .clean-corporate-page { background: #f7fbff; color: #0f2f44; }
+      .clean-corporate-page { background: transparent; color: #0f2f44; }
       .clean-corporate-page > section:first-of-type {
         position: relative;
         isolation: isolate;
-        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 48%, #f8fff6 100%) !important;
+        background: transparent !important;
         color: #0f2f44 !important;
-        overflow: hidden;
+        overflow: visible;
       }
-      .clean-corporate-page > section:first-of-type::before {
-        content: "";
-        position: absolute;
-        left: -180px;
-        top: 26px;
-        width: 420px;
-        height: 420px;
-        border-radius: 72px;
-        border: 1px solid rgba(0,90,170,.10);
-        background: rgba(0,90,170,.045);
-        transform: rotate(45deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 11s ease-in-out infinite;
-      }
+      .clean-corporate-page > section:first-of-type::before,
       .clean-corporate-page > section:first-of-type::after {
-        content: "";
-        position: absolute;
-        right: -170px;
-        top: 95px;
-        width: 430px;
-        height: 430px;
-        border-radius: 76px;
-        border: 1px solid rgba(53,178,74,.16);
-        background: rgba(53,178,74,.05);
-        transform: rotate(12deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 14s ease-in-out infinite reverse;
+        display: none !important;
       }
       .clean-corporate-page > section:first-of-type img {
         opacity: .16 !important;
@@ -966,27 +1011,16 @@ function CleanCorporateTheme() {
       .clean-corporate-page .animate-\[fadeInUp_\.7s_ease_both\] {
         animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both !important;
       }
-      .clean-corporate-page .shine-layer,
       .clean-corporate-page article,
       .clean-corporate-page button,
       .clean-corporate-page a.group {
         position: relative;
-        overflow: hidden;
       }
-      .clean-corporate-page .shine-layer::before,
       .clean-corporate-page article::before,
       .clean-corporate-page button::before,
       .clean-corporate-page a.group::before {
-        content: "";
-        position: absolute;
-        top: -50%; bottom: -50%; left: -35%; width: 28%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
-        transform: translateX(-150%) skewX(-18deg);
-        pointer-events: none;
+        display: none !important;
       }
-      .clean-corporate-page article:hover::before,
-      .clean-corporate-page button:hover::before,
-      .clean-corporate-page a.group:hover::before { animation: jetamaShine 1.9s ease; }
     `}</style>
   );
 }
@@ -1025,19 +1059,19 @@ export default function ServicesDetail() {
         <div className="absolute -left-32 top-20 h-96 w-96 animate-pulse rounded-full bg-[#005AAA]/8 blur-3xl" />
         <div className="absolute right-[-9rem] top-36 h-[28rem] w-[28rem] animate-pulse rounded-full bg-[#41B650]/10 blur-3xl" />
         <div className="absolute left-1/3 top-16 h-40 w-40 rounded-full bg-[#F5A623]/8 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.08)_1px,transparent_0)] [background-size:28px_28px] opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,90,170,0.035)_1px,transparent_0)] [background-size:34px_34px] opacity-20" />
       </div>
 
       <section className="relative z-10 px-4 pb-10 pt-32 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1540px]">
           <DetailBreadcrumb page={page} />
         </div>
 
-        <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[260px_1fr]">
+        <div className="mx-auto grid max-w-[1540px] gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
           <Sidebar />
 
-          <main className="clean-corporate-page min-w-0">
-      <CleanCorporateTheme />
+          <main className="clean-corporate-page min-w-0 w-full">
+                  <CleanCorporateTheme />
             <CurrentContent slug={slug} />
           </main>
         </div>

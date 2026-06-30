@@ -177,12 +177,6 @@ function Hero() {
             Connect With
             <span className="block text-[#35B24A]">Jetama Group</span>
           </h1>
-
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
-            Reach our headquarters, subsidiaries and joint venture offices
-            through a cleaner corporate directory built for quick reference and
-            smooth enquiries.
-          </p>
         </div>
       </div>
     </section>
@@ -359,11 +353,6 @@ export default function Contact() {
                   Office Locations
                 </h2>
               </div>
-
-              <p className="max-w-md text-sm font-semibold leading-7 text-slate-500">
-                Contact cards are grouped by office location so the layout
-                feels neat, balanced and easier to scan.
-              </p>
             </div>
 
             <div className="grid gap-6">

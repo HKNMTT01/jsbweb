@@ -337,42 +337,66 @@ function ProjectHero({
   const subtitle = segment ? segment.subtitle : page.subtitle;
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#f7fbff]">
-      <div className="absolute inset-0 -z-10">
+    <section className="relative overflow-hidden bg-white pt-28 lg:pt-32">
+      <div className="absolute left-0 top-0 z-10 h-8 w-full bg-[#005AAA]" />
+
+      <div className="relative h-[430px] overflow-hidden sm:h-[450px] lg:h-[470px]">
         <img
           src={heroImage}
           alt={title}
-          className="h-full w-full scale-105 object-cover opacity-[0.28]"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/58" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(0,90,170,0.16),transparent_35%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f7fbff] via-[#f7fbff]/78 to-transparent" />
-        <div className="absolute -left-24 top-8 h-56 w-[500px] rotate-[-8deg] bg-[#005AAA]/[0.07] blur-[1px]" style={{ clipPath: "polygon(0 20%, 82% 0, 100% 72%, 12% 100%)" }} />
-        <div className="absolute -right-32 top-12 h-64 w-[560px] rotate-[8deg] bg-[#35B24A]/[0.07]" style={{ clipPath: "polygon(8% 0, 100% 25%, 82% 100%, 0 72%)" }} />
-      </div>
 
-      <div className="mx-auto max-w-7xl px-4 pb-10 pt-10 sm:px-6 lg:px-8">
-        <div className="max-w-4xl">
-          <p
-            className="text-xs font-black uppercase tracking-[0.28em]"
-            style={{ color: page.accent }}
-          >
-            {page.eyebrow}
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/12 to-black/10" />
+        <div className="absolute -left-24 top-0 h-full w-[58%] -skew-x-12 bg-white/93 shadow-[40px_0_90px_rgba(255,255,255,0.78)]" />
+        <div className="absolute left-0 top-20 h-56 w-56 rounded-full bg-[#41B650]/15 blur-3xl" />
+        <div className="absolute left-48 bottom-10 h-64 w-64 rounded-full bg-[#005AAA]/10 blur-3xl" />
+        <div className="absolute left-[22%] top-12 h-28 w-52 rotate-[-10deg] bg-[#F5A623]/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-white via-white/70 to-transparent" />
 
-          <h1 className="mt-4 font-serif text-4xl font-black uppercase text-[#005AAA] sm:text-5xl lg:text-6xl">
-            {title}
-          </h1>
+        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl -translate-y-2">
+            <div className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-700">
+              <Link to="/" className="hover:text-[#005AAA]">
+                Home
+              </Link>
+              <ChevronRight size={15} className="text-slate-400" />
+              <Link to="/projects" className="hover:text-[#005AAA]">
+                Projects
+              </Link>
+              <ChevronRight size={15} className="text-slate-400" />
+              <span className="font-bold text-[#005AAA]">{page.title}</span>
+              {activeSegment && (
+                <>
+                  <ChevronRight size={15} className="text-slate-400" />
+                  <span className="font-bold text-[#35b24a]">
+                    {waterProjectSegments[activeSegment].label}
+                  </span>
+                </>
+              )}
+            </div>
 
-          <div className="mt-5 flex items-center gap-3">
-            <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
-            <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
-            <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+            <p
+              className="mb-4 inline-flex rounded-full bg-[#eaf8ef] px-4 py-2 text-xs font-black uppercase tracking-[0.22em]"
+              style={{ color: page.accent }}
+            >
+              {page.eyebrow}
+            </p>
+
+            <h1 className="font-serif text-4xl font-normal leading-tight text-[#064C82] sm:text-5xl lg:text-6xl">
+              {title}
+            </h1>
+
+            <div className="mt-5 flex items-center gap-3">
+              <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+              <span className="h-[3px] w-10 rounded-full bg-[#41B650]" />
+              <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
+            </div>
+
+            <p className="mt-5 max-w-2xl text-base font-medium leading-8 text-slate-700">
+              {subtitle}
+            </p>
           </div>
-
-          <p className="mt-5 max-w-3xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
-            {subtitle}
-          </p>
         </div>
       </div>
     </section>
@@ -940,135 +964,78 @@ function ProjectModal({
 function CleanCorporateTheme() {
   return (
     <style>{`
-      @keyframes jetamaFadeUp { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-      @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
-      @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
+      @keyframes jetamaFadeUp {
+        from { opacity: 0; transform: translateY(26px); filter: blur(8px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
 
-      .clean-corporate-page { background: #f7fbff; color: #0f2f44; }
-      .clean-corporate-page > section:first-of-type {
-        position: relative;
-        isolation: isolate;
-        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 48%, #f8fff6 100%) !important;
-        color: #0f2f44 !important;
-        overflow: hidden;
+      @keyframes jetamaSoftFloat {
+        0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; }
+        50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; }
       }
-      .clean-corporate-page > section:first-of-type::before {
-        content: "";
-        position: absolute;
-        left: -180px;
-        top: 26px;
-        width: 420px;
-        height: 420px;
-        border-radius: 72px;
+
+      @keyframes jetamaShine {
+        0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; }
+        28% { opacity: .45; }
+        100% { transform: translateX(190%) skewX(-18deg); opacity: 0; }
+      }
+
+      .clean-corporate-page {
+        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 48%, #f8fff7 100%);
+      }
+
+      .clean-corporate-page > section:not(:first-of-type) {
+        background: linear-gradient(180deg, #ffffff 0%, #f7fbff 52%, #f8fff7 100%) !important;
+      }
+
+      .clean-corporate-page .scroll-reveal {
+        animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both;
+      }
+
+      .clean-corporate-page .timeline-wrapper {
+        max-width: 1180px;
+      }
+
+      .clean-corporate-page .timeline-card {
         border: 1px solid rgba(0,90,170,.10);
-        background: rgba(0,90,170,.045);
-        transform: rotate(45deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 11s ease-in-out infinite;
+        background: rgba(255,255,255,.90) !important;
+        box-shadow: 0 24px 80px rgba(0,90,170,.12) !important;
       }
-      .clean-corporate-page > section:first-of-type::after {
-        content: "";
-        position: absolute;
-        right: -170px;
-        top: 95px;
-        width: 430px;
-        height: 430px;
-        border-radius: 76px;
-        border: 1px solid rgba(53,178,74,.16);
-        background: rgba(53,178,74,.05);
-        transform: rotate(12deg);
-        z-index: 1;
-        animation: jetamaSoftFloat 14s ease-in-out infinite reverse;
+
+      .clean-corporate-page .timeline-card:hover {
+        box-shadow: 0 32px 100px rgba(0,90,170,.18) !important;
       }
-      .clean-corporate-page > section:first-of-type img {
-        opacity: .16 !important;
-        filter: saturate(1.08) contrast(1.08) brightness(1.08);
+
+      .clean-corporate-page .center-node {
+        box-shadow: 0 20px 55px rgba(0,90,170,.24) !important;
       }
-      .clean-corporate-page > section:first-of-type .absolute.inset-0,
-      .clean-corporate-page > section:first-of-type .absolute.inset-x-0.top-0,
-      .clean-corporate-page > section:first-of-type .absolute.-right-24,
-      .clean-corporate-page > section:first-of-type .absolute.-left-20,
-      .clean-corporate-page > section:first-of-type .absolute.left-10,
-      .clean-corporate-page > section:first-of-type .absolute.-bottom-28,
-      .clean-corporate-page > section:first-of-type .absolute.left-0.top-0.z-10 {
-        opacity: .32;
-      }
-      .clean-corporate-page > section:first-of-type > div:last-child,
-      .clean-corporate-page > section:first-of-type .relative {
-        z-index: 5;
-      }
-      .clean-corporate-page > section:first-of-type h1 {
-        color: #005AAA !important;
-        letter-spacing: -0.045em;
-        text-shadow: none !important;
-      }
-      .clean-corporate-page > section:first-of-type h1 span,
-      .clean-corporate-page > section:first-of-type .font-serif {
-        color: #005AAA !important;
-        font-family: inherit !important;
-        font-weight: 900 !important;
-      }
-      .clean-corporate-page > section:first-of-type p {
-        color: #475569 !important;
-      }
-      .clean-corporate-page > section:first-of-type a,
-      .clean-corporate-page > section:first-of-type span {
-        color: #005AAA;
-      }
-      .clean-corporate-page > section:first-of-type [class*="text-white"] {
-        color: #0f2f44 !important;
-      }
-      .clean-corporate-page > section:first-of-type [class*="bg-white/10"],
-      .clean-corporate-page > section:first-of-type [class*="bg-white/90"],
-      .clean-corporate-page > section:first-of-type [class*="border-white"] {
-        background: rgba(255,255,255,.82) !important;
-        border-color: rgba(0,90,170,.16) !important;
-        box-shadow: 0 18px 55px rgba(0,90,170,.10);
-      }
-      .clean-corporate-page > section:first-of-type div[class*="h-24"][class*="w-24"][class*="rounded"] {
-        display: none !important;
-      }
-      .clean-corporate-page > section:first-of-type .inline-flex,
-      .clean-corporate-page > section:first-of-type button {
-        backdrop-filter: blur(14px);
-      }
-      .clean-corporate-page article,
-      .clean-corporate-page .rounded-\[2rem\],
-      .clean-corporate-page .rounded-\[2\.5rem\],
-      .clean-corporate-page .rounded-\[1\.8rem\] {
-        border-color: rgba(0,90,170,.12) !important;
-      }
-      .clean-corporate-page .shadow-\[0_30px_90px_rgba\(0\,44\,85\,0\.16\)\],
-      .clean-corporate-page .shadow-\[0_28px_90px_rgba\(0\,44\,85\,0\.12\)\],
-      .clean-corporate-page .shadow-\[0_24px_70px_rgba\(0\,90\,170\,0\.08\)\] {
-        box-shadow: 0 24px 80px rgba(0,90,170,.10) !important;
-      }
-      .clean-corporate-page .scroll-reveal,
-      .clean-corporate-page .animate-\[fadeInUp_\.8s_ease_both\],
-      .clean-corporate-page .animate-\[fadeInUp_\.7s_ease_both\] {
-        animation: jetamaFadeUp .82s cubic-bezier(.2,.8,.2,1) both !important;
-      }
-      .clean-corporate-page .shine-layer,
+
       .clean-corporate-page article,
       .clean-corporate-page button,
       .clean-corporate-page a.group {
         position: relative;
         overflow: hidden;
       }
-      .clean-corporate-page .shine-layer::before,
+
       .clean-corporate-page article::before,
       .clean-corporate-page button::before,
       .clean-corporate-page a.group::before {
         content: "";
         position: absolute;
-        top: -50%; bottom: -50%; left: -35%; width: 28%;
+        top: -50%;
+        bottom: -50%;
+        left: -35%;
+        width: 28%;
         background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
         transform: translateX(-150%) skewX(-18deg);
         pointer-events: none;
       }
+
       .clean-corporate-page article:hover::before,
       .clean-corporate-page button:hover::before,
-      .clean-corporate-page a.group:hover::before { animation: jetamaShine 1.9s ease; }
+      .clean-corporate-page a.group:hover::before {
+        animation: jetamaShine 1.9s ease;
+      }
     `}</style>
   );
 }
@@ -1132,8 +1099,8 @@ export default function ProjectsDetail() {
   });
 
   return (
-    <main className="overflow-hidden bg-[#f7fbff] pt-28 text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
-      <Breadcrumb page={page} activeSegment={activeSegment} />
+    <main className="clean-corporate-page overflow-hidden bg-white text-slate-900 selection:bg-[#fbf234] selection:text-[#062A44]">
+      <CleanCorporateTheme />
       <ProjectHero page={page} activeSegment={activeSegment} />
 
 

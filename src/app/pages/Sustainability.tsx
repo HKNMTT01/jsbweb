@@ -340,7 +340,7 @@ function HeroSection() {
             <ChevronRight size={15} className="text-slate-400" />
             <span className="font-bold text-[#005AAA]">Sustainability</span>
           </div>
-          
+
           <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.98] tracking-tight text-[#005AAA] md:text-7xl">
             Sustainable Today
             <span className="block text-[#35B24A]">Better Tomorrow</span>
@@ -492,7 +492,6 @@ function MBORHighlight() {
     <section id="achievements" className="esg-section-gradient px-6 py-16 lg:px-8">
       <div className="relative z-10 mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-white/92 shadow-[0_22px_70px_rgba(0,90,170,.10)] ring-1 ring-slate-200/70 lg:grid-cols-[0.82fr_1.18fr]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="p-7 md:p-9">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#005AAA]">Proud Achievement</p>
           <h2 className="mt-4 text-3xl font-black uppercase leading-tight text-[#052B4F] md:text-4xl">
             Malaysia Book of Records
           </h2>

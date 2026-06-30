@@ -19,7 +19,6 @@ import {
 } from "lucide-react";
 
 import damHeroImage from "@/assets/jetama-dam-hero.jpg";
-import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
 import bookRecordImage from "@/assets/3274066.jpg";
 
 const fadeUp = {
@@ -235,6 +234,53 @@ function PageStyles() {
         50% { transform: translate3d(14px,-12px,0) rotate(1.5deg); }
       }
 
+
+
+      @keyframes softBeam {
+        0%, 100% { transform: translateX(-10%) rotate(-8deg); opacity: .14; }
+        50% { transform: translateX(14%) rotate(-8deg); opacity: .28; }
+      }
+
+      .soft-beam { animation: softBeam 11s ease-in-out infinite; }
+
+      .esg-section-gradient {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ffffff 0%, #eef8ff 46%, #f8fff6 100%);
+      }
+
+      .esg-section-gradient::before {
+        content: "";
+        position: absolute;
+        left: -160px;
+        top: 34px;
+        width: 360px;
+        height: 360px;
+        border-radius: 70px;
+        border: 1px solid rgba(0,90,170,.10);
+        background: rgba(0,90,170,.045);
+        transform: rotate(45deg);
+        animation: softFloat 13s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      .esg-section-gradient::after {
+        content: "";
+        position: absolute;
+        right: -150px;
+        bottom: 28px;
+        width: 380px;
+        height: 380px;
+        border-radius: 76px;
+        border: 1px solid rgba(53,178,74,.14);
+        background: rgba(53,178,74,.05);
+        transform: rotate(12deg);
+        animation: softFloat 15s ease-in-out infinite reverse;
+        pointer-events: none;
+      }
+
+      .esg-section-inner { position: relative; z-index: 2; }
+
       @keyframes shineSweep {
         0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; }
         28% { opacity: .45; }
@@ -269,15 +315,19 @@ function PageStyles() {
 
 function HeroSection() {
   return (
-    <section className="relative isolate min-h-[720px] overflow-hidden bg-[#052B4F] pt-32 text-white">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(115deg,#052B4F_0%,#005AAA_44%,#0f7f82_100%)]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_24%,rgba(53,178,74,.34),transparent_28%),radial-gradient(circle_at_78%_22%,rgba(246,166,35,.22),transparent_25%),radial-gradient(circle_at_50%_88%,rgba(255,255,255,.13),transparent_35%)]" />
-      <div className="soft-beam absolute left-[-18%] top-[12%] -z-10 h-[420px] w-[62%] bg-[linear-gradient(105deg,transparent,rgba(255,255,255,.28),transparent)] blur-sm" />
-      <div className="soft-float absolute left-[-160px] top-20 -z-10 h-[420px] w-[420px] rotate-45 rounded-[72px] border border-white/10 bg-white/[.045] blur-sm" />
-      <div className="soft-float absolute right-[-180px] bottom-10 -z-10 h-[440px] w-[440px] rotate-12 rounded-[82px] border border-white/10 bg-[#35B24A]/10 blur-sm [animation-delay:1.5s]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[#f7fbff] via-[#f7fbff]/55 to-transparent" />
+    <section className="relative isolate overflow-hidden pt-36">
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#ffffff_0%,#eef8ff_46%,#f8fff6_100%)]" />
+      <img
+        src={damHeroImage}
+        alt="Sustainable water and energy for Sabah"
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.11]"
+      />
+      <div className="soft-beam absolute left-[-20%] top-[8%] -z-10 h-[360px] w-[60%] bg-[linear-gradient(105deg,transparent,rgba(255,255,255,.9),transparent)] blur-sm" />
+      <div className="esg-soft-float absolute left-[-180px] top-8 -z-10 h-[420px] w-[420px] rotate-45 rounded-[72px] border border-[#005AAA]/10 bg-[#005AAA]/5 blur-sm" />
+      <div className="esg-soft-float absolute right-[-160px] top-32 -z-10 h-[420px] w-[420px] rotate-12 rounded-[72px] border border-[#35B24A]/15 bg-[#35B24A]/5 [animation-delay:1.5s]" />
+      <div className="absolute right-[18%] top-24 -z-10 h-32 w-72 rotate-[-10deg] bg-[#F6A623]/10 blur-3xl" />
 
-      <div className="mx-auto flex min-h-[620px] max-w-7xl items-center px-6 pb-24 pt-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -285,18 +335,24 @@ function HeroSection() {
           transition={{ duration: 0.65 }}
           className="max-w-5xl"
         >
-          <div className="mb-7 flex flex-wrap items-center gap-2 text-sm font-semibold text-white/78">
-            <Link to="/" className="transition hover:text-[#F6A623]">Home</Link>
-            <ChevronRight size={15} className="text-white/45" />
-            <span className="font-bold text-white">Sustainability</span>
+          <div className="mb-6 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-700">
+            <Link to="/" className="transition hover:text-[#005AAA]">Home</Link>
+            <ChevronRight size={15} className="text-slate-400" />
+            <span className="font-bold text-[#005AAA]">Sustainability</span>
           </div>
-
-          <h1 className="text-4xl font-black uppercase leading-[0.9] tracking-[-0.06em] text-white drop-shadow-[0_18px_45px_rgba(0,0,0,.20)] md:text-5xl lg:text-5xl">
+          
+          <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.98] tracking-tight text-[#005AAA] md:text-7xl">
             Sustainable Today
-            <span className="block text-[#F6A623]">Better Tomorrow</span>
+            <span className="block text-[#35B24A]">Better Tomorrow</span>
           </h1>
 
-          <p className="mt-8 max-w-3xl text-lg font-medium leading-9 text-white/82 md:text-xl">
+          <div className="mt-6 flex items-center gap-3">
+            <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
+            <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
+            <span className="h-[3px] w-6 rounded-full bg-[#F6A623]" />
+          </div>
+
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600">
             Jetama is committed to Environmental Stewardship, Social Responsibility and Good Governance — shaping sustainable water and energy for Sabah’s future.
           </p>
 
@@ -310,7 +366,7 @@ function HeroSection() {
               return (
                 <span
                   key={item.label}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/12 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-white backdrop-blur-md"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#005AAA]/10 bg-white/80 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#005AAA] shadow-sm backdrop-blur"
                 >
                   <Icon size={17} style={{ color: item.color }} />
                   {item.label}
@@ -326,8 +382,8 @@ function HeroSection() {
 
 function StatsBand() {
   return (
-    <section className="relative z-10 bg-white px-6 py-8 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-4">
+    <section className="esg-section-gradient relative z-10 px-6 py-12 lg:px-8">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-5 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((item, index) => {
           const Icon = item.icon;
           return (
@@ -338,7 +394,7 @@ function StatsBand() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeIn}
               transition={{ duration: 0.5, delay: index * 0.04 }}
-              className="esg-card-shine rounded-[1.45rem] bg-white p-6 shadow-[0_16px_45px_rgba(0,90,170,.10)] ring-1 ring-slate-200/70"
+              className="esg-card-shine rounded-[1.45rem] bg-white/90 p-6 shadow-[0_16px_45px_rgba(0,90,170,.10)] ring-1 ring-slate-200/70"
             >
               <div className="flex items-start gap-4">
                 <Icon size={36} style={{ color: item.color }} />
@@ -376,8 +432,8 @@ function SectionTitle({ title, text }: { title: string; text?: string }) {
 
 function ESGPillars() {
   return (
-    <section id="esg-pillars" className="bg-white px-6 pb-14 pt-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section id="esg-pillars" className="esg-section-gradient px-6 py-20 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <SectionTitle
           title="Our ESG Pillars"
           text="Our sustainability journey is built on three pillars that guide our decisions, strengthen governance and create long-term value for Sabah and its people."
@@ -433,8 +489,8 @@ function ESGPillars() {
 
 function MBORHighlight() {
   return (
-    <section id="achievements" className="bg-white px-6 py-10 lg:px-8">
-      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-[0_22px_70px_rgba(0,90,170,.10)] ring-1 ring-slate-200/70 lg:grid-cols-[0.82fr_1.18fr]">
+    <section id="achievements" className="esg-section-gradient px-6 py-16 lg:px-8">
+      <div className="relative z-10 mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-white/92 shadow-[0_22px_70px_rgba(0,90,170,.10)] ring-1 ring-slate-200/70 lg:grid-cols-[0.82fr_1.18fr]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="p-7 md:p-9">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-[#005AAA]">Proud Achievement</p>
           <h2 className="mt-4 text-3xl font-black uppercase leading-tight text-[#052B4F] md:text-4xl">
@@ -480,9 +536,9 @@ function MBORHighlight() {
 
 function PerformanceTable() {
   return (
-    <section className="bg-white px-6 py-10 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="overflow-hidden rounded-[1.5rem] bg-white shadow-[0_18px_55px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80">
+    <section className="esg-section-gradient px-6 py-16 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="overflow-hidden rounded-[1.5rem] bg-white/92 shadow-[0_18px_55px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80">
           <h2 className="border-b border-slate-200 bg-white px-6 py-5 text-center text-2xl font-black uppercase text-[#052B4F]">
             Environmental Performance 2025 <span className="text-sm text-[#005AAA]">(Baseline Year)</span>
           </h2>
@@ -527,8 +583,8 @@ function PerformanceTable() {
 
 function ActivityCards() {
   return (
-    <section id="activities" className="bg-white px-6 py-10 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section id="activities" className="esg-section-gradient px-6 py-16 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <SectionTitle title="Our ESG Activities" />
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {activityCards.map((card, index) => {
@@ -541,7 +597,7 @@ function ActivityCards() {
                 viewport={{ once: true, amount: 0.18 }}
                 variants={fadeUp}
                 transition={{ duration: 0.55, delay: index * 0.04 }}
-                className="esg-card-shine min-h-[265px] rounded-[1.45rem] bg-white p-5 shadow-[0_16px_45px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80"
+                className="esg-card-shine min-h-[265px] rounded-[1.45rem] bg-white/90 p-5 shadow-[0_16px_45px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80"
               >
                 <div className="mb-5 flex items-start justify-between">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-black text-white" style={{ backgroundColor: card.color }}>{card.pillar}</span>
@@ -565,9 +621,9 @@ function ActivityCards() {
 
 function CertificationsAndSDGs() {
   return (
-    <section className="bg-white px-6 py-10 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-        <div className="rounded-[1.45rem] bg-white p-6 shadow-[0_16px_45px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80">
+    <section className="esg-section-gradient px-6 py-16 lg:px-8">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
+        <div className="rounded-[1.45rem] bg-white/90 p-6 shadow-[0_16px_45px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80">
           <h3 className="text-xl font-black uppercase text-[#052B4F]">Our Certifications</h3>
           <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-5 lg:grid-cols-5">
             {certifications.map(([cert, label], index) => (
@@ -582,7 +638,7 @@ function CertificationsAndSDGs() {
           </div>
         </div>
 
-        <div className="rounded-[1.45rem] bg-white p-6 shadow-[0_16px_45px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80">
+        <div className="rounded-[1.45rem] bg-white/90 p-6 shadow-[0_16px_45px_rgba(0,90,170,.08)] ring-1 ring-slate-200/80">
           <h3 className="text-xl font-black uppercase text-[#052B4F]">Aligned With The Global Goals</h3>
           <div className="mt-5 grid grid-cols-5 gap-3 md:grid-cols-10">
             {sdgs.map((sdg, index) => (
@@ -599,9 +655,9 @@ function CertificationsAndSDGs() {
 
 function FooterCTA() {
   return (
-    <section className="relative overflow-hidden bg-[#005AAA] px-6 py-10 text-white lg:px-8">
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#005AAA_0%,#057f8a_56%,#35B24A_100%)] px-6 py-16 text-white lg:px-8">
       <img src={damHeroImage} alt="Sabah sustainable future" className="absolute inset-0 h-full w-full object-cover opacity-28" />
-      <div className="absolute inset-0 bg-[#005AAA]/82" />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,90,170,.90),rgba(53,178,74,.82))]" />
       <div className="relative mx-auto max-w-5xl text-center">
         <h2 className="text-3xl font-black leading-tight md:text-4xl">Building a Sustainable Future for Sabah</h2>
         <p className="mt-3 text-lg text-white/82">Together, we redefine water and energy for generations to come.</p>
@@ -636,7 +692,7 @@ export default function Sustainability() {
   }, [location.pathname, location.hash]);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#052B4F] selection:bg-[#F6A623] selection:text-[#052B4F]">
+    <main className="min-h-screen overflow-hidden bg-[#f7fbff] text-[#052B4F] selection:bg-[#F6A623] selection:text-[#052B4F]">
       <PageStyles />
       <HeroSection />
       <StatsBand />

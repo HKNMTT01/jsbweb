@@ -69,10 +69,11 @@ export default function SplashScreen() {
           />
         </div>
 
-        <p className="relative z-10 mt-7 text-[15px] font-black uppercase tracking-[0.35em] text-[#35B24A]">
-          Redefining<span className="text-[#005AAA]">Water &</span>{" "}
+        <div className="relative z-10 mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] font-black uppercase tracking-[0.35em]">
+          <span className="text-[#35B24A]">Redefining</span>
+          <span className="text-[#005AAA]">Water &</span>
           <span className="text-[#F6A623]">Energy</span>
-        </p>
+        </div>
 
         <div className="relative z-10 mt-5 h-[3px] w-44 rounded-full bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
 

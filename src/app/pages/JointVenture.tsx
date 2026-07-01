@@ -127,9 +127,6 @@ export default function JointVenture() {
                   <div className="flex h-36 items-center justify-center rounded-[24px] bg-[#f8fbff] p-5">
                     <img src={item.logo} alt={item.title} className="max-h-24 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,44,85,0.16)] transition group-hover:scale-105" />
                   </div>
-                  <div className="mx-auto mt-7 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#005AAA]/10 text-[#005AAA]">
-                    <Icon size={24} />
-                  </div>
                   <h3 className="mt-5 text-xl font-black leading-tight text-[#052b4f]">{item.title}</h3>
                   <p className="mt-4 min-h-[84px] text-sm leading-7 text-slate-600">{item.text}</p>
                 </Link>

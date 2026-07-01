@@ -292,7 +292,7 @@ export default function Careers() {
               </div>
             </div>
 
-            {submitted && <div className="mx-7 mt-7 rounded-2xl bg-[#ecfbef] px-6 py-4 font-bold text-[#168A46] sm:mx-10">Application submitted. Admin can view it in the dashboard.</div>}
+            {submitted && <div className="mx-7 mt-7 rounded-2xl bg-[#ecfbef] px-6 py-4 font-bold text-[#168A46] sm:mx-10">Application submitted.</div>}
 
             <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
               <div className="p-7 sm:p-10">

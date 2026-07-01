@@ -114,7 +114,6 @@ export default function JointVenture() {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Joint Venture Companies</p>
             <h2 className="mt-4 text-4xl font-black uppercase text-[#005AAA] md:text-5xl">Explore Our Strategic Partnerships</h2>
-            <p className="mt-5 leading-8 text-slate-600">A clean overview of JETAMA's joint venture companies, designed with the same corporate sustainability direction.</p>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">

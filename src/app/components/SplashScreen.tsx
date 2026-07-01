@@ -65,7 +65,10 @@ export default function SplashScreen() {
             decoding="sync"
             loading="eager"
             fetchPriority="high"
-            className="relative z-10 w-[540px] max-w-[88vw] object-contain opacity-100 drop-shadow-[0_24px_55px_rgba(0,90,170,.35)]"
+            className="relative z-10 w-[540px] max-w-[88vw] object-contain
+              animate-[logoAppear_1.2s_ease-out_forwards]
+              opacity-0
+              drop-shadow-[0_24px_55px_rgba(0,90,170,.35)]"
           />
         </div>
 
@@ -90,6 +93,24 @@ export default function SplashScreen() {
         @keyframes loading {
           0% { transform: translateX(-120%); }
           100% { transform: translateX(240%); }
+        }
+        @keyframes logoAppear {
+          0% {
+            opacity: 0;
+            transform: scale(.75) translateY(18px);
+            filter: blur(10px);
+          }
+
+          40% {
+            opacity: .45;
+            transform: scale(.9) translateY(8px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+          }
         }
       `}</style>
     </div>

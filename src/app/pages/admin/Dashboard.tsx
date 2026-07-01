@@ -51,7 +51,6 @@ export default function Dashboard() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.25em] text-[#00a884]">Website control centre</p>
           <h1 className="mt-2 text-4xl font-black">Dashboard</h1>
-          <p className="mt-2 text-slate-500">Manage real public-page data for News, Gallery, Careers, Applications and Contact inquiries.</p>
         </div>
         <a href="/" target="_blank" rel="noreferrer" className="rounded-2xl bg-[#073e63] px-5 py-3 font-black text-white shadow-lg">Open Website</a>
       </div>

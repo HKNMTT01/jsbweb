@@ -226,7 +226,7 @@ function OfficeCard({ group, index }: { group: ContactGroup; index: number }) {
             </div>
 
             <div className="min-w-0">
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Current Vacancies</p>
+              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Office Location</p>
               <h4 className="mt-1.5 break-words text-lg font-black leading-tight text-[#005AAA]">{group.groupTitle}</h4>
             </div>
           </div>

@@ -263,7 +263,6 @@ export default function Careers() {
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Current Vacancies</p>
-              <h2 className="mt-3 text-4xl font-black tracking-tight text-[#005AAA] md:text-5xl">Join Our Team</h2>
             </div>
           </div>
 

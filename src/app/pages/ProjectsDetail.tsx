@@ -533,12 +533,6 @@ function ProjectTimeline({
           <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />
           <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
         </div>
-
-        <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600">
-          A structured project journey presented directly after the header, with
-          clean motion, balanced imagery and readable corporate timeline
-          details.
-        </p>
       </div>
 
       <TimelineWrapper>

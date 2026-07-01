@@ -301,9 +301,6 @@ export default function Contact() {
               <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Corporate Directory</p>
               <h2 className="mt-3 text-4xl font-black tracking-tight text-[#005AAA] md:text-5xl">Office Locations</h2>
             </div>
-            <p className="max-w-xl text-sm font-semibold leading-7 text-slate-500">
-              Jetama Group contact points are arranged clearly in three office cards for quick reference.
-            </p>
           </div>
 
           <div className="grid items-stretch gap-6 lg:grid-cols-3">
@@ -317,7 +314,7 @@ export default function Contact() {
               <p className="text-sm font-black uppercase tracking-[0.28em] text-[#fbf234]">Send Message</p>
               <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Send Inquiry</h2>
               <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-white/80">
-                Submit your inquiry here. Admin can view new inquiries through the admin dashboard.
+                Submit your inquiry here. Our team will respond to your message as soon as possible. Alternatively, you can reach us directly via email or phone.
               </p>
 
               <div className="mt-8 rounded-[28px] bg-white/12 p-6 backdrop-blur">

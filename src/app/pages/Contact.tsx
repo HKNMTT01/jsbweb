@@ -226,7 +226,7 @@ function OfficeCard({ group, index }: { group: ContactGroup; index: number }) {
             </div>
 
             <div className="min-w-0">
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Office Location</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#35B24A]">Office Location</p>
               <h4 className="mt-1.5 break-words text-lg font-black leading-tight text-[#005AAA]">{group.groupTitle}</h4>
             </div>
           </div>
@@ -295,6 +295,9 @@ export default function Contact() {
         <div className="absolute left-[-10%] top-20 -z-10 h-72 w-72 rounded-full bg-[#005AAA]/5 blur-3xl" />
         <div className="absolute right-[-8%] top-80 -z-10 h-80 w-80 rounded-full bg-[#35B24A]/7 blur-3xl" />
 
+        <div className="mx-auto max-w-[90rem] px-6 lg:px-8">
+          <div className="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          </div>
 
           <div className="grid items-stretch gap-6 lg:grid-cols-3">
             {contactGroups.map((group, index) => (

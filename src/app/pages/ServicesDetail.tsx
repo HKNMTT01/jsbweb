@@ -147,58 +147,6 @@ const waterPlants: WaterPlant[] = [
   },
 ];
 
-function SectionHero({ page }: { page: ServicePage }) {
-  return (
-    <section className="relative overflow-hidden bg-white pt-28 lg:pt-32">
-      <div className="absolute left-0 top-0 z-10 h-8 w-full bg-[#005AAA]" />
-
-      <div className="relative h-[430px] overflow-hidden sm:h-[450px] lg:h-[470px]">
-        <img
-          src={heroImage}
-          alt={page.title}
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/10 to-black/10" />
-        <div className="absolute -left-24 top-0 h-full w-[55%] -skew-x-12 bg-white/92 shadow-[40px_0_90px_rgba(255,255,255,0.75)]" />
-        <div className="absolute left-0 top-20 h-56 w-56 rounded-full bg-[#41B650]/15 blur-3xl" />
-        <div className="absolute left-48 bottom-10 h-64 w-64 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-white via-white/70 to-transparent" />
-
-        <div className="relative mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl -translate-y-2">
-            <div className="mb-5 flex items-center gap-2 text-sm font-semibold text-slate-700">
-              <Link to="/" className="hover:text-[#005AAA]">
-                Home
-              </Link>
-              <ChevronRight size={15} />
-              <Link to="/services" className="hover:text-[#005AAA]">
-                Services
-              </Link>
-              <ChevronRight size={15} />
-              <span className="font-bold text-[#005AAA]">{page.title}</span>
-            </div>
-
-            <p className="mb-4 inline-flex rounded-full bg-[#eaf8ef] px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-[#087629]">
-              {page.eyebrow}
-            </p>
-
-            <h1 className="font-serif text-4xl font-normal leading-tight text-[#064C82] sm:text-5xl lg:text-6xl">
-              {page.title}
-            </h1>
-
-            <div className="mt-5 h-1 w-24 rounded-full bg-[#41B650]" />
-
-            <p className="mt-5 max-w-xl text-base font-medium leading-8 text-slate-700">
-              {page.subtitle}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function DetailBreadcrumb({ page }: { page: ServicePage }) {
   return (
     <div className="mb-8 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-600">
@@ -252,55 +200,6 @@ function Sidebar() {
     </aside>
   );
 }
-
-function OceanWaveDivider() {
-  return (
-    <div className="pointer-events-none relative -mt-8 h-16 overflow-hidden bg-transparent opacity-40">
-      <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-transparent via-white/80 to-white" />
-      <div className="absolute left-[-5%] top-4 h-10 w-[110%] rounded-[50%] bg-white blur-2xl" />
-      <div className="absolute left-[-10%] top-8 h-12 w-[120%] rounded-[50%] bg-white/95 blur-xl" />
-
-      <svg
-        className="absolute bottom-0 left-0 h-28 w-full"
-        viewBox="0 0 1440 260"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,45 C180,10 320,90 520,55 C720,20 900,95 1100,45 C1280,10 1360,25 1440,20 L1440,260 L0,260 Z"
-          fill="rgba(255,255,255,1)"
-        />
-        <path
-          d="M0,70 C220,30 420,105 620,65 C820,30 1020,100 1220,60 C1320,40 1390,48 1440,42 L1440,260 L0,260 Z"
-          fill="rgba(248,255,250,.98)"
-        />
-        <path
-          d="M0,105 C220,65 420,130 650,95 C870,60 1060,130 1260,95 C1360,78 1410,85 1440,82 L1440,260 L0,260 Z"
-          fill="rgba(103,214,111,.50)"
-        />
-        <path
-          d="M0,130 C240,90 460,155 690,120 C910,90 1120,155 1320,118 C1390,105 1420,108 1440,105 L1440,260 L0,260 Z"
-          fill="rgba(65,182,80,.72)"
-        />
-        <path
-          d="M0,160 C250,115 500,175 740,145 C950,120 1160,175 1360,145 C1400,140 1425,138 1440,136 L1440,260 L0,260 Z"
-          fill="rgba(0,84,166,.80)"
-        />
-        <path
-          d="M0,190 C260,140 530,205 770,175 C990,145 1190,205 1380,175 C1410,170 1430,168 1440,166 L1440,260 L0,260 Z"
-          fill="rgba(0,70,145,.90)"
-        />
-        <path
-          d="M0,215 C300,170 560,225 820,200 C1080,175 1260,220 1440,195 L1440,260 L0,260 Z"
-          fill="rgba(0,59,122,.96)"
-        />
-      </svg>
-
-      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white via-white/45 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-r from-[#41B650]/20 via-white/50 to-[#0054A6]/20 blur-xl" />
-    </div>
-  );
-}
-
 
 function SoftNumber({ no }: { no: string }) {
   return (
@@ -407,7 +306,6 @@ function OverviewContent() {
 
 function FacilitiesContent() {
   const [openPlant, setOpenPlant] = useState<string | null>(null);
-  const [openFacility, setOpenFacility] = useState<string | null>(null);
   const [openEnergy, setOpenEnergy] = useState<string | null>(null);
 
   const damComponents = [
@@ -417,42 +315,9 @@ function FacilitiesContent() {
     "Intake Tower",
   ];
 
-  const supportFacilities = [
-    {
-      title: "Reservoirs",
-      text: "Nine 10ML concrete reservoirs supporting treated water storage and distribution.",
-      details: [
-        "Supports balancing storage for treated water supply.",
-        "Strengthens water distribution continuity across demand areas.",
-        "Provides operational reserve for daily network requirements.",
-      ],
-      icon: ShieldCheck,
-    },
-    {
-      title: "Pipelines",
-      text: "70 kilometers of pipeline connecting water treatment, storage and supply infrastructure.",
-      details: [
-        "Connects key water treatment and reservoir infrastructure.",
-        "Supports transmission of treated water to service areas.",
-        "Forms part of the main concession delivery network.",
-      ],
-      icon: Droplets,
-    },
-    {
-      title: "Existing Facilities",
-      text: "Existing treatment plants and facilities taken over from Jabatan Air Negeri Sabah.",
-      details: [
-        "Includes facilities rehabilitated and refurbished under JETAMA’s scope.",
-        "Supports continuity of existing water supply operations.",
-        "Strengthens operational coverage for the concession area.",
-      ],
-      icon: Factory,
-    },
-  ];
-
   const energyFacilities = [
     {
-      title: "Renewable Energy Development",
+      title: "Energy Development",
       label: "Energy Subsidiary",
       icon: Zap,
       text: "Renewable energy aim supporting JETAMA's move into sustainable energy infrastructure and low-carbon development.",
@@ -659,37 +524,8 @@ function FacilitiesContent() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
-          <div className="relative min-h-[430px] overflow-hidden rounded-[2.4rem] bg-[#052b4f] shadow-[0_28px_90px_rgba(0,44,85,0.18)]">
-            <img
-              src={heroImage}
-              alt="Energy infrastructure"
-              className="absolute inset-0 h-full w-full object-cover opacity-45"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(5,43,79,.96),rgba(0,90,170,.70),rgba(245,166,35,.32))]" />
-            <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#F5A623]/35 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[#41B650]/28 blur-3xl" />
-
-            <div className="relative flex min-h-[430px] flex-col justify-end p-8 text-white lg:p-10">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5A623] text-[#052b4f] shadow-[0_18px_45px_rgba(245,166,35,0.25)]">
-                <Zap size={34} />
-              </div>
-
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
-                Water & Energy Direction
-              </p>
-              <h3 className="mt-3 font-serif text-4xl font-semibold italic leading-tight">
-                Sustainable Energy Infrastructure
-              </h3>
-              <p className="mt-5 max-w-xl text-sm font-medium leading-7 text-white/82">
-                Renewable energy facilities complement JETAMA’s water infrastructure by
-                creating a broader platform for resilient, future-ready and low-carbon growth.
-              </p>
-            </div>
-          </div>
-
           <div className="grid gap-6 sm:grid-cols-2">
-            {energyFacilities.map((item, index) => {
+            {energyFacilities.map((item) => {
               const Icon = item.icon;
               const isOpen = openEnergy === item.title;
 
@@ -750,7 +586,6 @@ function FacilitiesContent() {
               );
             })}
           </div>
-        </div>
       </section>
     </article>
   );
@@ -1169,7 +1004,7 @@ export default function ServicesDetail() {
           <Sidebar />
 
           <main className="clean-corporate-page min-w-0 w-full">
-                  <CleanCorporateTheme />
+            <CleanCorporateTheme />
             <CurrentContent slug={slug} />
           </main>
         </div>

@@ -72,6 +72,12 @@ function blockValue(blocks: CmsBlock[], id: string, fallback: string) {
   return blocks.find((block) => block.id === id && block.is_published !== false)?.value || fallback;
 }
 
+function previewText(text?: string, limit = 155) {
+  const clean = (text || "").replace(/\s+/g, " ").trim();
+  if (clean.length <= limit) return clean;
+  return `${clean.slice(0, limit).trim()}...`;
+}
+
 function Hero({ activeJobs }: { activeJobs: Job[] }) {
   const fullTime = activeJobs.filter((job) => job.type !== "Internship").length;
   const internship = activeJobs.filter((job) => job.type === "Internship").length;
@@ -128,29 +134,43 @@ function JobCard({ job, index, onSelect }: { job: Job; index: number; onSelect: 
   return (
     <button
       onClick={() => onSelect(job)}
-      className="career-shine group relative overflow-hidden rounded-[34px] bg-white/90 p-7 text-left shadow-[0_22px_70px_rgba(0,90,170,0.10)] backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:bg-white hover:shadow-[0_30px_95px_rgba(0,90,170,0.16)]"
+      className="career-shine group relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[30px] border border-white/80 bg-white/92 p-6 text-left shadow-[0_18px_55px_rgba(0,90,170,0.09)] backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:bg-white hover:shadow-[0_28px_80px_rgba(0,90,170,0.15)]"
       style={{ animation: "careerFadeUp .75s ease both", animationDelay: `${index * 90}ms` }}
     >
       <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F5A623]" />
-      <div className="absolute -right-14 -top-14 h-40 w-40 rounded-full bg-[#005AAA]/8 blur-2xl transition group-hover:scale-125" />
+      <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#005AAA]/8 blur-2xl transition group-hover:scale-125" />
+      <div className="absolute -bottom-16 -left-16 h-36 w-36 rounded-full bg-[#35B24A]/7 blur-2xl" />
 
       <div className="relative flex items-start justify-between gap-4">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA] shadow-sm">
-          {isInternship ? <GraduationCap size={31} /> : <Briefcase size={31} />}
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#eef8ff] text-[#005AAA] shadow-sm">
+          {isInternship ? <GraduationCap size={28} /> : <Briefcase size={28} />}
         </div>
-        <span className="rounded-full bg-[#ecfbef] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#12813b]">
+        <span className="rounded-full bg-[#ecfbef] px-4 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-[#12813b]">
           {job.type || "Open"}
         </span>
       </div>
 
-      <h3 className="relative mt-7 text-2xl font-black leading-tight text-[#062f4e]">{job.title}</h3>
-      <div className="relative mt-4 space-y-2 text-sm font-bold text-slate-500">
-        <p className="flex items-center gap-2"><Building2 size={15} className="text-[#35B24A]" />{job.department || "General"}</p>
-        <p className="flex items-center gap-2"><MapPin size={15} className="text-[#35B24A]" />{job.location || "Sabah"}</p>
+      <h3 className="relative mt-6 text-[1.35rem] font-black leading-tight text-[#062f4e]">{job.title}</h3>
+
+      <div className="relative mt-4 space-y-2 text-xs font-bold text-slate-500">
+        <p className="flex items-start gap-2">
+          <Building2 size={14} className="mt-0.5 shrink-0 text-[#35B24A]" />
+          <span className="line-clamp-1">{job.department || "General"}</span>
+        </p>
+        <p className="flex items-start gap-2">
+          <MapPin size={14} className="mt-0.5 shrink-0 text-[#35B24A]" />
+          <span className="line-clamp-2">{job.location || "Sabah"}</span>
+        </p>
       </div>
-      <p className="relative mt-5 min-h-[118px] leading-7 text-slate-600">{job.description}</p>
-      <div className="relative mt-7 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] transition group-hover:bg-[#005AAA] group-hover:text-white">
-        View Details <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+
+      <p className="relative mt-5 text-sm leading-7 text-slate-600">
+        {previewText(job.description)}
+      </p>
+
+      <div className="relative mt-auto pt-7">
+        <span className="inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#005AAA] transition group-hover:bg-[#005AAA] group-hover:text-white">
+          View Details <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+        </span>
       </div>
     </button>
   );
@@ -250,7 +270,7 @@ export default function Careers() {
           {loading ? (
             <div className="rounded-[30px] bg-white/80 p-10 text-center font-black text-[#005AAA] shadow-sm">Loading careers...</div>
           ) : jobs.length ? (
-            <div className="grid gap-7 lg:grid-cols-3">
+            <div className="grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3">
               {jobs.map((job, index) => <JobCard key={job.id || job.title} job={job} index={index} onSelect={setSelectedJob} />)}
             </div>
           ) : (
@@ -277,14 +297,14 @@ export default function Careers() {
 
             <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
               <div className="p-7 sm:p-10">
-                <p className="text-base leading-8 text-slate-700">{selectedJob.description}</p>
+                <p className="whitespace-pre-line text-base leading-8 text-slate-700">{selectedJob.description}</p>
                 <div className="mt-8">
                   <h3 className="text-xl font-black text-[#005AAA]">Key Responsibilities</h3>
-                  <div className="mt-4 space-y-3">{selectedJob.responsibilities.map((item) => <div key={item} className="flex gap-3"><CheckCircle2 className="mt-1 shrink-0 text-[#35B24A]" size={18} /><p className="text-sm leading-7 text-slate-700">{item}</p></div>)}</div>
+                  <div className="mt-4 space-y-3">{(selectedJob.responsibilities || []).map((item) => <div key={item} className="flex gap-3"><CheckCircle2 className="mt-1 shrink-0 text-[#35B24A]" size={18} /><p className="text-sm leading-7 text-slate-700">{item}</p></div>)}</div>
                 </div>
                 <div className="mt-8">
                   <h3 className="text-xl font-black text-[#005AAA]">Requirements</h3>
-                  <div className="mt-4 space-y-3">{selectedJob.requirements.map((item) => <div key={item} className="flex gap-3"><Sparkles className="mt-1 shrink-0 text-[#F5A623]" size={18} /><p className="text-sm leading-7 text-slate-700">{item}</p></div>)}</div>
+                  <div className="mt-4 space-y-3">{(selectedJob.requirements || []).map((item) => <div key={item} className="flex gap-3"><Sparkles className="mt-1 shrink-0 text-[#F5A623]" size={18} /><p className="text-sm leading-7 text-slate-700">{item}</p></div>)}</div>
                 </div>
               </div>
 

@@ -5,11 +5,13 @@ import { isSupabaseConfigured, supabase } from "../../../lib/supabase";
 const menu = [
   { label: "Dashboard", path: "/admin/dashboard", icon: "✦" },
   { label: "Live Preview", path: "/admin/preview", icon: "◉" },
-  { label: "Content", path: "/admin/content", icon: "✎" },
+  { label: "Page Content", path: "/admin/content", icon: "✎" },
   { label: "Design", path: "/admin/design", icon: "◈" },
   { label: "News & Events", path: "/admin/news", icon: "📰" },
   { label: "Gallery", path: "/admin/gallery", icon: "▧" },
   { label: "Careers", path: "/admin/careers", icon: "↗" },
+  { label: "Applications", path: "/admin/applications", icon: "☑" },
+  { label: "Inquiries", path: "/admin/inquiries", icon: "✉" },
 ];
 
 export default function AdminLayout() {
@@ -21,7 +23,7 @@ export default function AdminLayout() {
   useEffect(() => {
     async function checkAdminSession() {
       if (!isSupabaseConfigured) {
-        setRealtime("Local admin mode");
+        setRealtime("Local mode");
         setChecking(false);
         return;
       }
@@ -67,7 +69,7 @@ export default function AdminLayout() {
         <div className="relative">
           <p className="text-xs font-black uppercase tracking-[0.25em] text-[#F5A623]">Website CMS</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight">JETAMA Admin</h1>
-          <p className="mt-1 text-sm text-white/75">Manage content, news, gallery, careers and design.</p>
+          <p className="mt-1 text-sm text-white/75">Manage pages, news, gallery, careers and website design.</p>
           <div className="mt-5 rounded-2xl border border-white/15 bg-white/10 p-3 text-xs font-bold text-white/85 backdrop-blur">
             <span className="mr-2 inline-block h-2 w-2 rounded-full bg-emerald-300" />{realtime}
           </div>

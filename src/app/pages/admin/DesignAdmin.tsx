@@ -1,12 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  clearDraftSiteSettings,
-  defaultSiteSettings,
-  loadSiteSettings,
-  saveDraftSiteSettings,
-  saveSiteSettings,
-  SiteSettings,
-} from "../../../lib/adminCms";
+import { clearDraftSiteSettings, defaultSiteSettings, loadSiteSettings, saveDraftSiteSettings, saveSiteSettings, SiteSettings } from "../../../lib/adminCms";
 
 const presets: Array<SiteSettings & { name: string }> = [
   { name: "JETAMA Corporate", ...defaultSiteSettings },
@@ -30,6 +23,7 @@ const fields: Array<[keyof SiteSettings, string, string, string]> = [
 export default function DesignAdmin() {
   const [settings, setSettings] = useState<SiteSettings>(defaultSiteSettings);
   const [status, setStatus] = useState("");
+  const [error, setError] = useState("");
   const [path, setPath] = useState("/");
 
   useEffect(() => { loadSiteSettings({ draft: true }).then(setSettings); }, []);
@@ -38,10 +32,15 @@ export default function DesignAdmin() {
   const previewSrc = useMemo(() => `${path}?cmsPreview=1&design=${Date.now()}`, [path, settings]);
 
   async function publish() {
-    await saveSiteSettings(settings);
-    clearDraftSiteSettings();
-    setStatus("Design settings published to website.");
-    setTimeout(() => setStatus(""), 2500);
+    setError("");
+    try {
+      await saveSiteSettings(settings);
+      clearDraftSiteSettings();
+      setStatus("Design settings published to website.");
+      setTimeout(() => setStatus(""), 2500);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not publish design settings");
+    }
   }
 
   return (
@@ -50,12 +49,13 @@ export default function DesignAdmin() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.25em] text-[#00a884]">Corporate visual control</p>
           <h1 className="mt-2 text-4xl font-black">Design Editor</h1>
-          <p className="mt-2 max-w-3xl text-slate-500">Adjust global style tokens used by public pages: colours, radius, typography, motion and background mode.</p>
+          <p className="mt-2 max-w-3xl text-slate-500">Adjust global style tokens that public pages can use: colours, radius, typography, motion and background mode.</p>
         </div>
         <button onClick={publish} className="rounded-2xl bg-gradient-to-r from-[#005AAA] to-[#35B24A] px-6 py-3 font-black text-white shadow-lg">Publish Design</button>
       </div>
 
       {status && <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 font-bold text-emerald-700">{status}</div>}
+      {error && <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 p-4 font-bold text-red-600">{error}</div>}
 
       <div className="mt-8 grid gap-6 xl:grid-cols-[1fr_0.9fr]">
         <section className="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-xl backdrop-blur">
@@ -105,7 +105,7 @@ export default function DesignAdmin() {
           <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
             <h2 className="font-black">Full webpage preview</h2>
             <div className="flex flex-wrap gap-2">
-              {[["/", "Home"], ["/about", "About"], ["/services", "Services"], ["/projects", "Projects"], ["/news", "News"]].map(([p, l]) => (
+              {[["/", "Home"], ["/about", "About"], ["/services", "Services"], ["/projects", "Projects"], ["/news", "News"], ["/careers", "Careers"]].map(([p, l]) => (
                 <button key={p} onClick={() => setPath(p)} className={`rounded-xl px-3 py-2 text-sm font-black ${path === p ? "bg-[#073e63] text-white" : "bg-slate-100"}`}>{l}</button>
               ))}
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { deleteRow, listRows, NewsRecord, upsertRow } from "../../../lib/adminCms";
+import { deleteRow, getMonthName, listRows, NewsRecord, uploadCmsFile, upsertRow } from "../../../lib/adminCms";
 
 const emptyNews: NewsRecord = {
   title: "",
@@ -13,13 +13,16 @@ const emptyNews: NewsRecord = {
   source_url: "",
   is_featured: false,
   is_published: true,
+  sort_order: 10,
 };
 
 export default function NewsAdmin() {
   const [items, setItems] = useState<NewsRecord[]>([]);
   const [form, setForm] = useState<NewsRecord>(emptyNews);
   const [status, setStatus] = useState("");
+  const [error, setError] = useState("");
   const [filter, setFilter] = useState("all");
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => { loadNews(); }, []);
 
@@ -27,13 +30,46 @@ export default function NewsAdmin() {
     setItems(await listRows<NewsRecord>("news", []));
   }
 
+  function setFromDate(value: string) {
+    const date = value ? new Date(value) : null;
+    if (!date || Number.isNaN(date.getTime())) return;
+    setForm({
+      ...form,
+      date: date.toLocaleDateString("en-GB", { weekday: "long", day: "2-digit", month: "long", year: "numeric" }),
+      day: String(date.getDate()).padStart(2, "0"),
+      month: getMonthName(date),
+      year: date.getFullYear(),
+    });
+  }
+
+  async function handleUpload(file?: File) {
+    if (!file) return;
+    setUploading(true);
+    setError("");
+    try {
+      const url = await uploadCmsFile(file, "news");
+      setForm((current) => ({ ...current, image_url: url }));
+      setStatus("Image uploaded and attached to this post.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setUploading(false);
+      setTimeout(() => setStatus(""), 2400);
+    }
+  }
+
   async function saveNews(e: React.FormEvent) {
     e.preventDefault();
-    await upsertRow("news", form);
-    setForm(emptyNews);
-    setStatus("News/event post saved and connected to website data.");
-    setTimeout(() => setStatus(""), 2500);
-    loadNews();
+    setError("");
+    try {
+      await upsertRow("news", form);
+      setForm(emptyNews);
+      setStatus("News/event saved. Public News page will read this data automatically.");
+      setTimeout(() => setStatus(""), 2800);
+      loadNews();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not save news item");
+    }
   }
 
   async function removeNews(id?: number) {
@@ -42,20 +78,26 @@ export default function NewsAdmin() {
     loadNews();
   }
 
+  function editNews(item: NewsRecord) {
+    setForm(item);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   const visibleItems = useMemo(() => items.filter((item) => filter === "all" || item.type === filter), [items, filter]);
 
   return (
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#00a884]">News, events and announcements</p>
+          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#00a884]">Real website data</p>
           <h1 className="mt-2 text-4xl font-black">News & Events Manager</h1>
-          <p className="mt-2 text-slate-500">Create posts for the public News page. Use Gallery type for event image posts.</p>
+          <p className="mt-2 text-slate-500">Create posts for the public News page. Published records appear automatically on /news.</p>
         </div>
         <a href="/news?cmsPreview=1" target="_blank" rel="noreferrer" className="rounded-2xl bg-[#073e63] px-5 py-3 font-black text-white shadow-lg">Preview News Page</a>
       </div>
 
       {status && <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 font-bold text-emerald-700">{status}</div>}
+      {error && <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 p-4 font-bold text-red-600">{error}</div>}
 
       <form onSubmit={saveNews} className="mt-8 rounded-[2rem] border border-white/70 bg-white/90 p-6 shadow-xl backdrop-blur">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
@@ -65,18 +107,32 @@ export default function NewsAdmin() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <input className="rounded-xl border px-4 py-3" placeholder="Post title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
-          <input className="rounded-xl border px-4 py-3" placeholder="Image URL / uploaded image path" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
-          <input className="rounded-xl border px-4 py-3" placeholder="Display date e.g. Monday, 23 September 2024" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
-          <input className="rounded-xl border px-4 py-3" placeholder="Source URL / read more link" value={form.source_url || ""} onChange={(e) => setForm({ ...form, source_url: e.target.value })} />
-          <input className="rounded-xl border px-4 py-3" placeholder="Day e.g. 23" value={form.day} onChange={(e) => setForm({ ...form, day: e.target.value })} />
-          <input className="rounded-xl border px-4 py-3" placeholder="Month e.g. SEP" value={form.month} onChange={(e) => setForm({ ...form, month: e.target.value.toUpperCase() })} />
-          <input type="number" className="rounded-xl border px-4 py-3" placeholder="Year" value={form.year} onChange={(e) => setForm({ ...form, year: Number(e.target.value) })} />
           <select className="rounded-xl border px-4 py-3" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value as NewsRecord["type"] })}>
             <option value="press-releases">News</option>
-            <option value="gallery">Gallery/Event</option>
+            <option value="gallery">Gallery / Event</option>
             <option value="videos">Video</option>
             <option value="announcement">Announcement</option>
           </select>
+          <input type="date" className="rounded-xl border px-4 py-3" onChange={(e) => setFromDate(e.target.value)} />
+          <input className="rounded-xl border px-4 py-3" placeholder="Display date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
+          <input className="rounded-xl border px-4 py-3" placeholder="Day e.g. 23" value={form.day} onChange={(e) => setForm({ ...form, day: e.target.value })} />
+          <input className="rounded-xl border px-4 py-3" placeholder="Month e.g. SEP" value={form.month} onChange={(e) => setForm({ ...form, month: e.target.value.toUpperCase() })} />
+          <input type="number" className="rounded-xl border px-4 py-3" placeholder="Year" value={form.year} onChange={(e) => setForm({ ...form, year: Number(e.target.value) })} />
+          <input type="number" className="rounded-xl border px-4 py-3" placeholder="Sort order" value={form.sort_order || 10} onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })} />
+          <input className="rounded-xl border px-4 py-3 md:col-span-2" placeholder="Source URL / Read more link" value={form.source_url || ""} onChange={(e) => setForm({ ...form, source_url: e.target.value })} />
+        </div>
+
+        <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_220px]">
+          <div>
+            <input className="w-full rounded-xl border px-4 py-3" placeholder="Image URL / uploaded image path" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
+            <label className="mt-3 block rounded-xl border border-dashed border-[#005AAA]/25 bg-[#f8fbff] p-4 text-sm font-bold text-slate-600">
+              {uploading ? "Uploading..." : "Upload image from computer"}
+              <input type="file" accept="image/*" className="mt-2 block w-full text-sm" onChange={(e) => handleUpload(e.target.files?.[0])} disabled={uploading} />
+            </label>
+          </div>
+          <div className="overflow-hidden rounded-2xl bg-slate-100">
+            <img src={form.image_url || "https://placehold.co/600x400?text=JETAMA"} alt="Preview" className="h-full min-h-[150px] w-full object-cover" />
+          </div>
         </div>
 
         <textarea className="mt-4 w-full rounded-xl border px-4 py-3" placeholder="Short description" rows={5} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} required />
@@ -116,7 +172,7 @@ export default function NewsAdmin() {
               <p className="mt-2 text-sm font-bold text-[#00a884]">{item.date || item.year}</p>
             </div>
             <div className="flex gap-2 md:flex-col">
-              <button onClick={() => setForm(item)} className="rounded-xl bg-[#005AAA] px-4 py-2 font-bold text-white">Edit</button>
+              <button onClick={() => editNews(item)} className="rounded-xl bg-[#005AAA] px-4 py-2 font-bold text-white">Edit</button>
               <button onClick={() => removeNews(item.id)} className="rounded-xl bg-red-500 px-4 py-2 font-bold text-white">Delete</button>
             </div>
           </article>

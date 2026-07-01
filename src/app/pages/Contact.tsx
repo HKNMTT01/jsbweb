@@ -9,6 +9,7 @@ import {
   Send,
 } from "lucide-react";
 import { useState } from "react";
+import { insertRow, type ContactInquiryRecord } from "../../lib/adminCms";
 import { Link } from "react-router";
 
 import jetamaEnergyLogo from "@/assets/jetama_energy.png";
@@ -309,13 +310,26 @@ export default function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setSubmitted(false);
+    setError("");
 
-    setTimeout(() => {
-      setSubmitted(false);
+    try {
+      await insertRow<ContactInquiryRecord>("contact_inquiries", {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject || "Website Inquiry",
+        message: formData.message,
+        status: "new",
+      });
+
+      setSubmitted(true);
       setFormData({
         name: "",
         email: "",
@@ -323,7 +337,11 @@ export default function Contact() {
         subject: "",
         message: "",
       });
-    }, 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not send inquiry. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (
@@ -399,6 +417,12 @@ export default function Contact() {
               </div>
             )}
 
+            {error && (
+              <div className="mb-6 rounded-2xl bg-red-50 px-6 py-4 font-bold text-red-600 shadow-sm">
+                {error}
+              </div>
+            )}
+
             <form
               onSubmit={handleSubmit}
               className="rounded-[34px] bg-white/92 p-6 shadow-[0_24px_80px_rgba(0,90,170,0.12)] backdrop-blur-xl"
@@ -435,9 +459,10 @@ export default function Contact() {
 
               <button
                 type="submit"
+                disabled={sending}
                 className="mt-5 inline-flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#005AAA] to-[#35B24A] px-8 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-[#005AAA]/20 transition hover:-translate-y-1 hover:shadow-xl"
               >
-                Send Inquiry
+                {sending ? "Sending..." : "Send Inquiry"}
                 <Send size={18} />
               </button>
             </form>

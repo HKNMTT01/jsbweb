@@ -24,7 +24,7 @@ export default function AdminPreview() {
         <div>
           <p className="text-xs font-black uppercase tracking-[0.25em] text-[#00a884]">Actual website preview</p>
           <h1 className="mt-2 text-4xl font-black">Live Website Preview</h1>
-          <p className="mt-2 text-slate-500">Preview the public pages with the latest CMS data before publishing or pushing to Vercel.</p>
+          <p className="mt-2 text-slate-500">Preview public pages with the latest CMS data before publishing.</p>
         </div>
         <a href={`${path}?cmsPreview=1`} target="_blank" rel="noreferrer" className="rounded-2xl bg-[#073e63] px-5 py-3 font-black text-white shadow-lg">Open Preview Tab</a>
       </div>

@@ -25,23 +25,29 @@ import CareersAdmin from "./pages/admin/CareersAdmin";
 import ContentAdmin from "./pages/admin/ContentAdmin";
 import DesignAdmin from "./pages/admin/DesignAdmin";
 import AdminPreview from "./pages/admin/AdminPreview";
+import InquiriesAdmin from "./pages/admin/InquiriesAdmin";
+import ApplicationsAdmin from "./pages/admin/ApplicationsAdmin";
 
 export const router = createBrowserRouter([
   { path: "/admin/login", element: <AdminLogin /> },
   {
-    path: "/admin",
-    element: <AdminLayout />,
-    children: [
-      { index: true, element: <AdminDashboard /> },
-      { path: "dashboard", element: <AdminDashboard /> },
-      { path: "news", element: <NewsAdmin /> },
-      { path: "gallery", element: <GalleryAdmin /> },
-      { path: "careers", element: <CareersAdmin /> },
-      { path: "content", element: <ContentAdmin /> },
-      { path: "design", element: <DesignAdmin /> },
-      { path: "preview", element: <AdminPreview /> },
-    ],
-  },
+  path: "/admin",
+  element: <AdminLayout />,
+  children: [
+    { index: true, element: <Navigate to="/admin/dashboard" replace /> },
+    { path: "dashboard", element: <AdminDashboard /> },
+    { path: "news", element: <NewsAdmin /> },
+    { path: "gallery", element: <GalleryAdmin /> },
+    { path: "careers", element: <CareersAdmin /> },
+
+    { path: "inquiries", element: <InquiriesAdmin /> },
+    { path: "applications", element: <ApplicationsAdmin /> },
+
+    { path: "content", element: <ContentAdmin /> },
+    { path: "design", element: <DesignAdmin /> },
+    { path: "preview", element: <AdminPreview /> },
+  ],
+},
   {
     path: "/",
     element: <Root />,

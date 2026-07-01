@@ -1,4 +1,3 @@
--- Run this in Supabase SQL Editor before deployment testing.
 create table if not exists public.site_content (
   id text primary key,
   page text not null,

@@ -496,7 +496,7 @@ function MBORHighlight() {
             Malaysia Book of Records
           </h2>
           <p className="mt-3 text-base font-black uppercase leading-6 text-[#0B8F4D]">
-            First company to achieve two (2) national records for underwater clean-up
+            First GLC's company to achieve two (2) national records for underwater clean-up
           </p>
           <p className="mt-5 text-sm leading-7 text-slate-600">
             Jetama is honoured to be certified by the Malaysia Book of Records for the most underwater materials collected in one day.

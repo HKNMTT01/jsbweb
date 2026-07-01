@@ -143,7 +143,6 @@ export default function JointVenture() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_52%,#f8fff7_100%)]" />
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.28em] text-[#F6A623]">Corporate Direction</p>
             <h2 className="mt-4 text-4xl font-black uppercase text-[#005AAA] md:text-5xl">Partnerships With Purpose</h2>
             <p className="mt-5 leading-8 text-slate-600">
               Each joint venture supports the Group's wider direction across infrastructure reliability, energy transition and long-term value creation.

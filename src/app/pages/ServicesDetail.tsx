@@ -554,7 +554,7 @@ function FacilitiesContent() {
                         className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#005AAA] transition hover:text-[#F5A623]"
                       >
                         <Eye size={15} />
-                        View Energy Details
+                        View Details
                       </button>
                     </>
                   ) : (

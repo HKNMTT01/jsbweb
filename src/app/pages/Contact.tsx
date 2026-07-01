@@ -144,7 +144,7 @@ function Hero() {
       <div className="absolute bottom-4 left-[24%] -z-10 h-28 w-[520px] rotate-[-8deg] bg-[#F5A623]/[.075] blur-3xl" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#f7fbff] via-white/70 to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-6 pb-14 lg:px-8">
+      <div className="mx-auto max-w-[90rem] px-6 pb-14 lg:px-8">
         <div className="jetama-soft-in">
           <div className="mb-7 flex items-center gap-2 text-sm font-semibold text-slate-600">
             <Link to="/" className="transition hover:text-[#005AAA]">Home</Link>
@@ -298,7 +298,6 @@ export default function Contact() {
         <div className="mx-auto max-w-[90rem] px-6 lg:px-8">
           <div className="mb-9 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Corporate Directory</p>
               <h2 className="mt-3 text-4xl font-black tracking-tight text-[#005AAA] md:text-5xl">Office Locations</h2>
             </div>
           </div>
@@ -310,20 +309,20 @@ export default function Contact() {
           </div>
 
           <div className="mt-14 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div className="rounded-[34px] bg-gradient-to-br from-[#005AAA] via-[#006fba] to-[#35B24A] p-7 text-white shadow-[0_24px_75px_rgba(0,90,170,0.20)]">
+            <div className="rounded-[34px] bg-gradient-to-br from-[#005AAA] via-[#0077bd] to-[#35B24A] p-7 text-white shadow-[0_24px_75px_rgba(0,90,170,0.20)]">
               <p className="text-sm font-black uppercase tracking-[0.28em] text-[#fbf234]">Send Message</p>
               <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Send Inquiry</h2>
-              <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-white/80">
+              <p className="mt-4 max-w-xl text-sm font-semibold leading-7 text-white">
                 Submit your inquiry here. Our team will respond to your message as soon as possible. Alternatively, you can reach us directly via email or phone.
               </p>
 
-              <div className="mt-8 rounded-[28px] bg-white/12 p-6 backdrop-blur">
+              <div className="mt-8 rounded-[28px] border border-white/25 bg-white/20 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,.25)] backdrop-blur">
                 <div className="flex items-start gap-4">
-                  <div className="rounded-2xl bg-white/15 p-4 text-[#F5A623]"><Clock size={24} /></div>
+                  <div className="rounded-2xl bg-white p-4 text-[#F5A623] shadow-lg"><Clock size={24} /></div>
                   <div>
-                    <h3 className="text-lg font-black">Office Hours</h3>
-                    <p className="mt-2 text-sm text-white/80">Monday - Friday: 8:00 AM - 5:00 PM</p>
-                    <p className="text-sm text-white/80">Saturday - Sunday: Closed</p>
+                    <h3 className="text-xl font-black text-white">Office Hours</h3>
+                    <p className="mt-3 text-base font-bold text-white">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    <p className="mt-1 text-base font-bold text-white">Saturday - Sunday: Closed</p>
                   </div>
                 </div>
               </div>

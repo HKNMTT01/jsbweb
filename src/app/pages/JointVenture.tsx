@@ -87,10 +87,10 @@ function Hero({
 
 export default function JointVenture() {
   const jointVentures = [
-    { title: "Jetama Alpine Pipe (Sabah) Sdn. Bhd.", path: "/jointventure/jetama-alpine-pipe", logo: alpineLogo, text: "Pipe supply, production and steel section products for Sabah.", accent: "from-[#102f83] to-[#d5282f]", icon: Zap },
-    { title: "Solar PV Power Sdn. Bhd.", path: "/jointventure/solar-pv-power", logo: solarLogo, text: "Large scale solar photovoltaic development through strategic renewable energy partnership.", accent: "from-[#35B24A] to-[#F5A623]", icon: SunMedium },
-    { title: "Jetama Batu Sapi Solar Sdn. Bhd.", path: "/jointventure/jetama-batu-sapi-solar", logo: jetamaBatuSapiLogo, text: "Large scale solar development at Batu Sapi, Sandakan.", accent: "from-[#102f83] to-[#F5A623]", icon: Zap },
-    { title: "Jetama Babagon Floating Solar Sdn. Bhd.", path: "/jointventure/jetama-babagon-floating-solar", logo: jetamaBabagonLogo, text: "Floating solar PV development at Babagon Dam, Penampang.", accent: "from-[#102f83] to-[#35B24A]", icon: SunMedium },
+    { title: "Jetama Alpine Pipe (Sabah) Sdn. Bhd.", path: "/jointventure/jetama-alpine-pipe", logo: alpineLogo, text: "Pipe supply, production and steel section products for Sabah.", accent: "from-[#102f83] to-[#d5282f]"},
+    { title: "Solar PV Power Sdn. Bhd.", path: "/jointventure/solar-pv-power", logo: solarLogo, text: "Large scale solar photovoltaic development through strategic renewable energy partnership.", accent: "from-[#35B24A] to-[#F5A623]" },
+    { title: "Jetama Batu Sapi Solar Sdn. Bhd.", path: "/jointventure/jetama-batu-sapi-solar", logo: jetamaBatuSapiLogo, text: "Large scale solar development at Batu Sapi, Sandakan.", accent: "from-[#102f83] to-[#F5A623]" },
+    { title: "Jetama Babagon Floating Solar Sdn. Bhd.", path: "/jointventure/jetama-babagon-floating-solar", logo: jetamaBabagonLogo, text: "Floating solar PV development at Babagon Dam, Penampang.", accent: "from-[#102f83] to-[#35B24A]" },
   ];
 
   const focus = [

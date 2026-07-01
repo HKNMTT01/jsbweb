@@ -68,7 +68,7 @@ export default function Dashboard() {
         <section className="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-xl backdrop-blur">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-xl font-black text-[#073e63]">Recent Inquiries</h2>
-            <a href="/admin/inquiries" className="text-sm font-black text-[#005AAA]">View All</a>
+            <a href="/MiraJSB80/inquiries" className="text-sm font-black text-[#005AAA]">View All</a>
           </div>
           <div className="mt-5 space-y-4">
             {inquiries.slice(0, 5).map((item) => (
@@ -85,7 +85,7 @@ export default function Dashboard() {
         <section className="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-xl backdrop-blur">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-xl font-black text-[#073e63]">Recent Applications</h2>
-            <a href="/admin/applications" className="text-sm font-black text-[#005AAA]">View All</a>
+            <a href="/MiraJSB80/applications" className="text-sm font-black text-[#005AAA]">View All</a>
           </div>
           <div className="mt-5 space-y-4">
             {applications.slice(0, 5).map((item) => (

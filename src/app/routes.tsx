@@ -16,25 +16,25 @@ import Careers from "./pages/Careers";
 import News from "./pages/News";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import AdminLogin from "./pages/admin/Login";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminDashboard from "./pages/admin/Dashboard";
-import NewsAdmin from "./pages/admin/NewsAdmin";
-import GalleryAdmin from "./pages/admin/GalleryAdmin";
-import CareersAdmin from "./pages/admin/CareersAdmin";
-import ContentAdmin from "./pages/admin/ContentAdmin";
-import DesignAdmin from "./pages/admin/DesignAdmin";
-import AdminPreview from "./pages/admin/AdminPreview";
-import InquiriesAdmin from "./pages/admin/InquiriesAdmin";
-import ApplicationsAdmin from "./pages/admin/ApplicationsAdmin";
+import AdminLogin from "./pages/MiraJSB80/Login";
+import AdminLayout from "./pages/MiraJSB80/AdminLayout";
+import AdminDashboard from "./pages/MiraJSB80/Dashboard";
+import NewsAdmin from "./pages/MiraJSB80/NewsAdmin";
+import GalleryAdmin from "./pages/MiraJSB80/GalleryAdmin";
+import CareersAdmin from "./pages/MiraJSB80/CareersAdmin";
+import ContentAdmin from "./pages/MiraJSB80/ContentAdmin";
+import DesignAdmin from "./pages/MiraJSB80/DesignAdmin";
+import AdminPreview from "./pages/MiraJSB80/AdminPreview";
+import InquiriesAdmin from "./pages/MiraJSB80/InquiriesAdmin";
+import ApplicationsAdmin from "./pages/MiraJSB80/ApplicationsAdmin";
 
 export const router = createBrowserRouter([
-  { path: "/admin/login", element: <AdminLogin /> },
+  { path: "/MiraJSB80/login", element: <AdminLogin /> },
   {
-  path: "/admin",
+  path: "/MiraJSB80",
   element: <AdminLayout />,
   children: [
-    { index: true, element: <Navigate to="/admin/dashboard" replace /> },
+    { index: true, element: <Navigate to="/MiraJSB80/dashboard" replace /> },
     { path: "dashboard", element: <AdminDashboard /> },
     { path: "news", element: <NewsAdmin /> },
     { path: "gallery", element: <GalleryAdmin /> },

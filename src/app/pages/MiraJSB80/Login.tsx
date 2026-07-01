@@ -28,7 +28,7 @@ export default function Login() {
       return;
     }
 
-    navigate("/admin/dashboard");
+    navigate("/MiraJSB80/dashboard");
   }
 
   return (

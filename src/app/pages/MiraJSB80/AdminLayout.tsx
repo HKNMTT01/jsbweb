@@ -3,15 +3,15 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { isSupabaseConfigured, supabase } from "../../../lib/supabase";
 
 const menu = [
-  { label: "Dashboard", path: "/admin/dashboard", icon: "✦" },
-  { label: "Live Preview", path: "/admin/preview", icon: "◉" },
-  { label: "Page Content", path: "/admin/content", icon: "✎" },
-  { label: "Design", path: "/admin/design", icon: "◈" },
-  { label: "News & Events", path: "/admin/news", icon: "📰" },
-  { label: "Gallery", path: "/admin/gallery", icon: "▧" },
-  { label: "Careers", path: "/admin/careers", icon: "↗" },
-  { label: "Applications", path: "/admin/applications", icon: "☑" },
-  { label: "Inquiries", path: "/admin/inquiries", icon: "✉" },
+  { label: "Dashboard", path: "/MiraJSB80/dashboard", icon: "✦" },
+  { label: "Live Preview", path: "/MiraJSB80/preview", icon: "◉" },
+  { label: "Page Content", path: "/MiraJSB80/content", icon: "✎" },
+  { label: "Design", path: "/MiraJSB80/design", icon: "◈" },
+  { label: "News & Events", path: "/MiraJSB80/news", icon: "📰" },
+  { label: "Gallery", path: "/MiraJSB80/gallery", icon: "▧" },
+  { label: "Careers", path: "/MiraJSB80/careers", icon: "↗" },
+  { label: "Applications", path: "/MiraJSB80/applications", icon: "☑" },
+  { label: "Inquiries", path: "/MiraJSB80/inquiries", icon: "✉" },
 ];
 
 export default function AdminLayout() {
@@ -29,7 +29,7 @@ export default function AdminLayout() {
       }
       const { data } = await supabase.auth.getSession();
       if (!data.session) {
-        navigate("/admin/login");
+        navigate("/MiraJSB80/login");
         return;
       }
       setChecking(false);
@@ -47,7 +47,7 @@ export default function AdminLayout() {
 
   async function logout() {
     if (isSupabaseConfigured) await supabase.auth.signOut();
-    navigate("/admin/login");
+    navigate("/MiraJSB80/login");
   }
 
   if (checking) {
@@ -77,7 +77,7 @@ export default function AdminLayout() {
 
         <nav className="relative mt-8 space-y-2">
           {menu.map((item) => {
-            const active = location.pathname === item.path || (item.path === "/admin/dashboard" && location.pathname === "/admin");
+            const active = location.pathname === item.path || (item.path === "/MiraJSB80/dashboard" && location.pathname === "/MiraJSB80");
             return (
               <Link
                 key={item.path}

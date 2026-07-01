@@ -85,7 +85,7 @@ export default function SplashScreen() {
         </div>
 
         <p className="relative z-10 mt-6 text-sm font-bold tracking-[0.3em] text-[#005AAA]">
-          Loading...
+          Welcome to JETAMA...
         </p>
       </div>
 

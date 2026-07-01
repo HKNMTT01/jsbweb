@@ -156,9 +156,6 @@ function SubsidiaryOverview() {
                 <div className="flex h-40 items-center justify-center rounded-[24px] bg-[#f8fbff] p-5">
                   <img src={item.logo} alt={item.title} className="max-h-24 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,44,85,0.16)] transition group-hover:scale-105" />
                 </div>
-                <div className="mx-auto mt-7 inline-flex items-center gap-2 rounded-full bg-[#eef8ff] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#005AAA]">
-                  <Icon size={14} /> Subsidiary
-                </div>
                 <h3 className="mt-5 text-2xl font-black leading-tight text-[#052b4f]">{item.title}</h3>
                 <p className="mx-auto mt-4 min-h-[72px] max-w-sm leading-7 text-slate-600">{item.text}</p>
                 <div className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-[#005AAA]">

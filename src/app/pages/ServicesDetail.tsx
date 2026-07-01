@@ -452,10 +452,10 @@ function FacilitiesContent() {
 
   const energyFacilities = [
     {
-      title: "Jetama Energy Sdn. Bhd.",
+      title: "Renewable Energy Development",
       label: "Energy Subsidiary",
       icon: Zap,
-      text: "Renewable energy arm supporting JETAMA's move into sustainable energy infrastructure and low-carbon development.",
+      text: "Renewable energy aim supporting JETAMA's move into sustainable energy infrastructure and low-carbon development.",
       details: [
         "Supports the Group's strategic expansion into renewable energy.",
         "Focuses on solar and clean-energy opportunities for Sabah.",
@@ -750,74 +750,6 @@ function FacilitiesContent() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      <section className="relative">
-        <div className="mb-8 flex flex-wrap items-center gap-3">
-          <span className="h-[3px] w-16 rounded-full bg-[#005AAA]" />
-          <span className="h-[3px] w-8 rounded-full bg-[#41B650]" />
-          <span className="h-[3px] w-6 rounded-full bg-[#F5A623]" />
-          <h2 className="text-2xl font-bold text-[#005AAA]">
-            Supporting Facilities
-          </h2>
-        </div>
-
-        <div className="grid gap-x-10 gap-y-12 md:grid-cols-3">
-          {supportFacilities.map((item) => {
-            const Icon = item.icon;
-            const isOpen = openFacility === item.title;
-
-            return (
-              <article key={item.title} className="group relative">
-                <div className="pointer-events-none absolute -right-5 -top-5 h-24 w-24 rounded-full bg-[#005AAA]/7 blur-2xl" />
-
-                <Icon className="mb-5 text-[#41B650]" size={34} />
-
-                <h3 className="font-serif text-2xl font-semibold italic tracking-[-0.02em] text-[#052b4f]">
-                  {item.title}
-                </h3>
-
-                {!isOpen ? (
-                  <>
-                    <p className="mt-4 text-justify text-sm leading-7 text-slate-600">{item.text}</p>
-                    <button
-                      type="button"
-                      onClick={() => setOpenFacility(item.title)}
-                      className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#005AAA] transition hover:text-[#41B650]"
-                    >
-                      <Eye size={15} />
-                      View
-                    </button>
-                  </>
-                ) : (
-                  <div className="animate-[fadeIn_.45s_ease]">
-                    <p className="mt-4 relative pl-5 text-justify text-sm leading-7 text-slate-700 before:absolute before:left-0 before:top-2 before:h-10 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
-                      {item.text}
-                    </p>
-
-                    <div className="mt-5 space-y-3">
-                      {item.details.map((detail) => (
-                        <div key={detail} className="flex gap-3">
-                          <CheckCircle2 className="mt-1 shrink-0 text-[#41B650]" size={16} />
-                          <p className="text-sm leading-6 text-slate-700">{detail}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => setOpenFacility(null)}
-                      className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#052b4f] transition hover:text-[#005AAA]"
-                    >
-                      <EyeOff size={15} />
-                      Hide
-                    </button>
-                  </div>
-                )}
-              </article>
-            );
-          })}
         </div>
       </section>
     </article>

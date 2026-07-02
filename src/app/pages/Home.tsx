@@ -868,7 +868,7 @@ export default function Home() {
             </p>
 
             <h2 className="scroll-reveal-right mt-3 text-4xl font-black leading-tight tracking-[-0.04em] text-[#005AAA] md:text-5xl">
-              What Defines Us
+              what is JETAMA
             </h2>
 
             <p className="scroll-reveal-right mt-6 text-lg leading-9 text-slate-600">
@@ -908,12 +908,6 @@ export default function Home() {
             <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] text-[#005AAA] md:text-5xl">
               Inside the JETAMA Group
             </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-              Discover JETAMA’s subsidiaries and joint venture companies
-              supporting water, energy, pipe manufacturing and solar
-              development.
-            </p>
           </div>
 
           <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
@@ -981,10 +975,6 @@ export default function Home() {
               <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] text-[#005AAA] md:text-5xl">
                 News & Events
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
-                Stay updated with JETAMA’s latest corporate news, events and
-                sustainability initiatives.
-              </p>
             </div>
 
             <Link

@@ -451,12 +451,12 @@ export default function Navigation() {
 
               {item.sub && (
                 <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 translate-y-2 opacity-0 transition-all duration-300 group-hover/item:visible group-hover/item:translate-y-0 group-hover/item:opacity-100">
-                  <div className="overflow-visible rounded-b-xl bg-[#2f3337]/95 py-2 shadow-[0_22px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+                  <div className="overflow-visible rounded-b-2xl border border-white/70 bg-white/95 py-2 shadow-[0_24px_70px_rgba(0,90,170,0.22)] ring-1 ring-[#005AAA]/10 backdrop-blur-xl">
                     {item.sub.map((sub) => (
                       <div key={sub.label} className="group/sub relative">
                         <Link
                           to={sub.path}
-                          className="flex items-center justify-between gap-3 px-5 py-3 text-sm font-bold text-white transition hover:bg-[#005AAA] hover:text-white"
+                          className="flex items-center justify-between gap-3 px-5 py-3 text-sm font-extrabold text-[#052b4f] transition hover:bg-gradient-to-r hover:from-[#005AAA] hover:to-[#35B24A] hover:text-white"
                         >
                           <span>{sub.label}</span>
                           {sub.sub && <ChevronDown size={13} className="-rotate-90" strokeWidth={3} />}
@@ -464,12 +464,12 @@ export default function Navigation() {
 
                         {sub.sub && (
                           <div className="invisible absolute left-full top-0 z-[80] w-64 translate-x-2 opacity-0 transition-all duration-300 group-hover/sub:visible group-hover/sub:translate-x-0 group-hover/sub:opacity-100">
-                            <div className="overflow-hidden rounded-r-xl bg-[#2f3337]/95 py-2 shadow-[0_22px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+                            <div className="overflow-hidden rounded-r-2xl border border-white/70 bg-white/95 py-2 shadow-[0_24px_70px_rgba(0,90,170,0.22)] ring-1 ring-[#005AAA]/10 backdrop-blur-xl">
                               {sub.sub.map((child) => (
                                 <Link
                                   key={child.label}
                                   to={child.path}
-                                  className="block px-5 py-3 text-sm font-bold text-white transition hover:bg-[#005AAA] hover:text-white"
+                                  className="block px-5 py-3 text-sm font-extrabold text-[#052b4f] transition hover:bg-gradient-to-r hover:from-[#005AAA] hover:to-[#35B24A] hover:text-white"
                                 >
                                   {child.label}
                                 </Link>
@@ -567,9 +567,13 @@ export default function Navigation() {
       </div>
 
       {isMenuOpen && (
-        <nav className="relative max-h-[calc(100vh-108px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#2f3337]/95 p-5 pb-10 shadow-2xl backdrop-blur-xl lg:hidden">
-          <form onSubmit={handleSearchSubmit} className="mb-5">
-            <div className="flex h-12 items-center gap-3 rounded-2xl bg-white/12 px-4 ring-1 ring-white/15">
+        <nav className="relative max-h-[calc(100vh-108px)] overflow-y-auto overscroll-contain border-t border-white/20 bg-[linear-gradient(135deg,rgba(0,90,170,.98)_0%,rgba(0,116,170,.96)_46%,rgba(53,178,74,.92)_100%)] p-5 pb-10 shadow-[0_30px_90px_rgba(0,40,90,.35)] backdrop-blur-2xl lg:hidden">
+          <div className="pointer-events-none absolute -left-20 top-12 h-52 w-52 rounded-full bg-white/18 blur-3xl" />
+          <div className="pointer-events-none absolute right-[-80px] top-56 h-60 w-60 rounded-full bg-[#F6A623]/20 blur-3xl" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/18 to-transparent" />
+
+          <form onSubmit={handleSearchSubmit} className="relative z-10 mb-5">
+            <div className="flex h-12 items-center gap-3 rounded-2xl border border-white/25 bg-white/18 px-4 shadow-[0_14px_35px_rgba(0,30,80,.18)] ring-1 ring-white/20 backdrop-blur-md">
               <Search size={18} className="text-[#ffe04b]" />
               <input
                 value={searchQuery}
@@ -620,13 +624,16 @@ export default function Navigation() {
             )}
           </form>
 
+          <div className="relative z-10 space-y-2">
           {navItems.map((item) => (
             <div key={item.path} className="mb-2">
               <Link
                 to={item.path}
                 onClick={() => setIsMenuOpen(false)}
-                className={`block rounded-lg px-4 py-3 text-sm font-bold uppercase ${
-                  isActive(item.path) ? "bg-[#005AAA] text-white" : "text-white hover:bg-white/10"
+                className={`block rounded-2xl px-4 py-3 text-sm font-black uppercase tracking-[0.06em] transition ${
+                  isActive(item.path)
+                    ? "bg-white text-[#005AAA] shadow-[0_14px_35px_rgba(0,40,90,.18)]"
+                    : "border border-white/10 bg-white/[.07] text-white hover:border-white/25 hover:bg-white/[.16]"
                 }`}
               >
                 {item.label}
@@ -639,19 +646,19 @@ export default function Navigation() {
                       <Link
                         to={sub.path}
                         onClick={() => setIsMenuOpen(false)}
-                        className="block rounded-lg px-4 py-2.5 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white"
+                        className="block rounded-xl border border-white/0 bg-white/[.04] px-4 py-2.5 text-sm font-semibold text-white/86 transition hover:border-white/20 hover:bg-white/[.14] hover:text-white"
                       >
                         {sub.label}
                       </Link>
 
                       {sub.sub && (
-                        <div className="ml-4 mt-1 space-y-1 border-l border-white/15 pl-3">
+                        <div className="ml-4 mt-1 space-y-1 border-l border-white/25 pl-3">
                           {sub.sub.map((child) => (
                             <Link
                               key={child.label}
                               to={child.path}
                               onClick={() => setIsMenuOpen(false)}
-                              className="block rounded-lg px-4 py-2 text-sm font-semibold text-white/65 hover:bg-white/10 hover:text-white"
+                              className="block rounded-xl px-4 py-2 text-sm font-semibold text-white/72 transition hover:bg-white/[.14] hover:text-white"
                             >
                               {child.label}
                             </Link>
@@ -664,6 +671,7 @@ export default function Navigation() {
               )}
             </div>
           ))}
+          </div>
         </nav>
       )}
     </header>

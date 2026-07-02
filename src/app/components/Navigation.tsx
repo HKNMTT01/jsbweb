@@ -306,8 +306,8 @@ export default function Navigation() {
       sub: [
         { label: "Overview", path: "/services/overview" },
         { label: "Our Facilities", path: "/services/our-facilities" },
-        { label: "Concession Area", path: "/services/concession-area" },
         { label: "Total Capability", path: "/services/total-capability" },
+        { label: "Concession Area", path: "/services/concession-area" },
       ],
     },
     { path: "/sustainability", label: "SUSTAINABILITY" },

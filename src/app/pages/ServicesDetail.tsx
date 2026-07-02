@@ -63,19 +63,19 @@ const servicePages: Record<string, ServicePage> = {
     eyebrow: "Water & Energy Infrastructure",
     icon: Factory,
   },
-  "concession-area": {
-    title: "Concession Area",
-    subtitle:
-      "Service coverage and operational areas supporting treated water supply distribution.",
-    eyebrow: "Service Coverage",
-    icon: MapPinned,
-  },
   "total-capability": {
     title: "Total Capability",
     subtitle:
       "Water and energy capability covering treated water quality, production capacity and renewable energy development.",
     eyebrow: "Capability",
     icon: Gauge,
+  },
+  "concession-area": {
+    title: "Concession Area",
+    subtitle:
+      "Service coverage and operational areas supporting treated water supply distribution.",
+    eyebrow: "Service Coverage",
+    icon: MapPinned,
   },
 };
 
@@ -180,12 +180,12 @@ function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="relative -mt-3 h-fit bg-transparent px-4 py-0">
+    <aside className="service-side-nav scroll-reveal relative -mt-3 h-fit bg-transparent px-4 py-0 lg:sticky lg:top-28">
       <div className="mb-1 flex justify-start">
         <img
           src={jetamaLogo}
           alt="JETAMA"
-          className="h-[88px] w-auto object-contain"
+          className="h-[88px] w-auto object-contain drop-shadow-[0_12px_28px_rgba(0,90,170,0.10)]"
         />
       </div>
 
@@ -198,13 +198,17 @@ function Sidebar() {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex items-center gap-3 px-3 py-3 text-sm font-semibold transition ${
+              className={`subsidiary-card-shine group flex items-center gap-3 rounded-none px-3 py-3 text-sm font-semibold transition duration-300 ${
                 active
-                  ? "bg-white text-[#005AAA] shadow-sm"
+                  ? "active-link bg-white text-[#005AAA] shadow-sm"
                   : "text-slate-800 hover:bg-white hover:text-[#005AAA]"
               }`}
             >
-              <Icon size={16} />
+              <Icon
+                size={16}
+                strokeWidth={2.5}
+                className={active ? "text-[#005AAA]" : "text-slate-600 group-hover:text-[#005AAA]"}
+              />
               <span>{item.label}</span>
             </Link>
           );
@@ -615,248 +619,218 @@ function TotalCapabilityContent() {
 
   const quantity = [
     ["June 1993", "135 MLD", 42],
-    ["June 1995 (Phase I)", "175 MLD", 55],
-    ["December 1995 (Advanced Phase II)", "215 MLD", 67],
-    ["October 1997 (Phase II & Phase III)", "320 MLD", 100],
+    ["June 1995", "175 MLD", 55],
+    ["December 1995", "215 MLD", 67],
+    ["October 1997", "320 MLD", 100],
   ] as const;
 
   const energyCapability = [
     "Renewable energy initiatives through Jetama Energy and strategic project development.",
     "Floating solar and utility-scale solar opportunities supporting Sabah's low-carbon direction.",
     "Energy projects aligned with sustainable infrastructure growth and long-term resilience.",
-    "Strategic collaboration to diversify capability beyond treated water operations.",
   ];
 
   const capabilityStats = [
     {
-      label: "Water Capacity",
-      value: "320 MLD",
+      label: "Final Water Capacity",
+      value: "320",
+      unit: "MLD",
       icon: Gauge,
-      detail: "Final treated water capacity",
+      color: "from-[#005AAA] to-[#0077C8]",
     },
     {
-      label: "Water Quality",
+      label: "Quality Parameters",
       value: "4",
+      unit: "Standards",
       icon: ShieldCheck,
-      detail: "Key quality parameters",
-    },
-    {
-      label: "Renewable Energy",
-      value: "Solar",
-      icon: Zap,
-      detail: "Floating and utility-scale initiatives",
+      color: "from-[#35B24A] to-[#58D36A]",
     },
     {
       label: "Supply Growth",
-      value: "+185 MLD",
+      value: "+185",
+      unit: "MLD",
       icon: BarChart3,
-      detail: "Increase from 1993 baseline",
+      color: "from-[#F5A623] to-[#fbf234]",
+    },
+    {
+      label: "Energy Direction",
+      value: "Solar",
+      unit: "Renewable",
+      icon: Zap,
+      color: "from-[#052b4f] to-[#005AAA]",
+    },
+  ];
+
+  const summaryCards = [
+    {
+      title: "Water Reliability",
+      text: "Quality standards and progressive production capacity strengthen reliable treated water supply.",
+      icon: Droplets,
+      accent: "#005AAA",
+    },
+    {
+      title: "Energy Direction",
+      text: "Renewable energy capability expands JETAMA’s role in sustainable infrastructure development.",
+      icon: Zap,
+      accent: "#F5A623",
+    },
+    {
+      title: "Operational Growth",
+      text: "Capacity growth from 135 MLD to 320 MLD reflects stronger service capability.",
+      icon: Activity,
+      accent: "#35B24A",
     },
   ];
 
   return (
     <article className="scroll-reveal relative overflow-hidden">
-      <style>
-        {`
-          @keyframes capabilityPulse {
-            0%, 100% { transform: scale(1); opacity: .85; }
-            50% { transform: scale(1.08); opacity: 1; }
-          }
-
-          @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-        `}
-      </style>
-
-      <div className="pointer-events-none absolute -right-24 -top-16 h-80 w-80 rounded-full bg-[#005AAA]/9 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-28 left-0 h-80 w-80 rounded-full bg-[#41B650]/10 blur-3xl" />
-      <div className="pointer-events-none absolute right-[18%] top-32 h-28 w-52 rotate-[-10deg] bg-[#F5A623]/10 blur-3xl" />
+      <style>{`
+        @keyframes capabilityGlow {
+          0%, 100% { opacity: .58; transform: scale(1); }
+          50% { opacity: .94; transform: scale(1.08); }
+        }
+        @keyframes capabilityLine {
+          0% { transform: translateX(-100%); opacity: 0; }
+          35% { opacity: .75; }
+          100% { transform: translateX(180%); opacity: 0; }
+        }
+      `}</style>
 
       <section className="relative">
-        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#41B650]">
-          Service Capability
-        </p>
+        <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[#35B24A]/8 blur-3xl" />
 
-        <div className="mt-4 grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
-          <div>
-            <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
-              Water, Energy, Quality & Quantity
-            </h2>
+        <div className="relative max-w-5xl">
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
+            Service Capability
+          </p>
+          <h2 className="mt-3 text-3xl font-black uppercase leading-tight tracking-[-0.035em] text-[#005AAA] sm:text-4xl">
+            Water, Energy, Quality & Quantity
+          </h2>
+          <AccentRule />
+          <p className="max-w-5xl text-justify text-base leading-8 text-slate-600">
+            JETAMA’s total capability covers treated water quality standards,
+            progressive supply quantity and renewable energy initiatives for
+            sustainable infrastructure growth.
+          </p>
+        </div>
+      </section>
 
-            <AccentRule />
-
-            <p className="max-w-6xl text-justify font-serif text-[15.5px] italic leading-8 text-slate-700 sm:text-[16.5px] sm:leading-9">
-              JETAMA’s total capability covering treated
-              water quality standards, progressive supply quantity and renewable
-              energy initiatives for sustainable infrastructure growth.
-            </p>
+      <section className="mt-8 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative overflow-hidden rounded-[34px] bg-[#052b4f] p-7 text-white shadow-[0_30px_90px_rgba(5,43,79,0.20)] sm:p-8">
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#35B24A]/20 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#005AAA]/40 blur-3xl" />
+          <div className="relative flex items-start justify-between gap-6">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#fbf234]">
+                Water Quality
+              </p>
+              <h3 className="mt-3 text-3xl font-black leading-tight md:text-4xl">
+                Quality Parameters
+              </h3>
+            </div>
+            <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white/10">
+              <span className="absolute h-20 w-20 rounded-full bg-[#35B24A]/30" style={{ animation: "capabilityGlow 2.8s ease-in-out infinite" }} />
+              <Droplet className="relative text-[#fbf234]" size={40} />
+            </div>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {capabilityStats.map((item, index) => {
-              const Icon = item.icon;
-
-              return (
-                <div key={item.label} className="group relative" style={{ transitionDelay: `${index * 80}ms` }}>
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#eef8ff] to-[#effaf3] text-[#005AAA] shadow-[0_14px_34px_rgba(0,90,170,0.10)]">
-                    <Icon size={24} />
-                  </div>
-
-                  <p className="text-3xl font-black text-[#052b4f]">{item.value}</p>
-                  <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-[#41B650]">
-                    {item.label}
-                  </p>
-                  <p className="mt-3 text-xs leading-5 text-slate-500">{item.detail}</p>
-                </div>
-              );
-            })}
+          <div className="relative mt-8 grid gap-4 sm:grid-cols-2">
+            {quality.map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-2xl bg-white/8 p-4 backdrop-blur">
+                <CheckCircle2 className="mt-1 shrink-0 text-[#fbf234]" size={18} />
+                <p className="text-sm font-semibold leading-7 text-white/88">{item}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-14 grid gap-8 xl:grid-cols-3">
-          <div className="relative overflow-hidden rounded-[2.4rem] bg-[#052b4f] p-8 text-white shadow-[0_26px_80px_rgba(0,90,170,0.18)]">
-            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#41B650]/25 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#005AAA]/40 blur-3xl" />
-
-            <div className="relative">
-              <div className="mb-7 flex items-center justify-between gap-5">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#fbf234]">
-                    Water Quality
-                  </p>
-                  <h3 className="mt-2 font-serif text-3xl font-semibold italic">
-                    Quality Parameters
-                  </h3>
-                </div>
-
-                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/10">
-                  <span className="absolute h-20 w-20 rounded-full bg-[#41B650]/30" style={{ animation: "capabilityPulse 2.6s ease-in-out infinite" }} />
-                  <Droplet className="relative text-[#fbf234]" size={42} />
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {quality.map((item, index) => (
-                  <div key={item} className="flex items-start gap-4" style={{ transitionDelay: `${index * 70}ms` }}>
-                    <CheckCircle2 className="mt-1 shrink-0 text-[#fbf234]" size={18} />
-                    <p className="text-sm font-semibold leading-7 text-white/90">{item}</p>
-                  </div>
-                ))}
-              </div>
+        <div className="relative overflow-hidden rounded-[34px] border border-white/85 bg-white/78 p-7 shadow-[0_30px_90px_rgba(0,90,170,0.10)] backdrop-blur-xl sm:p-8">
+          <div className="absolute right-0 top-0 h-36 w-72 bg-[#35B24A]/10 [clip-path:polygon(20%_0,100%_0,100%_100%,0_70%)]" />
+          <div className="relative flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
+                Water Quantity
+              </p>
+              <h3 className="mt-3 text-3xl font-black leading-tight text-[#005AAA] md:text-4xl">
+                Capacity Growth
+              </h3>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
+                Supply capacity increased in stages from 135 MLD to 320 MLD.
+              </p>
+            </div>
+            <div className="rounded-[24px] bg-[#005AAA] px-6 py-5 text-white shadow-[0_18px_45px_rgba(0,90,170,0.18)]">
+              <p className="text-5xl font-black tracking-[-0.06em]">320</p>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-white/70">MLD</p>
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2.4rem] bg-gradient-to-br from-[#F6A623] via-[#F5A623] to-[#fbf234] p-8 text-[#052b4f] shadow-[0_26px_80px_rgba(246,166,35,0.20)]">
-            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/30 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#005AAA]/18 blur-3xl" />
-
-            <div className="relative">
-              <div className="mb-7 flex items-center justify-between gap-5">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#005AAA]">
-                    Energy Capability
-                  </p>
-                  <h3 className="mt-2 font-serif text-3xl font-semibold italic text-[#052b4f]">
-                    Renewable Energy
-                  </h3>
+          <div className="relative mt-8 space-y-5">
+            {quantity.map(([period, amount, percent]) => (
+              <div key={period}>
+                <div className="mb-2 flex items-center justify-between gap-4">
+                  <span className="text-sm font-black text-[#052b4f]">{period}</span>
+                  <span className="text-lg font-black text-[#005AAA]">{amount}</span>
                 </div>
-
-                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/35 shadow-[0_16px_40px_rgba(0,90,170,0.12)]">
-                  <span className="absolute h-20 w-20 rounded-full bg-white/30" style={{ animation: "capabilityPulse 2.8s ease-in-out infinite" }} />
-                  <Zap className="relative text-[#005AAA]" size={42} />
+                <div className="h-3 overflow-hidden rounded-full bg-[#e8eef5]">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#fbf234]"
+                    style={{ width: `${percent}%` }}
+                  />
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="space-y-4">
-                {energyCapability.map((item, index) => (
-                  <div key={item} className="flex items-start gap-4" style={{ transitionDelay: `${index * 70}ms` }}>
-                    <CheckCircle2 className="mt-1 shrink-0 text-[#005AAA]" size={18} />
-                    <p className="text-sm font-semibold leading-7 text-[#052b4f]/90">{item}</p>
-                  </div>
-                ))}
-              </div>
+      <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_.95fr]">
+        <div className="relative overflow-hidden rounded-[34px] bg-gradient-to-br from-[#F6A623] via-[#F5A623] to-[#fbf234] p-7 text-[#052b4f] shadow-[0_28px_80px_rgba(246,166,35,0.18)] sm:p-8">
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/30 blur-3xl" />
+          <div className="relative flex items-start justify-between gap-6">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#005AAA]">
+                Energy Capability
+              </p>
+              <h3 className="mt-3 text-3xl font-black leading-tight md:text-4xl">
+                Renewable Energy Direction
+              </h3>
+            </div>
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/35 text-[#005AAA] shadow-[0_16px_40px_rgba(0,90,170,0.12)]">
+              <Zap size={34} strokeWidth={2.7} />
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2.4rem] bg-white/35 p-8 shadow-[0_20px_60px_rgba(0,90,170,0.07)] backdrop-blur-sm">
-            <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#005AAA]/8 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#41B650]/10 blur-3xl" />
-            <div className="relative">
-              <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[#41B650]">
-                    Water Quantity
-                  </p>
-                <h3 className="mt-2 font-serif text-3xl font-semibold italic text-[#052b4f]">
-                  Capacity Growth
-                </h3>
+          <div className="relative mt-8 space-y-4">
+            {energyCapability.map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-2xl bg-white/30 p-4 backdrop-blur">
+                <CheckCircle2 className="mt-1 shrink-0 text-[#005AAA]" size={18} />
+                <p className="text-sm font-bold leading-7 text-[#052b4f]/90">{item}</p>
               </div>
-
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#eef8ff] to-[#effaf3] text-[#005AAA] shadow-[0_14px_34px_rgba(0,90,170,0.10)]">
-                <Activity size={34} />
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              {quantity.map(([period, amount, percent], index) => (
-                <div key={period}>
-                  <div className="mb-3 flex items-center justify-between gap-4">
-                    <span className="text-sm font-black text-[#052b4f]">{period}</span>
-                    <span className="text-xl font-black text-[#005AAA]">{amount}</span>
-                  </div>
-
-                  <div className="h-3 overflow-hidden rounded-full bg-[#e8eef5]">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#005AAA] via-[#41B650] to-[#fbf234] transition-all duration-1000"
-                      style={{
-                        width: `${percent}%`,
-                        transitionDelay: `${index * 120}ms`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-              <div className="relative pl-5 before:absolute before:left-0 before:top-2 before:h-12 before:w-[3px] before:rounded-full before:bg-gradient-to-b before:from-[#005AAA] before:to-[#41B650]">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#41B650]">
-                  Capability Milestone
-                </p>
-                <p className="mt-1 text-lg font-black text-[#052b4f]">
-                  Supply capacity increased from 135 MLD to 320 MLD.
-                </p>
-              </div>
-
-              <div className="text-left sm:text-right">
-                <p className="text-5xl font-black tracking-[-0.05em] text-[#005AAA]">320</p>
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-                  MLD
-                </p>
-              </div>
-            </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          <div className="rounded-[1.6rem] bg-white/40 p-6 shadow-[0_14px_42px_rgba(0,90,170,0.06)] backdrop-blur-sm">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#41B650]">Total Capability</p>
-            <h4 className="mt-2 text-xl font-black text-[#052b4f]">Water Reliability</h4>
-            <p className="mt-3 text-sm leading-7 text-slate-600">Quality standards and production capacity support reliable treated water supply.</p>
-          </div>
-          <div className="rounded-[1.6rem] bg-white/40 p-6 shadow-[0_14px_42px_rgba(0,90,170,0.06)] backdrop-blur-sm">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#F5A623]">Total Capability</p>
-            <h4 className="mt-2 text-xl font-black text-[#052b4f]">Energy Direction</h4>
-            <p className="mt-3 text-sm leading-7 text-slate-600">Renewable energy capability expands JETAMA’s role in sustainable infrastructure.</p>
-          </div>
-          <div className="rounded-[1.6rem] bg-white/40 p-6 shadow-[0_14px_42px_rgba(0,90,170,0.06)] backdrop-blur-sm">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#005AAA]">Total Capability</p>
-            <h4 className="mt-2 text-xl font-black text-[#052b4f]">Growth Capacity</h4>
-            <p className="mt-3 text-sm leading-7 text-slate-600">Capacity growth from 135 MLD to 320 MLD reflects strengthened operational capability.</p>
-          </div>
+        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          {summaryCards.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.title} className="relative overflow-hidden rounded-[28px] border border-white/85 bg-white/72 p-5 shadow-[0_18px_55px_rgba(0,90,170,0.08)] backdrop-blur-xl transition hover:-translate-y-1 hover:bg-white">
+                <div className="flex gap-4">
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-md"
+                    style={{ backgroundColor: item.accent }}
+                  >
+                    <Icon size={22} />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-black text-[#052b4f]">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </article>
@@ -930,6 +904,13 @@ function ConcessionAreaContent() {
   const activeLocation =
     locations.find((item) => item.name === activePlace) ?? locations[0];
 
+  const timeline = [
+    ["09 Dec 1992", "PCCA signed"],
+    ["05 Jun 1993", "Project commenced"],
+    ["1993 - 2013", "First concession period"],
+    ["2013 - 2033", "Extended concession period"],
+  ] as const;
+
   const stats = [
     {
       value: "7",
@@ -939,32 +920,30 @@ function ConcessionAreaContent() {
     },
     {
       value: "2033",
-      label: "Concession Period",
+      label: "Concession Extended Until",
       icon: ShieldCheck,
-      color: "from-[#41B650] to-[#7ed957]",
+      color: "from-[#35B24A] to-[#7ed957]",
     },
     {
       value: "165 MLD",
       label: "Moyog WTP Capacity",
       icon: Droplets,
-      color: "from-[#f0a233] to-[#fbf234]",
+      color: "from-[#F5A623] to-[#fbf234]",
     },
   ];
 
   const imageCards = [
     {
       id: "coverage" as const,
-      title: "Concession Area Map",
-      subtitle: "Concession area and service coverage locations.",
+      title: "Coverage Area Map",
       image: aiConcessionMap,
-      action: "View Map",
+      action: "Open Coverage Map",
     },
     {
       id: "pipeline" as const,
       title: "Pipeline & Reservoir Network",
-      subtitle: "Route and water supply network overview.",
       image: pipelineReservoirMap,
-      action: "View Network Map",
+      action: "Open Network Map",
     },
   ];
 
@@ -1040,94 +1019,156 @@ function ConcessionAreaContent() {
 
   return (
     <article className="scroll-reveal">
-      <style>
-        {`
-          @keyframes mapPinFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-9px); }
-          }
-        `}
-      </style>
+      <style>{`
+        @keyframes mapPinFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-9px); }
+        }
+      `}</style>
 
-      <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
-        Concession Area
-      </h2>
+      <section className="relative">
+        <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#005AAA]/8 blur-3xl" />
+        <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-[#35B24A]/8 blur-3xl" />
 
-      <section className="relative overflow-hidden rounded-[2.8rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fcff] to-[#eefaf3] p-5 shadow-[0_30px_100px_rgba(0,90,170,0.12)] sm:p-8">
-        <div className="absolute -right-28 -top-28 h-80 w-80 rounded-full bg-[#005AAA]/10 blur-3xl" />
-        <div className="absolute -bottom-28 -left-28 h-80 w-80 rounded-full bg-[#41B650]/12 blur-3xl" />
-
-        <div className="relative">
-          <p className="max-w-4xl text-base leading-8 text-slate-700">
-            JETAMA's concession area covers Kota Kinabalu and surrounding areas
+        <div className="relative max-w-5xl">
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
+            Service Coverage
+          </p>
+          <h2 className="mt-3 text-3xl font-black uppercase leading-tight tracking-[-0.035em] text-[#005AAA] sm:text-4xl">
+            Concession Area
+          </h2>
+          <AccentRule />
+          <p className="max-w-5xl text-justify text-base leading-8 text-slate-600">
+            JETAMA's concession area covers Kota Kinabalu and surrounding areas,
             including Tuaran, Telibong, Tamparuli, Moyog, Kasigui and Papar.
           </p>
+        </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-3">
-            {stats.map((item) => {
-              const Icon = item.icon;
+        <div className="relative mt-8 grid gap-4 sm:grid-cols-3">
+          {stats.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.label}
+                className={`subsidiary-card-shine group relative overflow-hidden rounded-[24px] bg-gradient-to-br ${item.color} p-5 text-white shadow-[0_18px_55px_rgba(0,90,170,0.14)] transition hover:-translate-y-1`}
+              >
+                <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/20 blur-2xl" />
+                <Icon className="relative" size={25} />
+                <p className="relative mt-5 text-4xl font-black tracking-[-0.05em]">
+                  {item.value}
+                </p>
+                <p className="relative mt-2 text-xs font-black uppercase tracking-[0.16em] text-white/85">
+                  {item.label}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
-              return (
-                <div
-                  key={item.label}
-                  className={`group relative overflow-hidden rounded-[1.8rem] bg-gradient-to-br ${item.color} p-6 text-white shadow-[0_20px_55px_rgba(0,90,170,0.18)] transition duration-500 hover:-translate-y-2`}
-                >
-                  <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/20 blur-2xl" />
+      <section className="mt-8 grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
+        <div className="relative overflow-hidden rounded-[34px] bg-[#052b4f] p-7 text-white shadow-[0_30px_90px_rgba(5,43,79,0.20)] sm:p-8">
+          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#35B24A]/20 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#005AAA]/40 blur-3xl" />
+          <div className="relative">
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#fbf234]">
+              Concession Timeline
+            </p>
+            <h3 className="mt-3 text-3xl font-black leading-tight md:text-4xl">
+              Coverage Milestones
+            </h3>
 
-                  <div className="relative flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
-                      <Icon size={27} />
-                    </div>
-
-                    <div>
-                      <p className="text-3xl font-black">{item.value}</p>
-                      <p className="mt-1 text-sm font-semibold text-white/85">
-                        {item.label}
-                      </p>
-                    </div>
+            <div className="mt-8 space-y-4">
+              {timeline.map(([date, label], index) => (
+                <div key={date} className="relative flex gap-4 rounded-2xl bg-white/8 p-4 backdrop-blur">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#fbf234] text-sm font-black text-[#052b4f]">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-white/55">
+                      {date}
+                    </p>
+                    <p className="mt-1 text-base font-black text-white">{label}</p>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden rounded-[34px] border border-white/85 bg-white/78 p-5 shadow-[0_30px_90px_rgba(0,90,170,0.10)] backdrop-blur-xl sm:p-6">
+          <div className="relative overflow-hidden rounded-[28px] bg-[#eef6fb]">
+            <img
+              src={aiConcessionMap}
+              alt="JETAMA concession area map"
+              className="h-[460px] w-full object-contain p-3"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/30 via-transparent to-transparent" />
+            {renderPins(false)}
           </div>
 
-          <div className="mt-12 grid gap-7 xl:grid-cols-2">
-            {imageCards.map((card, index) => (
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {locations.map((place) => (
               <button
-                key={card.id}
+                key={place.name}
                 type="button"
-                onClick={() => setActiveViewer(card.id)}
-                className="group relative overflow-hidden rounded-[2.3rem] border border-white bg-white text-left shadow-[0_28px_90px_rgba(0,90,170,0.16)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_38px_120px_rgba(0,90,170,0.24)]"
-                style={{ transitionDelay: `${index * 80}ms` }}
+                onClick={() => setActivePlace(place.name)}
+                className={`rounded-2xl px-4 py-3 text-left text-sm font-black transition ${
+                  activePlace === place.name
+                    ? "bg-[#005AAA] text-white shadow-lg"
+                    : "bg-white text-[#052b4f] hover:bg-[#eaf8ef] hover:text-[#087629]"
+                }`}
               >
-                <div className="relative h-[420px] overflow-hidden bg-white sm:h-[480px] xl:h-[520px]">
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="h-full w-full object-contain p-3 transition duration-[1200ms] group-hover:scale-[1.02]"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/80 via-[#052b4f]/10 to-transparent" />
-
-                  {card.id === "coverage" && renderPins(false)}
-
-                  <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[1.7rem] border border-white/25 bg-white/18 p-5 text-white shadow-2xl backdrop-blur-md">
-                    <h3 className="mt-2 text-2xl font-black leading-tight">
-                      {card.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-white/85">
-                      {card.subtitle}
-                    </p>
-
-                    <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#fbf234] px-5 py-3 text-sm font-black text-[#052b4f] transition group-hover:bg-[#41B650]">
-                      {card.action}
-                      <ArrowRight size={16} />
-                    </div>
-                  </div>
-                </div>
+                {place.name}
               </button>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="relative overflow-hidden rounded-[34px] border border-white/85 bg-white/78 p-6 shadow-[0_24px_70px_rgba(0,90,170,0.09)] backdrop-blur-xl">
+          <img
+            src={activeLocation.image}
+            alt={activeLocation.name}
+            className="h-64 w-full rounded-[26px] object-cover shadow-[0_18px_45px_rgba(0,44,85,0.12)]"
+          />
+          <p className="mt-6 text-xs font-black uppercase tracking-[0.24em] text-[#35B24A]">
+            Selected Area
+          </p>
+          <h3 className="mt-2 text-3xl font-black text-[#005AAA]">
+            {activeLocation.name}
+          </h3>
+          <p className="mt-3 text-base leading-8 text-slate-600">
+            {activeLocation.short}
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          {imageCards.map((card) => (
+            <button
+              key={card.id}
+              type="button"
+              onClick={() => setActiveViewer(card.id)}
+              className="group relative overflow-hidden rounded-[34px] border border-white/85 bg-white text-left shadow-[0_24px_70px_rgba(0,90,170,0.10)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_35px_95px_rgba(0,90,170,0.18)]"
+            >
+              <div className="relative h-72 overflow-hidden bg-[#eef6fb]">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="h-full w-full object-contain p-4 transition duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/80 via-[#052b4f]/10 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                <h3 className="text-2xl font-black leading-tight">{card.title}</h3>
+                <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#fbf234] px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-[#052b4f] transition group-hover:bg-[#35B24A]">
+                  {card.action}
+                  <ArrowRight size={15} />
+                </div>
+              </div>
+            </button>
+          ))}
         </div>
       </section>
 
@@ -1149,7 +1190,7 @@ function ConcessionAreaContent() {
             className="max-h-[94vh] w-full max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-white">
+            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#35B24A] p-5 text-white">
               <p className="text-xs font-black uppercase tracking-[0.28em] text-[#F5A623]">
                 Concession Area Viewer
               </p>
@@ -1202,7 +1243,7 @@ function ConcessionAreaContent() {
                       alt={activeLocation.name}
                       className="h-44 w-full rounded-[1.2rem] object-cover"
                     />
-                    <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-[#41B650]">
+                    <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-[#35B24A]">
                       Selected Pin
                     </p>
                     <h4 className="mt-2 text-2xl font-black text-[#052b4f]">
@@ -1232,6 +1273,7 @@ function ConcessionAreaContent() {
   );
 }
 
+
 function CurrentContent({ slug }: { slug: string }) {
   if (slug === "overview") return <OverviewContent />;
   if (slug === "our-facilities") return <FacilitiesContent />;
@@ -1246,6 +1288,22 @@ function CleanCorporateTheme() {
       @keyframes jetamaFadeUp { from { opacity: 0; transform: translateY(28px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
       @keyframes jetamaSoftFloat { 0%, 100% { transform: translate3d(0,0,0) rotate(0deg); opacity: .55; } 50% { transform: translate3d(18px,-14px,0) rotate(2deg); opacity: .82; } }
       @keyframes jetamaShine { 0% { transform: translateX(-150%) skewX(-18deg); opacity: 0; } 28% { opacity: .45; } 100% { transform: translateX(190%) skewX(-18deg); opacity: 0; } }
+
+
+      .subsidiary-card-shine { position: relative; overflow: hidden; }
+      .subsidiary-card-shine::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        bottom: -50%;
+        left: -35%;
+        width: 28%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
+        transform: translateX(-150%) skewX(-18deg);
+        pointer-events: none;
+      }
+      .subsidiary-card-shine:hover::before { animation: jetamaShine 1.9s ease; }
+      .active-link { border-left: 3px solid #005AAA; }
 
       .clean-corporate-page { background: transparent; color: #0f2f44; }
       .clean-corporate-page > section:first-of-type {
@@ -1383,7 +1441,7 @@ export default function ServicesDetail() {
           <DetailBreadcrumb page={page} />
         </div>
 
-        <div className="mx-auto grid max-w-[1540px] gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
+        <div className="mx-auto grid max-w-[1540px] gap-5 lg:grid-cols-[240px_minmax(0,1fr)]">
           <Sidebar />
 
           <main className="clean-corporate-page min-w-0 w-full">

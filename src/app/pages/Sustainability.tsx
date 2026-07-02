@@ -660,9 +660,6 @@ function FooterCTA() {
       <div className="relative mx-auto max-w-5xl text-center">
         <h2 className="text-3xl font-black leading-tight md:text-4xl">Building a Sustainable Future for Sabah</h2>
         <p className="mt-3 text-lg text-white/82">Together, we redefine water and energy for generations to come.</p>
-        <a href="#esg-pillars" className="mt-6 inline-flex items-center gap-3 rounded-lg bg-[#35B24A] px-7 py-3 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#052B4F]">
-          Explore Our Sustainability Journey <ArrowRight size={17} />
-        </a>
       </div>
     </section>
   );

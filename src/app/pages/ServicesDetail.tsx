@@ -13,7 +13,10 @@ import {
   Factory,
   Gauge,
   Info,
+  MapPinned,
   ShieldCheck,
+  Users,
+  X,
   Zap,
 } from "lucide-react";
 
@@ -25,6 +28,9 @@ import paparImage from "@/assets/PAPAR.jpg";
 import tamparuliImage from "@/assets/TAMPARULI.jpg";
 import tuaranImage from "@/assets/TUARAN.jpg";
 import jetamaLogo from "@/assets/JETAMA SDN BHD LOGO (TRANSPARENT).png";
+import aiConcessionMap from "@/assets/concession.png";
+import concessionArea2 from "@/assets/concession-area2.jpg";
+import pipelineReservoirMap from "@/assets/concessionArea.png";
 
 type ServicePage = {
   title: string;
@@ -56,6 +62,13 @@ const servicePages: Record<string, ServicePage> = {
       "Key water and energy infrastructure including Babagon Dam, treatment plants, reservoirs, pipelines, solar PV and renewable energy facilities.",
     eyebrow: "Water & Energy Infrastructure",
     icon: Factory,
+  },
+  "concession-area": {
+    title: "Concession Area",
+    subtitle:
+      "Service coverage and operational areas supporting treated water supply distribution.",
+    eyebrow: "Service Coverage",
+    icon: MapPinned,
   },
   "total-capability": {
     title: "Total Capability",
@@ -850,9 +863,379 @@ function TotalCapabilityContent() {
   );
 }
 
+
+function ConcessionAreaContent() {
+  const [activeViewer, setActiveViewer] = useState<"coverage" | "pipeline" | null>(null);
+  const [activePlace, setActivePlace] = useState("Kota Kinabalu");
+
+  const locations = [
+    {
+      name: "Kota Kinabalu",
+      short: "Main demand centre within JETAMA's concession coverage area.",
+      image: concessionArea2,
+      x: 39,
+      y: 50,
+      color: "bg-[#0077ff]",
+    },
+    {
+      name: "Tuaran",
+      short: "Northern district coverage supporting surrounding communities.",
+      image: tuaranImage,
+      x: 55,
+      y: 27,
+      color: "bg-[#54b948]",
+    },
+    {
+      name: "Telibong",
+      short: "Important water supply area near the northern network corridor.",
+      image: telibongImage,
+      x: 58,
+      y: 34,
+      color: "bg-[#8cc63f]",
+    },
+    {
+      name: "Tamparuli",
+      short: "Service area linked to upstream water supply and distribution routes.",
+      image: tamparuliImage,
+      x: 62,
+      y: 40,
+      color: "bg-[#ffd200]",
+    },
+    {
+      name: "Moyog",
+      short: "Strategic water treatment area and major production location.",
+      image: moyogImage,
+      x: 46,
+      y: 56,
+      color: "bg-[#00aeef]",
+    },
+    {
+      name: "Kasigui",
+      short: "Key treatment and operational support area within the network.",
+      image: kasiguiImage,
+      x: 48,
+      y: 63,
+      color: "bg-[#92278f]",
+    },
+    {
+      name: "Papar",
+      short: "Southern concession coverage area supporting water service continuity.",
+      image: paparImage,
+      x: 42,
+      y: 74,
+      color: "bg-[#ec4f9a]",
+    },
+  ];
+
+  const activeLocation =
+    locations.find((item) => item.name === activePlace) ?? locations[0];
+
+  const stats = [
+    {
+      value: "7",
+      label: "Coverage Areas",
+      icon: Users,
+      color: "from-[#005AAA] to-[#00aeef]",
+    },
+    {
+      value: "2033",
+      label: "Concession Period",
+      icon: ShieldCheck,
+      color: "from-[#41B650] to-[#7ed957]",
+    },
+    {
+      value: "165 MLD",
+      label: "Moyog WTP Capacity",
+      icon: Droplets,
+      color: "from-[#f0a233] to-[#fbf234]",
+    },
+  ];
+
+  const imageCards = [
+    {
+      id: "coverage" as const,
+      title: "Concession Area Map",
+      subtitle: "Concession area and service coverage locations.",
+      image: aiConcessionMap,
+      action: "View Map",
+    },
+    {
+      id: "pipeline" as const,
+      title: "Pipeline & Reservoir Network",
+      subtitle: "Route and water supply network overview.",
+      image: pipelineReservoirMap,
+      action: "View Network Map",
+    },
+  ];
+
+  const renderPins = (zoomed = false) => (
+    <>
+      {locations.map((place, index) => {
+        const active = activePlace === place.name;
+
+        return (
+          <button
+            key={place.name}
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              setActivePlace(place.name);
+            }}
+            className="group absolute z-30 -translate-x-1/2 -translate-y-full focus:outline-none"
+            style={{
+              left: `${place.x}%`,
+              top: `${place.y}%`,
+              animationDelay: `${index * 0.12}s`,
+            }}
+            aria-label={`Select ${place.name}`}
+          >
+            <span
+              className={`absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full ${
+                active ? "bg-[#fbf234]/80" : "bg-white/70"
+              }`}
+            />
+
+            <span
+              className={`relative flex h-10 w-10 animate-[mapPinFloat_2.3s_ease-in-out_infinite] items-center justify-center rounded-full border-[4px] border-white text-white shadow-[0_14px_35px_rgba(0,0,0,0.38)] transition duration-300 group-hover:scale-125 ${
+                active ? "bg-[#fbf234] text-[#052b4f]" : place.color
+              }`}
+            >
+              <MapPinned size={19} />
+            </span>
+
+            <span
+              className={`absolute left-1/2 top-12 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] shadow-xl transition duration-300 ${
+                active
+                  ? "scale-100 bg-[#052b4f] text-[#F5A623] opacity-100"
+                  : "scale-90 bg-white text-[#005AAA] opacity-0 group-hover:scale-100 group-hover:opacity-100"
+              }`}
+            >
+              {place.name}
+            </span>
+
+            {active && (
+              <div
+                className={`absolute left-1/2 z-40 w-[230px] -translate-x-1/2 rounded-[1.25rem] border border-white/80 bg-white p-3 text-left shadow-[0_20px_55px_rgba(0,0,0,0.28)] ${
+                  zoomed ? "top-20" : "top-16 hidden md:block"
+                }`}
+              >
+                <img
+                  src={place.image}
+                  alt={place.name}
+                  className="h-24 w-full rounded-xl object-cover"
+                />
+                <h4 className="mt-3 text-sm font-black text-[#052b4f]">
+                  {place.name}
+                </h4>
+                <p className="mt-1 text-xs leading-5 text-slate-600">
+                  {place.short}
+                </p>
+              </div>
+            )}
+          </button>
+        );
+      })}
+    </>
+  );
+
+  return (
+    <article className="scroll-reveal">
+      <style>
+        {`
+          @keyframes mapPinFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+          }
+        `}
+      </style>
+
+      <h2 className="mb-6 text-2xl font-bold text-[#005AAA]">
+        Concession Area
+      </h2>
+
+      <section className="relative overflow-hidden rounded-[2.8rem] border border-[#dcebf3] bg-gradient-to-br from-white via-[#f8fcff] to-[#eefaf3] p-5 shadow-[0_30px_100px_rgba(0,90,170,0.12)] sm:p-8">
+        <div className="absolute -right-28 -top-28 h-80 w-80 rounded-full bg-[#005AAA]/10 blur-3xl" />
+        <div className="absolute -bottom-28 -left-28 h-80 w-80 rounded-full bg-[#41B650]/12 blur-3xl" />
+
+        <div className="relative">
+          <p className="max-w-4xl text-base leading-8 text-slate-700">
+            JETAMA's concession area covers Kota Kinabalu and surrounding areas
+            including Tuaran, Telibong, Tamparuli, Moyog, Kasigui and Papar.
+          </p>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {stats.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.label}
+                  className={`group relative overflow-hidden rounded-[1.8rem] bg-gradient-to-br ${item.color} p-6 text-white shadow-[0_20px_55px_rgba(0,90,170,0.18)] transition duration-500 hover:-translate-y-2`}
+                >
+                  <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/20 blur-2xl" />
+
+                  <div className="relative flex items-center gap-4">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md">
+                      <Icon size={27} />
+                    </div>
+
+                    <div>
+                      <p className="text-3xl font-black">{item.value}</p>
+                      <p className="mt-1 text-sm font-semibold text-white/85">
+                        {item.label}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 grid gap-7 xl:grid-cols-2">
+            {imageCards.map((card, index) => (
+              <button
+                key={card.id}
+                type="button"
+                onClick={() => setActiveViewer(card.id)}
+                className="group relative overflow-hidden rounded-[2.3rem] border border-white bg-white text-left shadow-[0_28px_90px_rgba(0,90,170,0.16)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_38px_120px_rgba(0,90,170,0.24)]"
+                style={{ transitionDelay: `${index * 80}ms` }}
+              >
+                <div className="relative h-[420px] overflow-hidden bg-white sm:h-[480px] xl:h-[520px]">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="h-full w-full object-contain p-3 transition duration-[1200ms] group-hover:scale-[1.02]"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/80 via-[#052b4f]/10 to-transparent" />
+
+                  {card.id === "coverage" && renderPins(false)}
+
+                  <div className="absolute bottom-5 left-5 right-5 z-40 rounded-[1.7rem] border border-white/25 bg-white/18 p-5 text-white shadow-2xl backdrop-blur-md">
+                    <h3 className="mt-2 text-2xl font-black leading-tight">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-white/85">
+                      {card.subtitle}
+                    </p>
+
+                    <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#fbf234] px-5 py-3 text-sm font-black text-[#052b4f] transition group-hover:bg-[#41B650]">
+                      {card.action}
+                      <ArrowRight size={16} />
+                    </div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {activeViewer && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#021727]/90 p-4 backdrop-blur-md"
+          onClick={() => setActiveViewer(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setActiveViewer(null)}
+            className="absolute right-5 top-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#052b4f] shadow-lg transition hover:bg-[#fbf234]"
+            aria-label="Close image preview"
+          >
+            <X size={22} />
+          </button>
+
+          <div
+            className="max-h-[94vh] w-full max-w-7xl overflow-hidden rounded-[2rem] bg-white shadow-[0_40px_120px_rgba(0,0,0,0.45)]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="border-b border-slate-200 bg-gradient-to-r from-[#052b4f] via-[#005AAA] to-[#41B650] p-5 text-white">
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#F5A623]">
+                Concession Area Viewer
+              </p>
+              <h3 className="mt-2 text-2xl font-black">
+                {activeViewer === "coverage"
+                  ? `${activePlace} Coverage Pin`
+                  : "Pipeline & Reservoir Network"}
+              </h3>
+            </div>
+
+            {activeViewer === "coverage" ? (
+              <div className="grid max-h-[78vh] overflow-y-auto xl:grid-cols-[1fr_330px]">
+                <div className="overflow-auto bg-[#eef6fb] p-4">
+                  <div className="relative mx-auto h-[min(72vh,760px)] w-full max-w-5xl overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-inner">
+                    <img
+                      src={aiConcessionMap}
+                      alt="Zoomed JETAMA concession area map"
+                      className="h-full w-full object-contain p-3"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#052b4f]/35 via-transparent to-transparent" />
+                    {renderPins(true)}
+                  </div>
+                </div>
+
+                <div className="border-l border-slate-200 bg-white p-5">
+                  <p className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-slate-500">
+                    Select Location
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2 xl:grid-cols-1">
+                    {locations.map((place) => (
+                      <button
+                        key={place.name}
+                        type="button"
+                        onClick={() => setActivePlace(place.name)}
+                        className={`rounded-2xl px-4 py-3 text-left text-sm font-black transition ${
+                          activePlace === place.name
+                            ? "bg-[#005AAA] text-white shadow-lg"
+                            : "bg-[#f8fbff] text-[#052b4f] hover:bg-[#eaf8ef] hover:text-[#087629]"
+                        }`}
+                      >
+                        {place.name}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 rounded-[1.5rem] border border-[#dcebf3] bg-[#f8fbff] p-4 shadow-sm">
+                    <img
+                      src={activeLocation.image}
+                      alt={activeLocation.name}
+                      className="h-44 w-full rounded-[1.2rem] object-cover"
+                    />
+                    <p className="mt-4 text-xs font-black uppercase tracking-[0.2em] text-[#41B650]">
+                      Selected Pin
+                    </p>
+                    <h4 className="mt-2 text-2xl font-black text-[#052b4f]">
+                      {activeLocation.name}
+                    </h4>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {activeLocation.short}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="max-h-[78vh] overflow-auto bg-[#eef6fb] p-4">
+                <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-inner">
+                  <img
+                    src={pipelineReservoirMap}
+                    alt="Pipeline and reservoir network"
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+
 function CurrentContent({ slug }: { slug: string }) {
   if (slug === "overview") return <OverviewContent />;
   if (slug === "our-facilities") return <FacilitiesContent />;
+  if (slug === "concession-area") return <ConcessionAreaContent />;
   return <TotalCapabilityContent />;
 }
 

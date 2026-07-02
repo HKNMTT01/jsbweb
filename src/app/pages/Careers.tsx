@@ -261,9 +261,6 @@ export default function Careers() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_48%,#f8fff7_100%)]" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">Current Vacancies</p>
-            </div>
           </div>
 
           {loading ? (

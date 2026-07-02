@@ -54,6 +54,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <About /> },
+      { path: "about/concession-area", element: <Navigate to="/services/concession-area" replace /> },
       { path: "about/:slug", element: <AboutDetail /> },
       { path: "services", element: <Services /> },
       { path: "services/:slug", element: <ServicesDetail /> },

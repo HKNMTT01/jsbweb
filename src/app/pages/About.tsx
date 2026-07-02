@@ -6,7 +6,6 @@ import {
   Droplets,
   Landmark,
   Leaf,
-  MapPinned,
   ShieldCheck,
   Target,
   UsersRound,
@@ -117,7 +116,6 @@ export default function About() {
     { title: "Board of Directors", text: "Governance and leadership oversight.", href: "/about/board-of-directors", icon: Landmark },
     { title: "Top Level Management", text: "Management team behind operations.", href: "/about/top-level-management", icon: ShieldCheck },
     { title: "Vision, Mission & Values", text: "Purpose, direction and W.A.T.E.R values.", href: "/about/vision-mission-core-values", icon: Target },
-    { title: "Concession Area", text: "Service coverage and operational areas.", href: "/about/concession-area", icon: MapPinned },
   ];
 
   const overview = [
@@ -151,54 +149,6 @@ export default function About() {
         image={jetamaHero}
         subtitle="A Sabah-based water utility organisation committed to reliable treated water supply, responsible governance and sustainable long-term service delivery."
       />
-
-      <section className="relative bg-white py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-          <div className="page-animate">
-            <h2 className="mt-4 text-4xl font-black uppercase text-[#005AAA] md:text-5xl">
-              Redefining Water & Energy
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              JETAMA provides the foundation for treated water services across
-              key areas of Sabah while continuing to build stronger governance,
-              operational excellence and future-ready sustainability.
-            </p>
-
-            <div className="mt-9 grid grid-cols-2 gap-3">
-              {stats.map(([value, label]) => (
-                <div
-                  key={label}
-                  className="rounded-[24px] bg-[#f8fbff] p-5 jetama-card transition hover:-translate-y-1"
-                >
-                  <p className="text-3xl font-black text-[#005AAA]">{value}</p>
-                  <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-[#F6A623]">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="page-animate relative">
-            <div className="absolute -right-8 -top-8 h-44 w-44 rounded-[42px] bg-[#005AAA]/10 blur-3xl" />
-            <div className="absolute -bottom-8 -left-8 h-44 w-44 rounded-[42px] bg-[#35B24A]/10 blur-3xl" />
-
-            <div className="relative overflow-hidden rounded-[32px] bg-white p-3 shadow-[0_30px_90px_rgba(0,90,170,.18)]">
-              <div className="absolute inset-x-0 top-0 z-10 h-2 bg-gradient-to-r from-[#005AAA] via-[#35B24A] to-[#F6A623]" />
-
-              <div className="relative h-[360px] overflow-hidden rounded-[26px] sm:h-[430px] lg:h-[520px]">
-                <img
-                  src={moyogPlant}
-                  alt="JETAMA corporate direction"
-                  className="h-full w-full object-cover object-center transition duration-700 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061b46]/15 via-transparent to-transparent" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="relative py-20">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#f7fbff_0%,#ffffff_52%,#f8fff7_100%)]" />
@@ -239,86 +189,57 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-[#005AAA] py-20 text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <div>
+      <section className="relative overflow-hidden bg-[#005AAA] py-20 text-white">
+        <div className="absolute inset-0 opacity-25">
+          <div className="absolute -left-28 top-8 h-72 w-72 rounded-full bg-[#41B650]/35 blur-3xl" />
+          <div className="absolute right-10 top-10 h-60 w-60 rounded-full bg-[#F6A623]/25 blur-3xl" />
+          <div className="absolute bottom-0 left-1/3 h-52 w-96 rounded-full bg-white/10 blur-3xl" />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+
+          <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-black uppercase tracking-[0.28em] text-[#F6A623]">
               Living Our Values
             </p>
-            <h2 className="mt-4 text-4xl font-black uppercase md:text-5xl">
+
+            <h2 className="mt-4 text-5xl font-black uppercase md:text-7xl">
               W.A.T.E.R
             </h2>
-            <p className="mt-5 leading-8 text-white/80">
+
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/80">
               The values that guide our people, service culture and corporate
               responsibility.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-5">
+
             {values.map(([letter, title, text]) => (
+
               <div
                 key={letter}
-                className="rounded-[24px] bg-white/10 p-5 backdrop-blur transition hover:-translate-y-1 hover:bg-white/15"
+                className="flex h-full flex-col rounded-[26px] bg-white/10 p-6 backdrop-blur transition duration-300 hover:-translate-y-2 hover:bg-white/15"
               >
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-xl font-black text-[#F6A623]">
-                    {letter}
-                  </span>
-                  <h3 className="font-black">{title}</h3>
+
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-2xl font-black text-[#F6A623]">
+                  {letter}
                 </div>
-                <p className="mt-3 text-sm leading-6 text-white/78">{text}</p>
+
+                <h3 className="mt-5 text-center text-xl font-black">
+                  {title}
+                </h3>
+
+                <p className="mt-4 flex-1 text-center text-sm leading-7 text-white/80">
+                  {text}
+                </p>
+
               </div>
+
             ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
-                Explore More
-              </p>
-              <h2 className="mt-4 text-4xl font-black uppercase text-[#005AAA]">
-                About Sections
-              </h2>
-            </div>
-            <p className="max-w-xl leading-8 text-slate-600">
-              Navigate directly to leadership, company profile, governance and
-              service coverage pages.
-            </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {quickLinks.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.title}
-                  to={item.href}
-                  className="group rounded-[28px] bg-[#f8fbff] p-6 jetama-card transition hover:-translate-y-2 hover:bg-white"
-                >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#005AAA]/10 text-[#005AAA]">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-black text-[#052b4f]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 min-h-[52px] leading-7 text-slate-600">
-                    {item.text}
-                  </p>
-                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-[#005AAA]">
-                    View Details
-                    <ArrowRight
-                      size={15}
-                      className="transition group-hover:translate-x-1"
-                    />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
         </div>
       </section>
     </main>

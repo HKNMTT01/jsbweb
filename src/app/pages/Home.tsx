@@ -7,14 +7,13 @@ import {
   ChevronRight,
   Droplets,
   Leaf,
-  ShieldCheck,
   Zap,
 } from "lucide-react";
 
 import damHeroImage from "@/assets/jetama-dam-hero.jpg";
-import aboutImageTwo from "@/assets/jetama-about-2.jpg";
-import aboutImageThree from "@/assets/jetama-about-3.jpg";
-import aboutImageFour from "@/assets/jetama-about-4.jpg";
+import aboutImageTwo from "@/assets/imgg3.jpeg";
+import aboutImageThree from "@/assets/img000.jpeg";
+import aboutImageFour from "@/assets/img0101.jpeg";
 import jetamaEnergyLogo from "@/assets/jetama_energy.png";
 import jetamaWaterLogo from "@/assets/JETAMA WATER - 2.png";
 import jetamaAlpineLogo from "@/assets/jetama_alpine_pipe.png";
@@ -32,13 +31,11 @@ const aboutCarouselImages = [
   { src: aboutImageFour, alt: "JETAMA water treatment plant" },
 ];
 
-const facilityCards = [
-  "Moyog Water Treatment Plant",
-  "Telibong Water Treatment Plant",
-  "Kasigui Water Treatment Plant",
-  "Papar Water Treatment Plant",
-  "Tamparuli Water Treatment Plant",
-  "Tuaran Water Treatment Plant",
+const aboutStats = [
+  ["1988", "Incorporated"],
+  ["1992", "PCCA Signed"],
+  ["165 MLD", "Moyog Capacity"],
+  ["70 km", "Pipeline Works"],
 ];
 
 const subsidiaries = [
@@ -867,29 +864,32 @@ export default function Home() {
           <SectionGeometricBackground />
           <div className="relative">
             <p className="scroll-reveal-right text-sm font-black uppercase tracking-[0.28em] text-[#35B24A]">
-              Our Facility
+              Redefining Water & Energy
             </p>
 
             <h2 className="scroll-reveal-right mt-3 text-4xl font-black leading-tight tracking-[-0.04em] text-[#005AAA] md:text-5xl">
-              Facilities that support reliable water service delivery
+              What Defines Us
             </h2>
 
             <p className="scroll-reveal-right mt-6 text-lg leading-9 text-slate-600">
-              JETAMA’s role is built around treatment plant operations,
-              technical capability, asset readiness and service responsibility.
-              The company supports essential water infrastructure for
-              communities and development areas.
+              JETAMA provides the foundation for treated water services across
+              key areas of Sabah while continuing to build stronger governance,
+              operational excellence and future-ready sustainability.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {facilityCards.map((item, index) => (
+            <div className="mt-9 grid grid-cols-2 gap-4 sm:max-w-[560px]">
+              {aboutStats.map(([value, label], index) => (
                 <div
-                  key={item}
-                  className="scroll-scale flex items-center gap-3 rounded-2xl border border-[#DCEBF3] bg-white/86 p-4 font-bold text-[#005AAA] shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-md"
+                  key={label}
+                  className="scroll-scale rounded-[24px] bg-[#f8fbff]/90 p-5 shadow-[0_18px_55px_rgba(15,60,110,.08)] backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_26px_70px_rgba(0,90,170,.16)]"
                   style={{ transitionDelay: `${index * 90}ms` }}
                 >
-                  <ShieldCheck className="text-[#35B24A]" size={20} />
-                  {item}
+                  <p className="text-3xl font-black tracking-tight text-[#005AAA] sm:text-4xl">
+                    {value}
+                  </p>
+                  <p className="mt-2 text-[11px] font-black uppercase tracking-[0.18em] text-[#F6A623] sm:text-xs">
+                    {label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -969,79 +969,86 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
-        <NewsTechBackground />
+      <section className="relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
+        <SectionGeometricBackground variant="bright" />
 
-        <div className="relative z-10 mx-auto max-w-[1280px]">
-          <div className="scroll-reveal relative z-30 mb-7 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <h2 className="relative z-40 mt-3 text-4xl font-black tracking-[-0.045em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,.45)] md:text-6xl">
+        <div className="relative mx-auto max-w-6xl">
+          <div className="scroll-reveal mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
+                Latest Updates
+              </p>
+              <h2 className="mt-3 text-4xl font-black tracking-[-0.04em] text-[#005AAA] md:text-5xl">
                 News & Events
               </h2>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
+                Stay updated with JETAMA’s latest corporate news, events and
+                sustainability initiatives.
+              </p>
             </div>
 
             <Link
               to="/news"
-              className="inline-flex w-fit items-center gap-3 rounded-full border border-white/20 bg-white/[.12] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-[#F6A623] hover:text-[#005AAA]"
+              className="inline-flex w-fit items-center gap-3 rounded-full bg-[#005AAA] px-6 py-3 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_16px_40px_rgba(0,90,170,.18)] transition hover:-translate-y-1 hover:bg-[#35B24A]"
             >
               View All News
               <ArrowRight size={16} />
             </Link>
           </div>
 
-          <div className="news-brand-glass scroll-scale relative overflow-hidden rounded-[2.25rem] border border-white/20 bg-white/[.10] p-4 pt-6 shadow-[0_28px_85px_rgba(0,20,45,0.26)] backdrop-blur-xl sm:p-5 sm:pt-7 lg:p-5 lg:pt-7">
-            <div className="pointer-events-none absolute inset-0 rounded-[2.4rem] bg-[linear-gradient(135deg,rgba(255,255,255,.18),transparent_38%,rgba(246,166,35,.10))]" />
-            <div className="pointer-events-none absolute left-0 top-0 h-24 w-[44%] bg-[#F6A623]/18 [clip-path:polygon(0_0,100%_0,82%_100%,0_62%)]" />
+          <div className="scroll-scale relative overflow-hidden rounded-[2rem] border border-[#DCEBF3] bg-white/88 p-4 shadow-[0_24px_75px_rgba(0,90,170,.12)] backdrop-blur-md md:p-5">
+            <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-[#35B24A] via-[#005AAA] to-[#F6A623]" />
+            <div
+              className="pointer-events-none absolute right-0 top-0 h-32 w-80 bg-[#005AAA]/[.06]"
+              style={{ clipPath: "polygon(24% 0, 100% 0, 100% 100%, 0 62%)" }}
+            />
+            <div
+              className="pointer-events-none absolute left-0 bottom-0 h-28 w-80 bg-[#35B24A]/[.06]"
+              style={{ clipPath: "polygon(0 0, 80% 35%, 100% 100%, 0 100%)" }}
+            />
 
-            <div className="relative flex flex-col gap-5 lg:flex-row">
+            <div className="relative grid gap-5 lg:grid-cols-[1.08fr_.92fr] lg:items-stretch">
               <a
                 key={activeNews.title}
                 href={activeNews.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative min-h-[405px] flex-1 overflow-hidden rounded-[1.8rem] bg-[#052B4F] shadow-[0_24px_70px_rgba(0,20,45,0.30)] transition duration-500 hover:-translate-y-1"
+                className="group relative min-h-[330px] overflow-hidden rounded-[1.55rem] bg-[#052B4F] shadow-[0_18px_55px_rgba(0,44,85,.18)] transition duration-500 hover:-translate-y-1"
               >
                 <img
                   key={`${activeNews.title}-${activeNews.image}`}
                   src={activeNews.image}
                   alt={activeNews.title}
                   onError={handleNewsImageError}
-                  className="absolute inset-0 h-full w-full object-cover opacity-100 transition duration-700 group-hover:scale-[1.035]"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,22,42,.94)_0%,rgba(2,22,42,.60)_42%,rgba(2,22,42,.10)_100%)]" />
-                <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/18 to-transparent" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(2,22,42,.88)_0%,rgba(2,22,42,.52)_44%,rgba(2,22,42,.10)_100%)]" />
 
-                <div className="absolute left-6 top-6 overflow-hidden rounded-full border border-white/28 bg-white/18 px-4 py-2.5 shadow-[0_18px_42px_rgba(0,0,0,.22)] backdrop-blur-md">
-                  <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-[#35B24A] via-[#005AAA] to-[#F6A623]" />
-                  <div className="pl-2 text-[11px] font-black uppercase tracking-[0.18em] text-white drop-shadow">
-                    {formatNewsDisplayDate(activeNews.date)}
-                  </div>
+                <div className="absolute left-5 top-5 overflow-hidden rounded-full border border-white/25 bg-white/18 px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white shadow-[0_14px_35px_rgba(0,0,0,.18)] backdrop-blur-md">
+                  {formatNewsDisplayDate(activeNews.date)}
                 </div>
 
-                <div className="absolute bottom-0 left-0 max-w-4xl p-6 md:p-7">
-                  <div className="mb-4 inline-flex rounded-full bg-white/16 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                <div className="absolute bottom-0 left-0 max-w-3xl p-5 md:p-6">
+                  <div className="mb-3 inline-flex rounded-full bg-white/16 px-4 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-white backdrop-blur-md">
                     Latest Update
                   </div>
 
-                  <h3 className="text-2xl font-black leading-tight text-white md:text-3xl">
+                  <h3 className="line-clamp-3 text-xl font-black leading-tight text-white md:text-2xl">
                     {activeNews.title}
                   </h3>
 
-                  <p className="mt-4 max-w-2xl text-base leading-7 text-white/82">
+                  <p className="mt-3 line-clamp-2 max-w-2xl text-sm leading-6 text-white/82 md:text-base">
                     {activeNews.excerpt}
                   </p>
 
-                  <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#ffffff] px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-[#005AAA] transition group-hover:bg-white">
+                  <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#005AAA] transition group-hover:bg-[#F6A623] group-hover:text-[#052B4F]">
                     Read Full Story
-                    <ArrowRight
-                      size={16}
-                      className="transition group-hover:translate-x-1"
-                    />
+                    <ArrowRight size={15} className="transition group-hover:translate-x-1" />
                   </div>
                 </div>
               </a>
 
-              <div className="flex w-full flex-col gap-2.5 lg:w-[400px]">
+              <div className="flex flex-col gap-3">
                 {sortedLatestNews.map((item, index) => {
                   const isActive = index === activeNewsIndex;
 
@@ -1050,22 +1057,22 @@ export default function Home() {
                       key={item.title}
                       type="button"
                       onClick={() => setActiveNewsIndex(index)}
-                      className={`group relative overflow-hidden rounded-[1.35rem] border p-2.5 text-left backdrop-blur-md transition duration-300 hover:-translate-y-1 ${
+                      className={`group relative overflow-hidden rounded-[1.25rem] border bg-white/86 p-3 text-left shadow-[0_10px_28px_rgba(15,60,110,.07)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_16px_42px_rgba(0,90,170,.12)] ${
                         isActive
-                          ? "border-[#F6A623]/70 bg-white/[.18] shadow-[0_18px_50px_rgba(246,166,35,.16)]"
-                          : "border-white/14 bg-white/[.09] hover:border-white/30 hover:bg-white/[.14]"
+                          ? "border-[#F6A623]/70 ring-1 ring-[#F6A623]/40"
+                          : "border-[#DCEBF3]"
                       }`}
                     >
                       <div
                         className={`absolute left-0 top-0 h-full w-1.5 transition ${
                           isActive
                             ? "bg-[#F6A623]"
-                            : "bg-white/28 group-hover:bg-[#35B24A]"
+                            : "bg-[#35B24A]/55 group-hover:bg-[#005AAA]"
                         }`}
                       />
 
-                      <div className="relative flex gap-4">
-                        <div className="h-20 w-24 shrink-0 overflow-hidden rounded-[1.05rem] bg-[#005AAA] shadow-md">
+                      <div className="relative flex gap-3 pl-1">
+                        <div className="h-[78px] w-[92px] shrink-0 overflow-hidden rounded-[1rem] bg-[#005AAA] shadow-sm">
                           <img
                             src={item.image}
                             alt={item.title}
@@ -1074,15 +1081,15 @@ export default function Home() {
                           />
                         </div>
 
-                        <div className="min-w-0 flex-1 py-1">
-                          <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.12em] text-[#ffffff]">
+                        <div className="min-w-0 flex-1 py-0.5">
+                          <div className="mb-1.5 flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.14em] text-[#35B24A]">
                             <CalendarDays size={12} />
                             {formatNewsDisplayDate(item.date)}
                           </div>
-                          <h3 className="line-clamp-2 text-base font-black leading-snug text-white">
+                          <h3 className="line-clamp-2 text-sm font-black leading-snug text-[#052B4F]">
                             {item.title}
                           </h3>
-                          <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/64">
+                          <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-slate-500">
                             {item.excerpt}
                           </p>
                         </div>
@@ -1091,12 +1098,12 @@ export default function Home() {
                   );
                 })}
 
-                <div className="mt-1 flex items-center justify-between rounded-[1.2rem] border border-white/14 bg-white/[.08] p-2.5 backdrop-blur-md">
+                <div className="mt-1 flex items-center justify-between rounded-[1.2rem] border border-[#DCEBF3] bg-white/80 p-2.5 shadow-sm backdrop-blur-md">
                   <button
                     type="button"
                     aria-label="Previous news"
                     onClick={prevNews}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/[.10] text-white transition hover:bg-[#F6A623] hover:text-[#005AAA]"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#DCEBF3] bg-white text-[#005AAA] transition hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#052B4F]"
                   >
                     <ChevronLeft size={20} />
                   </button>
@@ -1111,7 +1118,7 @@ export default function Home() {
                         className={`h-2.5 rounded-full transition-all ${
                           activeNewsIndex === index
                             ? "w-10 bg-[#F6A623]"
-                            : "w-2.5 bg-white/36 hover:bg-[#35B24A]"
+                            : "w-2.5 bg-[#DCEBF3] hover:bg-[#35B24A]"
                         }`}
                       />
                     ))}
@@ -1121,103 +1128,11 @@ export default function Home() {
                     type="button"
                     aria-label="Next news"
                     onClick={nextNews}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/16 bg-white/[.10] text-white transition hover:bg-[#F6A623] hover:text-[#005AAA]"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#DCEBF3] bg-white text-[#005AAA] transition hover:border-[#F6A623] hover:bg-[#F6A623] hover:text-[#052B4F]"
                   >
                     <ChevronRight size={20} />
                   </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden px-4 py-20 text-[#005AAA] sm:px-6 lg:px-8">
-        <SectionGeometricBackground variant="bright" />
-        <div className="relative mx-auto max-w-6xl">
-          <div className="scroll-reveal shine-layer relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/82 p-7 shadow-[0_25px_80px_rgba(0,90,170,.12)] backdrop-blur-md md:p-10">
-            <div
-              className="absolute left-0 top-0 h-24 w-80 bg-[#005AAA]/10"
-              style={{ clipPath: "polygon(0 0, 100% 0, 76% 100%, 0 62%)" }}
-            />
-            <div
-              className="absolute right-0 bottom-0 h-28 w-96 bg-[#35B24A]/10"
-              style={{
-                clipPath: "polygon(24% 0, 100% 34%, 100% 100%, 0 100%)",
-              }}
-            />
-            <div className="relative grid gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#35B24A]">
-                  Moving Forward
-                </p>
-
-                <h2 className="mt-4 text-3xl font-black leading-tight tracking-[-0.03em] text-[#005AAA] md:text-4xl lg:text-[2.8rem]">
-                  Strengthening Water Services &
-                  <span className="block text-[#005AAA]">
-                    Sustainable Energy Growth
-                  </span>
-                </h2>
-
-                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-                  JETAMA continues to support Sabah’s infrastructure needs
-                  through reliable water operations, renewable energy
-                  initiatives and strategic corporate development.
-                </p>
-
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <Link
-                    to="/projects"
-                    className="inline-flex items-center gap-3 rounded-full bg-[#005AAA] px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-white shadow-lg transition hover:-translate-y-1 hover:bg-[#35B24A]"
-                  >
-                    Explore Projects
-                    <ArrowRight size={17} />
-                  </Link>
-
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-3 rounded-full border border-[#DCEBF3] bg-white/80 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-[#005AAA] backdrop-blur transition hover:-translate-y-1 hover:border-[#35B24A] hover:bg-white"
-                  >
-                    Contact Us
-                    <ArrowRight size={17} />
-                  </Link>
-                </div>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-                {closingCards.map((card, index) => {
-                  const Icon = card.icon;
-
-                  return (
-                    <Link
-                      key={card.title}
-                      to={card.link}
-                      className="scroll-scale group relative overflow-hidden rounded-2xl border border-[#DCEBF3] bg-white/86 p-5 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_55px_rgba(0,90,170,.14)]"
-                      style={{ transitionDelay: `${index * 100}ms` }}
-                    >
-                      <div
-                        className="absolute right-0 top-0 h-16 w-24 bg-[#005AAA]/[.06]"
-                        style={{
-                          clipPath: "polygon(28% 0, 100% 0, 100% 100%, 0 68%)",
-                        }}
-                      />
-                      <div className="relative flex gap-4">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#005AAA] text-white shadow-md transition group-hover:bg-[#F6A623] group-hover:text-[#005AAA]">
-                          <Icon size={21} />
-                        </div>
-
-                        <div>
-                          <h3 className="text-lg font-black text-[#005AAA]">
-                            {card.title}
-                          </h3>
-                          <p className="mt-2 text-sm leading-6 text-slate-600">
-                            {card.text}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
               </div>
             </div>
           </div>

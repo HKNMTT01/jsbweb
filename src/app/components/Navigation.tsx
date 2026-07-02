@@ -62,11 +62,11 @@ const keywordSuggestions: SearchSuggestion[] = [
   },
   {
     label: "Concession Area",
-    path: "/about/concession-area",
-    parent: "About Us",
+    path: "/services/concession-area",
+    parent: "Services & Facilities",
     category: "Coverage",
-    description: "Kota Kinabalu, Tuaran, Telibong, Tamparuli, Moyog, Kasigui and Papar coverage.",
-    aliases: ["map", "coverage", "kota kinabalu", "tuaran", "telibong", "tamparuli", "moyog", "kasigui", "papar", "pipeline", "reservoir"],
+    description: "Kota Kinabalu, Tuaran, Telibong, Tamparuli, Moyog, Kasigui and Papar service coverage.",
+    aliases: ["map", "coverage", "service area", "concession", "kota kinabalu", "tuaran", "telibong", "tamparuli", "moyog", "kasigui", "papar", "pipeline", "reservoir"],
   },
   {
     label: "Vision, Mission & Core Values",
@@ -298,7 +298,6 @@ export default function Navigation() {
         { label: "Top Level Management", path: "/about/top-level-management" },
         { label: "Vision, Mission & Core Values", path: "/about/vision-mission-core-values" },
         { label: "Shareholders", path: "/about/shareholders" },
-        { label: "Concession Area", path: "/about/concession-area" },
       ],
     },
     {
@@ -307,6 +306,7 @@ export default function Navigation() {
       sub: [
         { label: "Overview", path: "/services/overview" },
         { label: "Our Facilities", path: "/services/our-facilities" },
+        { label: "Concession Area", path: "/services/concession-area" },
         { label: "Total Capability", path: "/services/total-capability" },
       ],
     },

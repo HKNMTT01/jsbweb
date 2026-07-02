@@ -640,17 +640,17 @@ function TopLevelManagementContent() {
         "Provides executive leadership and strategic direction for JETAMA’s corporate growth, operational excellence and long-term service commitment.",
     },
     {
-      name: "Ir. Lo Ho Min",
-      division: "Water Division",
-      image: sgmWaterImage,
-      tag: "SGM Water",
-      level: "senior",
-    },
-    {
       name: "Prof. Ts. Jude Abel Logijin",
       division: "Jetama Water Sdn. Bhd.",
       image: sgmJwsbImage,
       tag: "SGM JWSB",
+      level: "senior",
+    },
+    {
+      name: "Ir. Lo Ho Min",
+      division: "Water Division",
+      image: sgmWaterImage,
+      tag: "SGM Water",
       level: "senior",
     },
     {

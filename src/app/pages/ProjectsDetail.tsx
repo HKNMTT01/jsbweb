@@ -524,10 +524,6 @@ function ProjectTimeline({
           style={{ color: page.accent }}
         />
 
-        <h2 className="font-serif text-4xl font-normal italic leading-tight text-[#005AAA] sm:text-5xl">
-          Project Timeline
-        </h2>
-
         <div className="mx-auto mt-5 flex w-fit items-center gap-3">
           <span className="h-[3px] w-20 rounded-full bg-[#005AAA]" />
           <span className="h-[3px] w-10 rounded-full bg-[#35B24A]" />

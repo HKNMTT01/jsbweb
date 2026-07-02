@@ -600,54 +600,6 @@ function JetamaAlpinePipeDetail({ page }: { page: JointVenturePage }) {
           <ShareText name="Alpine Pipe Manufacturing Sdn. Bhd." percent="49%" accent={page.accent} />
         </div>
       </section>
-
-      <section className="scroll-reveal relative">
-        <SectionTitle
-          eyebrow="Certifications"
-          title="Mild Steel Concrete Lined Pipes Certifications"
-          accent={page.accent}
-        />
-
-        <p className="max-w-4xl text-justify text-base leading-8 text-slate-600">
-          Certifications and approvals related to pipe manufacturing, conformity, quality assurance and water industry standards.
-        </p>
-
-        <button
-          type="button"
-          onClick={() => setPreview(certificationBoard)}
-          className="group relative mt-9 block w-full overflow-hidden rounded-[2rem] shadow-[0_25px_80px_rgba(0,44,85,0.12)] transition duration-500 hover:-translate-y-1"
-        >
-          <img
-            src={certificationBoard}
-            alt="Jetama Alpine Pipe Certifications"
-            className="w-full transition duration-700 group-hover:scale-[1.02]"
-          />
-          <div className="absolute inset-0 bg-[#061b46]/0 transition group-hover:bg-[#061b46]/10" />
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-white/95 px-6 py-3 text-sm font-black uppercase tracking-[0.15em] text-[#102f83] shadow-xl backdrop-blur">
-            Click To Preview Certifications
-          </div>
-        </button>
-
-        {preview && (
-          <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
-            <button
-              onClick={() => setPreview(null)}
-              className="absolute right-6 top-6 rounded-full bg-white p-3 text-[#102f83] shadow-xl transition hover:scale-105"
-              aria-label="Close certificate preview"
-            >
-              <X size={24} />
-            </button>
-
-            <div className="max-h-[95vh] max-w-7xl overflow-auto rounded-[2rem] bg-white p-3 shadow-2xl">
-              <img
-                src={preview}
-                alt="Certification Preview"
-                className="h-auto w-full object-contain"
-              />
-            </div>
-          </div>
-        )}
-      </section>
     </div>
   );
 }
